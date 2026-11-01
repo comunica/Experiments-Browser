@@ -45,6 +45,8 @@ const { values: args } = parseArgs({
     rounds: { type: 'string', default: '5' },
     warmup: { type: 'string', default: '1' },
     repeat: { type: 'string', default: '3' },
+    // LDBC SNB's complex queries take seconds each: one repetition of it already runs for hours.
+    'repeat-overrides': { type: 'string', default: 'ldbc-snb-0.1=1' },
     timeout: { type: 'string', default: '60000' },
     grace: { type: 'string', default: '30000' },
     'load-timeout': { type: 'string', default: '900000' },
@@ -59,6 +61,11 @@ const LOAD_TIMEOUT_MS = Number(args['load-timeout']);
 const ROUNDS = Number(args.rounds);
 const WARMUP = Number(args.warmup);
 const REPEAT = Number(args.repeat);
+const REPEAT_OVERRIDES = new Map(args['repeat-overrides'].split(',').filter(Boolean).map((entry) => {
+  const [ dataset, count ] = entry.split('=');
+  return [ dataset, Number(count) ];
+}));
+const repetitionsFor = (dataset: string) => REPEAT_OVERRIDES.get(dataset) ?? REPEAT;
 const OUT = resolve(ROOT, args.out ?? join('results', `${new Date().toISOString().slice(0, 10)}-${args.machine}`));
 // Configurations that are deliberately not run, as browser/engine/dataset=reason;...
 const SKIPS = new Map(args.skip.split(';').filter(Boolean).map((entry) => {
@@ -424,6 +431,7 @@ async function main(): Promise<void> {
     vite: version('vite'),
   };
   meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS, repetitions: REPEAT,
+    repetitionOverrides: Object.fromEntries(REPEAT_OVERRIDES),
     chromiumLaunch: CHROMIUM_LAUNCH, headless: true };
   meta.browsers ??= {};
   meta.skipped ??= {};
@@ -442,9 +450,9 @@ async function main(): Promise<void> {
       const datasets = args.datasets?.split(',') ?? (mode === 'support' ? SUPPORT_DATASETS : DATASETS);
       // Repetitions are the outer loop, so a transient slowdown of the machine hits one repetition of many
       // configurations instead of every repetition of one. The support pass only classifies, once.
-      const repetitions = mode === 'support' ? 1 : REPEAT;
+      const repetitions = mode === 'support' ? 1 : Math.max(...datasets.map(repetitionsFor));
       for (let repetition = 1; repetition <= repetitions; repetition++) {
-        for (const dataset of datasets) {
+        for (const dataset of datasets.filter(d => mode === 'support' || repetition <= repetitionsFor(d))) {
           for (const browserName of browsers) {
             for (const engine of engines) {
               const key = `${browserName}/${engine}/${dataset}`;

@@ -47,7 +47,8 @@ npm run plot           # CSV -> SVG
   `.cache/comunica-build.json`, embedded in both pages, and recorded in every raw result and in `meta.json`.
 - `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). Options:
   `--browsers`, `--engines`, `--datasets`, `--mode support|timing|all`, `--out`, `--machine` (or `BENCH_MACHINE`),
-  `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3), and
+  `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3),
+  `--repeat-overrides` (default `ldbc-snb-0.1=1`: LDBC SNB runs once, as one repetition already takes hours), and
   `--skip 'browser/engine/dataset=reason;…'` for configurations that cannot run on a machine (recorded in `meta.json`).
 - `npm install <package>` removes the linked Comunica packages from `node_modules`; run `npm run prepare` again (the
   build refuses to run without them).
@@ -77,7 +78,7 @@ version in both the project and the Comunica checkout are deduplicated in the bu
 across the browser boundary. Its only clock is a watchdog that kills a page that stops responding.
 
 **Per run** (one browser, one engine, one dataset), in a fresh browser process and context. Every run is
-repeated (`--repeat`, default 3); repetitions are the outer loop, so a slow moment of the machine hits one repetition of
+repeated (`--repeat`, default 3; LDBC SNB once, see `--repeat-overrides`); repetitions are the outer loop, so a slow moment of the machine hits one repetition of
 many configurations rather than all repetitions of one:
 
 1. **Fetch + inflate**: fetch `dataset.nt.gz` and inflate it with `DecompressionStream` into line-aligned strings of
@@ -98,7 +99,8 @@ many configurations rather than all repetitions of one:
 6. **Warmup**: one round over all queries, not used.
 7. **Timed rounds**: five rounds over all queries (round-robin).
 
-Over the repetitions: warm time = mean, min and max of all timed executions of an instance (3 × 5 = 15); cold time =
+Over the repetitions: warm time = mean, min and max of all timed executions of an instance (3 × 5 = 15, or 5 for
+LDBC SNB); cold time =
 mean of its cold executions (one per repetition); init, load and memory = median over repetitions, with the range.
 
 **A query execution** ends when the last result has been materialised: every solution (or quad) is counted and every

@@ -1,7 +1,0 @@
-browser;engine;ok;wrong;unsupported;timeout;error;oom;total_warm_ms;total_cold_ms;common_ok;common_warm_ms;common_cold_ms;common_geomean_warm_ms
-chromium;comunica;50;0;0;0;0;0;270.19;573;50;270.19;573;3.583
-chromium;oxigraph;50;0;0;0;0;0;205.17;296.76;50;205.17;296.76;0.855
-firefox;comunica;50;0;0;0;0;0;1183.58;1643.7;50;1183.58;1643.7;13.551
-firefox;oxigraph;50;0;0;0;0;0;221.55;235.92;50;221.55;235.92;1.151
-webkit;comunica;50;0;0;0;0;0;335.43;793.36;50;335.43;793.36;4.719
-webkit;oxigraph;50;0;0;0;0;0;215.57;229.69;50;215.57;229.69;0.943

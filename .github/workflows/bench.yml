@@ -9,6 +9,9 @@ on:
       browsers:
         description: Comma-separated browsers
         default: chromium,firefox,webkit
+      ldbc_browsers:
+        description: Browsers for LDBC SNB (one repetition takes about 1.5 hours per browser)
+        default: chromium
   schedule:
     # Monthly, on the 1st at 03:17 UTC.
     - cron: '17 3 1 * *'
@@ -43,16 +46,27 @@ jobs:
         run: npm run build
       - name: Reference counts
         id: reference
-        # A disagreement between the engines is reported in the PR, not resolved; the affected
-        # queries get no reference count and are classified as disputed.
+        # Recomputed into a copy, so the benchmark classifies against the committed counts and a change in the
+        # engines' answers shows up as `wrong`. A disagreement between the engines is reported in the PR.
         continue-on-error: true
-        run: npm run reference
+        run: |
+          cp -r data /tmp/data-committed
+          status=0
+          npm run reference || status=$?
+          mkdir -p reference-recomputed
+          for f in data/*/reference.json; do cp "$f" "reference-recomputed/$(basename "$(dirname "$f")").json"; done
+          for d in /tmp/data-committed/*/; do cp "$d/reference.json" "data/$(basename "$d")/reference.json" 2>/dev/null || true; done
+          exit "$status"
       - name: Benchmark
         id: bench
         run: |
           out="results/$(date -u +%Y-%m-%d)-github-runner"
           echo "out=$out" >> "$GITHUB_OUTPUT"
-          npm run bench -- --out "$out" --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
+          npm run bench -- --out "$out" --mode support --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
+          npm run bench -- --out "$out" --mode timing --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k \
+            --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
+          npm run bench -- --out "$out" --mode timing --datasets ldbc-snb-0.1 \
+            --browsers "${{ inputs.ldbc_browsers || 'chromium' }}"
       - name: Aggregate and plot
         run: |
           npm run aggregate -- "${{ steps.bench.outputs.out }}"
@@ -63,7 +77,7 @@ jobs:
           branch: bench/${{ github.run_id }}
           add-paths: |
             results/
-            data/*/reference.json
+            reference-recomputed/
           commit-message: Add benchmark results from ${{ steps.bench.outputs.out }}
           title: >-
             ${{ steps.reference.outcome == 'failure' && '[reference disagreement] ' || '' }}Benchmark results:
@@ -73,6 +87,9 @@ jobs:
             Results of workflow run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             on a GitHub-hosted `ubuntu-latest` runner, Comunica `${{ env.COMUNICA_REF }}`.
 
-            Reference counts step: **${{ steps.reference.outcome }}**${{ steps.reference.outcome == 'failure' && ' (Oxigraph and Comunica disagree on at least one query; see the job log and data/*/reference.json)' || '' }}.
+            Reference counts step: **${{ steps.reference.outcome }}**${{ steps.reference.outcome == 'failure' && ' (Oxigraph and Comunica disagree on at least one query; see the job log and `reference-recomputed/`)' || '' }}.
+            The browser runs are classified against the committed `data/*/reference.json`; the counts recomputed with this
+            Comunica build are in `reference-recomputed/`.
 
+            LDBC SNB ran in: ${{ inputs.ldbc_browsers || 'chromium' }}, one repetition.
             See `${{ steps.bench.outputs.out }}/README.md`. Shared runners are noisy: compare engines within one run, not across runs.
