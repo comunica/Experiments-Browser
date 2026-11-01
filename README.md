@@ -20,8 +20,8 @@ Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetiti
 
 - Both engines returned the correct count for all 300 query instances in all three browsers.
 - Per query, Oxigraph is faster on 17 to 20 of the 20 WatDiv templates and 9 to 10 of the 10 BSBM templates; Comunica
-  is 2.1 to 14 times slower in geometric mean (least in Chromium, most in Firefox).
-- WatDiv C3 is the exception: Oxigraph needs 2.0 to 2.6 s at 1.1M triples, Comunica 0.13 to 0.30 s. Because C3 is
+  is 2.1 to 15 times slower in geometric mean (least in Chromium, most in Firefox).
+- WatDiv C3 is the exception: Oxigraph needs 2.0 to 2.6 s at 1.1M triples, Comunica 0.15 to 0.29 s. Because C3 is
   95 to 99 % of Oxigraph's WatDiv total, Comunica's WatDiv totals are lower; without C3, and on BSBM, Oxigraph's are.
 - Loading takes the same order of time in both (which one is faster depends on browser and dataset); memory after
   load is lower for Comunica (91 vs 548 MB at 1.1M WatDiv triples); the Oxigraph page transfers 5.4 times more
