@@ -390,7 +390,8 @@ function machineInfo(): Record<string, unknown> {
 function gitInfo(): Record<string, unknown> {
   try {
     const run = (...a: string[]) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ] }).trim();
-    return { commit: run('rev-parse', 'HEAD'), dirty: run('status', '--porcelain').length > 0 };
+    // Results written by the runner itself do not make the code dirty.
+    return { commit: run('rev-parse', 'HEAD'), dirty: run('status', '--porcelain', '--', '.', ':!results').length > 0 };
   } catch {
     return {};
   }
