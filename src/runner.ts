@@ -43,6 +43,7 @@ const { values: args } = parseArgs({
     machine: { type: 'string', default: process.env.BENCH_MACHINE ?? os.hostname() },
     rounds: { type: 'string', default: '5' },
     warmup: { type: 'string', default: '1' },
+    repeat: { type: 'string', default: '3' },
     timeout: { type: 'string', default: '60000' },
     grace: { type: 'string', default: '30000' },
     'load-timeout': { type: 'string', default: '900000' },
@@ -56,6 +57,7 @@ const GRACE_MS = Number(args.grace);
 const LOAD_TIMEOUT_MS = Number(args['load-timeout']);
 const ROUNDS = Number(args.rounds);
 const WARMUP = Number(args.warmup);
+const REPEAT = Number(args.repeat);
 const OUT = resolve(ROOT, args.out ?? join('results', `${new Date().toISOString().slice(0, 10)}-${args.machine}`));
 // Configurations that are deliberately not run, as browser/engine/dataset=reason;...
 const SKIPS = new Map(args.skip.split(';').filter(Boolean).map((entry) => {
@@ -422,7 +424,7 @@ async function main(): Promise<void> {
     playwright: version('playwright'),
     vite: version('vite'),
   };
-  meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS,
+  meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS, repetitions: REPEAT,
     chromiumLaunch: CHROMIUM_LAUNCH, headless: true };
   meta.browsers ??= {};
   meta.skipped ??= {};
@@ -439,28 +441,34 @@ async function main(): Promise<void> {
   try {
     for (const mode of modes) {
       const datasets = args.datasets?.split(',') ?? (mode === 'support' ? SUPPORT_DATASETS : DATASETS);
-      for (const dataset of datasets) {
-        for (const browserName of browsers) {
-          for (const engine of engines) {
-            const key = `${browserName}/${engine}/${dataset}`;
-            const file = join(OUT, 'raw', `${mode}-${dataset}-${browserName}-${engine}.json`);
-            if (SKIPS.has(key) || SKIPS.has(`${browserName}/${engine}/${dataset}/${mode}`)) {
-              meta.skipped[`${mode}/${key}`] = SKIPS.get(key) ?? SKIPS.get(`${key}/${mode}`);
-              console.log(`skip ${mode} ${key}: ${meta.skipped[`${mode}/${key}`]}`);
-              continue;
+      // Repetitions are the outer loop, so a transient slowdown of the machine hits one repetition of many
+      // configurations instead of every repetition of one. The support pass only classifies, once.
+      const repetitions = mode === 'support' ? 1 : REPEAT;
+      for (let repetition = 1; repetition <= repetitions; repetition++) {
+        for (const dataset of datasets) {
+          for (const browserName of browsers) {
+            for (const engine of engines) {
+              const key = `${browserName}/${engine}/${dataset}`;
+              const name = `${mode}-${dataset}-${browserName}-${engine}${mode === 'support' ? '' : `-r${repetition}`}.json`;
+              const file = join(OUT, 'raw', name);
+              if (SKIPS.has(key) || SKIPS.has(`${key}/${mode}`)) {
+                meta.skipped[`${mode}/${key}`] = SKIPS.get(key) ?? SKIPS.get(`${key}/${mode}`);
+                console.log(`skip ${mode} ${key}: ${meta.skipped[`${mode}/${key}`]}`);
+                continue;
+              }
+              if (!args.force && existsSync(file)) {
+                console.log(`exists ${name}`);
+                continue;
+              }
+              console.log(`run ${name}`);
+              const result = await runConfiguration(server.url, mode, browserName, engine, dataset);
+              result.repetition = mode === 'support' ? 1 : repetition;
+              meta.browsers[browserName] = (result.browser as { version: string }).version;
+              meta.runs.push({ file: `raw/${name}`, status: result.status, startedAt: result.startedAt, finishedAt: result.finishedAt });
+              writeFileSync(file, `${JSON.stringify(result, null, 1)}\n`);
+              meta.updatedAt = new Date().toISOString();
+              writeFileSync(metaFile, `${JSON.stringify(meta, null, 2)}\n`);
             }
-            if (!args.force && existsSync(file)) {
-              console.log(`exists ${mode} ${key}`);
-              continue;
-            }
-            console.log(`run ${mode} ${key}`);
-            const result = await runConfiguration(server.url, mode, browserName, engine, dataset);
-            meta.browsers[browserName] = (result.browser as { version: string }).version;
-            meta.runs.push({ file: `raw/${mode}-${dataset}-${browserName}-${engine}.json`, status: result.status,
-              startedAt: result.startedAt, finishedAt: result.finishedAt });
-            writeFileSync(file, `${JSON.stringify(result, null, 1)}\n`);
-            meta.updatedAt = new Date().toISOString();
-            writeFileSync(metaFile, `${JSON.stringify(meta, null, 2)}\n`);
           }
         }
       }
