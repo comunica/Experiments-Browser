@@ -94,15 +94,19 @@ function expectedCounts(dataset: string): Record<string, number | null> {
 export function instanceStats(raws: Raw[], dataset: string, mode: string, onlyPhase?: string): InstanceStats[] {
   const expected = expectedCounts(dataset);
   return queryIds(dataset).map((query) => {
-    const execs = raws.flatMap(raw => raw.executions.filter(e => e.query === query && e.phase !== 'rewarm' &&
-      (!onlyPhase || e.phase === onlyPhase)));
-    const firstBad = execs.find(e => !OK_LIKE.has(e.outcome));
+    // Unrecorded re-warm executions count for the outcome (a timeout there is a timeout), not for the timings.
+    const all = raws.flatMap(raw => raw.executions.filter(e => e.query === query && (!onlyPhase || e.phase === onlyPhase)));
+    const execs = all.filter(e => e.phase !== 'rewarm');
+    const firstBad = all.find(e => !OK_LIKE.has(e.outcome));
     let outcome = firstBad?.outcome ?? 'ok';
     if (raws.length === 0) {
       outcome = 'skipped';
     } else if (execs.length === 0) {
       const failed = raws.find(raw => raw.status !== 'complete');
       outcome = failed?.status === 'oom' ? 'oom' : failed ? 'error' : 'missing';
+    }
+    if (outcome === 'ok' && mode === 'timing' && !onlyPhase && !execs.some(e => e.phase === 'timed')) {
+      outcome = 'missing';
     }
     const coldPhase = onlyPhase ?? (mode === 'support' ? 'support' : 'cold');
     const colds = execs.filter(e => e.phase === coldPhase && e.outcome === 'ok').map(e => e.ms!);
@@ -321,7 +325,10 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
   L.push(`| Browsers (Playwright ${v.playwright}, headless) | ${Object.entries(meta.browsers ?? {}).map(([ b, ver ]) => `${b} ${ver}`).join(', ')} |`);
   L.push(`| Comunica | \`@comunica/query-sparql-rdfjs-lite\` ${c.packageVersion} built from ${c.repository} at [\`${c.commit?.slice(0, 10)}\`](${c.repository}/commit/${c.commit}) (${c.commitDate}), N3.js ${v.n3}, rdf-stores ${v.rdfStores} (ordered store) |`);
   L.push(`| Oxigraph | \`oxigraph\` ${v.oxigraph} (\`web.js\` WASM build) |`);
-  L.push(`| Benchmark code | ${meta.benchmarkRepository?.commit ?? '?'}${meta.benchmarkRepository?.dirty ? ' (with uncommitted changes)' : ''}, Vite ${v.vite} |`);
+  const invocations: any[] = meta.invocations ?? (meta.benchmarkRepository ? [ meta.benchmarkRepository ] : []);
+  L.push(`| Benchmark code | ${invocations.map(i => `\`${String(i.commit).slice(0, 7)}\`${i.dirty ? ' (with uncommitted changes)' : ''}` +
+    (invocations.length > 1 ? ` (invocation started ${i.startedAt})` : '')).join(', ') || '?'}; each raw file written by a ` +
+    `resumed invocation names its commit; Vite ${v.vite} |`);
   // Repetitions as found in the raw files, per dataset (they can differ between datasets).
   const reps = Object.entries<any>(summary.datasets).map(([ d, ds ]) => [ d, Math.max(...Object.values<any>(ds.browsers)
     .flatMap((b: any) => Object.values<any>(b.engines).map((e: any) => e.repetitions))) ] as const);

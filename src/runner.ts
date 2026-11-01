@@ -336,8 +336,9 @@ async function runConfiguration(
       executions.push({ ...attempt.inFlight, outcome: attempt.status === 'crashed' ? 'oom' : 'timeout', ms: null,
         count: null, expected: null, checksum: null, error: 'failed during re-warm round' });
     }
-    if (done.size === 0 && !attempt.inFlight) {
-      // A page that dies between executions twice in a row will not get further.
+    if (attempt.executions.length === 0 && !attempt.inFlight) {
+      // A page that dies twice in a row without executing anything will not get further. (Re-warm executions
+      // count as progress: a restart can be caused by a timeout in the re-warm round.)
       if (++stalls >= 2) {
         status = `stalled (${attempt.status})`;
         break;
@@ -350,6 +351,7 @@ async function runConfiguration(
 
   return {
     schema: 1,
+    benchmarkRepository: gitInfo(),
     mode,
     dataset,
     browser: { name: browserName, version: browserVersion },
@@ -421,7 +423,10 @@ async function main(): Promise<void> {
   const metaFile = join(OUT, 'meta.json');
   const meta: Record<string, any> = existsSync(metaFile) ? JSON.parse(readFileSync(metaFile, 'utf8')) : {};
   meta.machine = machineInfo();
+  // One results directory can be filled by several (resumed) invocations; each raw file names its own commit too.
+  meta.invocations ??= meta.benchmarkRepository ? [ { ...meta.benchmarkRepository, startedAt: meta.startedAt } ] : [];
   meta.benchmarkRepository = gitInfo();
+  meta.invocations.push({ ...meta.benchmarkRepository, startedAt: new Date().toISOString(), args: process.argv.slice(2) });
   meta.comunica = JSON.parse(readFileSync(join(ROOT, '.cache', 'comunica-build.json'), 'utf8'));
   meta.versions = {
     oxigraph: version('oxigraph'),

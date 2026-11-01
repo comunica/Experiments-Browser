@@ -25,6 +25,8 @@ const STYLE = `
 
 interface Cell {
   value: number | null;
+  /** Short label above the mark, e.g. "1/5" when only some instances are ok. */
+  note?: string;
   lo?: number | null;
   hi?: number | null;
   marker?: number | null;
@@ -139,6 +141,10 @@ function barChart(spec: ChartSpec): string {
   if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).value === null))) {
     out.push(`<path d="M${lx + 2} ${ly0 + 3} l6 6 m0 -6 l-6 6" stroke="#898781" stroke-width="1.5" fill="none"/>`);
     out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">no ok result</text>`);
+    lx += 14 + 'no ok result'.length * 6.4 + 18;
+  }
+  if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).note))) {
+    out.push(`<text class="ink2" x="${lx}" y="${ly0 + 10.5}" font-size="12">k/n: only k of n instances ok</text>`);
   }
   // Grid and y axis.
   for (const t of ticks) {
@@ -180,6 +186,11 @@ function barChart(spec: ChartSpec): string {
       }
       if (c.marker !== undefined && c.marker !== null) {
         out.push(`<circle class="surface so${s}" cx="${x + barW / 2}" cy="${y(c.marker)}" r="3.5" stroke-width="1.5"/>`);
+      }
+      if (c.note) {
+        const tops = [ c.value, c.hi, c.marker ].filter((v): v is number => typeof v === 'number').map(y);
+        const noteY = (tops.length > 0 ? Math.min(...tops) : top + plotH - 12) - 7;
+        out.push(`<text class="ink2" x="${x + barW / 2}" y="${noteY}" font-size="9" text-anchor="middle">${esc(c.note)}</text>`);
       }
       out.push('</g>');
     });
@@ -266,6 +277,7 @@ function main(): void {
           const v = mean(means);
           return {
             value: v,
+            note: ok.length < inst.length ? `${ok.length}/${inst.length}` : undefined,
             lo: Math.min(...means),
             hi: Math.max(...means),
             marker: colds.length > 0 ? mean(colds) : null,
