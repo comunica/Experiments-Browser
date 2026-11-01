@@ -82,7 +82,18 @@ driver's random parameter pools, not from previous results, so the empty answers
 and against Comunica (the same ordered `rdf-stores` store filled by N3.js as in the browser), and writes
 `reference.json` with both counts. An entry has `agree: true` and a `count` only if every engine that answered gave the
 same count; if they differ, `count` is `null` and the script exits non-zero instead of choosing one.
-For the committed data, both engines answered every query and agree on all 300 counts.
+Oxigraph runs in a worker thread that is terminated when a query exceeds 300 s; Comunica's queries time out in-process.
+
+For WatDiv and BSBM, both engines answered every query and agree on all 300 counts. For LDBC SNB, both answered and
+agree on 97 of the 105 instances; the other 8 have a count from one engine only, as recorded in `confirmedBy`:
+
+| Instances | Count | Answered by | Not answered within 300 s by |
+|---|---|---|---|
+| IC4-1, IC4-2, IC4-3, IC4-5 | 3, 3, 3, 1 | Comunica | Oxigraph |
+| IS7-1, IS7-2, IS7-4, IS7-5 | 0 each | Oxigraph | Comunica |
+
+Comunica answers IS7 within a second when the message has replies (IS7-3); these four are messages without replies.
 
 Many WatDiv instances have no results (62 of 100 at scale 1, 41 of 100 at scale 10), a known property of WatDiv's
-query instantiation at small scales. For those, a matching count says little about correctness.
+query instantiation at small scales; so do 16 of the 105 LDBC SNB instances. For those, a matching count says little
+about correctness.
