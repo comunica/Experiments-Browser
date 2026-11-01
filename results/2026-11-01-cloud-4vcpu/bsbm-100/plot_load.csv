@@ -1,0 +1,10 @@
+browser;engine;repetitions;init_ms;fetch_inflate_ms;parse_ms;ingest_ms;load_ms;load_min_ms;load_max_ms;memory_mb;memory_min_mb;memory_max_mb;memory_method
+chromium;comunica;3;201.96;56.26;241.66;0;241.66;203.11;305.14;28.21;28.2;28.23;measureUserAgentSpecificMemory
+chromium;comunica-setimmediate;3;175.71;63.32;198.67;0;198.67;184.18;206.63;28.25;28.24;28.25;measureUserAgentSpecificMemory
+chromium;oxigraph;3;43.38;58.97;;262.13;262.13;223.84;357.79;30.01;30.01;30.01;measureUserAgentSpecificMemory
+firefox;comunica;3;214.9;108.28;307.88;0;307.88;292.8;400.5;;;;
+firefox;comunica-setimmediate;3;270.5;110.34;313.64;0;313.64;270.16;445.52;;;;
+firefox;oxigraph;3;108.16;98.44;;221.8;221.8;217.82;289.54;;;;
+webkit;comunica;3;249.12;89.98;265.96;0;265.96;224.78;290.1;;;;
+webkit;comunica-setimmediate;3;228.38;85.96;268.3;0;268.3;264.24;319.52;;;;
+webkit;oxigraph;3;72.78;77.22;;182.8;182.8;180.26;222.76;;;;

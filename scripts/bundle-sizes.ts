@@ -59,8 +59,8 @@ const rows = [
 });
 
 writeFileSync(resolve(dist, 'bundle-sizes.json'), `${JSON.stringify(rows, null, 2)}\n`);
-const kb = (bytes: number) => (bytes / 1024).toFixed(1).padStart(9);
-console.log('\nBundle sizes per page (KiB; gzip level 9; whole page = harness + adapter + engine)');
+const kb = (bytes: number) => (bytes / 1000).toFixed(1).padStart(9);
+console.log('\nBundle sizes per page (kB = 1000 bytes; gzip level 9; whole page = harness + adapter + engine)');
 console.log(`${'page'.padEnd(22)} ${'JS raw'.padStart(9)} ${'JS gz'.padStart(9)} ${'WASM raw'.padStart(9)} ${'WASM gz'.padStart(9)} ${'total raw'.padStart(9)} ${'total gz'.padStart(9)}`);
 for (const row of rows) {
   console.log(`${row.page.padEnd(22)} ${kb(row.jsRaw)} ${kb(row.jsGzip)} ${kb(row.wasmRaw)} ${kb(row.wasmGzip)} ${kb(row.totalRaw)} ${kb(row.totalGzip)}`);

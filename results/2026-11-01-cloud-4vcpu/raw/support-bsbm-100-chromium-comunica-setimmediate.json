@@ -1,0 +1,737 @@
+{
+ "schema": 1,
+ "mode": "support",
+ "dataset": "bsbm-100",
+ "browser": {
+  "name": "chromium",
+  "version": "153.0.8010.12"
+ },
+ "engine": {
+  "name": "comunica-setimmediate",
+  "page": "comunica.html",
+  "setImmediateShim": true
+ },
+ "build": {
+  "builtAt": "2026-11-01T14:56:58.017Z",
+  "comunica": {
+   "repository": "https://github.com/comunica/comunica",
+   "ref": "e06d02e8144786567152068bb3c9e69918784b2a",
+   "commit": "e06d02e8144786567152068bb3c9e69918784b2a",
+   "commitDate": "2026-11-01T10:59:37+01:00",
+   "commitSubject": "Add LDBC SNB BI benchmark to CI (#1927)",
+   "packageVersion": "5.4.1",
+   "dirty": false
+  },
+  "oxigraph": "0.5.13",
+  "n3": "2.13.12",
+  "rdfStores": "2.8.0",
+  "setimmediate": "1.0.5",
+  "vite": "8.3.5"
+ },
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+ "machine": "cloud-4vcpu",
+ "startedAt": "2026-11-01T14:57:30.933Z",
+ "finishedAt": "2026-11-01T14:57:32.774Z",
+ "settings": {
+  "timeoutMs": 60000,
+  "graceMs": 30000,
+  "warmupRounds": 1,
+  "rounds": 5
+ },
+ "status": "complete",
+ "load": {
+  "fetchMs": 9.890000000130385,
+  "inflateMs": 49.32000000029802,
+  "importMs": 80.68000000016764,
+  "initMs": 107.93000000016764,
+  "parseMs": 199.39500000001863,
+  "ingestMs": 0,
+  "loadMs": 199.39500000001863,
+  "quads": 40377,
+  "ntBytes": 10216303,
+  "gzBytes": 1173294,
+  "details": {
+   "n3ParseMs": 80.14999999990687,
+   "storeBuildMs": 119.24500000011176
+  },
+  "setImmediate": "setimmediate@1.0.5 shim"
+ },
+ "memory": {
+  "method": "measureUserAgentSpecificMemory",
+  "bytes": 28204143,
+  "wasmBytes": null,
+  "usedJSHeapSize": 27122553,
+  "breakdown": [
+   {
+    "attribution": [],
+    "bytes": 26856,
+    "types": [
+     "DOM"
+    ]
+   },
+   {
+    "attribution": [
+     {
+      "scope": "Window",
+      "url": "http://127.0.0.1:44733/comunica.html"
+     }
+    ],
+    "bytes": 27843978,
+    "types": [
+     "JavaScript"
+    ]
+   },
+   {
+    "attribution": [],
+    "bytes": 0,
+    "types": []
+   },
+   {
+    "attribution": [],
+    "bytes": 333309,
+    "types": [
+     "Shared"
+    ]
+   }
+  ],
+  "cdpHeapUsedBytes": 12326392,
+  "cdpHeapTotalBytes": 44609536
+ },
+ "attempts": [
+  {
+   "status": "done",
+   "build": {
+    "builtAt": "2026-11-01T14:56:58.017Z",
+    "comunica": {
+     "repository": "https://github.com/comunica/comunica",
+     "ref": "e06d02e8144786567152068bb3c9e69918784b2a",
+     "commit": "e06d02e8144786567152068bb3c9e69918784b2a",
+     "commitDate": "2026-11-01T10:59:37+01:00",
+     "commitSubject": "Add LDBC SNB BI benchmark to CI (#1927)",
+     "packageVersion": "5.4.1",
+     "dirty": false
+    },
+    "oxigraph": "0.5.13",
+    "n3": "2.13.12",
+    "rdfStores": "2.8.0",
+    "setimmediate": "1.0.5",
+    "vite": "8.3.5"
+   },
+   "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+   "crossOriginIsolated": true,
+   "load": {
+    "fetchMs": 9.890000000130385,
+    "inflateMs": 49.32000000029802,
+    "importMs": 80.68000000016764,
+    "initMs": 107.93000000016764,
+    "parseMs": 199.39500000001863,
+    "ingestMs": 0,
+    "loadMs": 199.39500000001863,
+    "quads": 40377,
+    "ntBytes": 10216303,
+    "gzBytes": 1173294,
+    "details": {
+     "n3ParseMs": 80.14999999990687,
+     "storeBuildMs": 119.24500000011176
+    },
+    "setImmediate": "setimmediate@1.0.5 shim"
+   },
+   "memory": {
+    "method": "measureUserAgentSpecificMemory",
+    "bytes": 28204143,
+    "wasmBytes": null,
+    "usedJSHeapSize": 27122553,
+    "breakdown": [
+     {
+      "attribution": [],
+      "bytes": 26856,
+      "types": [
+       "DOM"
+      ]
+     },
+     {
+      "attribution": [
+       {
+        "scope": "Window",
+        "url": "http://127.0.0.1:44733/comunica.html"
+       }
+      ],
+      "bytes": 27843978,
+      "types": [
+       "JavaScript"
+      ]
+     },
+     {
+      "attribution": [],
+      "bytes": 0,
+      "types": []
+     },
+     {
+      "attribution": [],
+      "bytes": 333309,
+      "types": [
+       "Shared"
+      ]
+     }
+    ],
+    "cdpHeapUsedBytes": 12326392,
+    "cdpHeapTotalBytes": 44609536
+   },
+   "steps": 50,
+   "executions": 50
+  }
+ ],
+ "executions": [
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-1",
+   "outcome": "ok",
+   "ms": 37.704999999608845,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-2",
+   "outcome": "ok",
+   "ms": 16.700000000186265,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-3",
+   "outcome": "ok",
+   "ms": 6.959999999962747,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-4",
+   "outcome": "ok",
+   "ms": 7.2700000000186265,
+   "count": 1,
+   "expected": 1,
+   "checksum": 101,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-5",
+   "outcome": "ok",
+   "ms": 5.589999999850988,
+   "count": 1,
+   "expected": 1,
+   "checksum": 91,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-1",
+   "outcome": "ok",
+   "ms": 14.910000000149012,
+   "count": 11,
+   "expected": 11,
+   "checksum": 15162,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-2",
+   "outcome": "ok",
+   "ms": 13.775000000372529,
+   "count": 19,
+   "expected": 19,
+   "checksum": 31871,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-3",
+   "outcome": "ok",
+   "ms": 8.504999999888241,
+   "count": 24,
+   "expected": 24,
+   "checksum": 43718,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-4",
+   "outcome": "ok",
+   "ms": 7.754999999888241,
+   "count": 19,
+   "expected": 19,
+   "checksum": 34174,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-5",
+   "outcome": "ok",
+   "ms": 6.675000000279397,
+   "count": 19,
+   "expected": 19,
+   "checksum": 20728,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-1",
+   "outcome": "ok",
+   "ms": 14.239999999757856,
+   "count": 1,
+   "expected": 1,
+   "checksum": 91,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-2",
+   "outcome": "ok",
+   "ms": 7.390000000130385,
+   "count": 1,
+   "expected": 1,
+   "checksum": 99,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-3",
+   "outcome": "ok",
+   "ms": 8.59000000031665,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-4",
+   "outcome": "ok",
+   "ms": 6.3549999999813735,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-5",
+   "outcome": "ok",
+   "ms": 13.649999999906868,
+   "count": 2,
+   "expected": 2,
+   "checksum": 204,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-1",
+   "outcome": "ok",
+   "ms": 6.4500000001862645,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-2",
+   "outcome": "ok",
+   "ms": 4.540000000037253,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-3",
+   "outcome": "ok",
+   "ms": 3.359999999869615,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-4",
+   "outcome": "ok",
+   "ms": 5.080000000074506,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-5",
+   "outcome": "ok",
+   "ms": 3.6799999997019768,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-1",
+   "outcome": "ok",
+   "ms": 14.665000000037253,
+   "count": 1,
+   "expected": 1,
+   "checksum": 100,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-2",
+   "outcome": "ok",
+   "ms": 11.899999999906868,
+   "count": 1,
+   "expected": 1,
+   "checksum": 104,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-3",
+   "outcome": "ok",
+   "ms": 12.015000000130385,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-4",
+   "outcome": "ok",
+   "ms": 9.029999999795109,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-5",
+   "outcome": "ok",
+   "ms": 10.779999999795109,
+   "count": 2,
+   "expected": 2,
+   "checksum": 200,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-1",
+   "outcome": "ok",
+   "ms": 10.200000000186265,
+   "count": 2,
+   "expected": 2,
+   "checksum": 3065,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-2",
+   "outcome": "ok",
+   "ms": 7.484999999869615,
+   "count": 10,
+   "expected": 10,
+   "checksum": 14261,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-3",
+   "outcome": "ok",
+   "ms": 5.2700000000186265,
+   "count": 3,
+   "expected": 3,
+   "checksum": 4731,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-4",
+   "outcome": "ok",
+   "ms": 6.004999999888241,
+   "count": 3,
+   "expected": 3,
+   "checksum": 4545,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-5",
+   "outcome": "ok",
+   "ms": 6.305000000167638,
+   "count": 1,
+   "expected": 1,
+   "checksum": 2096,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-1",
+   "outcome": "ok",
+   "ms": 3.610000000335276,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1002,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-2",
+   "outcome": "ok",
+   "ms": 2.015000000130385,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1009,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-3",
+   "outcome": "ok",
+   "ms": 2.0049999998882413,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1007,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-4",
+   "outcome": "ok",
+   "ms": 1.7550000003539026,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1006,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-5",
+   "outcome": "ok",
+   "ms": 1.4299999997019768,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1007,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-1",
+   "outcome": "ok",
+   "ms": 6.244999999646097,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-2",
+   "outcome": "ok",
+   "ms": 3.099999999627471,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-3",
+   "outcome": "ok",
+   "ms": 3.140000000130385,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-4",
+   "outcome": "ok",
+   "ms": 4.035000000149012,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-5",
+   "outcome": "ok",
+   "ms": 3.5499999998137355,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-1",
+   "outcome": "ok",
+   "ms": 1.5899999998509884,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-2",
+   "outcome": "ok",
+   "ms": 1.0200000000186265,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1033,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-3",
+   "outcome": "ok",
+   "ms": 1.75,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1033,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-4",
+   "outcome": "ok",
+   "ms": 1.525000000372529,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-5",
+   "outcome": "ok",
+   "ms": 1.4350000000558794,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-1",
+   "outcome": "ok",
+   "ms": 4.099999999627471,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1483,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-2",
+   "outcome": "ok",
+   "ms": 2.5649999999441206,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1496,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-3",
+   "outcome": "ok",
+   "ms": 4.415000000037253,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1493,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-4",
+   "outcome": "ok",
+   "ms": 4.024999999906868,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1494,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-5",
+   "outcome": "ok",
+   "ms": 2.9450000002980232,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1485,
+   "resultType": "quads"
+  }
+ ],
+ "repetition": 1
+}

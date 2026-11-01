@@ -1,0 +1,10 @@
+browser;engine;ok;wrong;unsupported;timeout;error;oom;total_warm_ms;total_cold_ms;common_ok;common_warm_ms;common_cold_ms;common_geomean_warm_ms
+chromium;comunica;100;0;0;0;0;0;989.52;1384.19;100;989.52;1384.19;2.633
+chromium;comunica-setimmediate;100;0;0;0;0;0;1000.21;1315.48;100;1000.21;1315.48;2.585
+chromium;oxigraph;100;0;0;0;0;0;10672.37;10521.69;100;10672.37;10521.69;1.25
+firefox;comunica;100;0;0;0;0;0;2086.2;2674.36;100;2086.2;2674.36;7.568
+firefox;comunica-setimmediate;100;0;0;0;0;0;2012.59;2498.65;100;2012.59;2498.65;7.688
+firefox;oxigraph;100;0;0;0;0;0;12761.94;12578.29;100;12761.94;12578.29;1.591
+webkit;comunica;100;0;0;0;0;0;1267.63;1858.95;100;1267.63;1858.95;3.672
+webkit;comunica-setimmediate;100;0;0;0;0;0;1279.94;1942.01;100;1279.94;1942.01;3.619
+webkit;oxigraph;100;0;0;0;0;0;11204.11;10969.37;100;11204.11;10969.37;1.377
