@@ -1,0 +1,21 @@
+Generating model /opt/watdiv/model/wsdbm-data-model.txt with scale 1
+Generating query C1.txt with count 5 and recurrence factor 1
+Generating query C2.txt with count 5 and recurrence factor 1
+Generating query C3.txt with count 5 and recurrence factor 1
+Generating query F1.txt with count 5 and recurrence factor 1
+Generating query F2.txt with count 5 and recurrence factor 1
+Generating query F3.txt with count 5 and recurrence factor 1
+Generating query F4.txt with count 5 and recurrence factor 1
+Generating query F5.txt with count 5 and recurrence factor 1
+Generating query L1.txt with count 5 and recurrence factor 1
+Generating query L2.txt with count 5 and recurrence factor 1
+Generating query L3.txt with count 5 and recurrence factor 1
+Generating query L4.txt with count 5 and recurrence factor 1
+Generating query L5.txt with count 5 and recurrence factor 1
+Generating query S1.txt with count 5 and recurrence factor 1
+Generating query S2.txt with count 5 and recurrence factor 1
+Generating query S3.txt with count 5 and recurrence factor 1
+Generating query S4.txt with count 5 and recurrence factor 1
+Generating query S5.txt with count 5 and recurrence factor 1
+Generating query S6.txt with count 5 and recurrence factor 1
+Generating query S7.txt with count 5 and recurrence factor 1

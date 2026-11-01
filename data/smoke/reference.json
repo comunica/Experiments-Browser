@@ -1,0 +1,145 @@
+{
+  "dataset": "smoke",
+  "generatedAt": "2026-11-01T14:31:54.427Z",
+  "node": "v22.23.4",
+  "engines": {
+    "oxigraph": "0.5.13",
+    "comunica": {
+      "commit": "e06d02e8144786567152068bb3c9e69918784b2a",
+      "version": "5.4.1",
+      "n3": "2.13.12",
+      "rdfStores": "2.8.0"
+    }
+  },
+  "agreeAll": true,
+  "queries": {
+    "all": {
+      "count": 100,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 100,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 100,
+        "resultType": "bindings"
+      }
+    },
+    "ask": {
+      "count": 1,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1,
+        "resultType": "boolean"
+      },
+      "comunica": {
+        "count": 1,
+        "resultType": "boolean"
+      }
+    },
+    "construct": {
+      "count": 17,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 17,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 17,
+        "resultType": "quads"
+      }
+    },
+    "describe": {
+      "count": 5,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 5,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 5,
+        "resultType": "quads"
+      }
+    },
+    "distinct-order-limit": {
+      "count": 4,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 4,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 4,
+        "resultType": "bindings"
+      }
+    },
+    "group-count": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "bindings"
+      }
+    },
+    "join": {
+      "count": 16,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 16,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 16,
+        "resultType": "bindings"
+      }
+    },
+    "optional-filter": {
+      "count": 16,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 16,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 16,
+        "resultType": "bindings"
+      }
+    }
+  }
+}

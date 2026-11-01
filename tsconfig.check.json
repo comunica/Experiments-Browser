@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@comunica/query-sparql-rdfjs-lite": ["./src/types/comunica.d.ts"],
+      "@comunica/utils-iterator": ["./src/types/comunica.d.ts"]
+    }
+  }
+}

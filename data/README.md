@@ -1,0 +1,67 @@
+# Datasets and queries
+
+Each directory holds `dataset.nt.gz` (N-Triples, `gzip -9 -n`), `queries/*.sparql` (one query instance per file),
+`reference.json` (reference result counts, see below), `generation.json` (parameters, triple count, SHA-256 of the
+uncompressed N-Triples) and `generation-log.txt` (generator output).
+
+| Directory | Generator | Triples | `dataset.nt.gz` | Query instances | SHA-256 of N-Triples | Generated (UTC) |
+|---|---|---:|---:|---:|---|---|
+| `watdiv-1` | WatDiv scale factor 1 | 110,889 | 0.6 MiB | 100 | `f5bdc07bf236b121…` | 2026-11-01T14:26:21Z |
+| `watdiv-10` | WatDiv scale factor 10 | 1,097,705 | 6.5 MiB | 100 | `80b3dc5ab2017a8d…` | 2026-11-01T14:27:21Z |
+| `bsbm-100` | BSBM 100 products | 40,377 | 1.1 MiB | 50 | `47f3d504d7600d66…` | 2026-11-01T14:16:31Z |
+| `bsbm-1k` | BSBM 1000 products | 374,911 | 10.2 MiB | 50 | `6f19f6aeba949d08…` | 2026-11-01T14:18:21Z |
+| `smoke` | first 100 triples of `bsbm-100` | 100 | 4 KiB | 8 | | |
+
+All files are far below GitHub's 100 MB limit, so no release assets are used. `npm run prepare` still downloads a
+dataset for any directory that has a `release-asset.json` (`{ "file", "url", "sha256" }`), for larger scales later.
+
+## How they were generated
+
+With [jbr](https://github.com/rubensworks/jbr.js), in a clone of
+[comunica/Experiments-Centralized](https://github.com/comunica/Experiments-Centralized) at commit
+`ff983319cd70d47adaf73db18dc55145edb081ae`, by [`scripts/generate-data.sh`](../scripts/generate-data.sh) (needs Docker):
+
+```bash
+scripts/generate-data.sh watdiv-1 watdiv-10 bsbm-100 bsbm-1k
+```
+
+For each dataset, the script edits `jbr-experiment.json.template` of `experiments/watdiv` or `experiments/bsbm`,
+runs `npm ci`, `npx jbr generate-combinations` and `npx jbr prepare -c 0 -f`, and copies `generated/`.
+Only combination 0 is prepared: all combinations share `generated/`, and preparing the others would build Docker
+images of eight unrelated SPARQL engines.
+
+| | WatDiv | BSBM |
+|---|---|---|
+| jbr | `jbr` 6.2.0, `@jbr-experiment/watdiv` 6.2.2 | `jbr` 6.2.0, `@jbr-experiment/bsbm` 6.2.0 |
+| Generator image | `comunica/watdiv@sha256:2fac67737d6dddd75ea023b90bba2a1c7432a00e233791a802e374e3d2a8ec3b` | `vcity/bsbm:v1.0` (`sha256:eff6787687c2001c0dbdd403d03aa91d8bd8f169ff3c0b51396ec352a76f2542`) |
+| Template changes | `datasetScale` 1 or 10, `queryCount` 5, `queryRecurrence` 1, `generateHdt` false | `productCount` 100 or 1000, `generateHdt` false |
+| Seed | None can be set: WatDiv seeds with `srand(time(NULL))`, so a rerun gives different data. The committed files are the reference. | Data generator: `53223436`, hard-coded in BSBM's `Generator.java`, so data is reproducible. Test driver: `9834533`, the seed `@jbr-experiment/bsbm` passes. |
+| Queries | The 20 basic-testing templates C1–C3, F1–F5, L1–L5, S1–S7, 5 instances each (`C1-1` … `C1-5`) | Explore use case Q1–Q5, Q8–Q12 (Q6 and Q7 excluded), 5 instances each |
+
+### WatDiv scale factors
+
+The task asked for "scale 0.1 (~100K triples)" and "scale 1 (~1M)". WatDiv's scale factor is an unsigned integer
+(`watdiv -d <model> 0.1` aborts with `bad_lexical_cast`), and scale factor 1 already gives ~110K triples. The two
+requested sizes are therefore scale factors **1** and **10**, and the directories are named after the real scale
+factor (`watdiv-1`, `watdiv-10`) instead of `watdiv-0.1`/`watdiv-1`. The ~5M-triple configuration noted as a
+later TODO is scale factor 50.
+
+### BSBM query instances
+
+BSBM's test driver instantiates the explore templates at run time; jbr never writes them to disk.
+[`scripts/capture-bsbm-queries.mjs`](../scripts/capture-bsbm-queries.mjs) runs the test driver from the same image
+(`testdriver -idir td_data -seed 9834533 -w 0 -runs 5`) against a stub endpoint that records each query and answers
+with an empty result. It assigns each recorded query its template by its position in `querymix.txt`, checks it against
+that template's text, drops Q6 and Q7, and keeps the first 5 instances of each type. The parameters come from the test
+driver's random parameter pools, not from previous results, so the empty answers do not influence them.
+
+## Reference counts
+
+`npm run reference` (`src/reference.ts`) runs every query in Node against Oxigraph (`oxigraph` Node build, `Store.load`)
+and against Comunica (the same ordered `rdf-stores` store filled by N3.js as in the browser), and writes
+`reference.json` with both counts. An entry has `agree: true` and a `count` only if every engine that answered gave the
+same count; if they differ, `count` is `null` and the script exits non-zero instead of choosing one.
+For the committed data, both engines answered every query and agree on all 300 counts.
+
+Many WatDiv instances have no results (62 of 100 at scale 1, 41 of 100 at scale 10), a known property of WatDiv's
+query instantiation at small scales. For those, a matching count says little about correctness.

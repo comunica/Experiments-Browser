@@ -1,0 +1,67 @@
+// Computes per-page bundle sizes (JS + WASM, raw and gzipped) from the Vite manifest.
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { gzipSync } from 'node:zlib';
+
+interface ManifestEntry {
+  file: string;
+  imports?: string[];
+  dynamicImports?: string[];
+  assets?: string[];
+}
+
+const dist = resolve(import.meta.dirname, '..', 'dist');
+const manifest: Record<string, ManifestEntry> = JSON.parse(readFileSync(resolve(dist, '.vite/manifest.json'), 'utf8'));
+const SHIM_KEY = Object.keys(manifest).find(key => key.includes('node_modules/setimmediate/'));
+
+function files(key: string, skip: Set<string>, seen = new Set<string>()): Set<string> {
+  if (seen.has(key) || skip.has(key)) {
+    return seen;
+  }
+  seen.add(key);
+  const entry = manifest[key];
+  for (const next of [ ...entry.imports ?? [], ...entry.dynamicImports ?? [] ]) {
+    files(next, skip, seen);
+  }
+  return seen;
+}
+
+function sizes(keys: Iterable<string>) {
+  const result = { jsRaw: 0, jsGzip: 0, wasmRaw: 0, wasmGzip: 0, files: [] as string[] };
+  const add = (file: string) => {
+    const data = readFileSync(resolve(dist, file));
+    const gz = gzipSync(data, { level: 9 }).length;
+    if (file.endsWith('.wasm')) {
+      result.wasmRaw += data.length;
+      result.wasmGzip += gz;
+    } else {
+      result.jsRaw += data.length;
+      result.jsGzip += gz;
+    }
+    result.files.push(file);
+  };
+  for (const key of keys) {
+    add(manifest[key].file);
+    for (const asset of manifest[key].assets ?? []) {
+      add(asset);
+    }
+  }
+  return { ...result, totalRaw: result.jsRaw + result.wasmRaw, totalGzip: result.jsGzip + result.wasmGzip };
+}
+
+const rows = [
+  { page: 'comunica', keys: files('comunica.html', new Set([ SHIM_KEY! ])) },
+  { page: 'comunica-setimmediate', keys: files('comunica.html', new Set()) },
+  { page: 'oxigraph', keys: files('oxigraph.html', new Set([ SHIM_KEY! ])) },
+].map(({ page, keys }) => {
+  const adapter = [ ...keys ].find(key => key.startsWith('../adapters/'))!;
+  return { page, ...sizes(keys), engineOnly: sizes([ adapter ]) };
+});
+
+writeFileSync(resolve(dist, 'bundle-sizes.json'), `${JSON.stringify(rows, null, 2)}\n`);
+const kb = (bytes: number) => (bytes / 1024).toFixed(1).padStart(9);
+console.log('\nBundle sizes per page (KiB; gzip level 9; whole page = harness + adapter + engine)');
+console.log(`${'page'.padEnd(22)} ${'JS raw'.padStart(9)} ${'JS gz'.padStart(9)} ${'WASM raw'.padStart(9)} ${'WASM gz'.padStart(9)} ${'total raw'.padStart(9)} ${'total gz'.padStart(9)}`);
+for (const row of rows) {
+  console.log(`${row.page.padEnd(22)} ${kb(row.jsRaw)} ${kb(row.jsGzip)} ${kb(row.wasmRaw)} ${kb(row.wasmGzip)} ${kb(row.totalRaw)} ${kb(row.totalGzip)}`);
+}
