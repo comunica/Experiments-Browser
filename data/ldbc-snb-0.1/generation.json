@@ -1,0 +1,11 @@
+{
+  "generator": "ldbc-snb",
+  "scale": "0.1",
+  "instancesPerTemplate": 5,
+  "startedAt": "2026-11-01T16:18:32Z",
+  "seed": "datagen: deterministic for a given params.ini; query parameters: 12345 (as in comunica/Experiments-Centralized#7)",
+  "triples": 4028513,
+  "ntBytes": 706549048,
+  "ntSha256": "ab32a17dbc4e5feb21b3ceaa0d840c524648ad7f5466aba824caef56e9536005",
+  "queries": 105
+}

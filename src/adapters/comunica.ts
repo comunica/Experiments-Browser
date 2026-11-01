@@ -12,22 +12,33 @@ export function createOrderedStore(): RdfStore {
   return RdfStore.createOrdered({ termComparator: compareTerms, nodes: true });
 }
 
-export function loadOrderedStore(nt: string): { store: RdfStore; result: LoadResult } {
+export function loadOrderedStore(chunks: Iterable<string>): { store: RdfStore; result: LoadResult } {
   const t0 = performance.now();
-  const quads = new Parser({ format: 'N-Triples' }).parse(nt) as unknown as RDF.Quad[];
+  const quads: RDF.Quad[] = [];
+  let count = 0;
+  for (const chunk of chunks) {
+    // Each chunk gets its own parser; an empty prefix keeps blank node labels, so they still join across chunks.
+    for (const quad of new Parser({ format: 'N-Triples', blankNodePrefix: '' }).parse(chunk) as unknown as RDF.Quad[]) {
+      quads.push(quad);
+    }
+    count++;
+  }
   const t1 = performance.now();
+  // As in #1839, all quads go into the ordered store as one batch: several smaller batches get slower as the
+  // store grows (42 batches took 2.8 times as long as one for LDBC SNB 0.1 in Chromium).
   const store = createOrderedStore();
-  // As in #1839: an ordered store inserts one batch much faster than quads one by one.
   store.addQuads(quads);
   const t2 = performance.now();
+  const n3ParseMs = t1 - t0;
+  const storeBuildMs = t2 - t1;
   return {
     store,
     result: {
       // The RDF/JS store is what Comunica queries, so building it is part of parsing; there is no ingest step.
-      parseMs: t2 - t0,
+      parseMs: n3ParseMs + storeBuildMs,
       ingestMs: 0,
       quads: store.size,
-      details: { n3ParseMs: t1 - t0, storeBuildMs: t2 - t1 },
+      details: { n3ParseMs, storeBuildMs, chunks: count },
     },
   };
 }
@@ -100,8 +111,8 @@ export function createAdapter(): EngineAdapter {
     async init() {
       engine = new QueryEngine();
     },
-    async load(nt) {
-      const loaded = loadOrderedStore(nt);
+    async load(chunks) {
+      const loaded = loadOrderedStore(chunks);
       store = loaded.store;
       return loaded.result;
     },

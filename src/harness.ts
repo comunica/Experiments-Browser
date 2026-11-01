@@ -1,7 +1,7 @@
 // In-page benchmark harness: fetch+inflate, engine init, load, memory, then the support/cold/warmup/timed steps.
 // Every timing is taken here with performance.now(); the runner only receives the numbers.
 import type { EngineAdapter } from './adapters/types';
-import { QueryTimeoutError } from './adapters/types';
+import { CHUNK_CHARS, QueryTimeoutError } from './adapters/types';
 import type { BenchConfig, BenchEvent, ExecResult, LoadInfo, MemoryInfo, Outcome } from './protocol';
 import { UNSUPPORTED_PATTERN } from './protocol';
 
@@ -56,6 +56,60 @@ async function fetchText(url: string): Promise<string> {
     throw new Error(`${url}: HTTP ${response.status}`);
   }
   return response.text();
+}
+
+/**
+ * Inflates gzipped N-Triples into line-aligned string chunks of about CHUNK_CHARS characters,
+ * since a large dataset does not fit in one string. Returns the chunks and the number of inflated bytes.
+ */
+async function inflateToChunks(gz: ArrayBuffer): Promise<{ chunks: string[]; bytes: number }> {
+  const reader = new Blob([ gz ]).stream().pipeThrough(new DecompressionStream('gzip')).getReader();
+  const decoder = new TextDecoder();
+  const chunks: string[] = [];
+  let pending: string[] = [];
+  let pendingLength = 0;
+  let bytes = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    const text = done ? decoder.decode() : decoder.decode(value, { stream: true });
+    bytes += value?.byteLength ?? 0;
+    if (text) {
+      pending.push(text);
+      pendingLength += text.length;
+    }
+    if (pendingLength >= CHUNK_CHARS || (done && pendingLength > 0)) {
+      // Browsers hand over inflated data in pieces of very different sizes (WebKit can return all of it at once).
+      const joined = pending.join('');
+      let start = 0;
+      while (joined.length - start >= CHUNK_CHARS) {
+        const newline = joined.indexOf('\n', start + CHUNK_CHARS - 1);
+        if (newline < 0) {
+          break;
+        }
+        chunks.push(joined.slice(start, newline + 1));
+        start = newline + 1;
+      }
+      if (done && start < joined.length) {
+        chunks.push(joined.slice(start));
+        start = joined.length;
+      }
+      const rest = joined.slice(start);
+      pending = rest ? [ rest ] : [];
+      pendingLength = rest.length;
+    }
+    if (done) {
+      return { chunks, bytes };
+    }
+  }
+}
+
+/** Yields the chunks and drops each from the array once handed out, so the engine's GC can reclaim them. */
+function* drain(chunks: (string | undefined)[]): Generator<string> {
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i]!;
+    chunks[i] = undefined;
+    yield chunk;
+  }
 }
 
 async function measureMemory(adapter: EngineAdapter): Promise<MemoryInfo> {
@@ -126,11 +180,10 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
   let t1 = performance.now();
   const fetchMs = t1 - t0;
   t0 = performance.now();
-  let nt: string | undefined = await new Response(new Blob([ gz ]).stream()
-    .pipeThrough(new DecompressionStream('gzip'))).text();
+  const inflated = await inflateToChunks(gz);
   t1 = performance.now();
   const inflateMs = t1 - t0;
-  const ntBytes = new TextEncoder().encode(nt).length;
+  const ntBytes = inflated.bytes;
 
   // Engine init: loading the adapter chunk (JS, and WASM for Oxigraph) and constructing the engine.
   t0 = performance.now();
@@ -143,8 +196,8 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
   t1 = performance.now();
   const initMs = t1 - t0;
 
-  const loaded = await adapter.load(nt);
-  nt = undefined;
+  const loaded = await adapter.load(drain(inflated.chunks));
+  inflated.chunks.length = 0;
   const load: LoadInfo = {
     fetchMs,
     inflateMs,

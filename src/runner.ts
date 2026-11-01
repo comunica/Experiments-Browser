@@ -29,8 +29,10 @@ export const CHROMIUM_LAUNCH = {
   channel: 'chromium',
   args: [ '--js-flags=--expose-gc', '--enable-blink-features=ForceEagerMeasureMemory', '--enable-precise-memory-info' ],
 };
+// LDBC SNB has one scale: its support pass would repeat the cold pass of the first timing repetition, which
+// scripts/aggregate.ts uses instead.
 export const SUPPORT_DATASETS = [ 'watdiv-1', 'bsbm-100' ];
-export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k' ];
+export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
 
 const { values: args } = parseArgs({
   options: {

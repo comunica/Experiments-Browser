@@ -19,6 +19,9 @@ export interface QueryResult {
   resultType: 'bindings' | 'quads' | 'boolean';
 }
 
+/** Characters per chunk of N-Triples text handed to the engines. */
+export const CHUNK_CHARS = 16 * 1024 * 1024;
+
 export class QueryTimeoutError extends Error {
   public constructor(timeoutMs: number) {
     super(`Query exceeded ${timeoutMs} ms`);
@@ -29,7 +32,11 @@ export class QueryTimeoutError extends Error {
 export interface EngineAdapter {
   readonly id: 'comunica' | 'oxigraph';
   init: () => Promise<void>;
-  load: (nt: string) => Promise<LoadResult>;
+  /**
+   * Loads N-Triples text, given as line-aligned chunks (one string can hold at most ~512 MB in V8).
+   * Chunks are consumed in order and may be released once consumed.
+   */
+  load: (chunks: Iterable<string>) => Promise<LoadResult>;
   /** Executes a query and resolves once every result term has been read. */
   query: (sparql: string, timeoutMs: number) => Promise<QueryResult>;
   /** Bytes of WebAssembly memory held by the engine, or null if it uses none. */

@@ -247,7 +247,8 @@ function main(): void {
       const version = ds.browsers[browser].engines[engines[0]]?.browserVersion ?? '';
       write(join(dir, dataset, `plot_${browser}.svg`), barChart({
         title: `${dataset}: query time in ${browser} ${version}`.trim(),
-        subtitle: `Bar: warm mean (${summary.meta?.settings?.repetitions ?? 1} repetitions × 5 timed rounds), averaged over the template's ok instances; ` +
+        subtitle: `Bar: warm mean (${Math.max(...Object.values<any>(ds.browsers[browser].engines).map((e: any) => e.repetitions))} ` +
+          `repetition(s) × ${summary.meta?.settings?.rounds ?? 5} timed rounds), averaged over the template's ok instances; ` +
           `whisker: fastest to slowest instance; circle: cold run (mean over repetitions). Log scale. ${machine}`,
         groups: templates.map(t => ({ label: t })),
         series,

@@ -7,7 +7,9 @@ import { join, relative, resolve } from 'node:path';
 const ROOT = resolve(import.meta.dirname, '..');
 export const ENGINES = [ 'comunica', 'oxigraph' ];
 export const BROWSERS = [ 'chromium', 'firefox', 'webkit' ];
-export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k' ];
+export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
+/** Families with a single scale, whose support pass is the first timing repetition's cold pass. */
+const SINGLE_SCALE = [ 'ldbc-snb-0.1' ];
 const OK_LIKE = new Set([ 'ok' ]);
 
 export function resultsDir(arg?: string): string {
@@ -36,6 +38,7 @@ interface Exec {
 
 interface Raw {
   mode: string;
+  repetition?: number;
   dataset: string;
   browser: { name: string; version: string };
   engine: { name: string };
@@ -88,10 +91,11 @@ function expectedCounts(dataset: string): Record<string, number | null> {
  * Per query instance, over all repetitions of one configuration: outcome (the first non-ok outcome of any recorded
  * execution), cold time (mean over repetitions) and warm statistics (timed executions of all repetitions pooled).
  */
-export function instanceStats(raws: Raw[], dataset: string, mode: string): InstanceStats[] {
+export function instanceStats(raws: Raw[], dataset: string, mode: string, onlyPhase?: string): InstanceStats[] {
   const expected = expectedCounts(dataset);
   return queryIds(dataset).map((query) => {
-    const execs = raws.flatMap(raw => raw.executions.filter(e => e.query === query && e.phase !== 'rewarm'));
+    const execs = raws.flatMap(raw => raw.executions.filter(e => e.query === query && e.phase !== 'rewarm' &&
+      (!onlyPhase || e.phase === onlyPhase)));
     const firstBad = execs.find(e => !OK_LIKE.has(e.outcome));
     let outcome = firstBad?.outcome ?? 'ok';
     if (raws.length === 0) {
@@ -100,7 +104,7 @@ export function instanceStats(raws: Raw[], dataset: string, mode: string): Insta
       const failed = raws.find(raw => raw.status !== 'complete');
       outcome = failed?.status === 'oom' ? 'oom' : failed ? 'error' : 'missing';
     }
-    const coldPhase = mode === 'support' ? 'support' : 'cold';
+    const coldPhase = onlyPhase ?? (mode === 'support' ? 'support' : 'cold');
     const colds = execs.filter(e => e.phase === coldPhase && e.outcome === 'ok').map(e => e.ms!);
     const timed = execs.filter(e => e.phase === 'timed' && e.outcome === 'ok').map(e => e.ms!);
     return {
@@ -162,13 +166,20 @@ function main(): void {
   }
 
   // Support matrix: one row per query instance at the smallest scale of each family, one column per browser/engine.
-  const supportDatasets = DATASETS.filter(d => raws.some(r => r.mode === 'support' && r.dataset === d));
+  // A family with a single scale and no support pass (LDBC SNB) uses the cold pass of the first timing repetition,
+  // which is the same procedure: a fresh page and one execution of every query.
+  const fromCold = (d: string) => !raws.some(r => r.mode === 'support' && r.dataset === d) &&
+    SINGLE_SCALE.includes(d) && raws.some(r => r.mode === 'timing' && r.dataset === d && r.repetition === 1);
+  const supportDatasets = DATASETS.filter(d => raws.some(r => r.mode === 'support' && r.dataset === d) || fromCold(d));
+  summary.supportFromCold = supportDatasets.filter(fromCold);
   const columns = browsers.flatMap(b => engines.map(e => `${b}/${e}`));
   const supportRows: string[][] = [];
   for (const dataset of supportDatasets) {
     const perColumn = Object.fromEntries(columns.map((c) => {
       const [ b, e ] = c.split('/');
-      return [ c, instanceStats(find('support', dataset, b, e), dataset, 'support') ];
+      return [ c, fromCold(dataset) ?
+        instanceStats(find('timing', dataset, b, e).filter(r => r.repetition === 1), dataset, 'timing', 'cold') :
+        instanceStats(find('support', dataset, b, e), dataset, 'support') ];
     }));
     summary.support[dataset] = Object.fromEntries(columns.map(c => [ c, countOutcomes(perColumn[c]) ]));
     summary.support[dataset].nonOk = columns.flatMap(c => perColumn[c].filter(s => s.outcome !== 'ok')
@@ -311,7 +322,13 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
   L.push(`| Comunica | \`@comunica/query-sparql-rdfjs-lite\` ${c.packageVersion} built from ${c.repository} at [\`${c.commit?.slice(0, 10)}\`](${c.repository}/commit/${c.commit}) (${c.commitDate}), N3.js ${v.n3}, rdf-stores ${v.rdfStores} (ordered store) |`);
   L.push(`| Oxigraph | \`oxigraph\` ${v.oxigraph} (\`web.js\` WASM build) |`);
   L.push(`| Benchmark code | ${meta.benchmarkRepository?.commit ?? '?'}${meta.benchmarkRepository?.dirty ? ' (with uncommitted changes)' : ''}, Vite ${v.vite} |`);
-  L.push(`| Settings | ${meta.settings?.repetitions ?? 1} repetitions of every timing run, each in a fresh browser and context; per run ${meta.settings?.warmupRounds} warmup round and ${meta.settings?.rounds} timed rounds; timeout ${meta.settings?.timeoutMs / 1000} s per execution |`);
+  // Repetitions as found in the raw files, per dataset (they can differ between datasets).
+  const reps = Object.entries<any>(summary.datasets).map(([ d, ds ]) => [ d, Math.max(...Object.values<any>(ds.browsers)
+    .flatMap((b: any) => Object.values<any>(b.engines).map((e: any) => e.repetitions))) ] as const);
+  const repText = [ ...new Set(reps.map(([ , n ]) => n)) ].length === 1 ?
+    `${reps[0]?.[1] ?? 1} repetitions of every timing run` :
+    `repetitions of every timing run: ${reps.map(([ d, n ]) => `${d} ${n}`).join(', ')}`;
+  L.push(`| Settings | ${repText}, each in a fresh browser and context; per run ${meta.settings?.warmupRounds} warmup round and ${meta.settings?.rounds} timed rounds; timeout ${meta.settings?.timeoutMs / 1000} s per execution |`);
   L.push(`| Run | ${meta.startedAt} to ${meta.updatedAt} |`, '');
   if (Object.keys(meta.skipped ?? {}).length > 0) {
     L.push('**Skipped configurations**', '');
@@ -332,7 +349,9 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
 
   if (Object.keys(summary.support).length > 0) {
     L.push('## Support matrix', '', 'One execution of every query instance at the smallest scale of each family, ' +
-      'classified against `data/<dataset>/reference.json`. Per query: [`support-matrix.csv`](support-matrix.csv).', '');
+      'classified against `data/<dataset>/reference.json`. Per query: [`support-matrix.csv`](support-matrix.csv).' +
+      (summary.supportFromCold.length > 0 ? ` For ${summary.supportFromCold.join(', ')} (one scale only), this is the cold ` +
+        'pass of the first timing repetition, which is the same procedure.' : ''), '');
     for (const [ dataset, cols ] of Object.entries<any>(summary.support)) {
       const keys = Object.keys(cols).filter(k => k !== 'nonOk');
       L.push(`**${dataset}**`, '', `| | ${keys.join(' | ')} |`, `|---|${keys.map(() => '---:').join('|')}|`);
@@ -349,7 +368,7 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
   }
 
   L.push('## Query times, load and memory', '');
-  L.push('Every timing run was repeated; warm statistics pool the timed rounds of all repetitions (per instance: repetitions × 5 ' +
+  L.push('Timing runs were repeated (see Setup); warm statistics pool the timed rounds of all repetitions (per instance: repetitions × 5 ' +
     'executions), cold is the mean of the cold executions over repetitions, and per-run values (init, load, memory) are medians ' +
     'over repetitions, with the range in parentheses. Totals add the per-instance warm means. "All ok" sums each engine over its ' +
     'own ok instances; "common" sums over the instances that both engines got ok in that browser, which is the ' +

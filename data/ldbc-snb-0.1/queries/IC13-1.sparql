@@ -1,0 +1,31 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sn: <http://www.ldbc.eu/ldbc_socialnet/1.0/data/>
+PREFIX snvoc: <http://www.ldbc.eu/ldbc_socialnet/1.0/vocabulary/>
+SELECT (COALESCE(MIN(?distance), "-1"^^xsd:integer) AS ?shortestPathLength) WHERE {
+  OPTIONAL {
+    {
+      BIND(0  AS ?distance)
+      FILTER(sn:pers00000026388279066869 = sn:pers00000006597069768287)
+    }
+    UNION
+    {
+      sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000006597069768287.
+      BIND(1  AS ?distance)
+    }
+    UNION
+    {
+      sn:pers00000026388279066869 (((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))) sn:pers00000006597069768287.
+      BIND(2  AS ?distance)
+    }
+    UNION
+    {
+      sn:pers00000026388279066869 (((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))) sn:pers00000006597069768287.
+      BIND(3  AS ?distance)
+    }
+    UNION
+    {
+      sn:pers00000026388279066869 (((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))) sn:pers00000006597069768287.
+      BIND(4  AS ?distance)
+    }
+  }
+}

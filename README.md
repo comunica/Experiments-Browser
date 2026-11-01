@@ -8,7 +8,8 @@ A reproducible comparison of two SPARQL engines running inside a browser tab ove
 - **Oxigraph**: the [`oxigraph`](https://www.npmjs.com/package/oxigraph) npm package (0.5.x, `web.js` WASM build) with its own
   in-memory store.
 
-Both run the same WatDiv and BSBM queries over the same data in Chromium, Firefox and WebKit (headless, via Playwright).
+Both run the same WatDiv, BSBM and LDBC SNB Interactive queries over the same data in Chromium, Firefox and WebKit
+(headless, via Playwright).
 Every query result is fully consumed and counted, counts are checked against reference counts, and failures are
 published next to the timings. Federation, HTTP sources, Solid, updates and Node.js timings are out of scope.
 
@@ -58,7 +59,7 @@ npm run plot           # CSV -> SVG
 |---|---|---|
 | Package | `@comunica/query-sparql-rdfjs-lite`, from a comunica master checkout (`yarn install`, `yarn build`, linked like `npm link`) | `oxigraph` 0.5.13, `web.js` |
 | Store | `RdfStore.createOrdered({ termComparator: compareTerms, nodes: true })`: GSOP, GPSO and GOPS indexes in term order, as comunica/comunica#1839 uses for files | Oxigraph's in-memory store |
-| Loading | `new N3.Parser({ format: 'N-Triples' }).parse(text)`, then one `store.addQuads(quads)` batch (as in #1839) | `store.load(text, { format: 'application/n-triples' })` |
+| Loading | `new N3.Parser({ format: 'N-Triples', blankNodePrefix: '' }).parse(chunk)` for every chunk, then one `store.addQuads(quads)` batch with all quads (as in #1839) | `store.load(chunks, { format: 'application/n-triples' })` |
 | Querying | `engine.query(sparql, { sources: [store] })`, results consumed from the stream | `store.query(sparql)` (synchronous; returns arrays) |
 | Adapter | [`src/adapters/comunica.ts`](src/adapters/comunica.ts) | [`src/adapters/oxigraph.ts`](src/adapters/oxigraph.ts) |
 
@@ -79,8 +80,11 @@ across the browser boundary. Its only clock is a watchdog that kills a page that
 repeated (`--repeat`, default 3); repetitions are the outer loop, so a slow moment of the machine hits one repetition of
 many configurations rather than all repetitions of one:
 
-1. **Fetch + inflate**: fetch `dataset.nt.gz` and inflate it with `DecompressionStream` into a string. Timed, but not
-   charged to the engine.
+1. **Fetch + inflate**: fetch `dataset.nt.gz` and inflate it with `DecompressionStream` into line-aligned strings of
+   about 16M characters (LDBC SNB's 706 MB does not fit in one V8 string). Timed, but not charged to the engine.
+   Both engines get the same chunks: Oxigraph reads them as one document; for Comunica, N3.js parses each chunk with
+   `blankNodePrefix: ''` so blank node labels keep joining across chunks, and all quads then go into the store in one
+   batch.
 2. **Engine init**: dynamically import the adapter chunk (Comunica's JS; Oxigraph's JS glue and WASM) and construct
    the engine (`new QueryEngine()`; Oxigraph's `init()`).
 3. **Load** = parse + ingest. Comunica: parse is N3.js parsing plus building the store, and ingest is 0 since Comunica
@@ -118,8 +122,10 @@ first). An instance's outcome is its first non-`ok` outcome over all its executi
 executions only.
 
 **Reference counts** come from Node, where [`src/reference.ts`](src/reference.ts) runs every query against both engines
-with the same store setup. Where they disagree, there is no reference count and the script fails instead of picking
-one. For the committed data they agree on all 300 query instances.
+with the same store setup and the same chunked input. Oxigraph runs in a worker thread, so that a query exceeding the
+reference timeout (300 s, as in Experiments-Centralized's LDBC SNB experiment) can be stopped; Comunica's are stopped
+in-process. Where the engines disagree, there is no reference count and the script fails instead of picking one;
+where only one engine answers, its count is used and `reference.json` says which engine confirmed it.
 
 **Bundle size** per page: all JS chunks and WASM the page loads, raw and gzip (level 9), from the Vite manifest
 ([`scripts/bundle-sizes.ts`](scripts/bundle-sizes.ts)).
@@ -138,10 +144,13 @@ Safari, and Playwright's Firefox is a patched build.
 | `watdiv-10` (WatDiv scale factor 10) | 1,097,705 | same templates, 5 instances each |
 | `bsbm-100` (BSBM, 100 products) | 40,377 | explore Q1–Q5, Q8–Q12 × 5 instances |
 | `bsbm-1k` (BSBM, 1000 products) | 374,911 | same |
+| `ldbc-snb-0.1` (LDBC SNB Interactive, scale factor 0.1) | 4,028,513 | short IS1–IS7 and complex IC1–IC14 × 5 instances |
 
-Generated with jbr in [comunica/Experiments-Centralized](https://github.com/comunica/Experiments-Centralized); generator
-versions, seeds and the deviations from the requested parameters are in [`data/README.md`](data/README.md). The support
-pass runs at the smallest scale of each family (`watdiv-1`, `bsbm-100`).
+Generated with jbr in [comunica/Experiments-Centralized](https://github.com/comunica/Experiments-Centralized) (LDBC SNB
+from its open [#7](https://github.com/comunica/Experiments-Centralized/pull/7)); generator versions, seeds and the
+deviations from the requested parameters are in [`data/README.md`](data/README.md). The support pass runs at the
+smallest scale of each family (`watdiv-1`, `bsbm-100`); for LDBC SNB, which has one scale, the support matrix uses the
+cold pass of the first timing repetition, which is the same procedure.
 
 ## Layout
 
@@ -151,12 +160,12 @@ src/protocol.ts           messages between harness and runner, outcome classes
 src/adapters/             comunica.ts, oxigraph.ts (+ oxigraph-query.ts shared with Node), types.ts
 src/pages/                comunica.html, oxigraph.html
 src/runner.ts             Playwright runner, static server with COOP+COEP, crash/hang recovery, resumable
-src/reference.ts          Node reference counts
+src/reference.ts          Node reference counts (+ reference-oxigraph-worker.ts, node-chunks.ts)
 scripts/prepare.mjs       build and link Comunica, fetch release assets, install browsers
 scripts/bundle-sizes.ts   bundle sizes from the Vite manifest
 scripts/aggregate.ts      raw JSON -> CSVs (Experiments-Centralized column shape), totals, support matrix, README tables
 scripts/plot.ts           SVG charts
-scripts/generate-data.sh  dataset generation with jbr (+ capture-bsbm-queries.mjs)
+scripts/generate-data.sh  dataset generation with jbr (+ capture-bsbm-queries.mjs, split-ldbc-queries.mjs)
 scripts/diagnostics/      one-off checks cited in the results notes (not part of the pipeline)
 data/<dataset>/           dataset.nt.gz, queries/*.sparql, reference.json, generation.json
 results/<date>-<machine>/ meta.json, bundle-sizes.csv, support-matrix.csv, raw/*.json, <dataset>/*.csv|svg, README.md

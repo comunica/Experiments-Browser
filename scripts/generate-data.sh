@@ -8,6 +8,10 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 EC_DIR="${EC_DIR:-$ROOT/.cache/Experiments-Centralized}"
 EC_COMMIT="ff983319cd70d47adaf73db18dc55145edb081ae"
 BSBM_TEMPLATES="$ROOT/.cache/bsbm-templates"
+# LDBC SNB is not on Experiments-Centralized master yet: it comes from comunica/Experiments-Centralized#7.
+EC_LDBC_DIR="${EC_LDBC_DIR:-$ROOT/.cache/Experiments-Centralized-ldbc}"
+EC_LDBC_REF="pull/7/head"
+EC_LDBC_COMMIT="2f35846b30a2bca69206e7a55483fcafdebe02f8"
 INSTANCES=5
 
 if [ ! -d "$EC_DIR/.git" ]; then
@@ -47,15 +51,17 @@ jbr_prepare() { # <experiment-dir>
 }
 
 write_meta() { # <out-dir> <json>
+  # Streamed with shell tools: datasets such as LDBC SNB exceed Node's maximum string length.
+  local nt="$1/.dataset.nt" triples bytes sha
+  triples="$(grep -cvE '^[[:space:]]*(#|$)' "$nt")"
+  bytes="$(stat -c %s "$nt")"
+  sha="$(sha256sum "$nt" | cut -d' ' -f1)"
   node -e '
-    const fs = require("fs"); const crypto = require("crypto");
-    const [out, extra] = process.argv.slice(1);
-    const nt = fs.readFileSync(`${out}/.dataset.nt`);
-    const triples = nt.toString("utf8").split("\n").filter(l => l.trim() && !l.startsWith("#")).length;
-    const meta = { ...JSON.parse(extra), triples, ntBytes: nt.length,
-      ntSha256: crypto.createHash("sha256").update(nt).digest("hex"),
+    const fs = require("fs");
+    const [out, extra, triples, ntBytes, ntSha256] = process.argv.slice(1);
+    const meta = { ...JSON.parse(extra), triples: Number(triples), ntBytes: Number(ntBytes), ntSha256,
       queries: fs.readdirSync(`${out}/queries`).filter(f => f.endsWith(".sparql")).length };
-    fs.writeFileSync(`${out}/generation.json`, JSON.stringify(meta, null, 2) + "\n");' "$1" "$2"
+    fs.writeFileSync(`${out}/generation.json`, JSON.stringify(meta, null, 2) + "\n");' "$1" "$2" "$triples" "$bytes" "$sha"
 }
 
 finish_dataset() { # <out-dir>
@@ -105,6 +111,27 @@ gen_bsbm() { # <productCount> <name>
   finish_dataset "$out"
 }
 
+gen_ldbc() { # <scale> <name>
+  local scale="$1" name="$2" exp="$EC_LDBC_DIR/experiments/ldbc-snb" out="$ROOT/data/$2"
+  if [ ! -d "$EC_LDBC_DIR/.git" ]; then
+    git clone https://github.com/comunica/Experiments-Centralized "$EC_LDBC_DIR"
+  fi
+  git -C "$EC_LDBC_DIR" fetch --quiet origin "$EC_LDBC_REF"
+  git -C "$EC_LDBC_DIR" checkout --quiet "$EC_LDBC_COMMIT"
+  # Same settings as the experiment in that PR, except that no HDT file is needed here.
+  set_template "$exp" scale "\"$scale\"" queryCount "$INSTANCES" querySeed 12345 generateHdt false
+  local started; started="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  jbr_prepare "$exp"
+  rm -rf "$out" && mkdir -p "$out/queries"
+  cp "$exp/generated/dataset.nt" "$out/.dataset.nt"
+  # interactive-short-N -> ISN, interactive-complex-N -> ICN; instances are separated by blank lines.
+  node "$ROOT/scripts/split-ldbc-queries.mjs" "$exp/generated/queries" "$out/queries" "$INSTANCES"
+  cp "$exp/output/logs/ldbc-snb-generation.txt" "$out/generation-log.txt" 2>/dev/null \
+    || cp "$exp/combinations/combination_0/output/logs/ldbc-snb-generation.txt" "$out/generation-log.txt" 2>/dev/null || true
+  write_meta "$out" "{\"generator\":\"ldbc-snb\",\"scale\":\"$scale\",\"instancesPerTemplate\":$INSTANCES,\"startedAt\":\"$started\",\"seed\":\"datagen: deterministic for a given params.ini; query parameters: 12345 (as in comunica/Experiments-Centralized#7)\"}"
+  finish_dataset "$out"
+}
+
 targets=("$@")
 [ ${#targets[@]} -eq 0 ] && targets=(watdiv-1 watdiv-10 bsbm-100 bsbm-1k)
 for t in "${targets[@]}"; do
@@ -114,6 +141,7 @@ for t in "${targets[@]}"; do
     watdiv-10) gen_watdiv 10 "$t" ;;
     bsbm-100) gen_bsbm 100 "$t" ;;
     bsbm-1k) gen_bsbm 1000 "$t" ;;
+    ldbc-snb-0.1) gen_ldbc 0.1 "$t" ;;
     *) echo "Unknown dataset $t" >&2; exit 1 ;;
   esac
 done

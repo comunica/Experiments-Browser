@@ -12,11 +12,12 @@ export function createAdapter(): EngineAdapter {
     async init() {
       memory = (await init()).memory;
     },
-    async load(nt) {
+    async load(chunks) {
       const t0 = performance.now();
       store = new Store();
-      // Parsing and insertion happen inside one WASM call and cannot be timed separately.
-      store.load(nt, { format: 'application/n-triples' });
+      // Parsing and insertion happen inside one WASM call and cannot be timed separately. The chunks are one
+      // N-Triples document to Oxigraph, which reads them in order.
+      store.load(chunks, { format: 'application/n-triples' });
       const t1 = performance.now();
       return { parseMs: null, ingestMs: t1 - t0, quads: store.size, details: { storeLoadMs: t1 - t0 }};
     },
