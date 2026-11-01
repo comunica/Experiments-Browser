@@ -17,9 +17,8 @@ const DIST = join(ROOT, 'dist');
 const DATA = join(ROOT, 'data');
 
 export const ENGINES = {
-  'comunica': { page: 'comunica.html', setImmediateShim: false },
-  'comunica-setimmediate': { page: 'comunica.html', setImmediateShim: true },
-  'oxigraph': { page: 'oxigraph.html', setImmediateShim: false },
+  comunica: { page: 'comunica.html' },
+  oxigraph: { page: 'oxigraph.html' },
 } as const;
 export type EngineName = keyof typeof ENGINES;
 const BROWSERS: Record<string, BrowserType> = { chromium, firefox, webkit };
@@ -268,7 +267,6 @@ async function runConfiguration(
     const config: BenchConfig = {
       dataset,
       engine,
-      setImmediateShim: ENGINES[engine].setImmediateShim,
       measureMemory: attempts.length === 0 && browserName === 'chromium',
       timeoutMs: TIMEOUT_MS,
       steps,
@@ -420,7 +418,6 @@ async function main(): Promise<void> {
     oxigraph: version('oxigraph'),
     n3: version('n3'),
     rdfStores: version('rdf-stores'),
-    setimmediate: version('setimmediate'),
     playwright: version('playwright'),
     vite: version('vite'),
   };

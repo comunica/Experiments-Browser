@@ -6,11 +6,10 @@ import { DATASETS, instanceStats, resultsDir } from './aggregate';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
-// Categorical slots 1-3 of the validated reference palette (light / dark steps), in fixed order.
+// Categorical slots 1-2 of the validated reference palette (light / dark steps), in fixed order.
 const SERIES = [
   { key: 'comunica', label: 'Comunica', light: '#2a78d6', dark: '#3987e5' },
-  { key: 'comunica-setimmediate', label: 'Comunica + setImmediate shim', light: '#eb6834', dark: '#d95926' },
-  { key: 'oxigraph', label: 'Oxigraph', light: '#1baf7a', dark: '#199e70' },
+  { key: 'oxigraph', label: 'Oxigraph', light: '#eb6834', dark: '#d95926' },
 ];
 
 const STYLE = `

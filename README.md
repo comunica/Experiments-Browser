@@ -26,7 +26,6 @@ Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetiti
 - Loading takes the same order of time in both (which one is faster depends on browser and dataset); memory after
   load is lower for Comunica (91 vs 548 MB at 1.1M WatDiv triples); the Oxigraph page transfers 5.4 times more
   (1,542 vs 285 kB gzipped).
-- The `setImmediate` shim makes no measurable difference.
 
 ## Reproduce
 
@@ -65,12 +64,6 @@ npm run plot           # CSV -> SVG
 
 `N3.Store` is not used anywhere. Both engines get the same query text; there are no engine-specific rewrites.
 
-Comunica runs in two configurations: as installed (`comunica`), and with the YuzuJS
-[`setimmediate`](https://www.npmjs.com/package/setimmediate) polyfill installed before the engine is loaded
-(`comunica-setimmediate`), following [comunica discussion #1552](https://github.com/comunica/comunica/discussions/1552).
-Note that `asynciterator` 3.10, which Comunica master uses, already schedules through `tiny-set-immediate`
-(a `postMessage`-based `setImmediate`) in browsers rather than `setTimeout`, which is what that discussion was about.
-
 ## How it is measured
 
 **Pages.** One [Vite config](vite.config.ts), two entries ([`comunica.html`](src/pages/comunica.html),
@@ -82,7 +75,7 @@ version in both the project and the Comunica checkout are deduplicated in the bu
 [runner](src/runner.ts) (Playwright) only passes configuration in and receives the numbers; it never times anything
 across the browser boundary. Its only clock is a watchdog that kills a page that stops responding.
 
-**Per run** (one browser, one engine configuration, one dataset), in a fresh browser process and context. Every run is
+**Per run** (one browser, one engine, one dataset), in a fresh browser process and context. Every run is
 repeated (`--repeat`, default 3); repetitions are the outer loop, so a slow moment of the machine hits one repetition of
 many configurations rather than all repetitions of one:
 

@@ -12,16 +12,15 @@ interface ManifestEntry {
 
 const dist = resolve(import.meta.dirname, '..', 'dist');
 const manifest: Record<string, ManifestEntry> = JSON.parse(readFileSync(resolve(dist, '.vite/manifest.json'), 'utf8'));
-const SHIM_KEY = Object.keys(manifest).find(key => key.includes('node_modules/setimmediate/'));
 
-function files(key: string, skip: Set<string>, seen = new Set<string>()): Set<string> {
-  if (seen.has(key) || skip.has(key)) {
+function files(key: string, seen = new Set<string>()): Set<string> {
+  if (seen.has(key)) {
     return seen;
   }
   seen.add(key);
   const entry = manifest[key];
   for (const next of [ ...entry.imports ?? [], ...entry.dynamicImports ?? [] ]) {
-    files(next, skip, seen);
+    files(next, seen);
   }
   return seen;
 }
@@ -50,9 +49,8 @@ function sizes(keys: Iterable<string>) {
 }
 
 const rows = [
-  { page: 'comunica', keys: files('comunica.html', new Set([ SHIM_KEY! ])) },
-  { page: 'comunica-setimmediate', keys: files('comunica.html', new Set()) },
-  { page: 'oxigraph', keys: files('oxigraph.html', new Set([ SHIM_KEY! ])) },
+  { page: 'comunica', keys: files('comunica.html') },
+  { page: 'oxigraph', keys: files('oxigraph.html') },
 ].map(({ page, keys }) => {
   const adapter = [ ...keys ].find(key => key.startsWith('../adapters/'))!;
   return { page, ...sizes(keys), engineOnly: sizes([ adapter ]) };

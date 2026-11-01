@@ -13,7 +13,6 @@ export interface Step {
 export interface BenchConfig {
   dataset: string;
   engine: string;
-  setImmediateShim: boolean;
   measureMemory: boolean;
   timeoutMs: number;
   steps: Step[];
@@ -40,7 +39,6 @@ export interface LoadInfo {
   ntBytes: number;
   gzBytes: number;
   details: Record<string, number>;
-  setImmediate: string;
 }
 
 export interface ExecResult {

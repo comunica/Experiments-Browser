@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSy
 import { join, relative, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-export const ENGINES = [ 'comunica', 'comunica-setimmediate', 'oxigraph' ];
+export const ENGINES = [ 'comunica', 'oxigraph' ];
 export const BROWSERS = [ 'chromium', 'firefox', 'webkit' ];
 export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k' ];
 const OK_LIKE = new Set([ 'ok' ]);
@@ -195,7 +195,7 @@ function main(): void {
       const ids = queryIds(dataset);
       const b: Record<string, any> = { engines: {} };
       ds.browsers[browser] = b;
-      // Instances that every engine configuration answered correctly in this browser.
+      // Instances that both engines answered correctly in this browser.
       const common = ids.filter((_, i) => engines.every(e => stats[e][i].outcome === 'ok'));
       b.commonOk = common.length;
 
@@ -352,7 +352,7 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
   L.push('Every timing run was repeated; warm statistics pool the timed rounds of all repetitions (per instance: repetitions × 5 ' +
     'executions), cold is the mean of the cold executions over repetitions, and per-run values (init, load, memory) are medians ' +
     'over repetitions, with the range in parentheses. Totals add the per-instance warm means. "All ok" sums each engine over its ' +
-    'own ok instances; "common" sums over the instances that every engine configuration got ok in that browser, which is the ' +
+    'own ok instances; "common" sums over the instances that both engines got ok in that browser, which is the ' +
     'comparable number. Engine init = loading the adapter chunk (JS, plus WASM for Oxigraph) + constructing the engine. ' +
     'Load = parse + ingest; Oxigraph parses and ingests inside one `Store.load()` call, so its parse column is empty. ' +
     'Memory: Chromium only.', '');

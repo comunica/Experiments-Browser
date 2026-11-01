@@ -37,7 +37,6 @@ const build = {
   oxigraph: version('oxigraph'),
   n3: version('n3'),
   rdfStores: version('rdf-stores'),
-  setimmediate: version('setimmediate'),
   vite: version('vite'),
 };
 

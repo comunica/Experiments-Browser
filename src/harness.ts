@@ -44,7 +44,6 @@ function readConfig(): BenchConfig {
   return {
     dataset: params.get('dataset') ?? 'smoke',
     engine: params.get('engine') ?? 'manual',
-    setImmediateShim: params.get('setImmediate') === 'shim',
     measureMemory: params.has('memory'),
     timeoutMs: Number(params.get('timeout') ?? 60_000),
     steps: queries.map(query => ({ phase: 'support', round: 0, query })),
@@ -105,14 +104,6 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
   const config = readConfig();
   await emit({ type: 'build', build: __BENCH_BUILD__, userAgent: navigator.userAgent, crossOriginIsolated });
 
-  // The shim has to be installed before the engine's modules are evaluated.
-  if (config.setImmediateShim) {
-    await import('setimmediate');
-  }
-  const setImmediateKind = typeof (globalThis as { setImmediate?: unknown }).setImmediate === 'function' ?
-    (config.setImmediateShim ? 'setimmediate@1.0.5 shim' : 'native') :
-    'absent';
-
   // Queries and reference counts are fetched before anything is timed.
   const base = `../data/${config.dataset}`;
   const queryIds = [ ...new Set(config.steps.map(step => step.query)) ];
@@ -166,7 +157,6 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
     ntBytes,
     gzBytes: gz.byteLength,
     details: loaded.details,
-    setImmediate: setImmediateKind,
   };
   await emit({ type: 'loaded', load });
 

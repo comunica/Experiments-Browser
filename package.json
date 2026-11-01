@@ -21,8 +21,7 @@
   "dependencies": {
     "n3": "2.13.12",
     "oxigraph": "0.5.13",
-    "rdf-stores": "2.8.0",
-    "setimmediate": "1.0.5"
+    "rdf-stores": "2.8.0"
   },
   "devDependencies": {
     "@rdfjs/types": "2.0.1",
