@@ -83,3 +83,10 @@ export function readBreakdownRaw(dir: string, dataset: string, browser: string):
     .find(f => files.includes(f));
   return name ? JSON.parse(readFileSync(join(dir, 'raw', name), 'utf8')) : undefined;
 }
+
+/** The timing raw files (one per repetition) of a configuration. */
+export function readTimingRaws(dir: string, dataset: string, browser: string, engine: string): any[] {
+  const prefix = `timing-${dataset}-${browser}-${engine}-r`;
+  return readdirSync(join(dir, 'raw')).filter(f => f.startsWith(prefix) && /-r\d+\.json$/u.test(f))
+    .map(f => JSON.parse(readFileSync(join(dir, 'raw', f), 'utf8')));
+}

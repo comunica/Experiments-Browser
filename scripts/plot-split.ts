@@ -1,21 +1,30 @@
 // Stacked bars of Oxigraph's query time, split into evaluation and moving the results from WASM into JavaScript,
-// from the breakdown runs: per dataset and browser one row per template, plus an overview with one row per dataset.
-// Usage: npm run plot:split [-- results/<dir>] [--overhead calibrated|measured] [--browsers chromium,firefox]
+// from the breakdown runs: per dataset and browser one row per template, plus an overview with one row per dataset,
+// and (calibrated only) the templates with the most transfer next to Comunica's times from the timing runs.
+// Usage: npm run plot:split [-- results/<dir>] [--overhead calibrated|measured] [--browsers chromium,firefox] [--top 5]
 //   calibrated (default): transfer = result terms × the per-term cost fitted on the calibration scans in that browser.
 //   measured: transfer = full − count of each query, which is noisy for single queries.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { BROWSERS, breakdownInstances, DATASETS, resultsDir, round, VARIANTS, writeCsv } from './aggregate';
-import { esc, formatValue, mean, niceStep, readBreakdownRaw, style, tickLabel, wrap } from './plot-common';
+import { BROWSERS, breakdownInstances, DATASETS, instanceStats, resultsDir, round, VARIANTS, writeCsv } from './aggregate';
+import { esc, formatValue, mean, niceStep, readBreakdownRaw, readTimingRaws, style, tickLabel, wrap } from './plot-common';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
-// Categorical slots 1-2, as in the breakdown charts, where slot 1 is the evaluation-only (count) variant.
-const PALETTE = [
-  { label: 'evaluation', light: '#2a78d6', dark: '#3987e5' },
-  { label: 'WASM → JS transfer', light: '#eb6834', dark: '#d95926' },
+// Categorical slots 1-3: Comunica, Oxigraph (its evaluation), and Oxigraph's transfer, so that the engines keep their
+// colours from the other charts. The split charts show Oxigraph only and use slots 2-3.
+const ENGINE_PALETTE = [
+  { label: 'Comunica', light: '#2a78d6', dark: '#3987e5' },
+  { label: 'Oxigraph: evaluation', light: '#eb6834', dark: '#d95926' },
+  { label: 'Oxigraph: WASM → JS transfer (estimated)', light: '#1baf7a', dark: '#199e70' },
 ];
+const PALETTE = ENGINE_PALETTE.slice(1);
+
+// Value labels get a surface-coloured outline, so gridlines do not run through them.
+const HALO = `
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }`;
 
 export type OverheadSource = 'calibrated' | 'measured';
 
@@ -58,14 +67,14 @@ function bar(cls: string, x: number, y: number, w: number, h: number, rounded: b
 }
 
 /** Evaluation then transfer, with a 2 px surface gap between them; a segment under 1 px is not drawn. */
-function stack(x: number, y: number, h: number, evalW: number, transferW: number): string[] {
+function stack(x: number, y: number, h: number, evalW: number, transferW: number, [ ev, tr ] = [ 's0', 's1' ]): string[] {
   if (transferW < 1) {
-    return [ bar('s0', x, y, Math.max(evalW + transferW, 1), h, true) ];
+    return [ bar(ev, x, y, Math.max(evalW + transferW, 1), h, true) ];
   }
   if (evalW < 1) {
-    return [ bar('s1', x, y, evalW + transferW, h, true) ];
+    return [ bar(tr, x, y, evalW + transferW, h, true) ];
   }
-  return [ bar('s0', x, y, evalW - 1, h, false), bar('s1', x + evalW + 1, y, transferW - 1, h, true) ];
+  return [ bar(ev, x, y, evalW - 1, h, false), bar(tr, x + evalW + 1, y, transferW - 1, h, true) ];
 }
 
 function splitChart(spec: SplitSpec): string {
@@ -107,7 +116,7 @@ function splitChart(spec: SplitSpec): string {
 
   const out: string[] = [];
   out.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(spec.title)}">`);
-  out.push(`<style>${style(PALETTE)}</style>`);
+  out.push(`<style>${style(PALETTE)}${HALO}</style>`);
   out.push(`<rect class="surface" width="${width}" height="${height}" rx="6"/>`);
   out.push(`<text class="ink" x="${margin}" y="26" font-size="16" font-weight="600">${esc(spec.title)}</text>`);
   subtitle.forEach((line, i) => out.push(`<text class="ink2" x="${margin}" y="${46 + i * 16}" font-size="12">${esc(line)}</text>`));
@@ -153,7 +162,7 @@ function splitChart(spec: SplitSpec): string {
     out.push(`<text class="ink2" x="${left - 10}" y="${by + 10}" font-size="11" text-anchor="end">${esc(row.label)}</text>`);
     if (showTime) {
       out.push(...stack(left, by, barH, tx(row.total - transfer), tx(transfer)));
-      out.push(`<text class="ink2" x="${(left + Math.max(tx(row.total), 1) + 6).toFixed(1)}" y="${by + 10}" font-size="11">${esc(row.timeLabel)}</text>`);
+      out.push(`<text class="ink2 halo" x="${(left + Math.max(tx(row.total), 1) + 6).toFixed(1)}" y="${by + 10}" font-size="11">${esc(row.timeLabel)}</text>`);
     }
     const share = row.total > 0 ? transfer / row.total : 0;
     out.push(...stack(shareX, by, barH, (1 - share) * shareW, share * shareW));
@@ -169,7 +178,7 @@ function splitChart(spec: SplitSpec): string {
  * and, per dataset and browser, `<dataset>/plot_oxigraph_split[_measured]_<browser>.svg` and its CSV (one row per
  * template). Returns the written paths, relative to the repository.
  */
-export function renderSplit(dir: string, summary: any, options: { overhead: OverheadSource; browsers?: string[] }): string[] {
+export function renderSplit(dir: string, summary: any, options: { overhead: OverheadSource; browsers?: string[]; top?: number }): string[] {
   const written: string[] = [];
   const write = (file: string, svg: string) => {
     mkdirSync(dirname(file), { recursive: true });
@@ -296,20 +305,206 @@ export function renderSplit(dir: string, summary: any, options: { overhead: Over
       'evaluation_ms', 'transfer_ms', 'transfer_share', 'us_per_term' ], overviewCsv);
     written.push(relative(ROOT, join(dir, `oxigraph_split${suffix}.csv`)));
   }
+  if (options.overhead === 'calibrated') {
+    for (const browser of new Set(entries.map(b => b.browser))) {
+      if (rateOf(browser)) {
+        written.push(...renderTop(dir, summary, browser, rateOf(browser)!, options.top ?? 5));
+      }
+    }
+  }
   return written;
+}
+
+interface CompareRow {
+  label: string;
+  sublabel: string;
+  comunica: number | null;
+  comunicaText: string;
+  oxigraph: number;
+  transfer: number;
+  oxigraphText: string;
+  tooltip: string;
+}
+
+/**
+ * Per row a Comunica bar and an Oxigraph bar split into evaluation and transfer. Consecutive rows whose longest bar is
+ * within 10× of each other share a panel with a linear axis; other rows start a new panel with its own axis.
+ */
+function compareChart(spec: { title: string; subtitle: string; rows: CompareRow[] }): string {
+  const width = 960;
+  const margin = 24;
+  const barH = 10;
+  const pitch = 46;
+  const left = margin + Math.max(...spec.rows.map(r => Math.max(r.label.length * 7, r.sublabel.length * 5.6))) + 14;
+  const textRoom = Math.max(...spec.rows.map(r => Math.max(r.comunicaText.length, r.oxigraphText.length))) * 6.1 + 12;
+  const plotW = width - left - margin - textRoom;
+  const peak = (r: CompareRow) => Math.max(r.oxigraph, r.comunica ?? 0);
+  const panels: CompareRow[][] = [];
+  for (const row of spec.rows) {
+    const last = panels.at(-1);
+    const peaks = [ ...last?.map(peak) ?? [], peak(row) ];
+    if (last && Math.max(...peaks) / Math.min(...peaks) <= 10) {
+      last.push(row);
+    } else {
+      panels.push([ row ]);
+    }
+  }
+
+  const subtitle = wrap(spec.subtitle, Math.floor((width - 2 * margin) / 6.3));
+  const legendY = 46 + subtitle.length * 16;
+  const out: string[] = [];
+  let lx = margin;
+  ENGINE_PALETTE.forEach((p, i) => {
+    out.push(`<rect class="s${i}" x="${lx}" y="${legendY}" width="12" height="12" rx="3"/>`);
+    out.push(`<text class="ink2" x="${lx + 17}" y="${legendY + 10.5}" font-size="12">${esc(p.label)}</text>`);
+    lx += 17 + p.label.length * 6.6 + 22;
+  });
+  let y = legendY + 36;
+  panels.forEach((panel, pi) => {
+    const maxV = Math.max(...panel.map(peak));
+    const step = niceStep(maxV / 4);
+    const hi = Math.ceil(maxV / step) * step;
+    const sx = (v: number) => (v / hi) * plotW;
+    const top = y;
+    const bottom = top + panel.length * pitch;
+    if (pi > 0) {
+      out.push(`<line class="axis" x1="${margin}" x2="${width - margin}" y1="${top - 14}" y2="${top - 14}" stroke-width="1"/>`);
+    }
+    for (let i = 0; i <= Math.round(hi / step); i++) {
+      const v = Number((i * step).toPrecision(6));
+      const x = left + sx(v);
+      out.push(`<line class="grid" x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${top}" y2="${bottom}" stroke-width="1"/>`);
+      out.push(`<text class="muted" x="${x.toFixed(1)}" y="${bottom + 14}" font-size="11" text-anchor="middle">${tickLabel(v, 'ms')}</text>`);
+    }
+    out.push(`<line class="axis" x1="${left}" x2="${left}" y1="${top}" y2="${bottom}" stroke-width="1"/>`);
+    panel.forEach((row, i) => {
+      const ry = top + i * pitch + 8;
+      const transfer = Math.min(Math.max(row.transfer, 0), row.oxigraph);
+      out.push(`<g><title>${esc(row.tooltip)}</title>`);
+      out.push(`<rect x="${margin}" y="${ry - 6}" width="${width - 2 * margin}" height="${pitch - 4}" fill="transparent"/>`);
+      out.push(`<text class="ink" x="${left - 12}" y="${ry + 10}" font-size="12" font-weight="600" text-anchor="end">${esc(row.label)}</text>`);
+      out.push(`<text class="muted" x="${left - 12}" y="${ry + 25}" font-size="10.5" text-anchor="end">${esc(row.sublabel)}</text>`);
+      if (row.comunica === null) {
+        out.push(`<text class="ink2 halo" x="${left + 6}" y="${ry + 9}" font-size="11">${esc(row.comunicaText)}</text>`);
+      } else {
+        out.push(bar('s0', left, ry, Math.max(sx(row.comunica), 1), barH, true));
+        out.push(`<text class="ink2 halo" x="${(left + Math.max(sx(row.comunica), 1) + 6).toFixed(1)}" y="${ry + 9}" font-size="11">${esc(row.comunicaText)}</text>`);
+      }
+      const oy = ry + barH + 4;
+      out.push(...stack(left, oy, barH, sx(row.oxigraph - transfer), sx(transfer), [ 's1', 's2' ]));
+      out.push(`<text class="ink2 halo" x="${(left + Math.max(sx(row.oxigraph), 1) + 6).toFixed(1)}" y="${oy + 9}" font-size="11">${esc(row.oxigraphText)}</text>`);
+      out.push('</g>');
+    });
+    y = bottom + 44;
+  });
+  const height = y - 14;
+  const head = [
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(spec.title)}">`,
+    `<style>${style(ENGINE_PALETTE)}${HALO}</style>`,
+    `<rect class="surface" width="${width}" height="${height}" rx="6"/>`,
+    `<text class="ink" x="${margin}" y="26" font-size="16" font-weight="600">${esc(spec.title)}</text>`,
+    ...subtitle.map((line, i) => `<text class="ink2" x="${margin}" y="${46 + i * 16}" font-size="12">${esc(line)}</text>`),
+  ];
+  return `${[ ...head, ...out, '</svg>' ].join('\n')}\n`;
+}
+
+const count = (x: number) => Number.isInteger(x) ? x.toLocaleString('en') : x.toLocaleString('en', { maximumFractionDigits: 1 });
+
+/**
+ * The templates with the largest estimated transfer, in ms and as a share of Oxigraph's time (top `n` of each, over all
+ * datasets), with both engines' warm means from the timing runs: `plot_oxigraph_split_top_<browser>.svg` and its CSV.
+ */
+function renderTop(dir: string, summary: any, browser: string, rate: number, n: number): string[] {
+  interface Candidate {
+    dataset: string; template: string; instances: number; total: number; comunicaOk: number; comunica: number | null;
+    comunicaOutcome: string; oxigraph: number; transfer: number; results: number; terms: number; measured: number;
+  }
+  const candidates: Candidate[] = [];
+  for (const dataset of DATASETS) {
+    const raw = readBreakdownRaw(dir, dataset, browser);
+    if (!raw) {
+      continue;
+    }
+    const stats = (engine: string) => new Map(instanceStats(readTimingRaws(dir, dataset, browser, engine), dataset, 'timing')
+      .map(s => [ s.query, s ]));
+    const ox = stats('oxigraph');
+    const co = stats('comunica');
+    // SELECT instances with all four breakdown variants (as in the split charts) that Oxigraph answered in the timing runs.
+    const instances = breakdownInstances(raw, dataset)
+      .filter(r => VARIANTS.every(v => typeof r[v] === 'number') && ox.get(r.query)?.outcome === 'ok');
+    for (const template of new Set(instances.map(r => r.template))) {
+      const of = instances.filter(r => r.template === template);
+      // Both engines over the same instances: those Comunica answered too, if any.
+      const both = of.filter(r => co.get(r.query)?.outcome === 'ok');
+      const use = both.length > 0 ? both : of;
+      candidates.push({
+        dataset,
+        template,
+        instances: use.length,
+        total: of.length,
+        comunicaOk: both.length,
+        comunica: both.length > 0 ? mean(both.map(r => co.get(r.query)!.mean!)) : null,
+        comunicaOutcome: [ ...new Set(of.map(r => co.get(r.query)?.outcome ?? 'not run')) ].join(', '),
+        oxigraph: mean(use.map(r => ox.get(r.query)!.mean!)),
+        transfer: mean(use.map(r => r.terms * rate / 1000)),
+        results: mean(use.map(r => r.rows)),
+        terms: mean(use.map(r => r.terms)),
+        measured: mean(use.map(r => r.full - r.count)),
+      });
+    }
+  }
+  if (candidates.length === 0) {
+    return [];
+  }
+  const share = (c: Candidate) => c.transfer / c.oxigraph;
+  const byMs = [ ...candidates ].sort((a, b) => b.transfer - a.transfer).slice(0, n);
+  const byShare = [ ...candidates ].sort((a, b) => share(b) - share(a)).slice(0, n);
+  const selected = [ ...new Set([ ...byMs, ...byShare ]) ].sort((a, b) => b.transfer - a.transfer);
+  const reason = (c: Candidate) => [ byMs.includes(c) ? 'ms' : '', byShare.includes(c) ? 'share' : '' ].filter(Boolean).join('+');
+  const version = Object.values<any>(summary.breakdown).find(b => b.browser === browser)?.browserVersion ?? '';
+  const file = join(dir, `plot_oxigraph_split_top_${browser}.svg`);
+  writeFileSync(file, compareChart({
+    title: `Queries with the most WASM → JS transfer in Oxigraph, with Comunica, ${browser} ${version}`.trim(),
+    subtitle: `The ${n} templates with the largest estimated transfer in ms and the ${n} with the largest share of ` +
+      `Oxigraph's time, over all datasets (SELECT queries with breakdown data). Times: warm means from the timing runs, ` +
+      `averaged over the template's instances that both engines answered. Transfer: result terms × ${rate.toFixed(2)} µs ` +
+      `(calibration fit in ${browser}); evaluation: the rest of Oxigraph's time. Each panel has its own linear scale. ` +
+      `${summary.meta?.machine?.label ?? ''}`,
+    rows: selected.map(c => ({
+      label: `${c.dataset} ${c.template}`,
+      sublabel: `per query${Number.isInteger(c.results) && Number.isInteger(c.terms) ? '' : ' (mean)'}: ${count(c.results)} results, ${count(c.terms)} terms${c.instances < c.total ? ` (${c.instances}/${c.total} instances)` : ''}`,
+      comunica: c.comunica,
+      comunicaText: c.comunica === null ? `Comunica: ${c.comunicaOutcome}` : `Comunica ${formatValue(c.comunica, 'ms')}`,
+      oxigraph: c.oxigraph,
+      transfer: c.transfer,
+      oxigraphText: `Oxigraph ${formatValue(c.oxigraph, 'ms')}, of which transfer ${formatValue(c.transfer, 'ms')} ` +
+        `(${pct(share(c))})`,
+      tooltip: `${c.dataset} ${c.template}, ${c.instances} instance(s): Comunica ${c.comunica === null ? c.comunicaOutcome : formatValue(c.comunica, 'ms')}; ` +
+        `Oxigraph ${formatValue(c.oxigraph, 'ms')} = evaluation ${formatValue(c.oxigraph - c.transfer, 'ms')} + transfer ` +
+        `${formatValue(c.transfer, 'ms')} (estimated); breakdown run, measured full − count ${formatValue(Math.abs(c.measured), 'ms')}` +
+        `${c.measured < 0 ? ' below zero' : ''}; selected by ${reason(c)}`,
+    })),
+  }));
+  const csvFile = join(dir, `oxigraph_split_top_${browser}.csv`);
+  writeCsv(csvFile, [ 'dataset', 'template', 'instances', 'results', 'terms', 'comunica_ms', 'oxigraph_ms',
+    'oxigraph_evaluation_ms', 'transfer_ms', 'transfer_share', 'measured_full_minus_count_ms', 'selected_by' ],
+  selected.map(c => [ c.dataset, c.template, c.instances, round(c.results, 1), round(c.terms, 1),
+    c.comunica === null ? c.comunicaOutcome : round(c.comunica, 4), round(c.oxigraph, 4), round(c.oxigraph - c.transfer, 4),
+    round(c.transfer, 4), round(share(c), 4), round(c.measured, 4), reason(c) ]));
+  return [ relative(ROOT, file), relative(ROOT, csvFile) ];
 }
 
 function main(): void {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
-    options: { overhead: { type: 'string', default: 'calibrated' }, browsers: { type: 'string' } },
+    options: { overhead: { type: 'string', default: 'calibrated' }, browsers: { type: 'string' }, top: { type: 'string', default: '5' } },
   });
   if (values.overhead !== 'calibrated' && values.overhead !== 'measured') {
     throw new Error(`--overhead must be calibrated or measured, not ${values.overhead}`);
   }
   const dir = resultsDir(positionals[0]);
   const summary = JSON.parse(readFileSync(join(dir, 'summary.json'), 'utf8'));
-  const written = renderSplit(dir, summary, { overhead: values.overhead, browsers: values.browsers?.split(',') });
+  const written = renderSplit(dir, summary, { overhead: values.overhead, browsers: values.browsers?.split(','), top: Number(values.top) });
   console.log(`Wrote ${written.length} files:\n  ${written.join('\n  ')}`);
 }
 

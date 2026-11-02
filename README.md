@@ -167,7 +167,7 @@ of 1 and 3 variables directly. Each variant's count is checked against the refer
 timing runs are not repeated. The variant code is in [`src/adapters/oxigraph-breakdown.ts`](src/adapters/oxigraph-breakdown.ts),
 loaded only in this mode and left out of the bundle sizes.
 
-`npm run plot:split [-- results/<dir>] [--overhead calibrated|measured] [--browsers chromium,…]`
+`npm run plot:split [-- results/<dir>] [--overhead calibrated|measured] [--browsers chromium,…] [--top 5]`
 ([`scripts/plot-split.ts`](scripts/plot-split.ts), also run by `npm run plot`) draws Oxigraph's full time as stacked
 bars of evaluation and WASM → JS transfer: `plot_oxigraph_split.svg` (one bar per dataset and browser, as shares, since
 the totals differ by orders of magnitude) and `<dataset>/plot_oxigraph_split_<browser>.svg` (one bar per template, in
@@ -176,6 +176,10 @@ By default (`calibrated`) the transfer of a query is its number of result terms 
 calibration scans in the same browser, and evaluation is the rest of its full time. `measured` uses full − count per
 query instead, which is what the calibration replaces: for single queries that difference is often smaller than the
 run-to-run variation, or negative. Both use the instances that ran all four variants (SELECT queries).
+With `calibrated`, it also writes `plot_oxigraph_split_top_<browser>.svg` and its CSV: the `--top` templates with the
+largest estimated transfer in ms and the `--top` with the largest share of Oxigraph's time, each with Comunica's time
+and Oxigraph's split into evaluation and transfer, from the timing runs' warm means over the instances both engines
+answered.
 
 **Bundle size** per page: all JS chunks and WASM the page loads, raw and gzip (level 9), from the Vite manifest
 ([`scripts/bundle-sizes.ts`](scripts/bundle-sizes.ts)).

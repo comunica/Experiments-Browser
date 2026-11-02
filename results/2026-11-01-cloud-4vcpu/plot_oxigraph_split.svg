@@ -2,13 +2,15 @@
 <style>
   .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
   .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
-  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; } .s1 { fill: #1baf7a; } .so1 { stroke: #1baf7a; }
   text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
   @media (prefers-color-scheme: dark) {
     .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
     .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
-    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
-  }</style>
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; } .s1 { fill: #199e70; } .so1 { stroke: #199e70; }
+  }
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }</style>
 <rect class="surface" width="960" height="348" rx="6"/>
 <text class="ink" x="24" y="26" font-size="16" font-weight="600">Oxigraph: share of the query time spent on WASM → JS transfer, per dataset</text>
 <text class="ink2" x="24" y="46" font-size="12">Totals over the SELECT instances that ran all four breakdown variants. Bar: Oxigraph's full time (what the timing runs measure) split into</text>

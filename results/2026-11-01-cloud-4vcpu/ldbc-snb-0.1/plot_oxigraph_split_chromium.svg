@@ -2,13 +2,15 @@
 <style>
   .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
   .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
-  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; } .s1 { fill: #1baf7a; } .so1 { stroke: #1baf7a; }
   text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
   @media (prefers-color-scheme: dark) {
     .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
     .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
-    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
-  }</style>
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; } .s1 { fill: #199e70; } .so1 { stroke: #199e70; }
+  }
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }</style>
 <rect class="surface" width="960" height="652" rx="6"/>
 <text class="ink" x="24" y="26" font-size="16" font-weight="600">ldbc-snb-0.1 (21 queries): Oxigraph evaluation against WASM → JS transfer, chromium 153.0.8010.12</text>
 <text class="ink2" x="24" y="46" font-size="12">Bar: the full time of a query (what the timing runs measure), mean over each template's instances (3 timed rounds each). Transfer: the</text>
@@ -44,7 +46,7 @@
 <rect x="24" y="150" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="165" font-size="11" text-anchor="end">IC1</text>
 <path class="s0" d="M82.0 155 H135.4 Q139.4 155 139.4 159 V163 Q139.4 167 135.4 167 H82.0 Z"/>
-<text class="ink2" x="145.4" y="165" font-size="11">2.42 s</text>
+<text class="ink2 halo" x="145.4" y="165" font-size="11">2.42 s</text>
 <path class="s0" d="M531.0 155 H827.0 Q831.0 155 831.0 159 V163 Q831.0 167 827.0 167 H531.0 Z"/>
 <text class="ink2" x="837.0" y="165" font-size="11">0% (no results)</text>
 </g>
@@ -52,7 +54,7 @@
 <rect x="24" y="172" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="187" font-size="11" text-anchor="end">IC2</text>
 <path class="s0" d="M82.0 177 H113.2 Q117.2 177 117.2 181 V185 Q117.2 189 113.2 189 H82.0 Z"/>
-<text class="ink2" x="123.2" y="187" font-size="11">1.49 s</text>
+<text class="ink2 halo" x="123.2" y="187" font-size="11">1.49 s</text>
 <path class="s0" d="M531.0 177 H827.0 Q831.0 177 831.0 181 V185 Q831.0 189 827.0 189 H531.0 Z"/>
 <text class="ink2" x="837.0" y="187" font-size="11">&lt;0.1%</text>
 </g>
@@ -60,7 +62,7 @@
 <rect x="24" y="194" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="209" font-size="11" text-anchor="end">IC3</text>
 <path class="s0" d="M82.0 199 H349.9 Q353.9 199 353.9 203 V207 Q353.9 211 349.9 211 H82.0 Z"/>
-<text class="ink2" x="359.9" y="209" font-size="11">11.5 s</text>
+<text class="ink2 halo" x="359.9" y="209" font-size="11">11.5 s</text>
 <path class="s0" d="M531.0 199 H827.0 Q831.0 199 831.0 203 V207 Q831.0 211 827.0 211 H531.0 Z"/>
 <text class="ink2" x="837.0" y="209" font-size="11">0% (no results)</text>
 </g>
@@ -68,7 +70,7 @@
 <rect x="24" y="216" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="231" font-size="11" text-anchor="end">IC4</text>
 <path class="s0" d="M82.0 221 H89.0 Q93.0 221 93.0 225 V229 Q93.0 233 89.0 233 H82.0 Z"/>
-<text class="ink2" x="99.0" y="231" font-size="11">465 ms</text>
+<text class="ink2 halo" x="99.0" y="231" font-size="11">465 ms</text>
 <path class="s0" d="M531.0 221 H827.0 Q831.0 221 831.0 225 V229 Q831.0 233 827.0 233 H531.0 Z"/>
 <text class="ink2" x="837.0" y="231" font-size="11">0% (no results)</text>
 </g>
@@ -76,7 +78,7 @@
 <rect x="24" y="238" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="253" font-size="11" text-anchor="end">IC5</text>
 <path class="s0" d="M82.0 243 H101.1 Q105.1 243 105.1 247 V251 Q105.1 255 101.1 255 H82.0 Z"/>
-<text class="ink2" x="111.1" y="253" font-size="11">976 ms</text>
+<text class="ink2 halo" x="111.1" y="253" font-size="11">976 ms</text>
 <path class="s0" d="M531.0 243 H827.0 Q831.0 243 831.0 247 V251 Q831.0 255 827.0 255 H531.0 Z"/>
 <text class="ink2" x="837.0" y="253" font-size="11">0% (no results)</text>
 </g>
@@ -84,7 +86,7 @@
 <rect x="24" y="260" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="275" font-size="11" text-anchor="end">IC6</text>
 <path class="s0" d="M82.0 265 H154.2 Q158.2 265 158.2 269 V273 Q158.2 277 154.2 277 H82.0 Z"/>
-<text class="ink2" x="164.2" y="275" font-size="11">3.22 s</text>
+<text class="ink2 halo" x="164.2" y="275" font-size="11">3.22 s</text>
 <path class="s0" d="M531.0 265 H827.0 Q831.0 265 831.0 269 V273 Q831.0 277 827.0 277 H531.0 Z"/>
 <text class="ink2" x="837.0" y="275" font-size="11">&lt;0.1%</text>
 </g>
@@ -92,7 +94,7 @@
 <rect x="24" y="282" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="297" font-size="11" text-anchor="end">IC7</text>
 <path class="s0" d="M82.0 287 H135.9 Q139.9 287 139.9 291 V295 Q139.9 299 135.9 299 H82.0 Z"/>
-<text class="ink2" x="145.9" y="297" font-size="11">2.45 s</text>
+<text class="ink2 halo" x="145.9" y="297" font-size="11">2.45 s</text>
 <path class="s0" d="M531.0 287 H827.0 Q831.0 287 831.0 291 V295 Q831.0 299 827.0 299 H531.0 Z"/>
 <text class="ink2" x="837.0" y="297" font-size="11">&lt;0.1%</text>
 </g>
@@ -100,7 +102,7 @@
 <rect x="24" y="304" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="319" font-size="11" text-anchor="end">IC8</text>
 <path class="s0" d="M82.0 309 H92.9 Q96.9 309 96.9 313 V317 Q96.9 321 92.9 321 H82.0 Z"/>
-<text class="ink2" x="102.9" y="319" font-size="11">627 ms</text>
+<text class="ink2 halo" x="102.9" y="319" font-size="11">627 ms</text>
 <path class="s0" d="M531.0 309 H827.0 Q831.0 309 831.0 313 V317 Q831.0 321 827.0 321 H531.0 Z"/>
 <text class="ink2" x="837.0" y="319" font-size="11">&lt;0.1%</text>
 </g>
@@ -108,7 +110,7 @@
 <rect x="24" y="326" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="341" font-size="11" text-anchor="end">IC9</text>
 <path class="s0" d="M82.0 331 H234.5 Q238.5 331 238.5 335 V339 Q238.5 343 234.5 343 H82.0 Z"/>
-<text class="ink2" x="244.5" y="341" font-size="11">6.6 s</text>
+<text class="ink2 halo" x="244.5" y="341" font-size="11">6.6 s</text>
 <path class="s0" d="M531.0 331 H827.0 Q831.0 331 831.0 335 V339 Q831.0 343 827.0 343 H531.0 Z"/>
 <text class="ink2" x="837.0" y="341" font-size="11">&lt;0.1%</text>
 </g>
@@ -116,7 +118,7 @@
 <rect x="24" y="348" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="363" font-size="11" text-anchor="end">IC10</text>
 <path class="s0" d="M82.0 353 H217.6 Q221.6 353 221.6 357 V361 Q221.6 365 217.6 365 H82.0 Z"/>
-<text class="ink2" x="227.6" y="363" font-size="11">5.89 s</text>
+<text class="ink2 halo" x="227.6" y="363" font-size="11">5.89 s</text>
 <path class="s0" d="M531.0 353 H827.0 Q831.0 353 831.0 357 V361 Q831.0 365 827.0 365 H531.0 Z"/>
 <text class="ink2" x="837.0" y="363" font-size="11">&lt;0.1%</text>
 </g>
@@ -124,7 +126,7 @@
 <rect x="24" y="370" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="385" font-size="11" text-anchor="end">IC11</text>
 <path class="s0" d="M82.0 375 H150.6 Q154.6 375 154.6 379 V383 Q154.6 387 150.6 387 H82.0 Z"/>
-<text class="ink2" x="160.6" y="385" font-size="11">3.06 s</text>
+<text class="ink2 halo" x="160.6" y="385" font-size="11">3.06 s</text>
 <path class="s0" d="M531.0 375 H827.0 Q831.0 375 831.0 379 V383 Q831.0 387 827.0 387 H531.0 Z"/>
 <text class="ink2" x="837.0" y="385" font-size="11">0% (no results)</text>
 </g>
@@ -132,7 +134,7 @@
 <rect x="24" y="392" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="407" font-size="11" text-anchor="end">IC12</text>
 <path class="s0" d="M82.0 397 H82.5 Q83.0 397 83.0 397.5 V408.5 Q83.0 409 82.5 409 H82.0 Z"/>
-<text class="ink2" x="89.0" y="407" font-size="11">15.3 ms</text>
+<text class="ink2 halo" x="89.0" y="407" font-size="11">15.3 ms</text>
 <path class="s0" d="M531.0 397 H827.0 Q831.0 397 831.0 401 V405 Q831.0 409 827.0 409 H531.0 Z"/>
 <text class="ink2" x="837.0" y="407" font-size="11">&lt;0.1%</text>
 </g>
@@ -140,7 +142,7 @@
 <rect x="24" y="414" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="429" font-size="11" text-anchor="end">IC13</text>
 <path class="s0" d="M82.0 419 H121.4 Q125.4 419 125.4 423 V427 Q125.4 431 121.4 431 H82.0 Z"/>
-<text class="ink2" x="131.4" y="429" font-size="11">1.83 s</text>
+<text class="ink2 halo" x="131.4" y="429" font-size="11">1.83 s</text>
 <path class="s0" d="M531.0 419 H827.0 Q831.0 419 831.0 423 V427 Q831.0 431 827.0 431 H531.0 Z"/>
 <text class="ink2" x="837.0" y="429" font-size="11">&lt;0.1%</text>
 </g>
@@ -148,7 +150,7 @@
 <rect x="24" y="436" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="451" font-size="11" text-anchor="end">IC14</text>
 <path class="s0" d="M82.0 441 H258.1 Q262.1 441 262.1 445 V449 Q262.1 453 258.1 453 H82.0 Z"/>
-<text class="ink2" x="268.1" y="451" font-size="11">7.6 s</text>
+<text class="ink2 halo" x="268.1" y="451" font-size="11">7.6 s</text>
 <path class="s0" d="M531.0 441 H827.0 Q831.0 441 831.0 445 V449 Q831.0 453 827.0 453 H531.0 Z"/>
 <text class="ink2" x="837.0" y="451" font-size="11">&lt;0.1%</text>
 </g>
@@ -156,7 +158,7 @@
 <rect x="24" y="458" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="473" font-size="11" text-anchor="end">IS1</text>
 <path class="s0" d="M82.0 463 H82.5 Q83.0 463 83.0 463.5 V474.5 Q83.0 475 82.5 475 H82.0 Z"/>
-<text class="ink2" x="89.0" y="473" font-size="11">0.52 ms</text>
+<text class="ink2 halo" x="89.0" y="473" font-size="11">0.52 ms</text>
 <rect class="s0" x="531.0" y="463" width="286.4" height="12"/>
 <path class="s1" d="M819.4 463 H827.0 Q831.0 463 831.0 467 V471 Q831.0 475 827.0 475 H819.4 Z"/>
 <text class="ink2" x="837.0" y="473" font-size="11">4.2%</text>
@@ -165,7 +167,7 @@
 <rect x="24" y="480" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="495" font-size="11" text-anchor="end">IS2</text>
 <path class="s0" d="M82.0 485 H110.3 Q114.3 485 114.3 489 V493 Q114.3 497 110.3 497 H82.0 Z"/>
-<text class="ink2" x="120.3" y="495" font-size="11">1.36 s</text>
+<text class="ink2 halo" x="120.3" y="495" font-size="11">1.36 s</text>
 <path class="s0" d="M531.0 485 H827.0 Q831.0 485 831.0 489 V493 Q831.0 497 827.0 497 H531.0 Z"/>
 <text class="ink2" x="837.0" y="495" font-size="11">&lt;0.1%</text>
 </g>
@@ -173,7 +175,7 @@
 <rect x="24" y="502" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="517" font-size="11" text-anchor="end">IS3</text>
 <path class="s0" d="M82.0 507 H105.5 Q109.5 507 109.5 511 V515 Q109.5 519 105.5 519 H82.0 Z"/>
-<text class="ink2" x="115.5" y="517" font-size="11">1.16 s</text>
+<text class="ink2 halo" x="115.5" y="517" font-size="11">1.16 s</text>
 <path class="s0" d="M531.0 507 H827.0 Q831.0 507 831.0 511 V515 Q831.0 519 827.0 519 H531.0 Z"/>
 <text class="ink2" x="837.0" y="517" font-size="11">&lt;0.1%</text>
 </g>
@@ -181,7 +183,7 @@
 <rect x="24" y="524" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="539" font-size="11" text-anchor="end">IS4</text>
 <path class="s0" d="M82.0 529 H82.5 Q83.0 529 83.0 529.5 V540.5 Q83.0 541 82.5 541 H82.0 Z"/>
-<text class="ink2" x="89.0" y="539" font-size="11">0.3 ms</text>
+<text class="ink2 halo" x="89.0" y="539" font-size="11">0.3 ms</text>
 <rect class="s0" x="531.0" y="529" width="293.6" height="12"/>
 <path class="s1" d="M826.6 529 H828.8 Q831.0 529 831.0 531.2243184621578 V538.7756815378422 Q831.0 541 828.8 541 H826.6 Z"/>
 <text class="ink2" x="837.0" y="539" font-size="11">1.8%</text>
@@ -190,7 +192,7 @@
 <rect x="24" y="546" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="561" font-size="11" text-anchor="end">IS5</text>
 <path class="s0" d="M82.0 551 H82.5 Q83.0 551 83.0 551.5 V562.5 Q83.0 563 82.5 563 H82.0 Z"/>
-<text class="ink2" x="89.0" y="561" font-size="11">0.412 ms</text>
+<text class="ink2 halo" x="89.0" y="561" font-size="11">0.412 ms</text>
 <rect class="s0" x="531.0" y="551" width="293.0" height="12"/>
 <path class="s1" d="M826.0 551 H828.5 Q831.0 551 831.0 553.4779999395203 V560.5220000604797 Q831.0 563 828.5 563 H826.0 Z"/>
 <text class="ink2" x="837.0" y="561" font-size="11">2.0%</text>
@@ -199,7 +201,7 @@
 <rect x="24" y="568" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="583" font-size="11" text-anchor="end">IS6</text>
 <path class="s0" d="M82.0 573 H84.6 Q87.1 573 87.1 575.5505873333311 V582.4494126666689 Q87.1 585 84.6 585 H82.0 Z"/>
-<text class="ink2" x="93.1" y="583" font-size="11">215 ms</text>
+<text class="ink2 halo" x="93.1" y="583" font-size="11">215 ms</text>
 <path class="s0" d="M531.0 573 H827.0 Q831.0 573 831.0 577 V581 Q831.0 585 827.0 585 H531.0 Z"/>
 <text class="ink2" x="837.0" y="583" font-size="11">&lt;0.1%</text>
 </g>
@@ -207,7 +209,7 @@
 <rect x="24" y="590" width="912" height="22" fill="transparent"/>
 <text class="ink2" x="72" y="605" font-size="11" text-anchor="end">IS7</text>
 <path class="s0" d="M82.0 595 H83.2 Q84.3 595 84.3 596.1727015333323 V605.8272984666677 Q84.3 607 83.2 607 H82.0 Z"/>
-<text class="ink2" x="90.3" y="605" font-size="11">99 ms</text>
+<text class="ink2 halo" x="90.3" y="605" font-size="11">99 ms</text>
 <path class="s0" d="M531.0 595 H827.0 Q831.0 595 831.0 599 V603 Q831.0 607 827.0 607 H531.0 Z"/>
 <text class="ink2" x="837.0" y="605" font-size="11">0% (no results)</text>
 </g>

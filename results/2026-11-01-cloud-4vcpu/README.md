@@ -488,6 +488,10 @@ Oxigraph's full time split into evaluation and WASM → JS transfer, with the tr
 
 ![Oxigraph: evaluation against transfer](plot_oxigraph_split.svg)
 
+The templates with the most transfer, next to Comunica (chromium; numbers in [`oxigraph_split_top_chromium.csv`](oxigraph_split_top_chromium.csv)):
+
+![Templates with the most transfer, chromium](plot_oxigraph_split_top_chromium.svg)
+
 ## Load and memory overview
 
 ![Load time](plot_load.svg)

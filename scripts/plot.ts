@@ -1,10 +1,11 @@
 // Renders the aggregated results as SVG: per dataset and browser a query-time chart (log y, engines side by side),
 // plus load-time, memory, bundle-size and Oxigraph breakdown charts. Usage: npm run plot [-- results/<dir>]
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { breakdownInstances, DATASETS, instanceStats, resultsDir } from './aggregate';
 import {
-  esc, formatValue, mean, niceStep, type PaletteEntry, readBreakdownRaw, SERIES, style, tickLabel, type Unit, VARIANT_PALETTE, wrap,
+  esc, formatValue, mean, niceStep, type PaletteEntry, readBreakdownRaw, readTimingRaws, SERIES, style, tickLabel, type Unit,
+  VARIANT_PALETTE, wrap,
 } from './plot-common';
 import { renderSplit } from './plot-split';
 
@@ -295,7 +296,7 @@ function main(): void {
       continue;
     }
     for (const browser of Object.keys(ds.browsers)) {
-      const stats = Object.fromEntries(SERIES.map(s => [ s.key, instanceStats(readRaws(dir, dataset, browser, s.key), dataset, 'timing') ]));
+      const stats = Object.fromEntries(SERIES.map(s => [ s.key, instanceStats(readTimingRaws(dir, dataset, browser, s.key), dataset, 'timing') ]));
       const templates = [ ...new Set(stats[engines[0]].map(s => s.template)) ];
       // An engine that did not run here (skipped, see meta.json) gets no marks, only a note in the subtitle.
       const notRun = SERIES.filter(s => engines.includes(s.key) && stats[s.key].every(x => x.outcome === 'skipped'));
@@ -517,12 +518,6 @@ function main(): void {
   // Oxigraph's time split into evaluation and transfer (also available alone: npm run plot:split).
   written.push(...renderSplit(dir, summary, { overhead: 'calibrated' }));
   console.log(`Wrote ${written.length} files:\n  ${written.join('\n  ')}`);
-}
-
-function readRaws(dir: string, dataset: string, browser: string, engine: string): any[] {
-  const prefix = `timing-${dataset}-${browser}-${engine}-r`;
-  return readdirSync(join(dir, 'raw')).filter(f => f.startsWith(prefix) && /-r\d+\.json$/u.test(f))
-    .map(f => JSON.parse(readFileSync(join(dir, 'raw', f), 'utf8')));
 }
 
 main();

@@ -684,6 +684,11 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
       'calibration (result terms × cost per term in that browser), by `npm run plot:split`. Per template: ' +
       '`<dataset>/plot_oxigraph_split_<browser>.svg` and `<dataset>/oxigraph_split_<browser>.csv`.', '');
     L.push('![Oxigraph: evaluation against transfer](plot_oxigraph_split.svg)', '');
+    for (const browser of (summary.browsers as string[]).filter(b => existsSync(join(dir, `plot_oxigraph_split_top_${b}.svg`)))) {
+      L.push(`The templates with the most transfer, next to Comunica (${browser}; numbers in ` +
+        `[\`oxigraph_split_top_${browser}.csv\`](oxigraph_split_top_${browser}.csv)):`, '');
+      L.push(`![Templates with the most transfer, ${browser}](plot_oxigraph_split_top_${browser}.svg)`, '');
+    }
   }
   if (Object.keys(summary.datasets).length > 0) {
     L.push('## Load and memory overview', '', '![Load time](plot_load.svg)', '', '![Memory after load](plot_memory.svg)', '');
