@@ -132,6 +132,8 @@ The breakdown files (`raw/breakdown-*`) were added later by commit `63d0c9c`, in
 `--queries` limiting LDBC SNB to one instance per template. That build adds the breakdown hooks to the pages; the
 bundle sizes above are from it and are 0.1 to 0.4 kB larger than those of the build the timing runs used
 (Comunica 1,319.1 kB raw / 285.4 kB gzipped, Oxigraph 4,352.6 / 1,542.3 kB). The timing runs' code path is unchanged.
+An earlier breakdown invocation (`610587e`, listed in `meta.json`) was stopped after four files, which were removed:
+it ran all browsers and predates the per-result analysis.
 
 The run was started from commit `8ed5ffe` and resumed twice from `b207404`, which fixes a runner bug: two
 consecutive page restarts during re-warm rounds ended a configuration as stalled (it hit Firefox + Comunica on
