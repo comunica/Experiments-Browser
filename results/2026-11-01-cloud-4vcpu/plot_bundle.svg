@@ -31,20 +31,20 @@
 <line class="axis" x1="72" x2="696" y1="354" y2="354" stroke-width="1"/>
 <g><title>Comunica, JS raw: 1,319 kB</title>
 <rect x="111" y="94" width="13" height="260" fill="transparent"/>
-<path class="s0" d="M112 354 V288.405448 Q112 285.405448 115 285.405448 H120 Q123 285.405448 123 288.405448 V354 Z"/>
+<path class="s0" d="M112 354 V288.395152 Q112 285.395152 115 285.395152 H120 Q123 285.395152 123 288.395152 V354 Z"/>
 </g>
-<g><title>Oxigraph, JS raw: 27.68 kB</title>
+<g><title>Oxigraph, JS raw: 28.1 kB</title>
 <rect x="124" y="94" width="13" height="260" fill="transparent"/>
-<path class="s1" d="M125 354 V353.280216 Q125 352.560432 125.719784 352.560432 H135.280216 Q136 352.560432 136 353.280216 V354 Z"/>
+<path class="s1" d="M125 354 V353.269504 Q125 352.539008 125.73049599999999 352.539008 H135.269504 Q136 352.539008 136 353.269504 V354 Z"/>
 </g>
 <text class="ink2" x="124" y="370" font-size="11" text-anchor="middle">JS raw</text>
-<g><title>Comunica, JS gzip: 285.4 kB</title>
+<g><title>Comunica, JS gzip: 285.5 kB</title>
 <rect x="215" y="94" width="13" height="260" fill="transparent"/>
-<path class="s0" d="M216 354 V342.156964 Q216 339.156964 219 339.156964 H224 Q227 339.156964 227 342.156964 V354 Z"/>
+<path class="s0" d="M216 354 V342.1527 Q216 339.1527 219 339.1527 H224 Q227 339.1527 227 342.1527 V354 Z"/>
 </g>
-<g><title>Oxigraph, JS gzip: 8.512 kB</title>
+<g><title>Oxigraph, JS gzip: 8.678 kB</title>
 <rect x="228" y="94" width="13" height="260" fill="transparent"/>
-<path class="s1" d="M229 354 V353.778688 Q229 353.557376 229.221312 353.557376 H239.778688 Q240 353.557376 240 353.778688 V354 Z"/>
+<path class="s1" d="M229 354 V353.77437199999997 Q229 353.548744 229.225628 353.548744 H239.774372 Q240 353.548744 240 353.77437199999997 V354 Z"/>
 </g>
 <text class="ink2" x="228" y="370" font-size="11" text-anchor="middle">JS gzip</text>
 <g><title>Comunica, WASM raw: 0 kB</title>
@@ -65,20 +65,20 @@
 <text class="ink2" x="436" y="370" font-size="11" text-anchor="middle">WASM gzip</text>
 <g><title>Comunica, total raw: 1,319 kB</title>
 <rect x="527" y="94" width="13" height="260" fill="transparent"/>
-<path class="s0" d="M528 354 V288.405448 Q528 285.405448 531 285.405448 H536 Q539 285.405448 539 288.405448 V354 Z"/>
+<path class="s0" d="M528 354 V288.395152 Q528 285.395152 531 285.395152 H536 Q539 285.395152 539 288.395152 V354 Z"/>
 </g>
 <g><title>Oxigraph, total raw: 4,353 kB</title>
 <rect x="540" y="94" width="13" height="260" fill="transparent"/>
-<path class="s1" d="M541 354 V130.66459199999997 Q541 127.66459199999997 544 127.66459199999997 H549 Q552 127.66459199999997 552 130.66459199999997 V354 Z"/>
+<path class="s1" d="M541 354 V130.64316800000003 Q541 127.64316800000003 544 127.64316800000003 H549 Q552 127.64316800000003 552 130.64316800000003 V354 Z"/>
 </g>
 <text class="ink2" x="540" y="370" font-size="11" text-anchor="middle">total raw</text>
-<g><title>Comunica, total gzip: 285.4 kB</title>
+<g><title>Comunica, total gzip: 285.5 kB</title>
 <rect x="631" y="94" width="13" height="260" fill="transparent"/>
-<path class="s0" d="M632 354 V342.156964 Q632 339.156964 635 339.156964 H640 Q643 339.156964 643 342.156964 V354 Z"/>
+<path class="s0" d="M632 354 V342.1527 Q632 339.1527 635 339.1527 H640 Q643 339.1527 643 342.1527 V354 Z"/>
 </g>
 <g><title>Oxigraph, total gzip: 1,542 kB</title>
 <rect x="644" y="94" width="13" height="260" fill="transparent"/>
-<path class="s1" d="M645 354 V276.802688 Q645 273.802688 648 273.802688 H653 Q656 273.802688 656 276.802688 V354 Z"/>
+<path class="s1" d="M645 354 V276.794056 Q645 273.794056 648 273.794056 H653 Q656 273.794056 656 276.794056 V354 Z"/>
 </g>
 <text class="ink2" x="644" y="370" font-size="11" text-anchor="middle">total gzip</text>
 </svg>

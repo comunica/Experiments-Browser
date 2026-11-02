@@ -9,7 +9,7 @@
     "node": "v22.23.4"
   },
   "benchmarkRepository": {
-    "commit": "b2074049f0442de4bff05b9f6a890f82f0dd73eb",
+    "commit": "63d0c9c992eb1d9136a6e9119cbe586fe77fa31f",
     "dirty": false
   },
   "comunica": {
@@ -34,6 +34,7 @@
     "warmupRounds": 1,
     "rounds": 5,
     "repetitions": 3,
+    "breakdownRounds": 3,
     "repetitionOverrides": {
       "ldbc-snb-0.1": 1
     },
@@ -595,10 +596,70 @@
       "status": "complete",
       "startedAt": "2026-11-02T01:59:39.499Z",
       "finishedAt": "2026-11-02T01:59:45.074Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-1-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T05:50:28.067Z",
+      "finishedAt": "2026-11-02T05:50:47.535Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-1-firefox-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T05:50:47.539Z",
+      "finishedAt": "2026-11-02T05:51:16.123Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-1-webkit-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T05:51:16.127Z",
+      "finishedAt": "2026-11-02T05:51:36.848Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-10-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T05:51:36.852Z",
+      "finishedAt": "2026-11-02T05:54:21.099Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-1-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:01:32.111Z",
+      "finishedAt": "2026-11-02T06:01:52.770Z"
+    },
+    {
+      "file": "raw/breakdown-watdiv-10-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:01:52.774Z",
+      "finishedAt": "2026-11-02T06:04:49.465Z"
+    },
+    {
+      "file": "raw/breakdown-bsbm-100-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:04:49.469Z",
+      "finishedAt": "2026-11-02T06:04:53.497Z"
+    },
+    {
+      "file": "raw/breakdown-bsbm-1k-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:04:53.499Z",
+      "finishedAt": "2026-11-02T06:05:02.440Z"
+    },
+    {
+      "file": "raw/breakdown-ldbc-snb-0.1-chromium-oxigraph-subset.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:05:02.442Z",
+      "finishedAt": "2026-11-02T06:19:15.500Z"
+    },
+    {
+      "file": "raw/breakdown-calibration-chromium-oxigraph.json",
+      "status": "complete",
+      "startedAt": "2026-11-02T06:19:15.502Z",
+      "finishedAt": "2026-11-02T06:19:36.555Z"
     }
   ],
   "startedAt": "2026-11-01T17:59:47.577Z",
-  "updatedAt": "2026-11-02T01:59:45.076Z",
+  "updatedAt": "2026-11-02T06:19:36.558Z",
   "invocations": [
     {
       "commit": "8ed5ffecb8524f76e20d821cc8fbb6bd975755ee",
@@ -625,6 +686,36 @@
         "results/2026-11-01-cloud-4vcpu",
         "--skip",
         "webkit/comunica/ldbc-snb-0.1=not completed: on every page the WebKit content process grew to 5 to 7.6 GB RSS and stopped responding (about 175 % CPU without progress) or crashed after a few queries, so 38 page attempts in 80 minutes reached only the re-warm rounds and the per-query outcomes would have reflected the page memory state rather than the queries (see logs/webkit-comunica-ldbc-snb-0.1.txt)"
+      ]
+    },
+    {
+      "commit": "610587e3cf567d4e81feaa8b3f0e15f4886f5390",
+      "dirty": false,
+      "startedAt": "2026-11-02T05:50:28.059Z",
+      "args": [
+        "--machine",
+        "cloud-4vcpu",
+        "--out",
+        "results/2026-11-01-cloud-4vcpu",
+        "--mode",
+        "breakdown"
+      ]
+    },
+    {
+      "commit": "63d0c9c992eb1d9136a6e9119cbe586fe77fa31f",
+      "dirty": false,
+      "startedAt": "2026-11-02T06:01:32.099Z",
+      "args": [
+        "--machine",
+        "cloud-4vcpu",
+        "--out",
+        "results/2026-11-01-cloud-4vcpu",
+        "--mode",
+        "breakdown",
+        "--browsers",
+        "chromium",
+        "--queries",
+        "ldbc-snb-0.1=IC1-1,IC2-1,IC3-1,IC4-4,IC5-1,IC6-1,IC7-1,IC8-1,IC9-1,IC10-1,IC11-1,IC12-1,IC13-1,IC14-1,IS1-1,IS2-1,IS3-1,IS4-1,IS5-1,IS6-1,IS7-1"
       ]
     }
   ]

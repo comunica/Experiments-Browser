@@ -446,6 +446,16 @@ function breakdown(dir: string, raws: Raw[], browsers: string[]): Record<string,
     }
   }
 
+  // Estimated transfer per dataset from the calibration: the dataset's result terms times the calibrated cost per term.
+  for (const b of Object.values<any>(out)) {
+    const usPerTerm = out[`calibration/${b.browser}`]?.perResult?.fitPerTerm?.usPerTerm;
+    if (b.dataset !== 'calibration' && usPerTerm) {
+      b.calibratedUsPerTerm = usPerTerm;
+      b.estimatedTransferMs = b.terms * usPerTerm / 1000;
+      b.estimatedShare = b.totals.full > 0 ? b.estimatedTransferMs / b.totals.full : null;
+    }
+  }
+
   // Pooled over all benchmark datasets (not the calibration), per browser.
   for (const browser of browsers) {
     const entries = Object.values<any>(out).filter(b => b.browser === browser && !b.pooled && b.dataset !== 'calibration');
@@ -598,14 +608,19 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
       '**json**: the result serialized as SPARQL JSON inside WASM and handed over as one string, then `JSON.parse` and ' +
       'every value read. Totals are over the SELECT instances that have all four variants; "transfer" = (full − count) ÷ full, ' +
       'an upper bound on the share of the time spent moving results into JavaScript.', '');
-    L.push('| Dataset | Browser | Instances | Rows | Terms | count | objects | full | json | Transfer share | of which objects | of which reads | Transfer per term | json ÷ full |');
-    L.push('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+    L.push('Measured and estimated: the "measured" columns subtract the variants per query, which cannot resolve a ' +
+      'difference smaller than the query\'s own run-to-run variation (see the per-result section); "estimated" is the ' +
+      'dataset\'s number of result terms times the cost per term measured on the calibration scans in the same browser.', '');
+    L.push('| Dataset | Browser | Instances | Rows | Terms | count | objects | full | json | Measured transfer share | of which objects | of which reads | Measured per term | Estimated transfer (calibration) | Estimated share | json ÷ full |');
+    L.push('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
     const pct = (x: number | null) => x === null ? '–' : `${(100 * x).toFixed(1)} %`;
     for (const b of breakdowns) {
       L.push(`| ${b.dataset}${b.querySubset ? ` (${b.querySubset.length} queries)` : ''} | ${b.browser} | ${b.complete}/${b.instances} | ${b.rows.toLocaleString('en')} | ${b.terms.toLocaleString('en')} | ` +
         `${fmtMs(b.totals.count)} | ${fmtMs(b.totals.objects)} | ${fmtMs(b.totals.full)} | ${fmtMs(b.totals.json)} | ` +
         `${pct(b.transferShare)} | ${pct(b.objectsShare)} | ${pct(b.readShare)} | ` +
-        `${b.usPerTerm === null ? '–' : `${b.usPerTerm.toFixed(2)} µs`} | ${b.jsonVsFull === null ? '–' : b.jsonVsFull.toFixed(2)} |`);
+        `${b.usPerTerm === null ? '–' : `${b.usPerTerm.toFixed(2)} µs`} | ` +
+        `${b.estimatedTransferMs === undefined ? '–' : fmtMs(b.estimatedTransferMs)} | ${b.estimatedShare === undefined ? '–' : pct(b.estimatedShare)} | ` +
+        `${b.jsonVsFull === null ? '–' : b.jsonVsFull.toFixed(2)} |`);
     }
     L.push('', '### Overhead per result', '');
     L.push('The overhead of a query is full − count. Per dataset and browser, over the instances with all four variants: ' +

@@ -1,0 +1,456 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1656" height="382" viewBox="0 0 1656 382" role="img" aria-label="watdiv-1: Oxigraph time per variant in chromium 153.0.8010.12">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; } .s2 { fill: #1baf7a; } .so2 { stroke: #1baf7a; } .s3 { fill: #eda100; } .so3 { stroke: #eda100; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; } .s2 { fill: #199e70; } .so2 { stroke: #199e70; } .s3 { fill: #c98500; } .so3 { stroke: #c98500; }
+  }</style>
+<rect class="surface" width="1656" height="382" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">watdiv-1: Oxigraph time per variant in chromium 153.0.8010.12</text>
+<text class="ink2" x="72" y="46" font-size="12">Mean over the template's instances that ran the variant (3 timed rounds each). "count" exists for SELECT queries only. Log scale. cloud-4vcpu</text>
+<rect class="s0" x="72" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="72.5" font-size="12">count: evaluation only</text>
+<rect class="s1" x="252.2" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="269.2" y="72.5" font-size="12">+ JS result objects</text>
+<rect class="s2" x="412.59999999999997" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="429.59999999999997" y="72.5" font-size="12">+ reading every value (timing runs)</text>
+<rect class="s3" x="678.5999999999999" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="695.5999999999999" y="72.5" font-size="12">serialized JSON + parse + read</text>
+<line class="whisker" x1="916.5999999999999" x2="916.5999999999999" y1="61" y2="75" stroke-width="1.5"/>
+<text class="ink2" x="925.5999999999999" y="72.5" font-size="12">instance range</text>
+<line class="grid" x1="72" x2="1632" y1="354" y2="354" stroke-width="1"/>
+<text class="muted" x="64" y="358" font-size="11" text-anchor="end">0.1 ms</text>
+<line class="grid" x1="72" x2="1632" y1="289" y2="289" stroke-width="1"/>
+<text class="muted" x="64" y="293" font-size="11" text-anchor="end">1 ms</text>
+<line class="grid" x1="72" x2="1632" y1="224" y2="224" stroke-width="1"/>
+<text class="muted" x="64" y="228" font-size="11" text-anchor="end">10 ms</text>
+<line class="grid" x1="72" x2="1632" y1="159" y2="159" stroke-width="1"/>
+<text class="muted" x="64" y="163" font-size="11" text-anchor="end">100 ms</text>
+<line class="grid" x1="72" x2="1632" y1="94" y2="94" stroke-width="1"/>
+<text class="muted" x="64" y="98" font-size="11" text-anchor="end">1 s</text>
+<line class="axis" x1="72" x2="1632" y1="354" y2="354" stroke-width="1"/>
+<g><title>C1, count: evaluation only: 0.524 ms over 5 instances</title>
+<rect x="85" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M86 354 V310.2255145879692 Q86 307.2255145879692 89 307.2255145879692 H94 Q97 307.2255145879692 97 310.2255145879692 V354 Z"/>
+<line class="whisker" x1="91.5" x2="91.5" y1="310.01491537807357" y2="304.2961785207822" stroke-width="1.5"/>
+</g>
+<g><title>C1, + JS result objects: 0.539 ms over 5 instances</title>
+<rect x="98" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M99 354 V309.46419338801087 Q99 306.46419338801087 102 306.46419338801087 H107 Q110 306.46419338801087 110 309.46419338801087 V354 Z"/>
+<line class="whisker" x1="104.5" x2="104.5" y1="314.05452931603884" y2="302.64671920916106" stroke-width="1.5"/>
+</g>
+<g><title>C1, + reading every value (timing runs): 0.5 ms over 5 instances</title>
+<rect x="111" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M112 354 V311.58577542121895 Q112 308.58577542121895 115 308.58577542121895 H120 Q123 308.58577542121895 123 311.58577542121895 V354 Z"/>
+<line class="whisker" x1="117.5" x2="117.5" y1="311.9625248972779" y2="301.6719109664272" stroke-width="1.5"/>
+</g>
+<g><title>C1, serialized JSON + parse + read: 0.524 ms over 5 instances</title>
+<rect x="124" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M125 354 V310.2614295300835 Q125 307.2614295300835 128 307.2614295300835 H133 Q136 307.2614295300835 136 310.2614295300835 V354 Z"/>
+<line class="whisker" x1="130.5" x2="130.5" y1="312.4981982993588" y2="301.4516564722263" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="111" y="370" font-size="11" text-anchor="middle">C1</text>
+<g><title>C2, count: evaluation only: 1.17 ms over 5 instances</title>
+<rect x="163" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M164 354 V287.46355974851974 Q164 284.46355974851974 167 284.46355974851974 H172 Q175 284.46355974851974 175 287.46355974851974 V354 Z"/>
+<line class="whisker" x1="169.5" x2="169.5" y1="289.2362284994881" y2="278.6411682933236" stroke-width="1.5"/>
+</g>
+<g><title>C2, + JS result objects: 1.09 ms over 5 instances</title>
+<rect x="176" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M177 354 V289.53276767785485 Q177 286.53276767785485 180 286.53276767785485 H185 Q188 286.53276767785485 188 289.53276767785485 V354 Z"/>
+<line class="whisker" x1="182.5" x2="182.5" y1="292.2368354455226" y2="281.7752206137228" stroke-width="1.5"/>
+</g>
+<g><title>C2, + reading every value (timing runs): 1.07 ms over 5 instances</title>
+<rect x="189" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M190 354 V290.1693127380172 Q190 287.1693127380172 193 287.1693127380172 H198 Q201 287.1693127380172 201 290.1693127380172 V354 Z"/>
+<line class="whisker" x1="195.5" x2="195.5" y1="291.35379122244365" y2="281.30562713684793" stroke-width="1.5"/>
+</g>
+<g><title>C2, serialized JSON + parse + read: 1.08 ms over 5 instances</title>
+<rect x="202" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M203 354 V289.70574089769116 Q203 286.70574089769116 206 286.70574089769116 H211 Q214 286.70574089769116 214 289.70574089769116 V354 Z"/>
+<line class="whisker" x1="208.5" x2="208.5" y1="290.3984842368387" y2="281.811668831432" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="189" y="370" font-size="11" text-anchor="middle">C2</text>
+<g><title>C3, count: evaluation only: 168 ms over 5 instances</title>
+<rect x="241" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M242 354 V147.42746708868853 Q242 144.42746708868853 245 144.42746708868853 H250 Q253 144.42746708868853 253 147.42746708868853 V354 Z"/>
+<line class="whisker" x1="247.5" x2="247.5" y1="148.3993580792899" y2="139.6076689493028" stroke-width="1.5"/>
+</g>
+<g><title>C3, + JS result objects: 171 ms over 5 instances</title>
+<rect x="254" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M255 354 V146.84523958362888 Q255 143.84523958362888 258 143.84523958362888 H263 Q266 143.84523958362888 266 146.84523958362888 V354 Z"/>
+<line class="whisker" x1="260.5" x2="260.5" y1="146.20814687272542" y2="139.86447220809305" stroke-width="1.5"/>
+</g>
+<g><title>C3, + reading every value (timing runs): 177 ms over 5 instances</title>
+<rect x="267" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M268 354 V145.93654795387687 Q268 142.93654795387687 271 142.93654795387687 H276 Q279 142.93654795387687 279 145.93654795387687 V354 Z"/>
+<line class="whisker" x1="273.5" x2="273.5" y1="146.118573130034" y2="140.18686384969035" stroke-width="1.5"/>
+</g>
+<g><title>C3, serialized JSON + parse + read: 170 ms over 5 instances</title>
+<rect x="280" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M281 354 V147.02104151631838 Q281 144.02104151631838 284 144.02104151631838 H289 Q292 144.02104151631838 292 147.02104151631838 V354 Z"/>
+<line class="whisker" x1="286.5" x2="286.5" y1="146.05544531014138" y2="139.9127643509756" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="267" y="370" font-size="11" text-anchor="middle">C3</text>
+<g><title>F1, count: evaluation only: 0.303 ms over 5 instances</title>
+<rect x="319" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M320 354 V325.70622914925906 Q320 322.70622914925906 323 322.70622914925906 H328 Q331 322.70622914925906 331 325.70622914925906 V354 Z"/>
+<line class="whisker" x1="325.5" x2="325.5" y1="325.78763699061506" y2="319.17846195655727" stroke-width="1.5"/>
+</g>
+<g><title>F1, + JS result objects: 0.229 ms over 5 instances</title>
+<rect x="332" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M333 354 V333.61069364553464 Q333 330.61069364553464 336 330.61069364553464 H341 Q344 330.61069364553464 344 333.61069364553464 V354 Z"/>
+<line class="whisker" x1="338.5" x2="338.5" y1="333.5074217449041" y2="327.39098441988386" stroke-width="1.5"/>
+</g>
+<g><title>F1, + reading every value (timing runs): 0.242 ms over 5 instances</title>
+<rect x="345" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M346 354 V332.0520012067092 Q346 329.0520012067092 349 329.0520012067092 H354 Q357 329.0520012067092 357 332.0520012067092 V354 Z"/>
+<line class="whisker" x1="351.5" x2="351.5" y1="333.280680418897" y2="320.2965939015639" stroke-width="1.5"/>
+</g>
+<g><title>F1, serialized JSON + parse + read: 0.285 ms over 5 instances</title>
+<rect x="358" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M359 354 V327.4350841015993 Q359 324.4350841015993 362 324.4350841015993 H367 Q370 324.4350841015993 370 327.4350841015993 V354 Z"/>
+<line class="whisker" x1="364.5" x2="364.5" y1="329.286269289841" y2="317.06688793304" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="345" y="370" font-size="11" text-anchor="middle">F1</text>
+<g><title>F2, count: evaluation only: 0.291 ms over 5 instances</title>
+<rect x="397" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M398 354 V326.846955711459 Q398 323.846955711459 401 323.846955711459 H406 Q409 323.846955711459 409 326.846955711459 V354 Z"/>
+<line class="whisker" x1="403.5" x2="403.5" y1="327.0267323808857" y2="322.36667277445895" stroke-width="1.5"/>
+</g>
+<g><title>F2, + JS result objects: 0.222 ms over 5 instances</title>
+<rect x="410" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M411 354 V334.52947461247163 Q411 331.52947461247163 414 331.52947461247163 H419 Q422 331.52947461247163 422 334.52947461247163 V354 Z"/>
+<line class="whisker" x1="416.5" x2="416.5" y1="335.8810159348375" y2="327.5748882669816" stroke-width="1.5"/>
+</g>
+<g><title>F2, + reading every value (timing runs): 0.244 ms over 5 instances</title>
+<rect x="423" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M424 354 V331.8582520560996 Q424 328.8582520560996 427 328.8582520560996 H432 Q435 328.8582520560996 435 331.8582520560996 V354 Z"/>
+<line class="whisker" x1="429.5" x2="429.5" y1="333.9664422763373" y2="318.1029360116621" stroke-width="1.5"/>
+</g>
+<g><title>F2, serialized JSON + parse + read: 0.241 ms over 5 instances</title>
+<rect x="436" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M437 354 V332.16889222906997 Q437 329.16889222906997 440 329.16889222906997 H445 Q448 329.16889222906997 448 332.16889222906997 V354 Z"/>
+<line class="whisker" x1="442.5" x2="442.5" y1="333.280680418897" y2="326.4890181967531" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="423" y="370" font-size="11" text-anchor="middle">F2</text>
+<g><title>F3, count: evaluation only: 0.243 ms over 5 instances</title>
+<rect x="475" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M476 354 V331.93559221776866 Q476 328.93559221776866 479 328.93559221776866 H484 Q487 328.93559221776866 487 331.93559221776866 V354 Z"/>
+<line class="whisker" x1="481.5" x2="481.5" y1="330.6929944170626" y2="326.4890181967531" stroke-width="1.5"/>
+</g>
+<g><title>F3, + JS result objects: 0.184 ms over 5 instances</title>
+<rect x="488" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M489 354 V339.83802763255716 Q489 336.83802763255716 492 336.83802763255716 H497 Q500 336.83802763255716 500 339.83802763255716 V354 Z"/>
+<line class="whisker" x1="494.5" x2="494.5" y1="341.027796939464" y2="329.48298884559097" stroke-width="1.5"/>
+</g>
+<g><title>F3, + reading every value (timing runs): 0.195 ms over 5 instances</title>
+<rect x="501" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M502 354 V338.0995365184735 Q502 335.0995365184735 505 335.0995365184735 H510 Q513 335.0995365184735 513 338.0995365184735 V354 Z"/>
+<line class="whisker" x1="507.5" x2="507.5" y1="338.7454116747161" y2="325.61498115760753" stroke-width="1.5"/>
+</g>
+<g><title>F3, serialized JSON + parse + read: 0.232 ms over 5 instances</title>
+<rect x="514" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M515 354 V333.24328097846524 Q515 330.24328097846524 518 330.24328097846524 H523 Q526 330.24328097846524 526 333.24328097846524 V354 Z"/>
+<line class="whisker" x1="520.5" x2="520.5" y1="335.88101592330656" y2="322.2136689415309" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="501" y="370" font-size="11" text-anchor="middle">F3</text>
+<g><title>F4, count: evaluation only: 0.328 ms over 5 instances</title>
+<rect x="553" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M554 354 V323.49690289881255 Q554 320.49690289881255 557 320.49690289881255 H562 Q565 320.49690289881255 565 323.49690289881255 V354 Z"/>
+<line class="whisker" x1="559.5" x2="559.5" y1="322.2136689273198" y2="317.5801591944967" stroke-width="1.5"/>
+</g>
+<g><title>F4, + JS result objects: 0.272 ms over 5 instances</title>
+<rect x="566" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M567 354 V328.78763698738925 Q567 325.78763698738925 570 325.78763698738925 H575 Q578 325.78763698738925 578 328.78763698738925 V354 Z"/>
+<line class="whisker" x1="572.5" x2="572.5" y1="329.0909111260372" y2="319.3158303088777" stroke-width="1.5"/>
+</g>
+<g><title>F4, + reading every value (timing runs): 0.248 ms over 5 instances</title>
+<rect x="579" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M580 354 V331.39860865993455 Q580 328.39860865993455 583 328.39860865993455 H588 Q591 328.39860865993455 591 331.39860865993455 V354 Z"/>
+<line class="whisker" x1="585.5" x2="585.5" y1="332.1735133790371" y2="326.4890181967531" stroke-width="1.5"/>
+</g>
+<g><title>F4, serialized JSON + parse + read: 0.31 ms over 5 instances</title>
+<rect x="592" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M593 354 V325.0918601442482 Q593 322.0918601442482 596 322.0918601442482 H601 Q604 322.0918601442482 604 325.0918601442482 V354 Z"/>
+<line class="whisker" x1="598.5" x2="598.5" y1="324.60065138225605" y2="318.770322679731" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="579" y="370" font-size="11" text-anchor="middle">F4</text>
+<g><title>F5, count: evaluation only: 0.529 ms over 5 instances</title>
+<rect x="631" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M632 354 V309.95759918188446 Q632 306.95759918188446 635 306.95759918188446 H640 Q643 306.95759918188446 643 309.95759918188446 V354 Z"/>
+<line class="whisker" x1="637.5" x2="637.5" y1="314.3994925635659" y2="300.7296441900441" stroke-width="1.5"/>
+</g>
+<g><title>F5, + JS result objects: 0.742 ms over 5 instances</title>
+<rect x="644" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M645 354 V300.41106744836145 Q645 297.41106744836145 648 297.41106744836145 H653 Q656 297.41106744836145 656 300.41106744836145 V354 Z"/>
+<line class="whisker" x1="650.5" x2="650.5" y1="300.58743159027927" y2="294.83254284540715" stroke-width="1.5"/>
+</g>
+<g><title>F5, + reading every value (timing runs): 0.844 ms over 5 instances</title>
+<rect x="657" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M658 354 V296.7988921219486 Q658 293.7988921219486 661 293.7988921219486 H666 Q669 293.7988921219486 669 296.7988921219486 V354 Z"/>
+<line class="whisker" x1="663.5" x2="663.5" y1="301.3786185478924" y2="289.8113752174949" stroke-width="1.5"/>
+</g>
+<g><title>F5, serialized JSON + parse + read: 0.762 ms over 5 instances</title>
+<rect x="670" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M671 354 V299.6605808589258 Q671 296.6605808589258 674 296.6605808589258 H679 Q682 296.6605808589258 682 299.6605808589258 V354 Z"/>
+<line class="whisker" x1="676.5" x2="676.5" y1="304.7035325082459" y2="291.7140586259903" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="657" y="370" font-size="11" text-anchor="middle">F5</text>
+<g><title>L1, count: evaluation only: 0.484 ms over 5 instances</title>
+<rect x="709" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M710 354 V312.4656166287094 Q710 309.4656166287094 713 309.4656166287094 H718 Q721 309.4656166287094 721 312.4656166287094 V354 Z"/>
+<line class="whisker" x1="715.5" x2="715.5" y1="312.28270761930395" y2="305.96209790786884" stroke-width="1.5"/>
+</g>
+<g><title>L1, + JS result objects: 0.447 ms over 5 instances</title>
+<rect x="722" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M723 354 V314.7510696642427 Q723 311.7510696642427 726 311.7510696642427 H731 Q734 311.7510696642427 734 314.7510696642427 V354 Z"/>
+<line class="whisker" x1="728.5" x2="728.5" y1="315.3405510834395" y2="309.0414002345738" stroke-width="1.5"/>
+</g>
+<g><title>L1, + reading every value (timing runs): 0.472 ms over 5 instances</title>
+<rect x="735" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M736 354 V313.2137129660438 Q736 310.2137129660438 739 310.2137129660438 H744 Q747 310.2137129660438 747 313.2137129660438 V354 Z"/>
+<line class="whisker" x1="741.5" x2="741.5" y1="315.4604202317489" y2="306.220687268424" stroke-width="1.5"/>
+</g>
+<g><title>L1, serialized JSON + parse + read: 0.528 ms over 5 instances</title>
+<rect x="748" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M749 354 V310.0109792322758 Q749 307.0109792322758 752 307.0109792322758 H757 Q760 307.0109792322758 760 310.0109792322758 V354 Z"/>
+<line class="whisker" x1="754.5" x2="754.5" y1="309.52396141241127" y2="304.2154083921689" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="735" y="370" font-size="11" text-anchor="middle">L1</text>
+<g><title>L2, count: evaluation only: 0.312 ms over 5 instances</title>
+<rect x="787" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M788 354 V324.87995139200325 Q788 321.87995139200325 791 321.87995139200325 H796 Q799 321.87995139200325 799 324.87995139200325 V354 Z"/>
+<line class="whisker" x1="793.5" x2="793.5" y1="331.108136320814" y2="310.2137129651148" stroke-width="1.5"/>
+</g>
+<g><title>L2, + JS result objects: 0.278 ms over 5 instances</title>
+<rect x="800" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M801 354 V328.1709564666624 Q801 325.1709564666624 804 325.1709564666624 H809 Q812 325.1709564666624 812 328.1709564666624 V354 Z"/>
+<line class="whisker" x1="806.5" x2="806.5" y1="341.32652079263454" y2="313.9404720214448" stroke-width="1.5"/>
+</g>
+<g><title>L2, + reading every value (timing runs): 0.307 ms over 5 instances</title>
+<rect x="813" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M814 354 V325.30537169051627 Q814 322.30537169051627 817 322.30537169051627 H822 Q825 322.30537169051627 825 325.30537169051627 V354 Z"/>
+<line class="whisker" x1="819.5" x2="819.5" y1="341.62843962797723" y2="312.8245503916067" stroke-width="1.5"/>
+</g>
+<g><title>L2, serialized JSON + parse + read: 0.305 ms over 5 instances</title>
+<rect x="826" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M827 354 V325.4896757679086 Q827 322.4896757679086 830 322.4896757679086 H835 Q838 322.4896757679086 838 325.4896757679086 V354 Z"/>
+<line class="whisker" x1="832.5" x2="832.5" y1="336.3806597985582" y2="310.21371296975974" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="813" y="370" font-size="11" text-anchor="middle">L2</text>
+<g><title>L3, count: evaluation only: 0.369 ms over 5 instances</title>
+<rect x="865" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M866 354 V320.11779712752235 Q866 317.11779712752235 869 317.11779712752235 H874 Q877 317.11779712752235 877 320.11779712752235 V354 Z"/>
+<line class="whisker" x1="871.5" x2="871.5" y1="320.5831866305957" y2="313.2656396942268" stroke-width="1.5"/>
+</g>
+<g><title>L3, + JS result objects: 0.373 ms over 5 instances</title>
+<rect x="878" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M879 354 V319.8389259325763 Q879 316.8389259325763 882 316.8389259325763 H887 Q890 316.8389259325763 890 319.8389259325763 V354 Z"/>
+<line class="whisker" x1="884.5" x2="884.5" y1="320.2965939015639" y2="313.601039375946" stroke-width="1.5"/>
+</g>
+<g><title>L3, + reading every value (timing runs): 0.422 ms over 5 instances</title>
+<rect x="891" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M892 354 V316.35469068715895 Q892 313.35469068715895 895 313.35469068715895 H900 Q903 313.35469068715895 903 316.35469068715895 V354 Z"/>
+<line class="whisker" x1="897.5" x2="897.5" y1="319.3158303088777" y2="309.0414002390298" stroke-width="1.5"/>
+</g>
+<g><title>L3, serialized JSON + parse + read: 0.537 ms over 5 instances</title>
+<rect x="904" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M905 354 V309.5691996145445 Q905 306.5691996145445 908 306.5691996145445 H913 Q916 306.5691996145445 916 309.5691996145445 V354 Z"/>
+<line class="whisker" x1="910.5" x2="910.5" y1="322.36667277445895" y2="289.1888243919979" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="891" y="370" font-size="11" text-anchor="middle">L3</text>
+<g><title>L4, count: evaluation only: 0.237 ms over 5 instances</title>
+<rect x="943" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M944 354 V332.6810888896679 Q944 329.6810888896679 947 329.6810888896679 H952 Q955 329.6810888896679 955 332.6810888896679 V354 Z"/>
+<line class="whisker" x1="949.5" x2="949.5" y1="332.39150011486055" y2="323.78235810281615" stroke-width="1.5"/>
+</g>
+<g><title>L4, + JS result objects: 0.158 ms over 5 instances</title>
+<rect x="956" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M957 354 V344.14690741726884 Q957 341.14690741726884 960 341.14690741726884 H965 Q968 341.14690741726884 968 344.14690741726884 V354 Z"/>
+<line class="whisker" x1="962.5" x2="962.5" y1="343.51107988131923" y2="339.0208201098967" stroke-width="1.5"/>
+</g>
+<g><title>L4, + reading every value (timing runs): 0.158 ms over 5 instances</title>
+<rect x="969" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M970 354 V344.1469074089315 Q970 341.1469074089315 973 341.1469074089315 H978 Q981 341.1469074089315 981 344.1469074089315 V354 Z"/>
+<line class="whisker" x1="975.5" x2="975.5" y1="341.93362251405017" y2="340.1501363554612" stroke-width="1.5"/>
+</g>
+<g><title>L4, serialized JSON + parse + read: 0.205 ms over 5 instances</title>
+<rect x="982" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M983 354 V336.69013526113963 Q983 333.69013526113963 986 333.69013526113963 H991 Q994 333.69013526113963 994 336.69013526113963 V354 Z"/>
+<line class="whisker" x1="988.5" x2="988.5" y1="336.8893067372622" y2="330.6929944170626" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="969" y="370" font-size="11" text-anchor="middle">L4</text>
+<g><title>L5, count: evaluation only: 0.248 ms over 5 instances</title>
+<rect x="1021" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1022 354 V331.36064075180843 Q1022 328.36064075180843 1025 328.36064075180843 H1030 Q1033 328.36064075180843 1033 331.36064075180843 V354 Z"/>
+<line class="whisker" x1="1027.5" x2="1027.5" y1="336.1297324629394" y2="324.10683457186906" stroke-width="1.5"/>
+</g>
+<g><title>L5, + JS result objects: 0.216 ms over 5 instances</title>
+<rect x="1034" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1035 354 V335.304103316482 Q1035 332.304103316482 1038 332.304103316482 H1043 Q1046 332.304103316482 1046 335.304103316482 V354 Z"/>
+<line class="whisker" x1="1040.5" x2="1040.5" y1="342.86948085365185" y2="318.1029360055195" stroke-width="1.5"/>
+</g>
+<g><title>L5, + reading every value (timing runs): 0.236 ms over 5 instances</title>
+<rect x="1047" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1048 354 V332.80061966250827 Q1048 329.80061966250827 1051 329.80061966250827 H1056 Q1059 329.80061966250827 1059 332.80061966250827 V354 Z"/>
+<line class="whisker" x1="1053.5" x2="1053.5" y1="340.73220114215326" y2="318.90571450134615" stroke-width="1.5"/>
+</g>
+<g><title>L5, serialized JSON + parse + read: 0.253 ms over 5 instances</title>
+<rect x="1060" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1061 354 V330.7599980564511 Q1061 327.7599980564511 1064 327.7599980564511 H1069 Q1072 327.7599980564511 1072 330.7599980564511 V354 Z"/>
+<line class="whisker" x1="1066.5" x2="1066.5" y1="337.93495003123866" y2="316.9400151770422" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1047" y="370" font-size="11" text-anchor="middle">L5</text>
+<g><title>S1, count: evaluation only: 0.684 ms over 5 instances</title>
+<rect x="1099" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1100 354 V302.735113632501 Q1100 299.735113632501 1103 299.735113632501 H1108 Q1111 299.735113632501 1111 302.735113632501 V354 Z"/>
+<line class="whisker" x1="1105.5" x2="1105.5" y1="308.661204036135" y2="289.5703050782888" stroke-width="1.5"/>
+</g>
+<g><title>S1, + JS result objects: 0.832 ms over 5 instances</title>
+<rect x="1112" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1113 354 V297.18067630423525 Q1113 294.18067630423525 1116 294.18067630423525 H1121 Q1124 294.18067630423525 1124 297.18067630423525 V354 Z"/>
+<line class="whisker" x1="1118.5" x2="1118.5" y1="308.56694971815875" y2="283.8140390683198" stroke-width="1.5"/>
+</g>
+<g><title>S1, + reading every value (timing runs): 0.739 ms over 5 instances</title>
+<rect x="1125" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1126 354 V300.5381115050241 Q1126 297.5381115050241 1129 297.5381115050241 H1134 Q1137 297.5381115050241 1137 300.5381115050241 V354 Z"/>
+<line class="whisker" x1="1131.5" x2="1131.5" y1="313.0442335239156" y2="277.9329885011634" stroke-width="1.5"/>
+</g>
+<g><title>S1, serialized JSON + parse + read: 0.758 ms over 5 instances</title>
+<rect x="1138" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1139 354 V299.8215016347952 Q1139 296.8215016347952 1142 296.8215016347952 H1147 Q1150 296.8215016347952 1150 299.8215016347952 V354 Z"/>
+<line class="whisker" x1="1144.5" x2="1144.5" y1="311.0232061759698" y2="280.1131631357291" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1125" y="370" font-size="11" text-anchor="middle">S1</text>
+<g><title>S2, count: evaluation only: 0.266 ms over 5 instances</title>
+<rect x="1177" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1178 354 V329.3473409071597 Q1178 326.3473409071597 1181 326.3473409071597 H1186 Q1189 326.3473409071597 1189 329.3473409071597 V354 Z"/>
+<line class="whisker" x1="1183.5" x2="1183.5" y1="333.7359990424906" y2="320.1543813051352" stroke-width="1.5"/>
+</g>
+<g><title>S2, + JS result objects: 0.24 ms over 5 instances</title>
+<rect x="1190" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1191 354 V332.3255036802818 Q1191 329.3255036802818 1194 329.3255036802818 H1199 Q1202 329.3255036802818 1202 332.3255036802818 V354 Z"/>
+<line class="whisker" x1="1196.5" x2="1196.5" y1="343.51107985110036" y2="312.60656365582247" stroke-width="1.5"/>
+</g>
+<g><title>S2, + reading every value (timing runs): 0.21 ms over 5 instances</title>
+<rect x="1203" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1204 354 V336.05574583687024 Q1204 333.05574583687024 1207 333.05574583687024 H1212 Q1215 333.05574583687024 1215 336.05574583687024 V354 Z"/>
+<line class="whisker" x1="1209.5" x2="1209.5" y1="342.242140754998" y2="325.2728055418804" stroke-width="1.5"/>
+</g>
+<g><title>S2, serialized JSON + parse + read: 0.236 ms over 5 instances</title>
+<rect x="1216" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1217 354 V332.7607198103593 Q1217 329.7607198103593 1220 329.7607198103593 H1225 Q1228 329.7607198103593 1228 332.7607198103593 V354 Z"/>
+<line class="whisker" x1="1222.5" x2="1222.5" y1="336.12973243967355" y2="322.0614899098185" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1203" y="370" font-size="11" text-anchor="middle">S2</text>
+<g><title>S3, count: evaluation only: 0.234 ms over 5 instances</title>
+<rect x="1255" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1256 354 V333.04121038984533 Q1256 330.04121038984533 1259 330.04121038984533 H1264 Q1267 330.04121038984533 1267 333.04121038984533 V354 Z"/>
+<line class="whisker" x1="1261.5" x2="1261.5" y1="331.95719705610804" y2="328.7042045213131" stroke-width="1.5"/>
+</g>
+<g><title>S3, + JS result objects: 0.195 ms over 5 instances</title>
+<rect x="1268" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1269 354 V338.14775025873985 Q1269 335.14775025873985 1272 335.14775025873985 H1277 Q1280 335.14775025873985 1280 338.14775025873985 V354 Z"/>
+<line class="whisker" x1="1274.5" x2="1274.5" y1="341.32652077865026" y2="327.2082708887794" stroke-width="1.5"/>
+</g>
+<g><title>S3, + reading every value (timing runs): 0.191 ms over 5 instances</title>
+<rect x="1281" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1282 354 V338.6836085452303 Q1282 335.6836085452303 1285 335.6836085452303 H1290 Q1293 335.6836085452303 1293 338.6836085452303 V354 Z"/>
+<line class="whisker" x1="1287.5" x2="1287.5" y1="341.027796939464" y2="332.83258940203507" stroke-width="1.5"/>
+</g>
+<g><title>S3, serialized JSON + parse + read: 0.205 ms over 5 instances</title>
+<rect x="1294" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1295 354 V336.69013526113963 Q1295 333.69013526113963 1298 333.69013526113963 H1303 Q1306 333.69013526113963 1306 336.69013526113963 V354 Z"/>
+<line class="whisker" x1="1300.5" x2="1300.5" y1="337.1471089126554" y2="331.74252573022466" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1281" y="370" font-size="11" text-anchor="middle">S3</text>
+<g><title>S4, count: evaluation only: 0.586 ms over 5 instances</title>
+<rect x="1333" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1334 354 V307.0706019915349 Q1334 304.0706019915349 1337 304.0706019915349 H1342 Q1345 304.0706019915349 1345 307.0706019915349 V354 Z"/>
+<line class="whisker" x1="1339.5" x2="1339.5" y1="331.74252574018317" y2="288.3488871501615" stroke-width="1.5"/>
+</g>
+<g><title>S4, + JS result objects: 0.416 ms over 5 instances</title>
+<rect x="1346" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1347 354 V316.75893350719724 Q1347 313.75893350719724 1350 313.75893350719724 H1355 Q1358 313.75893350719724 1358 316.75893350719724 V354 Z"/>
+<line class="whisker" x1="1352.5" x2="1352.5" y1="340.7322011284603" y2="299.2033729615722" stroke-width="1.5"/>
+</g>
+<g><title>S4, + reading every value (timing runs): 0.436 ms over 5 instances</title>
+<rect x="1359" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1360 354 V315.4118045333087 Q1360 312.4118045333087 1363 312.4118045333087 H1368 Q1371 312.4118045333087 1371 315.4118045333087 V354 Z"/>
+<line class="whisker" x1="1365.5" x2="1365.5" y1="341.32652079263454" y2="296.50057221792065" stroke-width="1.5"/>
+</g>
+<g><title>S4, serialized JSON + parse + read: 0.493 ms over 5 instances</title>
+<rect x="1372" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1373 354 V311.9649502460202 Q1373 308.9649502460202 1376 308.9649502460202 H1381 Q1384 308.9649502460202 1384 311.9649502460202 V354 Z"/>
+<line class="whisker" x1="1378.5" x2="1378.5" y1="334.6692787857479" y2="293.03961394019166" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1359" y="370" font-size="11" text-anchor="middle">S4</text>
+<g><title>S5, count: evaluation only: 0.221 ms over 5 instances</title>
+<rect x="1411" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1412 354 V334.6571122447067 Q1412 331.6571122447067 1415 331.6571122447067 H1420 Q1423 331.6571122447067 1423 334.6571122447067 V354 Z"/>
+<line class="whisker" x1="1417.5" x2="1417.5" y1="333.05574582643754" y2="328.32272383272664" stroke-width="1.5"/>
+</g>
+<g><title>S5, + JS result objects: 0.166 ms over 5 instances</title>
+<rect x="1424" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1425 354 V342.6929742722228 Q1425 339.6929742722228 1428 339.6929742722228 H1433 Q1436 339.6929742722228 1436 342.6929742722228 V354 Z"/>
+<line class="whisker" x1="1430.5" x2="1430.5" y1="341.93362251405017" y2="337.93495003123866" stroke-width="1.5"/>
+</g>
+<g><title>S5, + reading every value (timing runs): 0.269 ms over 5 instances</title>
+<rect x="1437" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1438 354 V329.03114310779654 Q1438 326.03114310779654 1441 326.03114310779654 H1446 Q1449 326.03114310779654 1449 329.03114310779654 V354 Z"/>
+<line class="whisker" x1="1443.5" x2="1443.5" y1="340.15013634204774" y2="300.94431549932995" stroke-width="1.5"/>
+</g>
+<g><title>S5, serialized JSON + parse + read: 0.188 ms over 5 instances</title>
+<rect x="1450" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1451 354 V339.17973979953894 Q1451 336.17973979953894 1454 336.17973979953894 H1459 Q1462 336.17973979953894 1462 339.17973979953894 V354 Z"/>
+<line class="whisker" x1="1456.5" x2="1456.5" y1="339.0208201227842" y2="332.39150010467046" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1437" y="370" font-size="11" text-anchor="middle">S5</text>
+<g><title>S6, count: evaluation only: 0.216 ms over 5 instances</title>
+<rect x="1489" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1490 354 V335.2169762637818 Q1490 332.2169762637818 1493 332.2169762637818 H1498 Q1501 332.2169762637818 1501 335.2169762637818 V354 Z"/>
+<line class="whisker" x1="1495.5" x2="1495.5" y1="335.63447164280757" y2="327.7599980581807" stroke-width="1.5"/>
+</g>
+<g><title>S6, + JS result objects: 0.17 ms over 5 instances</title>
+<rect x="1502" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1503 354 V342.0208201047417 Q1503 339.0208201047417 1506 339.0208201047417 H1511 Q1514 339.0208201047417 1514 342.0208201047417 V354 Z"/>
+<line class="whisker" x1="1508.5" x2="1508.5" y1="345.1819308597356" y2="332.61118325234406" stroke-width="1.5"/>
+</g>
+<g><title>S6, + reading every value (timing runs): 0.164 ms over 5 instances</title>
+<rect x="1515" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1516 354 V343.0351498639682 Q1516 340.0351498639682 1519 340.0351498639682 H1524 Q1527 340.0351498639682 1527 343.0351498639682 V354 Z"/>
+<line class="whisker" x1="1521.5" x2="1521.5" y1="346.95793412097095" y2="333.7359990104291" stroke-width="1.5"/>
+</g>
+<g><title>S6, serialized JSON + parse + read: 0.194 ms over 5 instances</title>
+<rect x="1528" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1529 354 V338.29288755534844 Q1529 335.29288755534844 1532 335.29288755534844 H1537 Q1540 335.29288755534844 1540 338.29288755534844 V354 Z"/>
+<line class="whisker" x1="1534.5" x2="1534.5" y1="339.57983128808206" y2="330.69299439787255" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1515" y="370" font-size="11" text-anchor="middle">S6</text>
+<g><title>S7, count: evaluation only: 0.225 ms over 5 instances</title>
+<rect x="1567" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M1568 354 V334.1499882810461 Q1568 331.1499882810461 1571 331.1499882810461 H1576 Q1579 331.1499882810461 1579 334.1499882810461 V354 Z"/>
+<line class="whisker" x1="1573.5" x2="1573.5" y1="333.9664422763373" y2="325.2728055577181" stroke-width="1.5"/>
+</g>
+<g><title>S7, + JS result objects: 0.167 ms over 5 instances</title>
+<rect x="1580" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M1581 354 V342.4671399396285 Q1581 339.4671399396285 1584 339.4671399396285 H1589 Q1592 339.4671399396285 1592 342.4671399396285 V354 Z"/>
+<line class="whisker" x1="1586.5" x2="1586.5" y1="345.87898209417006" y2="326.6671206215682" stroke-width="1.5"/>
+</g>
+<g><title>S7, + reading every value (timing runs): 0.17 ms over 5 instances</title>
+<rect x="1593" y="94" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M1594 354 V341.96552305131445 Q1594 338.96552305131445 1597 338.96552305131445 H1602 Q1605 338.96552305131445 1605 341.96552305131445 V354 Z"/>
+<line class="whisker" x1="1599.5" x2="1599.5" y1="346.234070339727" y2="324.10683457946743" stroke-width="1.5"/>
+</g>
+<g><title>S7, serialized JSON + parse + read: 0.227 ms over 5 instances</title>
+<rect x="1606" y="94" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M1607 354 V333.81689720287335 Q1607 330.81689720287335 1610 330.81689720287335 H1615 Q1618 330.81689720287335 1618 333.81689720287335 V354 Z"/>
+<line class="whisker" x1="1612.5" x2="1612.5" y1="338.7454116747161" y2="322.36667277445895" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="1593" y="370" font-size="11" text-anchor="middle">S7</text>
+</svg>

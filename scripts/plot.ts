@@ -249,7 +249,7 @@ function barChart(spec: ChartSpec): string {
 interface ScatterPanel {
   label: string;
   points: { x: number; y: number; tip: string }[];
-  line?: { slope: number; intercept: number };
+  lines?: { slope: number; intercept: number; label: string }[];
 }
 
 /** Log-log scatter plot in one or more panels that share their axes; x and y must be positive to be shown. */
@@ -263,7 +263,7 @@ function scatterPanels(spec: { title: string; subtitle: string; panels: ScatterP
   const subtitle = wrap(spec.subtitle, Math.floor((width - left - right) / 6.4));
   const top = 46 + subtitle.length * 16 + 34;
   const plotH = 300;
-  const height = top + plotH + 52;
+  const height = top + plotH + 66;
   const shown = spec.panels.flatMap(p => p.points.filter(q => q.x > 0 && q.y > 0));
   const hidden = spec.panels.reduce((a, p) => a + p.points.filter(q => !(q.x > 0 && q.y > 0)).length, 0);
   const xs = shown.map(q => q.x);
@@ -297,17 +297,20 @@ function scatterPanels(spec: { title: string; subtitle: string; panels: ScatterP
     }
     out.push(`<line class="axis" x1="${x0}" x2="${x0 + plotW}" y1="${top + plotH}" y2="${top + plotH}" stroke-width="1"/>`);
     out.push(`<text class="ink2" x="${x0 + plotW / 2}" y="${top + plotH + 36}" font-size="12" text-anchor="middle">${esc(spec.xLabel)}</text>`);
-    if (panel.line) {
+    for (const line of panel.lines ?? []) {
       const path: string[] = [];
+      let last: [number, number] | undefined;
       for (let i = 0; i <= 60; i++) {
         const x = 10 ** (xlo + (i / 60) * (xhi - xlo));
-        const yv = panel.line.intercept + panel.line.slope * x;
+        const yv = line.intercept + line.slope * x;
         if (yv > 10 ** ylo && yv <= 10 ** yhi) {
           path.push(`${path.length === 0 ? 'M' : 'L'}${px(x).toFixed(1)} ${py(yv).toFixed(1)}`);
+          last = [ px(x), py(yv) ];
         }
       }
       if (path.length > 1) {
-        out.push(`<path d="${path.join(' ')}" fill="none" class="whisker" stroke-width="1.5" stroke-dasharray="4 3"/>`);
+        out.push(`<g><title>${esc(line.label)}</title><path d="${path.join(' ')}" fill="none" class="whisker" stroke-width="1.5" stroke-dasharray="4 3"/></g>`);
+        out.push(`<text class="ink2" x="${last![0] - 4}" y="${last![1] - 6}" font-size="11" text-anchor="end">${esc(line.label)}</text>`);
       }
     }
     for (const q of panel.points.filter(p => p.x > 0 && p.y > 0)) {
@@ -474,19 +477,26 @@ function main(): void {
     const panels = [ ...new Set(breakdowns.map(b => b.browser)) ].map((browser) => {
       const entries = breakdowns.filter(b => b.browser === browser && b.dataset !== 'calibration');
       const pooled = summary.breakdown[`all/${browser}`]?.perResult;
+      const widths = summary.breakdown[`calibration/${browser}`]?.widths ?? {};
       return {
-        label: `${browser} (fit: ${pooled?.fitPerRow ? `${pooled.fitPerRow.usPerRow.toFixed(2)} µs per result + ` +
-          `${pooled.fitPerRow.fixedMs.toFixed(3)} ms per query, R² ${pooled.fitPerRow.r2.toFixed(2)}` : 'n/a'})`,
+        label: `${browser}: fit over these queries ${pooled?.fitPerRow ? `${pooled.fitPerRow.usPerRow.toFixed(2)} µs per result, ` +
+          `R² ${pooled.fitPerRow.r2.toFixed(2)}` : 'n/a'}`,
         points: entries.flatMap(b => b.points.map((p: any) => ({ x: p.rows, y: p.transfer,
           tip: `${b.dataset} ${p.query}: ${p.rows} results, ${p.terms} terms, overhead ${formatValue(p.transfer, 'ms')}` }))),
-        line: pooled?.fitPerRow ? { slope: pooled.fitPerRow.usPerRow / 1000, intercept: pooled.fitPerRow.fixedMs } : undefined,
+        // The calibrated cost per result, for 1 and 3 variables, as a reference.
+        lines: Object.entries<any>(widths).filter(([ , w ]) => w.perResult.fitPerRow).map(([ width, w ]) => ({
+          slope: w.perResult.fitPerRow.usPerRow / 1000,
+          intercept: 0,
+          label: `calibration, ${width} variable${width === '1' ? '' : 's'}: ${w.perResult.fitPerRow.usPerRow.toFixed(2)} µs/result`,
+        })),
       };
     });
     write(join(dir, 'plot_oxigraph_overhead.svg'), scatterPanels({
       title: 'Oxigraph: overhead of moving results into JavaScript against the number of results',
-      subtitle: 'Each point is a query instance (all benchmark datasets, not the calibration); overhead = full − count. ' +
-        'Line: least-squares fit over all instances. Instances without results or with an overhead at or below zero ' +
-        `(timer noise) cannot be shown on log axes. ${machine}`,
+      subtitle: 'Each point is a benchmark query instance; overhead = full − count, measured per query. Dashed: the cost ' +
+        'per result measured on the calibration scans. Points far above the lines are differences between the COUNT ' +
+        'and plain plans or run-to-run noise, not transfer. Instances without results or with an overhead at or below ' +
+        `zero cannot be shown on log axes. ${machine}`,
       panels,
       xLabel: 'results',
     }));

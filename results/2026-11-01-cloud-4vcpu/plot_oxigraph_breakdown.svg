@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="456" viewBox="0 0 720 456" role="img" aria-label="Oxigraph: evaluation against moving results into JavaScript">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; } .s2 { fill: #1baf7a; } .so2 { stroke: #1baf7a; } .s3 { fill: #eda100; } .so3 { stroke: #eda100; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; } .s2 { fill: #199e70; } .so2 { stroke: #199e70; } .s3 { fill: #c98500; } .so3 { stroke: #c98500; }
+  }</style>
+<rect class="surface" width="720" height="456" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">Oxigraph: evaluation against moving results into JavaScript</text>
+<text class="ink2" x="72" y="46" font-size="12">Total time per variant over the SELECT instances that have all four variants. "count" is a lower</text>
+<text class="ink2" x="72" y="62" font-size="12">bound on evaluation; "+ reading every value" is what the timing runs measure. Log scale.</text>
+<text class="ink2" x="72" y="78" font-size="12">cloud-4vcpu</text>
+<rect class="s0" x="72" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="104.5" font-size="12">count: evaluation only</text>
+<rect class="s1" x="252.2" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="269.2" y="104.5" font-size="12">+ JS result objects</text>
+<rect class="s2" x="412.59999999999997" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="429.59999999999997" y="104.5" font-size="12">+ reading every value (timing runs)</text>
+<rect class="s3" x="72" y="114" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="124.5" font-size="12">serialized JSON + parse + read</text>
+<line class="grid" x1="72" x2="696" y1="406" y2="406" stroke-width="1"/>
+<text class="muted" x="64" y="410" font-size="11" text-anchor="end">10 ms</text>
+<line class="grid" x1="72" x2="696" y1="341" y2="341" stroke-width="1"/>
+<text class="muted" x="64" y="345" font-size="11" text-anchor="end">100 ms</text>
+<line class="grid" x1="72" x2="696" y1="276" y2="276" stroke-width="1"/>
+<text class="muted" x="64" y="280" font-size="11" text-anchor="end">1 s</text>
+<line class="grid" x1="72" x2="696" y1="211" y2="211" stroke-width="1"/>
+<text class="muted" x="64" y="215" font-size="11" text-anchor="end">10 s</text>
+<line class="grid" x1="72" x2="696" y1="146" y2="146" stroke-width="1"/>
+<text class="muted" x="64" y="150" font-size="11" text-anchor="end">100 s</text>
+<line class="axis" x1="72" x2="696" y1="406" y2="406" stroke-width="1"/>
+<g><title>watdiv-1 chromium, count: evaluation only: 875 ms over 100 instances (22,318 terms)</title>
+<rect x="98" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M99 406 V282.76248734576575 Q99 279.76248734576575 102 279.76248734576575 H107 Q110 279.76248734576575 110 282.76248734576575 V406 Z"/>
+</g>
+<g><title>watdiv-1 chromium, + JS result objects: 890 ms over 100 instances (22,318 terms)</title>
+<rect x="111" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M112 406 V282.29028393792305 Q112 279.29028393792305 115 279.29028393792305 H120 Q123 279.29028393792305 123 282.29028393792305 V406 Z"/>
+</g>
+<g><title>watdiv-1 chromium, + reading every value (timing runs): 919 ms over 100 instances (22,318 terms)</title>
+<rect x="124" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M125 406 V281.3890485178971 Q125 278.3890485178971 128 278.3890485178971 H133 Q136 278.3890485178971 136 281.3890485178971 V406 Z"/>
+</g>
+<g><title>watdiv-1 chromium, serialized JSON + parse + read: 888 ms over 100 instances (22,318 terms)</title>
+<rect x="137" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M138 406 V282.3582970066657 Q138 279.3582970066657 141 279.3582970066657 H146 Q149 279.3582970066657 149 282.3582970066657 V406 Z"/>
+</g>
+<text class="ink2" x="124" y="422" font-size="11" text-anchor="middle">chromium</text>
+<g><title>watdiv-10 chromium, count: evaluation only: 10.3 s over 100 instances (218,094 terms)</title>
+<rect x="202" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M203 406 V213.27806299631536 Q203 210.27806299631536 206 210.27806299631536 H211 Q214 210.27806299631536 214 213.27806299631536 V406 Z"/>
+</g>
+<g><title>watdiv-10 chromium, + JS result objects: 10.6 s over 100 instances (218,094 terms)</title>
+<rect x="215" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M216 406 V212.3943472246452 Q216 209.3943472246452 219 209.3943472246452 H224 Q227 209.3943472246452 227 212.3943472246452 V406 Z"/>
+</g>
+<g><title>watdiv-10 chromium, + reading every value (timing runs): 10.1 s over 100 instances (218,094 terms)</title>
+<rect x="228" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M229 406 V213.79766056684116 Q229 210.79766056684116 232 210.79766056684116 H237 Q240 210.79766056684116 240 213.79766056684116 V406 Z"/>
+</g>
+<g><title>watdiv-10 chromium, serialized JSON + parse + read: 10.4 s over 100 instances (218,094 terms)</title>
+<rect x="241" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M242 406 V212.98877129198618 Q242 209.98877129198618 245 209.98877129198618 H250 Q253 209.98877129198618 253 212.98877129198618 V406 Z"/>
+</g>
+<text class="ink2" x="228" y="422" font-size="11" text-anchor="middle">chromium</text>
+<g><title>bsbm-100 chromium, count: evaluation only: 29.5 ms over 40 instances (1,156 terms)</title>
+<rect x="306" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M307 406 V378.4663539670572 Q307 375.4663539670572 310 375.4663539670572 H315 Q318 375.4663539670572 318 378.4663539670572 V406 Z"/>
+</g>
+<g><title>bsbm-100 chromium, + JS result objects: 29.6 ms over 40 instances (1,156 terms)</title>
+<rect x="319" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M320 406 V378.36762830462135 Q320 375.36762830462135 323 375.36762830462135 H328 Q331 375.36762830462135 331 378.36762830462135 V406 Z"/>
+</g>
+<g><title>bsbm-100 chromium, + reading every value (timing runs): 30.9 ms over 40 instances (1,156 terms)</title>
+<rect x="332" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M333 406 V377.14052060539484 Q333 374.14052060539484 336 374.14052060539484 H341 Q344 374.14052060539484 344 377.14052060539484 V406 Z"/>
+</g>
+<g><title>bsbm-100 chromium, serialized JSON + parse + read: 33.7 ms over 40 instances (1,156 terms)</title>
+<rect x="345" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M346 406 V374.6649926853064 Q346 371.6649926853064 349 371.6649926853064 H354 Q357 371.6649926853064 357 374.6649926853064 V406 Z"/>
+</g>
+<text class="ink2" x="332" y="422" font-size="11" text-anchor="middle">chromium</text>
+<g><title>bsbm-1k chromium, count: evaluation only: 146 ms over 40 instances (1,526 terms)</title>
+<rect x="410" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M411 406 V333.2742375641332 Q411 330.2742375641332 414 330.2742375641332 H419 Q422 330.2742375641332 422 333.2742375641332 V406 Z"/>
+</g>
+<g><title>bsbm-1k chromium, + JS result objects: 147 ms over 40 instances (1,526 terms)</title>
+<rect x="423" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M424 406 V333.141981938244 Q424 330.141981938244 427 330.141981938244 H432 Q435 330.141981938244 435 333.141981938244 V406 Z"/>
+</g>
+<g><title>bsbm-1k chromium, + reading every value (timing runs): 153 ms over 40 instances (1,526 terms)</title>
+<rect x="436" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M437 406 V331.95295994425305 Q437 328.95295994425305 440 328.95295994425305 H445 Q448 328.95295994425305 448 331.95295994425305 V406 Z"/>
+</g>
+<g><title>bsbm-1k chromium, serialized JSON + parse + read: 154 ms over 40 instances (1,526 terms)</title>
+<rect x="449" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M450 406 V331.7275672246551 Q450 328.7275672246551 453 328.7275672246551 H458 Q461 328.7275672246551 461 331.7275672246551 V406 Z"/>
+</g>
+<text class="ink2" x="436" y="422" font-size="11" text-anchor="middle">chromium</text>
+<g><title>ldbc-snb-0.1 chromium, count: evaluation only: 52.1 s over 21 instances (710 terms)</title>
+<rect x="514" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M515 406 V167.43132629364314 Q515 164.43132629364314 518 164.43132629364314 H523 Q526 164.43132629364314 526 167.43132629364314 V406 Z"/>
+</g>
+<g><title>ldbc-snb-0.1 chromium, + JS result objects: 51.8 s over 21 instances (710 terms)</title>
+<rect x="527" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M528 406 V167.58980995186678 Q528 164.58980995186678 531 164.58980995186678 H536 Q539 164.58980995186678 539 167.58980995186678 V406 Z"/>
+</g>
+<g><title>ldbc-snb-0.1 chromium, + reading every value (timing runs): 51 s over 21 instances (710 terms)</title>
+<rect x="540" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M541 406 V168.0293907023025 Q541 165.0293907023025 544 165.0293907023025 H549 Q552 165.0293907023025 552 168.0293907023025 V406 Z"/>
+</g>
+<g><title>ldbc-snb-0.1 chromium, serialized JSON + parse + read: 51.6 s over 21 instances (710 terms)</title>
+<rect x="553" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M554 406 V167.6672866219725 Q554 164.6672866219725 557 164.6672866219725 H562 Q565 164.6672866219725 565 167.6672866219725 V406 Z"/>
+</g>
+<text class="ink2" x="540" y="422" font-size="11" text-anchor="middle">chromium</text>
+<g><title>calibration chromium, count: evaluation only: 90.3 ms over 12 instances (444,444 terms)</title>
+<rect x="618" y="146" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M619 406 V346.87091933467525 Q619 343.87091933467525 622 343.87091933467525 H627 Q630 343.87091933467525 630 346.87091933467525 V406 Z"/>
+</g>
+<g><title>calibration chromium, + JS result objects: 749 ms over 12 instances (444,444 terms)</title>
+<rect x="631" y="146" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M632 406 V287.17256741852236 Q632 284.17256741852236 635 284.17256741852236 H640 Q643 284.17256741852236 643 287.17256741852236 V406 Z"/>
+</g>
+<g><title>calibration chromium, + reading every value (timing runs): 1.31 s over 12 instances (444,444 terms)</title>
+<rect x="644" y="146" width="13" height="260" fill="transparent"/>
+<path class="s2" d="M645 406 V271.33803042852276 Q645 268.33803042852276 648 268.33803042852276 H653 Q656 268.33803042852276 656 271.33803042852276 V406 Z"/>
+</g>
+<g><title>calibration chromium, serialized JSON + parse + read: 1.13 s over 12 instances (444,444 terms)</title>
+<rect x="657" y="146" width="13" height="260" fill="transparent"/>
+<path class="s3" d="M658 406 V275.6357181695586 Q658 272.6357181695586 661 272.6357181695586 H666 Q669 272.6357181695586 669 275.6357181695586 V406 Z"/>
+</g>
+<text class="ink2" x="644" y="422" font-size="11" text-anchor="middle">chromium</text>
+<line class="axis" x1="76" x2="172" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="124" y="444" font-size="12" text-anchor="middle" font-weight="600">watdiv-1</text>
+<line class="axis" x1="180" x2="276" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="228" y="444" font-size="12" text-anchor="middle" font-weight="600">watdiv-10</text>
+<line class="axis" x1="284" x2="380" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="332" y="444" font-size="12" text-anchor="middle" font-weight="600">bsbm-100</text>
+<line class="axis" x1="388" x2="484" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="436" y="444" font-size="12" text-anchor="middle" font-weight="600">bsbm-1k</text>
+<line class="axis" x1="492" x2="588" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="540" y="444" font-size="12" text-anchor="middle" font-weight="600">ldbc-snb-0.1</text>
+<line class="axis" x1="596" x2="692" y1="430" y2="430" stroke-width="1"/>
+<text class="ink" x="644" y="444" font-size="12" text-anchor="middle" font-weight="600">calibration</text>
+</svg>

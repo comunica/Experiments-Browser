@@ -4333,60 +4333,2668 @@
  "bundleSizes": [
   {
    "page": "comunica",
-   "jsRaw": 1319126,
-   "jsGzip": 285443,
+   "jsRaw": 1319324,
+   "jsGzip": 285525,
    "wasmRaw": 0,
    "wasmGzip": 0,
    "files": [
-    "assets/comunica-C25ECtnM.js",
-    "assets/preload-helper-D2-6o20O.js",
-    "assets/comunica-CE6at27r.js"
+    "assets/comunica-D7qMOD3K.js",
+    "assets/preload-helper-D3H3ZSlC.js",
+    "assets/comunica-CduCWqUw.js"
    ],
-   "totalRaw": 1319126,
-   "totalGzip": 285443,
+   "totalRaw": 1319324,
+   "totalGzip": 285525,
    "engineOnly": {
     "jsRaw": 1311847,
-    "jsGzip": 282086,
+    "jsGzip": 282087,
     "wasmRaw": 0,
     "wasmGzip": 0,
     "files": [
-     "assets/comunica-CE6at27r.js"
+     "assets/comunica-CduCWqUw.js"
     ],
     "totalRaw": 1311847,
-    "totalGzip": 282086
+    "totalGzip": 282087
    }
   },
   {
    "page": "oxigraph",
-   "jsRaw": 27684,
-   "jsGzip": 8512,
+   "jsRaw": 28096,
+   "jsGzip": 8678,
    "wasmRaw": 4324920,
    "wasmGzip": 1533744,
    "files": [
-    "assets/oxigraph-DTSVdewK.js",
-    "assets/preload-helper-D2-6o20O.js",
-    "assets/oxigraph-DF4GJfgk.js",
+    "assets/oxigraph-DIfs3wCd.js",
+    "assets/preload-helper-D3H3ZSlC.js",
+    "assets/oxigraph-DVWNIiVK.js",
     "assets/web_bg-D3AkT1fG.wasm"
    ],
-   "totalRaw": 4352604,
-   "totalGzip": 1542256,
+   "totalRaw": 4353016,
+   "totalGzip": 1542422,
    "engineOnly": {
-    "jsRaw": 20405,
-    "jsGzip": 5152,
+    "jsRaw": 20619,
+    "jsGzip": 5238,
     "wasmRaw": 4324920,
     "wasmGzip": 1533744,
     "files": [
-     "assets/oxigraph-DF4GJfgk.js",
+     "assets/oxigraph-DVWNIiVK.js",
      "assets/web_bg-D3AkT1fG.wasm"
     ],
-    "totalRaw": 4345325,
-    "totalGzip": 1538896
+    "totalRaw": 4345539,
+    "totalGzip": 1538982
    }
   }
  ],
  "supportFromCold": [
   "ldbc-snb-0.1"
  ],
+ "breakdown": {
+  "watdiv-1/chromium": {
+   "dataset": "watdiv-1",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 100,
+   "complete": 100,
+   "notSelect": [],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 875.2166666663248,
+    "objects": 889.98000000037,
+    "full": 918.8516666667226,
+    "json": 887.838333333299
+   },
+   "rows": 21329,
+   "terms": 22318,
+   "transferShare": 0.04748862257462136,
+   "objectsShare": 0.016067156288241173,
+   "readShare": 0.031421466286380186,
+   "jsonVsFull": 0.9662477258751357,
+   "usPerTerm": 2.1307166114105494,
+   "largest": [
+    {
+     "query": "C3-3",
+     "rows": 4205,
+     "terms": 4205,
+     "count": 145.57500000003105,
+     "objects": 196.96666666671322,
+     "full": 183.571666666617,
+     "json": 158.1783333333054
+    },
+    {
+     "query": "C3-4",
+     "rows": 4205,
+     "terms": 4205,
+     "count": 170.23500000002483,
+     "objects": 163.85166666664495,
+     "full": 194.730000000059,
+     "json": 196.62999999996586
+    },
+    {
+     "query": "C3-2",
+     "rows": 4205,
+     "terms": 4205,
+     "count": 169.6700000000807,
+     "objects": 172.38500000008693,
+     "full": 184.8399999999286,
+     "json": 163.7333333332402
+    }
+   ],
+   "querySubset": null,
+   "perResult": {
+    "instances": 100,
+    "instancesWithResults": 38,
+    "rows": 21329,
+    "terms": 22318,
+    "usPerRow": 2.229515370315556,
+    "objectsUsPerRow": 0.8644724709843511,
+    "readsUsPerRow": 1.3650428993312052,
+    "jsonUsPerRow": 0.6985793989105704,
+    "medianUsPerRow": 1.7435897368555668,
+    "usPerTerm": 2.130716611410543,
+    "fitPerRow": {
+     "usPerRow": 2.168002958604071,
+     "fixedMs": -0.026063351036688054,
+     "r2": 0.10940745432939492,
+     "n": 100
+    },
+    "fitPerTerm": {
+     "usPerTerm": 2.1736709741051143,
+     "fixedMs": -0.04876988799680515,
+     "r2": 0.10959930243511813,
+     "n": 100
+    }
+   },
+   "points": [
+    {
+     "query": "C1-1",
+     "rows": 2,
+     "terms": 8,
+     "transfer": 0.0566666666418314
+    },
+    {
+     "query": "C1-2",
+     "rows": 2,
+     "terms": 8,
+     "transfer": -0.05500000001241756
+    },
+    {
+     "query": "C1-3",
+     "rows": 2,
+     "terms": 8,
+     "transfer": -0.07166666669460636
+    },
+    {
+     "query": "C1-4",
+     "rows": 2,
+     "terms": 8,
+     "transfer": -0.021666666570429982
+    },
+    {
+     "query": "C1-5",
+     "rows": 2,
+     "terms": 8,
+     "transfer": -0.03166666650213301
+    },
+    {
+     "query": "C2-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.07499999995343387
+    },
+    {
+     "query": "C2-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.4166666667442769
+    },
+    {
+     "query": "C2-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05000000012417627
+    },
+    {
+     "query": "C2-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0733333334016304
+    },
+    {
+     "query": "C2-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666677221656
+    },
+    {
+     "query": "C3-1",
+     "rows": 4205,
+     "terms": 4205,
+     "transfer": 4.228333333429589
+    },
+    {
+     "query": "C3-2",
+     "rows": 4205,
+     "terms": 4205,
+     "transfer": 15.169999999847903
+    },
+    {
+     "query": "C3-3",
+     "rows": 4205,
+     "terms": 4205,
+     "transfer": 37.99666666658595
+    },
+    {
+     "query": "C3-4",
+     "rows": 4205,
+     "terms": 4205,
+     "transfer": 24.495000000034167
+    },
+    {
+     "query": "C3-5",
+     "rows": 4205,
+     "terms": 4205,
+     "transfer": -36.450000000031054
+    },
+    {
+     "query": "F1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.013333333190530539
+    },
+    {
+     "query": "F1-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0633333332370967
+    },
+    {
+     "query": "F1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07999999999689561
+    },
+    {
+     "query": "F1-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09333333326503634
+    },
+    {
+     "query": "F1-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.055000000012417644
+    },
+    {
+     "query": "F2-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666677221659
+    },
+    {
+     "query": "F2-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0566666666418314
+    },
+    {
+     "query": "F2-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07000000006519258
+    },
+    {
+     "query": "F2-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09166666671323279
+    },
+    {
+     "query": "F2-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.05333333322778344
+    },
+    {
+     "query": "F3-1",
+     "rows": 1,
+     "terms": 6,
+     "transfer": 0.008333333302289248
+    },
+    {
+     "query": "F3-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.053333333305393665
+    },
+    {
+     "query": "F3-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07666666681567827
+    },
+    {
+     "query": "F3-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05833333327124515
+    },
+    {
+     "query": "F3-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05833333327124518
+    },
+    {
+     "query": "F4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04666666671012837
+    },
+    {
+     "query": "F4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0733333331687997
+    },
+    {
+     "query": "F4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09166666671323279
+    },
+    {
+     "query": "F4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.1233333332153658
+    },
+    {
+     "query": "F4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0650000000217309
+    },
+    {
+     "query": "F5-1",
+     "rows": 26,
+     "terms": 156,
+     "transfer": 0.39500000001862645
+    },
+    {
+     "query": "F5-2",
+     "rows": 24,
+     "terms": 144,
+     "transfer": 0.3366666665921608
+    },
+    {
+     "query": "F5-3",
+     "rows": 26,
+     "terms": 156,
+     "transfer": 0.40833333336437744
+    },
+    {
+     "query": "F5-4",
+     "rows": 17,
+     "terms": 102,
+     "transfer": 0.238333333361273
+    },
+    {
+     "query": "F5-5",
+     "rows": 24,
+     "terms": 144,
+     "transfer": 0.1933333333581686
+    },
+    {
+     "query": "L1-1",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.04666666678773862
+    },
+    {
+     "query": "L1-2",
+     "rows": 3,
+     "terms": 9,
+     "transfer": -0.004999999965851543
+    },
+    {
+     "query": "L1-3",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.044999999925494194
+    },
+    {
+     "query": "L1-4",
+     "rows": 4,
+     "terms": 12,
+     "transfer": -0.0016666666294137822
+    },
+    {
+     "query": "L1-5",
+     "rows": 7,
+     "terms": 21,
+     "transfer": 0.035000000071401416
+    },
+    {
+     "query": "L2-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05833333327124518
+    },
+    {
+     "query": "L2-2",
+     "rows": 3,
+     "terms": 6,
+     "transfer": -0.04166666674427688
+    },
+    {
+     "query": "L2-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07000000006519258
+    },
+    {
+     "query": "L2-4",
+     "rows": 1,
+     "terms": 2,
+     "transfer": 0.13833333342336118
+    },
+    {
+     "query": "L2-5",
+     "rows": 2,
+     "terms": 4,
+     "transfer": 0.008333333379899499
+    },
+    {
+     "query": "L3-1",
+     "rows": 13,
+     "terms": 26,
+     "transfer": 0.014999999897554517
+    },
+    {
+     "query": "L3-2",
+     "rows": 25,
+     "terms": 50,
+     "transfer": 0.10333333327434957
+    },
+    {
+     "query": "L3-3",
+     "rows": 39,
+     "terms": 78,
+     "transfer": 0.1299999998882413
+    },
+    {
+     "query": "L3-4",
+     "rows": 25,
+     "terms": 50,
+     "transfer": 0.08166666662630934
+    },
+    {
+     "query": "L3-5",
+     "rows": 13,
+     "terms": 26,
+     "transfer": -0.06666666657353443
+    },
+    {
+     "query": "L4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06833333328055838
+    },
+    {
+     "query": "L4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.13333333337989947
+    },
+    {
+     "query": "L4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08500000004035732
+    },
+    {
+     "query": "L4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05166666667597988
+    },
+    {
+     "query": "L4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0566666666418314
+    },
+    {
+     "query": "L5-1",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.030000000105549873
+    },
+    {
+     "query": "L5-2",
+     "rows": 2,
+     "terms": 6,
+     "transfer": 0.06166666676290333
+    },
+    {
+     "query": "L5-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0283333333209157
+    },
+    {
+     "query": "L5-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.055000000012417616
+    },
+    {
+     "query": "L5-5",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.009999999854092806
+    },
+    {
+     "query": "S1-1",
+     "rows": 3,
+     "terms": 27,
+     "transfer": -0.05166666675359011
+    },
+    {
+     "query": "S1-2",
+     "rows": 20,
+     "terms": 180,
+     "transfer": 0.4999999998447796
+    },
+    {
+     "query": "S1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0016666667070239782
+    },
+    {
+     "query": "S1-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09833333330849803
+    },
+    {
+     "query": "S1-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666653938591
+    },
+    {
+     "query": "S2-1",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.0566666665642212
+    },
+    {
+     "query": "S2-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.041666666589056434
+    },
+    {
+     "query": "S2-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.053333333150173245
+    },
+    {
+     "query": "S2-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07499999995343387
+    },
+    {
+     "query": "S2-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.05499999993480742
+    },
+    {
+     "query": "S3-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04500000000310439
+    },
+    {
+     "query": "S3-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.008333333302289248
+    },
+    {
+     "query": "S3-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.054999999857197224
+    },
+    {
+     "query": "S3-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.019999999941016255
+    },
+    {
+     "query": "S3-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08333333333333331
+    },
+    {
+     "query": "S4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07999999999689561
+    },
+    {
+     "query": "S4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.16333333340783918
+    },
+    {
+     "query": "S4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.4133333334078392
+    },
+    {
+     "query": "S4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.030000000027939677
+    },
+    {
+     "query": "S4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06333333339231711
+    },
+    {
+     "query": "S5-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666669460633
+    },
+    {
+     "query": "S5-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.03500000014901161
+    },
+    {
+     "query": "S5-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0483333331843217
+    },
+    {
+     "query": "S5-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.4333333333488554
+    },
+    {
+     "query": "S5-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.034999999993791164
+    },
+    {
+     "query": "S6-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04333333337369066
+    },
+    {
+     "query": "S6-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07333333324640989
+    },
+    {
+     "query": "S6-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666653938591
+    },
+    {
+     "query": "S6-4",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.024999999984477966
+    },
+    {
+     "query": "S6-5",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.04833333318432173
+    },
+    {
+     "query": "S7-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08333333341094354
+    },
+    {
+     "query": "S7-2",
+     "rows": 5,
+     "terms": 15,
+     "transfer": 0.011666666638727008
+    },
+    {
+     "query": "S7-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.061666666607682885
+    },
+    {
+     "query": "S7-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666669460633
+    },
+    {
+     "query": "S7-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06666666672875485
+    }
+   ],
+   "calibratedUsPerTerm": 2.7243184618758853,
+   "estimatedTransferMs": 60.80133943214601,
+   "estimatedShare": 0.0661710063091166
+  },
+  "watdiv-10/chromium": {
+   "dataset": "watdiv-10",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 100,
+   "complete": 100,
+   "notSelect": [],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 10259.040000000348,
+    "objects": 10585.28000000018,
+    "full": 10071.934999999356,
+    "json": 10364.714999999309
+   },
+   "rows": 216281,
+   "terms": 218094,
+   "transferShare": -0.01857686730514094,
+   "objectsShare": 0.032390995374757016,
+   "readShare": -0.05096786267989795,
+   "jsonVsFull": 1.029068892918786,
+   "usPerTerm": -0.8257525042745609,
+   "largest": [
+    {
+     "query": "C3-3",
+     "rows": 43144,
+     "terms": 43144,
+     "count": 1936.0899999999285,
+     "objects": 2232.2966666667103,
+     "full": 2014.5183333333116,
+     "json": 2143.1416666666823
+    },
+    {
+     "query": "C3-4",
+     "rows": 43144,
+     "terms": 43144,
+     "count": 1887.0716666666947,
+     "objects": 2066.0133333333456,
+     "full": 1921.9533333333675,
+     "json": 1869.4433333333582
+    },
+    {
+     "query": "F5-5",
+     "rows": 42,
+     "terms": 252,
+     "count": 0.8683333333271245,
+     "objects": 1.0483333333395422,
+     "full": 1.6433333333892126,
+     "json": 1.5616666666852932
+    }
+   ],
+   "querySubset": null,
+   "perResult": {
+    "instances": 100,
+    "instancesWithResults": 59,
+    "rows": 216281,
+    "terms": 218094,
+    "usPerRow": -0.8326744682485292,
+    "objectsUsPerRow": 1.5310483429709316,
+    "readsUsPerRow": -2.3637228112194606,
+    "jsonUsPerRow": 0.48839241541986766,
+    "medianUsPerRow": 3.611111095071673,
+    "usPerTerm": -0.8257525042745795,
+    "fitPerRow": {
+     "usPerRow": -0.855201992854605,
+     "fixedMs": -0.021410577844030554,
+     "r2": 0.16934470963124454,
+     "n": 100
+    },
+    "fitPerTerm": {
+     "usPerTerm": -0.8554801741930183,
+     "fixedMs": -0.0052990689053773465,
+     "r2": 0.16930994758659815,
+     "n": 100
+    }
+   },
+   "points": [
+    {
+     "query": "C1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.16333333333022892
+    },
+    {
+     "query": "C1-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.013333333268140679
+    },
+    {
+     "query": "C1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06666666672875476
+    },
+    {
+     "query": "C1-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0283333333209157
+    },
+    {
+     "query": "C1-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.2349999999472252
+    },
+    {
+     "query": "C2-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -1.671666666710129
+    },
+    {
+     "query": "C2-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.5650000000993405
+    },
+    {
+     "query": "C2-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -1.5349999999937918
+    },
+    {
+     "query": "C2-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -1.1066666668436174
+    },
+    {
+     "query": "C2-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.10666666668839753
+    },
+    {
+     "query": "C3-1",
+     "rows": 43144,
+     "terms": 43144,
+     "transfer": -69.16166666670074
+    },
+    {
+     "query": "C3-2",
+     "rows": 43144,
+     "terms": 43144,
+     "transfer": -104.2950000000028
+    },
+    {
+     "query": "C3-3",
+     "rows": 43144,
+     "terms": 43144,
+     "transfer": 78.42833333338308
+    },
+    {
+     "query": "C3-4",
+     "rows": 43144,
+     "terms": 43144,
+     "transfer": 34.8816666666728
+    },
+    {
+     "query": "C3-5",
+     "rows": 43144,
+     "terms": 43144,
+     "transfer": -124.44833333332394
+    },
+    {
+     "query": "F1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.011666666716337204
+    },
+    {
+     "query": "F1-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.011666666793947345
+    },
+    {
+     "query": "F1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07333333347924048
+    },
+    {
+     "query": "F1-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.09666666675669444
+    },
+    {
+     "query": "F1-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04166666658905649
+    },
+    {
+     "query": "F2-1",
+     "rows": 1,
+     "terms": 7,
+     "transfer": -0.15333333324330545
+    },
+    {
+     "query": "F2-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.11499999991307658
+    },
+    {
+     "query": "F2-3",
+     "rows": 2,
+     "terms": 14,
+     "transfer": -0.008333333302289248
+    },
+    {
+     "query": "F2-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.15833333328676724
+    },
+    {
+     "query": "F2-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.11666666669771075
+    },
+    {
+     "query": "F3-1",
+     "rows": 1,
+     "terms": 6,
+     "transfer": -0.14333333323399233
+    },
+    {
+     "query": "F3-2",
+     "rows": 4,
+     "terms": 24,
+     "transfer": -0.030000000027939677
+    },
+    {
+     "query": "F3-3",
+     "rows": 4,
+     "terms": 24,
+     "transfer": 0.0016666666294137267
+    },
+    {
+     "query": "F3-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.13666666671633726
+    },
+    {
+     "query": "F3-5",
+     "rows": 1,
+     "terms": 6,
+     "transfer": -0.07333333340163034
+    },
+    {
+     "query": "F4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.12166666666356224
+    },
+    {
+     "query": "F4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0400000000372529
+    },
+    {
+     "query": "F4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.12833333341404796
+    },
+    {
+     "query": "F4-4",
+     "rows": 20,
+     "terms": 160,
+     "transfer": 0.37999999996585154
+    },
+    {
+     "query": "F4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0733333334016304
+    },
+    {
+     "query": "F5-1",
+     "rows": 42,
+     "terms": 252,
+     "transfer": 0.7049999999968957
+    },
+    {
+     "query": "F5-2",
+     "rows": 42,
+     "terms": 252,
+     "transfer": 0.5250000000620882
+    },
+    {
+     "query": "F5-3",
+     "rows": 27,
+     "terms": 162,
+     "transfer": 0.25666666675048566
+    },
+    {
+     "query": "F5-4",
+     "rows": 27,
+     "terms": 162,
+     "transfer": 0.3816666666728755
+    },
+    {
+     "query": "F5-5",
+     "rows": 42,
+     "terms": 252,
+     "transfer": 0.7750000000620881
+    },
+    {
+     "query": "L1-1",
+     "rows": 3,
+     "terms": 9,
+     "transfer": -0.006666666672875465
+    },
+    {
+     "query": "L1-2",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.026666666691501917
+    },
+    {
+     "query": "L1-3",
+     "rows": 3,
+     "terms": 9,
+     "transfer": 0.06666666649592418
+    },
+    {
+     "query": "L1-4",
+     "rows": 3,
+     "terms": 9,
+     "transfer": 0.006666666672875465
+    },
+    {
+     "query": "L1-5",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.024999999906867743
+    },
+    {
+     "query": "L2-1",
+     "rows": 2,
+     "terms": 4,
+     "transfer": 0.1366666665611168
+    },
+    {
+     "query": "L2-2",
+     "rows": 1,
+     "terms": 2,
+     "transfer": 0.03499999991618097
+    },
+    {
+     "query": "L2-3",
+     "rows": 4,
+     "terms": 8,
+     "transfer": -0.006666666750485661
+    },
+    {
+     "query": "L2-4",
+     "rows": 4,
+     "terms": 8,
+     "transfer": 0.02333333327745396
+    },
+    {
+     "query": "L2-5",
+     "rows": 12,
+     "terms": 24,
+     "transfer": 0.05333333330539358
+    },
+    {
+     "query": "L3-1",
+     "rows": 29,
+     "terms": 58,
+     "transfer": 0.11500000006829703
+    },
+    {
+     "query": "L3-2",
+     "rows": 25,
+     "terms": 50,
+     "transfer": 0.11666666662010056
+    },
+    {
+     "query": "L3-3",
+     "rows": 34,
+     "terms": 68,
+     "transfer": -0.16833333329608047
+    },
+    {
+     "query": "L3-4",
+     "rows": 32,
+     "terms": 64,
+     "transfer": 0.15999999999379116
+    },
+    {
+     "query": "L3-5",
+     "rows": 32,
+     "terms": 64,
+     "transfer": 0.08666666666977108
+    },
+    {
+     "query": "L4-1",
+     "rows": 5,
+     "terms": 10,
+     "transfer": 0.034999999993791164
+    },
+    {
+     "query": "L4-2",
+     "rows": 9,
+     "terms": 18,
+     "transfer": 0.05166666667597991
+    },
+    {
+     "query": "L4-3",
+     "rows": 6,
+     "terms": 12,
+     "transfer": 0.021666666570430038
+    },
+    {
+     "query": "L4-4",
+     "rows": 9,
+     "terms": 18,
+     "transfer": 0.011666666716337204
+    },
+    {
+     "query": "L4-5",
+     "rows": 9,
+     "terms": 18,
+     "transfer": 0.05833333327124518
+    },
+    {
+     "query": "L5-1",
+     "rows": 3,
+     "terms": 9,
+     "transfer": 0.01833333338921267
+    },
+    {
+     "query": "L5-2",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.05499999993480742
+    },
+    {
+     "query": "L5-3",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.020000000096236648
+    },
+    {
+     "query": "L5-4",
+     "rows": 9,
+     "terms": 27,
+     "transfer": 0.4050000000279397
+    },
+    {
+     "query": "L5-5",
+     "rows": 3,
+     "terms": 9,
+     "transfer": 0.013333333345750986
+    },
+    {
+     "query": "S1-1",
+     "rows": 5,
+     "terms": 45,
+     "transfer": 0.06666666665114462
+    },
+    {
+     "query": "S1-2",
+     "rows": 9,
+     "terms": 81,
+     "transfer": 0.02666666661389172
+    },
+    {
+     "query": "S1-3",
+     "rows": 9,
+     "terms": 81,
+     "transfer": -0.058333333271245125
+    },
+    {
+     "query": "S1-4",
+     "rows": 4,
+     "terms": 36,
+     "transfer": -0.10666666676600778
+    },
+    {
+     "query": "S1-5",
+     "rows": 5,
+     "terms": 45,
+     "transfer": 0.0799999999192853
+    },
+    {
+     "query": "S2-1",
+     "rows": 3,
+     "terms": 9,
+     "transfer": 0.058333333271245125
+    },
+    {
+     "query": "S2-2",
+     "rows": 15,
+     "terms": 45,
+     "transfer": 0.23333333324020122
+    },
+    {
+     "query": "S2-3",
+     "rows": 10,
+     "terms": 30,
+     "transfer": 0.25166666662941384
+    },
+    {
+     "query": "S2-4",
+     "rows": 1,
+     "terms": 3,
+     "transfer": 0.0016666665518035861
+    },
+    {
+     "query": "S2-5",
+     "rows": 1,
+     "terms": 3,
+     "transfer": 0.046666666710128424
+    },
+    {
+     "query": "S3-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.01833333315638197
+    },
+    {
+     "query": "S3-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04666666671012831
+    },
+    {
+     "query": "S3-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.008333333302289248
+    },
+    {
+     "query": "S3-4",
+     "rows": 30,
+     "terms": 120,
+     "transfer": 0.31833333343577885
+    },
+    {
+     "query": "S3-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.12166666658595204
+    },
+    {
+     "query": "S4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.031666666812573574
+    },
+    {
+     "query": "S4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06500000002173084
+    },
+    {
+     "query": "S4-3",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.03166666657974315
+    },
+    {
+     "query": "S4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.13833333334575082
+    },
+    {
+     "query": "S4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09000000000620823
+    },
+    {
+     "query": "S5-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09999999993791187
+    },
+    {
+     "query": "S5-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.024999999906867743
+    },
+    {
+     "query": "S5-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09000000008381903
+    },
+    {
+     "query": "S5-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07333333324640989
+    },
+    {
+     "query": "S5-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.13500000008692342
+    },
+    {
+     "query": "S6-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08333333356616396
+    },
+    {
+     "query": "S6-2",
+     "rows": 1,
+     "terms": 3,
+     "transfer": 0.041666666589056434
+    },
+    {
+     "query": "S6-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09333333342025679
+    },
+    {
+     "query": "S6-4",
+     "rows": 2,
+     "terms": 6,
+     "transfer": -0.09333333326503634
+    },
+    {
+     "query": "S6-5",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.028333333476136147
+    },
+    {
+     "query": "S7-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.041666666821887105
+    },
+    {
+     "query": "S7-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.16499999980442226
+    },
+    {
+     "query": "S7-3",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.05499999993480745
+    },
+    {
+     "query": "S7-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.16333333340783912
+    },
+    {
+     "query": "S7-5",
+     "rows": 6,
+     "terms": 18,
+     "transfer": 0.028333333243305503
+    }
+   ],
+   "calibratedUsPerTerm": 2.7243184618758853,
+   "estimatedTransferMs": 594.1575106243594,
+   "estimatedShare": 0.058991396452061834
+  },
+  "bsbm-100/chromium": {
+   "dataset": "bsbm-100",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 50,
+   "complete": 40,
+   "notSelect": [
+    "Q9-1",
+    "Q9-2",
+    "Q9-3",
+    "Q9-4",
+    "Q9-5",
+    "Q12-1",
+    "Q12-2",
+    "Q12-3",
+    "Q12-4",
+    "Q12-5"
+   ],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 29.495000000111755,
+    "objects": 29.598333333308503,
+    "full": 30.913333333330232,
+    "json": 33.74666666650834
+   },
+   "rows": 171,
+   "terms": 1156,
+   "transferShare": 0.045880957511924295,
+   "objectsShare": 0.003342678451480203,
+   "readShare": 0.042538279060444086,
+   "jsonVsFull": 1.091654086688971,
+   "usPerTerm": 2.2303921566908755,
+   "largest": [
+    {
+     "query": "Q8-2",
+     "rows": 10,
+     "terms": 77,
+     "count": 2.2183333334202566,
+     "objects": 2.440000000021731,
+     "full": 2.8333333333333335,
+     "json": 2.7100000000403575
+    },
+    {
+     "query": "Q8-1",
+     "rows": 2,
+     "terms": 17,
+     "count": 2.4166666666666665,
+     "objects": 2.578333333367482,
+     "full": 2.9816666666883975,
+     "json": 2.8216666666169963
+    },
+    {
+     "query": "Q2-3",
+     "rows": 24,
+     "terms": 216,
+     "count": 0.761666666638727,
+     "objects": 0.9716666667566946,
+     "full": 1.2050000000745058,
+     "json": 1.8649999999906868
+    }
+   ],
+   "querySubset": null,
+   "perResult": {
+    "instances": 40,
+    "instancesWithResults": 23,
+    "rows": 171,
+    "terms": 1156,
+    "usPerRow": 15.077972708389794,
+    "objectsUsPerRow": 4.785575047970492,
+    "readsUsPerRow": 10.2923976604193,
+    "jsonUsPerRow": 22.514619883131715,
+    "medianUsPerRow": 2.666666661389172,
+    "usPerTerm": 2.2303921566908778,
+    "fitPerRow": {
+     "usPerRow": 20.692255223870664,
+     "fixedMs": -0.05300105775158534,
+     "r2": 0.41931476280146784,
+     "n": 40
+    },
+    "fitPerTerm": {
+     "usPerTerm": 2.383836893792589,
+     "fixedMs": -0.03343455290014405,
+     "r2": 0.47209355928991575,
+     "n": 40
+    }
+   },
+   "points": [
+    {
+     "query": "Q1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.15499999995032948
+    },
+    {
+     "query": "Q1-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666661699614
+    },
+    {
+     "query": "Q1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.14166666668218872
+    },
+    {
+     "query": "Q1-4",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.14166666668218875
+    },
+    {
+     "query": "Q1-5",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.11999999995653829
+    },
+    {
+     "query": "Q2-1",
+     "rows": 11,
+     "terms": 99,
+     "transfer": 0.351666666722546
+    },
+    {
+     "query": "Q2-2",
+     "rows": 19,
+     "terms": 228,
+     "transfer": 0.36333333336127305
+    },
+    {
+     "query": "Q2-3",
+     "rows": 24,
+     "terms": 216,
+     "transfer": 0.44333333343577885
+    },
+    {
+     "query": "Q2-4",
+     "rows": 19,
+     "terms": 171,
+     "transfer": 0.36999999987892795
+    },
+    {
+     "query": "Q2-5",
+     "rows": 19,
+     "terms": 171,
+     "transfer": 0.22833333342957007
+    },
+    {
+     "query": "Q3-1",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.041666666666666685
+    },
+    {
+     "query": "Q3-2",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.03333333336437744
+    },
+    {
+     "query": "Q3-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.04833333333954215
+    },
+    {
+     "query": "Q3-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666677221656
+    },
+    {
+     "query": "Q3-5",
+     "rows": 2,
+     "terms": 4,
+     "transfer": -0.13000000004346174
+    },
+    {
+     "query": "Q4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.02833333339852595
+    },
+    {
+     "query": "Q4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.15999999999379116
+    },
+    {
+     "query": "Q4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.02500000006208819
+    },
+    {
+     "query": "Q4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.03499999999379122
+    },
+    {
+     "query": "Q4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07499999995343387
+    },
+    {
+     "query": "Q5-1",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.200000000031044
+    },
+    {
+     "query": "Q5-2",
+     "rows": 1,
+     "terms": 2,
+     "transfer": 0.11166666665424896
+    },
+    {
+     "query": "Q5-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.10166666664493573
+    },
+    {
+     "query": "Q5-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.1416666666045785
+    },
+    {
+     "query": "Q5-5",
+     "rows": 2,
+     "terms": 4,
+     "transfer": -0.21166666659216082
+    },
+    {
+     "query": "Q8-1",
+     "rows": 2,
+     "terms": 17,
+     "transfer": 0.565000000021731
+    },
+    {
+     "query": "Q8-2",
+     "rows": 10,
+     "terms": 77,
+     "transfer": 0.6149999999130769
+    },
+    {
+     "query": "Q8-3",
+     "rows": 3,
+     "terms": 24,
+     "transfer": 0.1733333332619318
+    },
+    {
+     "query": "Q8-4",
+     "rows": 3,
+     "terms": 24,
+     "transfer": 0.2916666667442769
+    },
+    {
+     "query": "Q8-5",
+     "rows": 1,
+     "terms": 9,
+     "transfer": -0.13000000012107193
+    },
+    {
+     "query": "Q10-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08666666674738127
+    },
+    {
+     "query": "Q10-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.008333333379899444
+    },
+    {
+     "query": "Q10-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.051666666675979855
+    },
+    {
+     "query": "Q10-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.10333333327434957
+    },
+    {
+     "query": "Q10-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07499999987582362
+    },
+    {
+     "query": "Q11-1",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.03499999991618097
+    },
+    {
+     "query": "Q11-2",
+     "rows": 10,
+     "terms": 20,
+     "transfer": -0.0016666667070239782
+    },
+    {
+     "query": "Q11-3",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.013333333345750958
+    },
+    {
+     "query": "Q11-4",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0
+    },
+    {
+     "query": "Q11-5",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.02666666661389172
+    }
+   ],
+   "calibratedUsPerTerm": 2.7243184618758853,
+   "estimatedTransferMs": 3.1493121419285233,
+   "estimatedShare": 0.10187552755862106
+  },
+  "bsbm-1k/chromium": {
+   "dataset": "bsbm-1k",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 50,
+   "complete": 40,
+   "notSelect": [
+    "Q9-1",
+    "Q9-2",
+    "Q9-3",
+    "Q9-4",
+    "Q9-5",
+    "Q12-1",
+    "Q12-2",
+    "Q12-3",
+    "Q12-4",
+    "Q12-5"
+   ],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 146.22166666737755,
+    "objects": 146.90833333320916,
+    "full": 153.22833333327438,
+    "json": 154.45666666639355
+   },
+   "rows": 215,
+   "terms": 1526,
+   "transferShare": 0.04572696519942695,
+   "objectsShare": 0.004481329600695303,
+   "readShare": 0.04124563559873165,
+   "jsonVsFull": 1.0080163590270705,
+   "usPerTerm": 5.24137177789,
+   "largest": [
+    {
+     "query": "Q8-5",
+     "rows": 11,
+     "terms": 83,
+     "count": 22.12833333333644,
+     "objects": 24.419999999925494,
+     "full": 25.691666666651145,
+     "json": 24.123333333292976
+    },
+    {
+     "query": "Q8-1",
+     "rows": 6,
+     "terms": 48,
+     "count": 27.60833333339542,
+     "objects": 27.399999999906868,
+     "full": 28.433333333271246,
+     "json": 30.649999999984477
+    },
+    {
+     "query": "Q2-1",
+     "rows": 18,
+     "terms": 216,
+     "count": 0.6983333333240201,
+     "objects": 0.8966666667256504,
+     "full": 1.3733333333705862,
+     "json": 1.6800000000124176
+    }
+   ],
+   "querySubset": null,
+   "perResult": {
+    "instances": 40,
+    "instancesWithResults": 25,
+    "rows": 215,
+    "terms": 1526,
+    "usPerRow": 37.20155038632652,
+    "objectsUsPerRow": 6.844961240007077,
+    "readsUsPerRow": 30.356589146319447,
+    "jsonUsPerRow": 38.232558137239465,
+    "medianUsPerRow": 16.666666666666607,
+    "usPerTerm": 5.24137177789004,
+    "fitPerRow": {
+     "usPerRow": 43.31748933535316,
+     "fixedMs": -0.05766483853010396,
+     "r2": 0.20731113192576148,
+     "n": 40
+    },
+    "fitPerTerm": {
+     "usPerTerm": 3.622384551124948,
+     "fixedMs": 0.03697269602200248,
+     "r2": 0.17307300411819057,
+     "n": 40
+    }
+   },
+   "points": [
+    {
+     "query": "Q1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07666666673806805
+    },
+    {
+     "query": "Q1-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09833333330849806
+    },
+    {
+     "query": "Q1-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07666666673806805
+    },
+    {
+     "query": "Q1-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.07166666677221656
+    },
+    {
+     "query": "Q1-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.046666666710128424
+    },
+    {
+     "query": "Q2-1",
+     "rows": 18,
+     "terms": 216,
+     "transfer": 0.675000000046566
+    },
+    {
+     "query": "Q2-2",
+     "rows": 16,
+     "terms": 144,
+     "transfer": 0.2600000000093132
+    },
+    {
+     "query": "Q2-3",
+     "rows": 24,
+     "terms": 288,
+     "transfer": 0.6416666665269684
+    },
+    {
+     "query": "Q2-4",
+     "rows": 21,
+     "terms": 252,
+     "transfer": 0.6299999999658515
+    },
+    {
+     "query": "Q2-5",
+     "rows": 17,
+     "terms": 153,
+     "transfer": 0.35499999998137366
+    },
+    {
+     "query": "Q3-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.056666666719441594
+    },
+    {
+     "query": "Q3-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.053333333460614085
+    },
+    {
+     "query": "Q3-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09000000008381903
+    },
+    {
+     "query": "Q3-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.06166666653007269
+    },
+    {
+     "query": "Q3-5",
+     "rows": 2,
+     "terms": 4,
+     "transfer": 0.020000000096236703
+    },
+    {
+     "query": "Q4-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09500000004967052
+    },
+    {
+     "query": "Q4-2",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 0.011666666638727008
+    },
+    {
+     "query": "Q4-3",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.051666666598369715
+    },
+    {
+     "query": "Q4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.08166666662630934
+    },
+    {
+     "query": "Q4-5",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.0483333334947626
+    },
+    {
+     "query": "Q5-1",
+     "rows": 5,
+     "terms": 10,
+     "transfer": -0.2116666666697713
+    },
+    {
+     "query": "Q5-2",
+     "rows": 3,
+     "terms": 6,
+     "transfer": -0.8850000000093132
+    },
+    {
+     "query": "Q5-3",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.0283333333209157
+    },
+    {
+     "query": "Q5-4",
+     "rows": 4,
+     "terms": 8,
+     "transfer": 0.24499999995653843
+    },
+    {
+     "query": "Q5-5",
+     "rows": 5,
+     "terms": 10,
+     "transfer": 0.08333333333333304
+    },
+    {
+     "query": "Q8-1",
+     "rows": 6,
+     "terms": 48,
+     "transfer": 0.8249999998758248
+    },
+    {
+     "query": "Q8-2",
+     "rows": 12,
+     "terms": 93,
+     "transfer": 0.43833333323709667
+    },
+    {
+     "query": "Q8-3",
+     "rows": 8,
+     "terms": 62,
+     "transfer": 0.53499999999379
+    },
+    {
+     "query": "Q8-4",
+     "rows": 4,
+     "terms": 31,
+     "transfer": 0.08833333322157344
+    },
+    {
+     "query": "Q8-5",
+     "rows": 11,
+     "terms": 83,
+     "transfer": 3.5633333333147057
+    },
+    {
+     "query": "Q10-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -0.09499999997206032
+    },
+    {
+     "query": "Q10-2",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.05999999990065896
+    },
+    {
+     "query": "Q10-3",
+     "rows": 3,
+     "terms": 6,
+     "transfer": 0.09000000000620878
+    },
+    {
+     "query": "Q10-4",
+     "rows": 2,
+     "terms": 4,
+     "transfer": -0.05999999997826916
+    },
+    {
+     "query": "Q10-5",
+     "rows": 2,
+     "terms": 4,
+     "transfer": -0.12166666674117244
+    },
+    {
+     "query": "Q11-1",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.05333333322778347
+    },
+    {
+     "query": "Q11-2",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.10666666661078733
+    },
+    {
+     "query": "Q11-3",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.05500000024524826
+    },
+    {
+     "query": "Q11-4",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.11333333336127302
+    },
+    {
+     "query": "Q11-5",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 0.5866666666697711
+    }
+   ],
+   "calibratedUsPerTerm": 2.7243184618758853,
+   "estimatedTransferMs": 4.157309972822601,
+   "estimatedShare": 0.027131470286114623
+  },
+  "ldbc-snb-0.1/chromium": {
+   "dataset": "ldbc-snb-0.1",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 21,
+   "complete": 21,
+   "notSelect": [],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 52052.445000000385,
+    "objects": 51761.031666666815,
+    "full": 50961.25833333299,
+    "json": 51619.16500000111
+   },
+   "rows": 124,
+   "terms": 710,
+   "transferShare": -0.02141208247900871,
+   "objectsShare": -0.005718330803911121,
+   "readShare": -0.015693751675097588,
+   "jsonVsFull": 1.0129099376307549,
+   "usPerTerm": -449.92253521179737,
+   "largest": [
+    {
+     "query": "IC10-1",
+     "rows": 10,
+     "terms": 60,
+     "count": 5522.6950000001425,
+     "objects": 5955.528333333631,
+     "full": 5891.8783333332585,
+     "json": 5768.8783333332585
+    },
+    {
+     "query": "IC13-1",
+     "rows": 1,
+     "terms": 1,
+     "count": 1730.4766666668777,
+     "objects": 1719.4900000000682,
+     "full": 1831.6833333332713,
+     "json": 1800.0050000000435
+    },
+    {
+     "query": "IC14-1",
+     "rows": 2,
+     "terms": 4,
+     "count": 7532.549999999969,
+     "objects": 7439.853333333197,
+     "full": 7602.736666666654,
+     "json": 7717.196666666772
+    }
+   ],
+   "querySubset": [
+    "IC1-1",
+    "IC2-1",
+    "IC3-1",
+    "IC4-4",
+    "IC5-1",
+    "IC6-1",
+    "IC7-1",
+    "IC8-1",
+    "IC9-1",
+    "IC10-1",
+    "IC11-1",
+    "IC12-1",
+    "IC13-1",
+    "IC14-1",
+    "IS1-1",
+    "IS2-1",
+    "IS3-1",
+    "IS4-1",
+    "IS5-1",
+    "IS6-1",
+    "IS7-1"
+   ],
+   "perResult": {
+    "instances": 21,
+    "instancesWithResults": 15,
+    "rows": 124,
+    "terms": 710,
+    "usPerRow": -2576.1693548416997,
+    "objectsUsPerRow": 1612.9973118246023,
+    "readsUsPerRow": -4189.166666666302,
+    "jsonUsPerRow": -2155.0940860203605,
+    "medianUsPerRow": -16.666666604578495,
+    "usPerTerm": -449.9225352117898,
+    "fitPerRow": {
+     "usPerRow": -2568.9018569310483,
+     "fixedMs": -36.79251601942545,
+     "r2": 0.01876306663567173,
+     "n": 21
+    },
+    "fitPerTerm": {
+     "usPerTerm": -504.14048995041526,
+     "fixedMs": -34.91651994298046,
+     "r2": 0.03113794806764434,
+     "n": 21
+    }
+   },
+   "points": [
+    {
+     "query": "IC1-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -223.94666666677222
+    },
+    {
+     "query": "IC2-1",
+     "rows": 20,
+     "terms": 120,
+     "transfer": -45.53999999980442
+    },
+    {
+     "query": "IC3-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -280.9033333333209
+    },
+    {
+     "query": "IC4-4",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -75.83833333306637
+    },
+    {
+     "query": "IC5-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -53.333333333643736
+    },
+    {
+     "query": "IC6-1",
+     "rows": 10,
+     "terms": 20,
+     "transfer": 13.723333333308346
+    },
+    {
+     "query": "IC7-1",
+     "rows": 20,
+     "terms": 160,
+     "transfer": -147.82166666692729
+    },
+    {
+     "query": "IC8-1",
+     "rows": 20,
+     "terms": 120,
+     "transfer": -64.05166666659841
+    },
+    {
+     "query": "IC9-1",
+     "rows": 20,
+     "terms": 120,
+     "transfer": -297.99666666643134
+    },
+    {
+     "query": "IC10-1",
+     "rows": 10,
+     "terms": 60,
+     "transfer": 369.183333333116
+    },
+    {
+     "query": "IC11-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": -147.22833333350718
+    },
+    {
+     "query": "IC12-1",
+     "rows": 1,
+     "terms": 5,
+     "transfer": 0.34999999993791064
+    },
+    {
+     "query": "IC13-1",
+     "rows": 1,
+     "terms": 1,
+     "transfer": 101.20666666639363
+    },
+    {
+     "query": "IC14-1",
+     "rows": 2,
+     "terms": 4,
+     "transfer": 70.18666666668469
+    },
+    {
+     "query": "IS1-1",
+     "rows": 1,
+     "terms": 8,
+     "transfer": -0.016666666604578495
+    },
+    {
+     "query": "IS2-1",
+     "rows": 6,
+     "terms": 42,
+     "transfer": -190.12833333310368
+    },
+    {
+     "query": "IS3-1",
+     "rows": 10,
+     "terms": 40,
+     "transfer": -139.4249999999688
+    },
+    {
+     "query": "IS4-1",
+     "rows": 1,
+     "terms": 2,
+     "transfer": -0.006666666672875465
+    },
+    {
+     "query": "IS5-1",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.14666666695848113
+    },
+    {
+     "query": "IS6-1",
+     "rows": 1,
+     "terms": 5,
+     "transfer": 11.03833333325261
+    },
+    {
+     "query": "IS7-1",
+     "rows": 0,
+     "terms": 0,
+     "transfer": 9.50833333330229
+    }
+   ],
+   "calibratedUsPerTerm": 2.7243184618758853,
+   "estimatedTransferMs": 1.9342661079318786,
+   "estimatedShare": 0.000037955619056343126
+  },
+  "calibration/chromium": {
+   "dataset": "calibration",
+   "browser": "chromium",
+   "browserVersion": "153.0.8010.12",
+   "instances": 12,
+   "complete": 12,
+   "notSelect": [],
+   "preExcluded": [],
+   "failures": [],
+   "totals": {
+    "count": 90.33000000069538,
+    "objects": 748.6316666672938,
+    "full": 1311.8266666669708,
+    "json": 1126.5699999999874
+   },
+   "rows": 222222,
+   "terms": 444444,
+   "transferShare": 0.9311418175160276,
+   "objectsShare": 0.5018206165447003,
+   "readShare": 0.42932120097132737,
+   "jsonVsFull": 0.8587796151928554,
+   "usPerTerm": 2.7483702483693677,
+   "largest": [
+    {
+     "query": "w3-n100000",
+     "rows": 100000,
+     "terms": 300000,
+     "count": 47.083333333488554,
+     "objects": 523.7566666666729,
+     "full": 867.031666666735,
+     "json": 795.5483333334947
+    },
+    {
+     "query": "w1-n100000",
+     "rows": 100000,
+     "terms": 100000,
+     "count": 31.22000000004967,
+     "objects": 138.08500000011796,
+     "full": 296.70499999991927,
+     "json": 230.19166666672876
+    },
+    {
+     "query": "w3-n10000",
+     "rows": 10000,
+     "terms": 30000,
+     "count": 4.578333333445092,
+     "objects": 47.87166666674117,
+     "full": 93.83499999996275,
+     "json": 63.041666666666664
+    }
+   ],
+   "querySubset": null,
+   "perResult": {
+    "instances": 12,
+    "instancesWithResults": 12,
+    "rows": 222222,
+    "terms": 444444,
+    "usPerRow": 5.496740496738735,
+    "objectsUsPerRow": 2.9623604623601554,
+    "readsUsPerRow": 2.534380034378581,
+    "jsonUsPerRow": 4.663084663081477,
+    "medianUsPerRow": 3.3322499993955716,
+    "usPerTerm": 2.7483702483693677,
+    "fitPerRow": {
+     "usPerRow": 5.418644587669804,
+     "fixedMs": 1.4462190920930453,
+     "r2": 0.7525253246730453,
+     "n": 12
+    },
+    "fitPerTerm": {
+     "usPerTerm": 2.7243184618758853,
+     "fixedMs": 0.8908060163591358,
+     "r2": 0.9997593274195761,
+     "n": 12
+    }
+   },
+   "points": [
+    {
+     "query": "w1-n1",
+     "rows": 1,
+     "terms": 1,
+     "transfer": -0.06333333346992731
+    },
+    {
+     "query": "w1-n10",
+     "rows": 10,
+     "terms": 10,
+     "transfer": -0.028333333631356566
+    },
+    {
+     "query": "w1-n100",
+     "rows": 100,
+     "terms": 100,
+     "transfer": 0.3249999998758236
+    },
+    {
+     "query": "w1-n1000",
+     "rows": 1000,
+     "terms": 1000,
+     "transfer": 3.643333333233992
+    },
+    {
+     "query": "w1-n10000",
+     "rows": 10000,
+     "terms": 10000,
+     "transfer": 34.14500000032907
+    },
+    {
+     "query": "w1-n100000",
+     "rows": 100000,
+     "terms": 100000,
+     "transfer": 265.4849999998696
+    },
+    {
+     "query": "w3-n1",
+     "rows": 1,
+     "terms": 3,
+     "transfer": -0.009999999776482582
+    },
+    {
+     "query": "w3-n10",
+     "rows": 10,
+     "terms": 30,
+     "transfer": 0.01500000013038516
+    },
+    {
+     "query": "w3-n100",
+     "rows": 100,
+     "terms": 300,
+     "transfer": 0.9516666668156781
+    },
+    {
+     "query": "w3-n1000",
+     "rows": 1000,
+     "terms": 3000,
+     "transfer": 7.828333333134651
+    },
+    {
+     "query": "w3-n10000",
+     "rows": 10000,
+     "terms": 30000,
+     "transfer": 89.25666666651766
+    },
+    {
+     "query": "w3-n100000",
+     "rows": 100000,
+     "terms": 300000,
+     "transfer": 819.9483333332464
+    }
+   ],
+   "widths": {
+    "1": {
+     "perResult": {
+      "instances": 6,
+      "instancesWithResults": 6,
+      "rows": 111111,
+      "terms": 111111,
+      "usPerRow": 2.731562731558596,
+      "objectsUsPerRow": 1.1959811959844369,
+      "readsUsPerRow": 1.5355815355741596,
+      "jsonUsPerRow": 2.014187014182879,
+      "medianUsPerRow": 2.952424999378466,
+      "usPerTerm": 2.731562731558596,
+      "fitPerRow": {
+       "usPerRow": 2.6447938072925794,
+       "fixedMs": 1.6068303240202368,
+       "r2": 0.9991871131986593,
+       "n": 6
+      },
+      "fitPerTerm": {
+       "usPerTerm": 2.6447938072925794,
+       "fixedMs": 1.6068303240202368,
+       "r2": 0.9991871131986593,
+       "n": 6
+      }
+     },
+     "sizes": [
+      {
+       "query": "w1-n1",
+       "rows": 1,
+       "count": 0.2616666667163372,
+       "objects": 0.1866666666852931,
+       "full": 0.1983333332464099,
+       "json": 0.2916666666666667,
+       "usPerRow": -63.33333346992731
+      },
+      {
+       "query": "w1-n10",
+       "rows": 10,
+       "count": 0.2116666667473813,
+       "objects": 0.15666666689018408,
+       "full": 0.18333333311602473,
+       "json": 0.1933333333581686,
+       "usPerRow": -2.8333333631356568
+      },
+      {
+       "query": "w1-n100",
+       "rows": 100,
+       "count": 0.24166666669771075,
+       "objects": 0.4449999999875824,
+       "full": 0.5666666665735344,
+       "json": 0.42166666639968753,
+       "usPerRow": 3.249999998758236
+      },
+      {
+       "query": "w1-n1000",
+       "rows": 1000,
+       "count": 0.6450000001738468,
+       "objects": 3.1300000000434616,
+       "full": 4.288333333407839,
+       "json": 2.753333333103607,
+       "usPerRow": 3.643333333233992
+      },
+      {
+       "query": "w1-n10000",
+       "rows": 10000,
+       "count": 4.5516666664431495,
+       "objects": 28.015000000130385,
+       "full": 38.69666666677222,
+       "json": 27.07833333344509,
+       "usPerRow": 3.414500000032907
+      },
+      {
+       "query": "w1-n100000",
+       "rows": 100000,
+       "count": 31.22000000004967,
+       "objects": 138.08500000011796,
+       "full": 296.70499999991927,
+       "json": 230.19166666672876,
+       "usPerRow": 2.6548499999986963
+      }
+     ]
+    },
+    "3": {
+     "perResult": {
+      "instances": 6,
+      "instancesWithResults": 6,
+      "rows": 111111,
+      "terms": 333333,
+      "usPerRow": 8.261918261918877,
+      "objectsUsPerRow": 4.728739728735874,
+      "readsUsPerRow": 3.533178533183003,
+      "jsonUsPerRow": 7.311982311980077,
+      "medianUsPerRow": 8.013908333233559,
+      "usPerTerm": 2.753972753972959,
+      "fitPerRow": {
+       "usPerRow": 8.19249536804703,
+       "fixedMs": 1.2856078601658112,
+       "r2": 0.9999176123002548,
+       "n": 6
+      },
+      "fitPerTerm": {
+       "usPerTerm": 2.73083178934901,
+       "fixedMs": 1.2856078601658112,
+       "r2": 0.999917612300255,
+       "n": 6
+      }
+     },
+     "sizes": [
+      {
+       "query": "w3-n1",
+       "rows": 1,
+       "count": 0.23500000002483526,
+       "objects": 0.1699999999254942,
+       "full": 0.22500000024835268,
+       "json": 0.20833333333333334,
+       "usPerRow": -9.999999776482582
+      },
+      {
+       "query": "w3-n10",
+       "rows": 10,
+       "count": 0.2333333333954215,
+       "objects": 0.17500000012417635,
+       "full": 0.24833333352580667,
+       "json": 0.2433333333271245,
+       "usPerRow": 1.500000013038516
+      },
+      {
+       "query": "w3-n100",
+       "rows": 100,
+       "count": 0.29999999996895593,
+       "objects": 0.8800000000434617,
+       "full": 1.2516666667846341,
+       "json": 0.9333333334264656,
+       "usPerRow": 9.51666666815678
+      },
+      {
+       "query": "w3-n1000",
+       "rows": 1000,
+       "count": 0.7683333335444331,
+       "objects": 5.759999999931703,
+       "full": 8.596666666679084,
+       "json": 5.665000000037253,
+       "usPerRow": 7.828333333134651
+      },
+      {
+       "query": "w3-n10000",
+       "rows": 10000,
+       "count": 4.578333333445092,
+       "objects": 47.87166666674117,
+       "full": 93.83499999996275,
+       "json": 63.041666666666664,
+       "usPerRow": 8.925666666651766
+      },
+      {
+       "query": "w3-n100000",
+       "rows": 100000,
+       "count": 47.083333333488554,
+       "objects": 523.7566666666729,
+       "full": 867.031666666735,
+       "json": 795.5483333334947,
+       "usPerRow": 8.199483333332465
+      }
+     ]
+    }
+   }
+  },
+  "all/chromium": {
+   "pooled": true,
+   "dataset": "all datasets",
+   "browser": "chromium",
+   "perResult": {
+    "instances": 301,
+    "instancesWithResults": 160,
+    "rows": 238120,
+    "terms": 243804,
+    "usPerRow": -1.8537152136232957,
+    "objectsUsPerRow": 2.3176409653358934,
+    "readsUsPerRow": -4.171356178959189,
+    "jsonUsPerRow": -0.5653941990098178,
+    "medianUsPerRow": 3.609360541572448,
+    "usPerTerm": -1.8104980503518364,
+    "fitPerRow": {
+     "usPerRow": -0.739890766381831,
+     "fixedMs": -3.4885344763389377,
+     "r2": 0.009678294350311568,
+     "n": 301
+    },
+    "fitPerTerm": {
+     "usPerTerm": -0.7436342241161853,
+     "fixedMs": -3.4715304594433203,
+     "r2": 0.009767835683430629,
+     "n": 301
+    }
+   }
+  }
+ },
  "meta": {
   "machine": {
    "label": "cloud-4vcpu",
@@ -4398,7 +7006,7 @@
    "node": "v22.23.4"
   },
   "benchmarkRepository": {
-   "commit": "b2074049f0442de4bff05b9f6a890f82f0dd73eb",
+   "commit": "63d0c9c992eb1d9136a6e9119cbe586fe77fa31f",
    "dirty": false
   },
   "comunica": {
@@ -4423,6 +7031,7 @@
    "warmupRounds": 1,
    "rounds": 5,
    "repetitions": 3,
+   "breakdownRounds": 3,
    "repetitionOverrides": {
     "ldbc-snb-0.1": 1
    },
@@ -4984,10 +7593,70 @@
     "status": "complete",
     "startedAt": "2026-11-02T01:59:39.499Z",
     "finishedAt": "2026-11-02T01:59:45.074Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-1-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T05:50:28.067Z",
+    "finishedAt": "2026-11-02T05:50:47.535Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-1-firefox-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T05:50:47.539Z",
+    "finishedAt": "2026-11-02T05:51:16.123Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-1-webkit-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T05:51:16.127Z",
+    "finishedAt": "2026-11-02T05:51:36.848Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-10-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T05:51:36.852Z",
+    "finishedAt": "2026-11-02T05:54:21.099Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-1-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:01:32.111Z",
+    "finishedAt": "2026-11-02T06:01:52.770Z"
+   },
+   {
+    "file": "raw/breakdown-watdiv-10-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:01:52.774Z",
+    "finishedAt": "2026-11-02T06:04:49.465Z"
+   },
+   {
+    "file": "raw/breakdown-bsbm-100-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:04:49.469Z",
+    "finishedAt": "2026-11-02T06:04:53.497Z"
+   },
+   {
+    "file": "raw/breakdown-bsbm-1k-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:04:53.499Z",
+    "finishedAt": "2026-11-02T06:05:02.440Z"
+   },
+   {
+    "file": "raw/breakdown-ldbc-snb-0.1-chromium-oxigraph-subset.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:05:02.442Z",
+    "finishedAt": "2026-11-02T06:19:15.500Z"
+   },
+   {
+    "file": "raw/breakdown-calibration-chromium-oxigraph.json",
+    "status": "complete",
+    "startedAt": "2026-11-02T06:19:15.502Z",
+    "finishedAt": "2026-11-02T06:19:36.555Z"
    }
   ],
   "startedAt": "2026-11-01T17:59:47.577Z",
-  "updatedAt": "2026-11-02T01:59:45.076Z",
+  "updatedAt": "2026-11-02T06:19:36.558Z",
   "invocations": [
    {
     "commit": "8ed5ffecb8524f76e20d821cc8fbb6bd975755ee",
@@ -5014,6 +7683,36 @@
      "results/2026-11-01-cloud-4vcpu",
      "--skip",
      "webkit/comunica/ldbc-snb-0.1=not completed: on every page the WebKit content process grew to 5 to 7.6 GB RSS and stopped responding (about 175 % CPU without progress) or crashed after a few queries, so 38 page attempts in 80 minutes reached only the re-warm rounds and the per-query outcomes would have reflected the page memory state rather than the queries (see logs/webkit-comunica-ldbc-snb-0.1.txt)"
+    ]
+   },
+   {
+    "commit": "610587e3cf567d4e81feaa8b3f0e15f4886f5390",
+    "dirty": false,
+    "startedAt": "2026-11-02T05:50:28.059Z",
+    "args": [
+     "--machine",
+     "cloud-4vcpu",
+     "--out",
+     "results/2026-11-01-cloud-4vcpu",
+     "--mode",
+     "breakdown"
+    ]
+   },
+   {
+    "commit": "63d0c9c992eb1d9136a6e9119cbe586fe77fa31f",
+    "dirty": false,
+    "startedAt": "2026-11-02T06:01:32.099Z",
+    "args": [
+     "--machine",
+     "cloud-4vcpu",
+     "--out",
+     "results/2026-11-01-cloud-4vcpu",
+     "--mode",
+     "breakdown",
+     "--browsers",
+     "chromium",
+     "--queries",
+     "ldbc-snb-0.1=IC1-1,IC2-1,IC3-1,IC4-4,IC5-1,IC6-1,IC7-1,IC8-1,IC9-1,IC10-1,IC11-1,IC12-1,IC13-1,IC14-1,IS1-1,IS2-1,IS3-1,IS4-1,IS5-1,IS6-1,IS7-1"
     ]
    }
   ]

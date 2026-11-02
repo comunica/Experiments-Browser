@@ -29,6 +29,10 @@ Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetiti
   1.26 times faster. Each engine times out on queries the other answers (Comunica on IC9 and on IS7 for messages
   without replies, Oxigraph on IC4). In WebKit, Comunica's LDBC run could not be completed: every page grew to 5 to
   7.6 GB and stopped responding or crashed after a few queries.
+- Moving Oxigraph's results from WebAssembly into JavaScript costs 2.7 µs per result term in Chromium (2.6 µs per
+  result of 1 variable, 8.2 µs of 3), measured on calibration scans. That is 3 to 10 % of Oxigraph's time on WatDiv and
+  BSBM and negligible on LDBC SNB, so it does not explain the comparison; it dominates only for many results from cheap
+  queries (Chromium only so far).
 - Loading takes the same order of time in both engines, except Comunica on LDBC SNB in Firefox (200 s against 18 s).
   Memory after load is lower for Comunica (681 vs 1,557 MB on LDBC SNB in Chromium); the Oxigraph page transfers 5.4
   times more (1,542 vs 285 kB gzipped).

@@ -52,6 +52,32 @@ the differences were lexical: Oxigraph returns `xsd:dateTime` values in canonica
 Comunica have `…:32.830Z`), and it types projected `xsd:long` IDs as `xsd:integer`. The WatDiv and BSBM checksums are
 identical between the engines for all 300 instances.
 
+### Oxigraph: how much of its time is moving results into JavaScript (Chromium)
+
+Measured with the breakdown mode, in Chromium only so far (Firefox and WebKit are part of the setup, not yet run), on
+all WatDiv and BSBM queries, one instance of each LDBC SNB template (21 queries), and the calibration scans. All of
+it is included in the timing runs, which stop the clock only after every value has been read in JavaScript.
+
+- **Per result:** the calibration scans put the cost of delivering a result as JS objects and reading it at 2.64 µs
+  with 1 variable and 8.19 µs with 3 (least-squares fits over N = 1 to 100,000, R² ≥ 0.999), i.e. 2.72 µs per term.
+  About half of it is building the JS objects (1.20 and 4.73 µs per result), the rest is reading the values out of
+  WASM memory (1.54 and 3.53 µs). Handing the result over as one SPARQL JSON string and parsing it instead costs 2.01
+  and 7.31 µs per result, 10 to 25 % less.
+- **For scans it dominates:** 100,000 results of 3 variables take 47 ms to evaluate (the COUNT variant) and 867 ms in
+  total when delivered and read.
+- **For the benchmark queries it is a small part**, because they return few results for their evaluation time. Applied
+  to the number of result terms each dataset's queries return, the calibrated cost is 6.6 % of Oxigraph's time on
+  watdiv-1, 5.9 % on watdiv-10, 10.2 % on bsbm-100, 2.7 % on bsbm-1k and 0.004 % on the 21 LDBC SNB queries. WatDiv C3,
+  the query with the most results, returns 43,144 results of one variable: about 0.12 s of transfer in about 2 s.
+- **Per query, subtracting the variants does not resolve it.** Averaged over the 301 benchmark instances, the measured
+  overhead (full − count) is −0.74 µs per result (fit, R² 0.01): it is smaller than the queries' own run-to-run
+  variation, and wrapping a complex query in COUNT can change its plan. Only the datasets with many medium-sized
+  results come out near the calibrated cost per term (watdiv-1: 2.13 µs, bsbm-100: 2.23 µs).
+
+So the boundary between WebAssembly and JavaScript does not explain this comparison: without it, Oxigraph would be at
+most about 3 to 10 % faster on WatDiv and BSBM, and no faster on LDBC SNB. It matters for applications that pull many
+results out of Oxigraph from cheap queries.
+
 ### WatDiv and BSBM: Oxigraph is faster per query, except WatDiv C3
 
 All 300 WatDiv and BSBM instances are `ok` for both engines in all browsers and all 3 repetitions.
@@ -102,6 +128,11 @@ Node timings are out of scope, and the reference counts from Node are unaffected
 
 ### How this run was produced
 
+The breakdown files (`raw/breakdown-*`) were added later by commit `63d0c9c`, in Chromium, with
+`--queries` limiting LDBC SNB to one instance per template. That build adds the breakdown hooks to the pages; the
+bundle sizes above are from it and are 0.1 to 0.4 kB larger than those of the build the timing runs used
+(Comunica 1,319.1 kB raw / 285.4 kB gzipped, Oxigraph 4,352.6 / 1,542.3 kB). The timing runs' code path is unchanged.
+
 The run was started from commit `8ed5ffe` and resumed twice from `b207404`, which fixes a runner bug: two
 consecutive page restarts during re-warm rounds ended a configuration as stalled (it hit Firefox + Comunica on
 LDBC SNB, whose raw file was discarded and rerun). The two commits measure with the same page build; raw files written
@@ -117,9 +148,9 @@ repetition took about 6 hours over all browsers.
 | Browsers (Playwright 1.63.0, headless) | chromium 153.0.8010.12, firefox 155.0, webkit 26.6 |
 | Comunica | `@comunica/query-sparql-rdfjs-lite` 5.4.1 built from https://github.com/comunica/comunica at [`e06d02e814`](https://github.com/comunica/comunica/commit/e06d02e8144786567152068bb3c9e69918784b2a) (2026-11-01T10:59:37+01:00), N3.js 2.13.12, rdf-stores 2.8.0 (ordered store) |
 | Oxigraph | `oxigraph` 0.5.13 (`web.js` WASM build) |
-| Benchmark code | `8ed5ffe` (invocation started 2026-11-01T17:59:47.577Z), `b207404` (invocation started 2026-11-01T20:44:40.421Z), `b207404` (invocation started 2026-11-02T01:04:27.067Z); each raw file written by a resumed invocation names its commit; Vite 8.3.5 |
+| Benchmark code | `8ed5ffe` (invocation started 2026-11-01T17:59:47.577Z), `b207404` (invocation started 2026-11-01T20:44:40.421Z), `b207404` (invocation started 2026-11-02T01:04:27.067Z), `610587e` (invocation started 2026-11-02T05:50:28.059Z), `63d0c9c` (invocation started 2026-11-02T06:01:32.099Z); each raw file written by a resumed invocation names its commit; Vite 8.3.5 |
 | Settings | repetitions of every timing run: watdiv-1 3, watdiv-10 3, bsbm-100 3, bsbm-1k 3, ldbc-snb-0.1 1, each in a fresh browser and context; per run 1 warmup round and 5 timed rounds; timeout 60 s per execution |
-| Run | 2026-11-01T17:59:47.577Z to 2026-11-02T01:59:45.076Z |
+| Run | 2026-11-01T17:59:47.577Z to 2026-11-02T06:19:36.558Z |
 
 **Skipped configurations**
 
@@ -131,8 +162,8 @@ Everything the page loads (harness, adapter, engine); gzip level 9; kB = 1000 by
 
 | Page | JS raw | JS gzip | WASM raw | WASM gzip | Total raw | Total gzip |
 |---|---:|---:|---:|---:|---:|---:|
-| comunica | 1,319.1 | 285.4 | 0 | 0 | 1,319.1 | 285.4 |
-| oxigraph | 27.7 | 8.5 | 4,324.9 | 1,533.7 | 4,352.6 | 1,542.3 |
+| comunica | 1,319.3 | 285.5 | 0 | 0 | 1,319.3 | 285.5 |
+| oxigraph | 28.1 | 8.7 | 4,324.9 | 1,533.7 | 4,353 | 1,542.4 |
 
 ![Bundle sizes](plot_bundle.svg)
 
@@ -377,6 +408,77 @@ Not ok:
 ![ldbc-snb-0.1 webkit](ldbc-snb-0.1/plot_webkit.svg)
 
 Per instance: [`ldbc-snb-0.1/instances_chromium.csv`](ldbc-snb-0.1/instances_chromium.csv), [`ldbc-snb-0.1/instances_firefox.csv`](ldbc-snb-0.1/instances_firefox.csv), [`ldbc-snb-0.1/instances_webkit.csv`](ldbc-snb-0.1/instances_webkit.csv); per template: `ldbc-snb-0.1/plot_<browser>.csv`; totals: [`ldbc-snb-0.1/totals.csv`](ldbc-snb-0.1/totals.csv); load: [`ldbc-snb-0.1/plot_load.csv`](ldbc-snb-0.1/plot_load.csv).
+
+## Oxigraph: evaluation against moving results into JavaScript
+
+Breakdown mode (`--mode breakdown`), Oxigraph only: every query instance runs as four variants on the same page, in an order that rotates per round (1 warmup round, then the mean of the timed rounds). **count**: `SELECT (COUNT(*) AS ?n) WHERE { { query } }`, so Oxigraph evaluates the query but only one number crosses into JavaScript (a lower bound on evaluation: the wrapper may let Oxigraph skip work such as an ORDER BY without LIMIT). **objects**: `store.query(q)`, which also builds the JS result (a `Map` and a wrapper object per term). **full**: also reads every term's value, which copies it out of WASM memory; this is what the timing runs measure. **json**: the result serialized as SPARQL JSON inside WASM and handed over as one string, then `JSON.parse` and every value read. Totals are over the SELECT instances that have all four variants; "transfer" = (full − count) ÷ full, an upper bound on the share of the time spent moving results into JavaScript.
+
+Measured and estimated: the "measured" columns subtract the variants per query, which cannot resolve a difference smaller than the query's own run-to-run variation (see the per-result section); "estimated" is the dataset's number of result terms times the cost per term measured on the calibration scans in the same browser.
+
+| Dataset | Browser | Instances | Rows | Terms | count | objects | full | json | Measured transfer share | of which objects | of which reads | Measured per term | Estimated transfer (calibration) | Estimated share | json ÷ full |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| watdiv-1 | chromium | 100/100 | 21,329 | 22,318 | 875 ms | 890 ms | 919 ms | 888 ms | 4.7 % | 1.6 % | 3.1 % | 2.13 µs | 61 ms | 6.6 % | 0.97 |
+| watdiv-10 | chromium | 100/100 | 216,281 | 218,094 | 10.3 s | 10.6 s | 10.1 s | 10.4 s | -1.9 % | 3.2 % | -5.1 % | -0.83 µs | 594 ms | 5.9 % | 1.03 |
+| bsbm-100 | chromium | 40/50 | 171 | 1,156 | 29 ms | 30 ms | 31 ms | 34 ms | 4.6 % | 0.3 % | 4.3 % | 2.23 µs | 3.1 ms | 10.2 % | 1.09 |
+| bsbm-1k | chromium | 40/50 | 215 | 1,526 | 146 ms | 147 ms | 153 ms | 154 ms | 4.6 % | 0.4 % | 4.1 % | 5.24 µs | 4.2 ms | 2.7 % | 1.01 |
+| ldbc-snb-0.1 (21 queries) | chromium | 21/21 | 124 | 710 | 52.1 s | 51.8 s | 51.0 s | 51.6 s | -2.1 % | -0.6 % | -1.6 % | -449.92 µs | 1.9 ms | 0.0 % | 1.01 |
+| calibration | chromium | 12/12 | 222,222 | 444,444 | 90 ms | 749 ms | 1.31 s | 1.13 s | 93.1 % | 50.2 % | 42.9 % | 2.75 µs | – | – | 0.86 |
+
+### Overhead per result
+
+The overhead of a query is full − count. Per dataset and browser, over the instances with all four variants: "weighted" = total overhead ÷ total results; "median" = median over the instances with results of their overhead ÷ results; "fit" = least-squares line of overhead against results, whose slope is the cost per result and whose intercept is a fixed cost per query (R² says how well results explain the overhead). Split: building the JS objects (objects − count) and reading the values (full − objects), weighted. Sub-millisecond differences are at the resolution of `performance.now()` (5 µs, with jitter, in a cross-origin isolated page), so per-instance values of small queries are noisy; the weighted and fitted values are dominated by the queries with many results.
+
+| Dataset | Browser | Instances (with results) | Results | Weighted µs/result | of which objects | of which reads | Median µs/result | Fit µs/result | Fit fixed ms/query | R² | µs/term (weighted) | json − count µs/result |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| watdiv-1 | chromium | 100 (38) | 21,329 | 2.23 | 0.86 | 1.37 | 1.74 | 2.17 | -0.026 | 0.11 | 2.13 | 0.70 |
+| watdiv-10 | chromium | 100 (59) | 216,281 | -0.83 | 1.53 | -2.36 | 3.61 | -0.86 | -0.021 | 0.17 | -0.83 | 0.49 |
+| bsbm-100 | chromium | 40 (23) | 171 | 15.08 | 4.79 | 10.29 | 2.67 | 20.69 | -0.053 | 0.42 | 2.23 | 22.51 |
+| bsbm-1k | chromium | 40 (25) | 215 | 37.20 | 6.84 | 30.36 | 16.67 | 43.32 | -0.058 | 0.21 | 5.24 | 38.23 |
+| ldbc-snb-0.1 (21 queries) | chromium | 21 (15) | 124 | -2576.17 | 1613.00 | -4189.17 | -16.67 | -2568.90 | -36.793 | 0.02 | -449.92 | -2155.09 |
+| calibration | chromium | 12 (12) | 222,222 | 5.50 | 2.96 | 2.53 | 3.33 | 5.42 | 1.446 | 0.75 | 2.75 | 4.66 |
+| all datasets | chromium | 301 (160) | 238,120 | -1.85 | 2.32 | -4.17 | 3.61 | -0.74 | -3.489 | 0.01 | -1.81 | -0.57 |
+
+![Overhead against results](plot_oxigraph_overhead.svg)
+
+### Calibration: overhead per result without query evaluation
+
+`SELECT ?s WHERE { ?s ?p ?o } LIMIT N` (1 variable) and `SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT N` (3 variables) over the watdiv-10 data ([`data/calibration`](../../data/calibration)). Evaluating them is a scan of N triples whether or not the COUNT wrapper is around them, so here full − count is the cost of producing N results as JS objects and reading them, and json − count that of the serialized path.
+
+| Browser | Variables | N | count | objects | full | json | (full − count) ÷ N | (json − count) ÷ N |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| chromium | 1 | 1 | 0.3 ms | 0.2 ms | 0.2 ms | 0.3 ms | -63.33 µs | 30.00 µs |
+| chromium | 1 | 10 | 0.2 ms | 0.2 ms | 0.2 ms | 0.2 ms | -2.83 µs | -1.83 µs |
+| chromium | 1 | 100 | 0.2 ms | 0.4 ms | 0.6 ms | 0.4 ms | 3.25 µs | 1.80 µs |
+| chromium | 1 | 1,000 | 0.6 ms | 3.1 ms | 4.3 ms | 2.8 ms | 3.64 µs | 2.11 µs |
+| chromium | 1 | 10,000 | 4.6 ms | 28 ms | 39 ms | 27 ms | 3.41 µs | 2.25 µs |
+| chromium | 1 | 100,000 | 31 ms | 138 ms | 297 ms | 230 ms | 2.65 µs | 1.99 µs |
+| chromium | 1 | fit | | | | | 2.64 µs + 1.607 ms (R² 0.999) | |
+| chromium | 3 | 1 | 0.2 ms | 0.2 ms | 0.2 ms | 0.2 ms | -10.00 µs | -26.67 µs |
+| chromium | 3 | 10 | 0.2 ms | 0.2 ms | 0.2 ms | 0.2 ms | 1.50 µs | 1.00 µs |
+| chromium | 3 | 100 | 0.3 ms | 0.9 ms | 1.3 ms | 0.9 ms | 9.52 µs | 6.33 µs |
+| chromium | 3 | 1,000 | 0.8 ms | 5.8 ms | 8.6 ms | 5.7 ms | 7.83 µs | 4.90 µs |
+| chromium | 3 | 10,000 | 4.6 ms | 48 ms | 94 ms | 63 ms | 8.93 µs | 5.85 µs |
+| chromium | 3 | 100,000 | 47 ms | 524 ms | 867 ms | 796 ms | 8.20 µs | 7.48 µs |
+| chromium | 3 | fit | | | | | 8.19 µs + 1.286 ms (R² 1.000) | |
+
+
+<details><summary>Largest absolute transfer cost (full − count) per dataset and browser</summary>
+
+- watdiv-1 / chromium: C3-3 (4205 rows, 4205 terms): count 146 ms, objects 197 ms, full 184 ms, json 158 ms; C3-4 (4205 rows, 4205 terms): count 170 ms, objects 164 ms, full 195 ms, json 197 ms; C3-2 (4205 rows, 4205 terms): count 170 ms, objects 172 ms, full 185 ms, json 164 ms
+- watdiv-10 / chromium: C3-3 (43144 rows, 43144 terms): count 1.94 s, objects 2.23 s, full 2.01 s, json 2.14 s; C3-4 (43144 rows, 43144 terms): count 1.89 s, objects 2.07 s, full 1.92 s, json 1.87 s; F5-5 (42 rows, 252 terms): count 0.9 ms, objects 1.0 ms, full 1.6 ms, json 1.6 ms
+- bsbm-100 / chromium: Q8-2 (10 rows, 77 terms): count 2.2 ms, objects 2.4 ms, full 2.8 ms, json 2.7 ms; Q8-1 (2 rows, 17 terms): count 2.4 ms, objects 2.6 ms, full 3.0 ms, json 2.8 ms; Q2-3 (24 rows, 216 terms): count 0.8 ms, objects 1.0 ms, full 1.2 ms, json 1.9 ms
+- bsbm-1k / chromium: Q8-5 (11 rows, 83 terms): count 22 ms, objects 24 ms, full 26 ms, json 24 ms; Q8-1 (6 rows, 48 terms): count 28 ms, objects 27 ms, full 28 ms, json 31 ms; Q2-1 (18 rows, 216 terms): count 0.7 ms, objects 0.9 ms, full 1.4 ms, json 1.7 ms
+- ldbc-snb-0.1 / chromium: IC10-1 (10 rows, 60 terms): count 5.52 s, objects 5.96 s, full 5.89 s, json 5.77 s; IC13-1 (1 rows, 1 terms): count 1.73 s, objects 1.72 s, full 1.83 s, json 1.80 s; IC14-1 (2 rows, 4 terms): count 7.53 s, objects 7.44 s, full 7.60 s, json 7.72 s
+- calibration / chromium: w3-n100000 (100000 rows, 300000 terms): count 47 ms, objects 524 ms, full 867 ms, json 796 ms; w1-n100000 (100000 rows, 100000 terms): count 31 ms, objects 138 ms, full 297 ms, json 230 ms; w3-n10000 (10000 rows, 30000 terms): count 4.6 ms, objects 48 ms, full 94 ms, json 63 ms
+
+</details>
+
+- bsbm-100 / chromium: no count variant (not SELECT): Q9-1, Q9-2, Q9-3, Q9-4, Q9-5, Q12-1, Q12-2, Q12-3, Q12-4, Q12-5
+- bsbm-1k / chromium: no count variant (not SELECT): Q9-1, Q9-2, Q9-3, Q9-4, Q9-5, Q12-1, Q12-2, Q12-3, Q12-4, Q12-5
+
+![Oxigraph breakdown](plot_oxigraph_breakdown.svg)
+
+Per instance: `<dataset>/oxigraph_breakdown_<browser>.csv`.
 
 ## Load and memory overview
 
