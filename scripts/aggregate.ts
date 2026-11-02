@@ -70,7 +70,7 @@ export interface InstanceStats {
 
 const template = (query: string) => query.replace(/-\d+$/u, '');
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
-const round = (x: number | null | undefined, digits = 2) =>
+export const round = (x: number | null | undefined, digits = 2) =>
   x === null || x === undefined || Number.isNaN(x) ? '' : String(Number(x.toFixed(digits)));
 
 function queryIds(dataset: string): string[] {
@@ -144,7 +144,7 @@ function spread(values: (number | null | undefined)[]): { median: number | null;
   return { median: median(xs), min: xs.length > 0 ? Math.min(...xs) : null, max: xs.length > 0 ? Math.max(...xs) : null };
 }
 
-function writeCsv(file: string, header: string[], rows: (string | number)[][]): void {
+export function writeCsv(file: string, header: string[], rows: (string | number)[][]): void {
   mkdirSync(resolve(file, '..'), { recursive: true });
   writeFileSync(file, `${[ header, ...rows ].map(r => r.join(';')).join('\n')}\n`);
 }
@@ -679,6 +679,11 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
     }
     L.push('', '![Oxigraph breakdown](plot_oxigraph_breakdown.svg)', '');
     L.push('Per instance: `<dataset>/oxigraph_breakdown_<browser>.csv`.', '');
+    L.push('### Evaluation against transfer, as stacked bars', '');
+    L.push('Oxigraph\'s full time split into evaluation and WASM → JS transfer, with the transfer estimated from the ' +
+      'calibration (result terms × cost per term in that browser), by `npm run plot:split`. Per template: ' +
+      '`<dataset>/plot_oxigraph_split_<browser>.svg` and `<dataset>/oxigraph_split_<browser>.csv`.', '');
+    L.push('![Oxigraph: evaluation against transfer](plot_oxigraph_split.svg)', '');
   }
   if (Object.keys(summary.datasets).length > 0) {
     L.push('## Load and memory overview', '', '![Load time](plot_load.svg)', '', '![Memory after load](plot_memory.svg)', '');

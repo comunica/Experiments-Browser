@@ -482,6 +482,12 @@ The overhead of a query is full − count. Per dataset and browser, over the ins
 
 Per instance: `<dataset>/oxigraph_breakdown_<browser>.csv`.
 
+### Evaluation against transfer, as stacked bars
+
+Oxigraph's full time split into evaluation and WASM → JS transfer, with the transfer estimated from the calibration (result terms × cost per term in that browser), by `npm run plot:split`. Per template: `<dataset>/plot_oxigraph_split_<browser>.svg` and `<dataset>/oxigraph_split_<browser>.csv`.
+
+![Oxigraph: evaluation against transfer](plot_oxigraph_split.svg)
+
 ## Load and memory overview
 
 ![Load time](plot_load.svg)

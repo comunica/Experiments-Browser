@@ -16,6 +16,7 @@
     "bench": "tsx src/runner.ts",
     "aggregate": "tsx scripts/aggregate.ts",
     "plot": "tsx scripts/plot.ts",
+    "plot:split": "tsx scripts/plot-split.ts",
     "typecheck": "tsc -p tsconfig.check.json"
   },
   "dependencies": {

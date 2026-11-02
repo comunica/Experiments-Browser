@@ -47,7 +47,8 @@ npm run build          # Vite build of both pages, prints bundle sizes
 npm run reference      # reference counts in Node, both engines -> data/*/reference.json
 npm run bench          # support pass, timing runs, Oxigraph breakdown -> results/<date>-<machine>/raw/*.json
 npm run aggregate      # raw JSON -> CSVs, totals, support matrix, results README tables
-npm run plot           # CSV -> SVG
+npm run plot           # CSV -> SVG (includes the plot:split charts)
+npm run plot:split     # only Oxigraph's time split into evaluation and WASM -> JS transfer
 ```
 
 - Linux needs the browsers' system libraries once: `npx playwright install-deps chromium firefox webkit`.
@@ -166,6 +167,16 @@ of 1 and 3 variables directly. Each variant's count is checked against the refer
 timing runs are not repeated. The variant code is in [`src/adapters/oxigraph-breakdown.ts`](src/adapters/oxigraph-breakdown.ts),
 loaded only in this mode and left out of the bundle sizes.
 
+`npm run plot:split [-- results/<dir>] [--overhead calibrated|measured] [--browsers chromium,…]`
+([`scripts/plot-split.ts`](scripts/plot-split.ts), also run by `npm run plot`) draws Oxigraph's full time as stacked
+bars of evaluation and WASM → JS transfer: `plot_oxigraph_split.svg` (one bar per dataset and browser, as shares, since
+the totals differ by orders of magnitude) and `<dataset>/plot_oxigraph_split_<browser>.svg` (one bar per template, in
+ms on a linear scale and as shares), with the numbers in `oxigraph_split.csv` and `<dataset>/oxigraph_split_<browser>.csv`.
+By default (`calibrated`) the transfer of a query is its number of result terms times the cost per term fitted on the
+calibration scans in the same browser, and evaluation is the rest of its full time. `measured` uses full − count per
+query instead, which is what the calibration replaces: for single queries that difference is often smaller than the
+run-to-run variation, or negative. Both use the instances that ran all four variants (SELECT queries).
+
 **Bundle size** per page: all JS chunks and WASM the page loads, raw and gzip (level 9), from the Vite manifest
 ([`scripts/bundle-sizes.ts`](scripts/bundle-sizes.ts)).
 
@@ -203,7 +214,7 @@ src/reference.ts          Node reference counts (+ reference-oxigraph-worker.ts,
 scripts/prepare.mjs       build and link Comunica, fetch release assets, install browsers
 scripts/bundle-sizes.ts   bundle sizes from the Vite manifest
 scripts/aggregate.ts      raw JSON -> CSVs (Experiments-Centralized column shape), totals, support matrix, README tables
-scripts/plot.ts           SVG charts
+scripts/plot.ts           SVG charts (+ plot-split.ts: evaluation vs transfer, plot-common.ts)
 scripts/generate-data.sh  dataset generation with jbr (+ capture-bsbm-queries.mjs, split-ldbc-queries.mjs)
 scripts/diagnostics/      one-off checks cited in the results notes (not part of the pipeline)
 data/<dataset>/           dataset.nt.gz, queries/*.sparql, reference.json, generation.json

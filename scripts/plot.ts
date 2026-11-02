@@ -1,41 +1,14 @@
 // Renders the aggregated results as SVG: per dataset and browser a query-time chart (log y, engines side by side),
-// plus load-time, memory and bundle-size charts. Usage: npm run plot [-- results/<dir>]
+// plus load-time, memory, bundle-size and Oxigraph breakdown charts. Usage: npm run plot [-- results/<dir>]
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { breakdownInstances, DATASETS, instanceStats, resultsDir } from './aggregate';
+import {
+  esc, formatValue, mean, niceStep, type PaletteEntry, readBreakdownRaw, SERIES, style, tickLabel, type Unit, VARIANT_PALETTE, wrap,
+} from './plot-common';
+import { renderSplit } from './plot-split';
 
 const ROOT = resolve(import.meta.dirname, '..');
-
-// Categorical slots 1-2 of the validated reference palette (light / dark steps), in fixed order.
-const SERIES = [
-  { key: 'comunica', label: 'Comunica', light: '#2a78d6', dark: '#3987e5' },
-  { key: 'oxigraph', label: 'Oxigraph', light: '#eb6834', dark: '#d95926' },
-];
-
-interface PaletteEntry {
-  label: string;
-  light: string;
-  dark: string;
-}
-
-// Categorical slots 1-4 of the validated reference palette, in fixed order, for the breakdown variants.
-const VARIANT_PALETTE: (PaletteEntry & { key: string })[] = [
-  { key: 'count', label: 'count: evaluation only', light: '#2a78d6', dark: '#3987e5' },
-  { key: 'objects', label: '+ JS result objects', light: '#eb6834', dark: '#d95926' },
-  { key: 'full', label: '+ reading every value (timing runs)', light: '#1baf7a', dark: '#199e70' },
-  { key: 'json', label: 'serialized JSON + parse + read', light: '#eda100', dark: '#c98500' },
-];
-
-const style = (palette: PaletteEntry[]) => `
-  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
-  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
-  ${palette.map((s, i) => `.s${i} { fill: ${s.light}; } .so${i} { stroke: ${s.light}; }`).join(' ')}
-  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
-  @media (prefers-color-scheme: dark) {
-    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
-    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
-    ${palette.map((s, i) => `.s${i} { fill: ${s.dark}; } .so${i} { stroke: ${s.dark}; }`).join(' ')}
-  }`;
 
 interface Cell {
   value: number | null;
@@ -56,31 +29,12 @@ interface ChartSpec {
   palette?: PaletteEntry[];
   cells: (group: number, series: number) => Cell;
   log: boolean;
-  unit: 'ms' | 'MB' | 'kB';
+  unit: Unit;
   legendExtras?: ('whisker' | 'marker')[];
   markerLabel?: string;
   whiskerLabel?: string;
   /** Legend text for the cross that marks a missing value. */
   missingLabel?: string;
-}
-
-const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-
-function formatValue(v: number, unit: ChartSpec['unit']): string {
-  if (unit === 'ms') {
-    if (v >= 1000) {
-      return `${Number((v / 1000).toPrecision(3))} s`;
-    }
-    return `${Number(v.toPrecision(3))} ms`;
-  }
-  return `${Number(v.toPrecision(4)).toLocaleString('en')} ${unit}`;
-}
-
-function tickLabel(v: number, unit: ChartSpec['unit']): string {
-  if (unit === 'ms') {
-    return v >= 1000 ? `${v / 1000} s` : `${v} ms`;
-  }
-  return `${v.toLocaleString('en')}${unit === 'MB' ? ' MB' : ' kB'}`;
 }
 
 /** Grouped bar chart with one y axis. */
@@ -322,28 +276,6 @@ function scatterPanels(spec: { title: string; subtitle: string; panels: ScatterP
   return `${out.join('\n')}\n`;
 }
 
-function wrap(text: string, maxChars: number): string[] {
-  const lines: string[] = [];
-  let line = '';
-  for (const word of text.split(' ')) {
-    if (line && line.length + word.length + 1 > maxChars) {
-      lines.push(line);
-      line = word;
-    } else {
-      line = line ? `${line} ${word}` : word;
-    }
-  }
-  return line ? [ ...lines, line ] : lines;
-}
-
-function niceStep(raw: number): number {
-  const p = 10 ** Math.floor(Math.log10(raw || 1));
-  const m = raw / p;
-  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
-}
-
-const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
-
 function main(): void {
   const dir = resultsDir(process.argv[2]);
   const summary = JSON.parse(readFileSync(join(dir, 'summary.json'), 'utf8'));
@@ -521,7 +453,7 @@ function main(): void {
       unit: 'ms',
     }));
     for (const b of breakdowns) {
-      const raw = readRawsMode(dir, 'breakdown', b.dataset, b.browser, 'oxigraph')[0];
+      const raw = readBreakdownRaw(dir, b.dataset, b.browser);
       if (!raw) {
         continue;
       }
@@ -582,14 +514,9 @@ function main(): void {
       unit: 'kB',
     }));
   }
-  console.log(`Wrote ${written.length} SVG files:\n  ${written.join('\n  ')}`);
-}
-
-function readRawsMode(dir: string, mode: string, dataset: string, browser: string, engine: string): any[] {
-  const file = join(dir, 'raw', `${mode}-${dataset}-${browser}-${engine}.json`);
-  return readdirSync(join(dir, 'raw')).includes(`${mode}-${dataset}-${browser}-${engine}.json`) ?
-    [ JSON.parse(readFileSync(file, 'utf8')) ] :
-    [];
+  // Oxigraph's time split into evaluation and transfer (also available alone: npm run plot:split).
+  written.push(...renderSplit(dir, summary, { overhead: 'calibrated' }));
+  console.log(`Wrote ${written.length} files:\n  ${written.join('\n  ')}`);
 }
 
 function readRaws(dir: string, dataset: string, browser: string, engine: string): any[] {
