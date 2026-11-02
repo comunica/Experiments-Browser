@@ -25,5 +25,10 @@ export function createAdapter(): EngineAdapter {
       return runOxigraphQuery(store as unknown as OxigraphStoreLike, sparql);
     },
     wasmMemoryBytes: () => memory?.buffer.byteLength ?? null,
+    async queryVariant(variant, sparql) {
+      // Breakdown instrumentation, loaded on first use; each variant times itself after this import.
+      const { runOxigraphVariant } = await import('./oxigraph-breakdown');
+      return runOxigraphVariant(store!, variant as Parameters<typeof runOxigraphVariant>[1], sparql, runOxigraphQuery);
+    },
   };
 }

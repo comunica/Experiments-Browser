@@ -10,6 +10,7 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { parseArgs } from 'node:util';
 import type { Browser, BrowserType, Page } from 'playwright';
 import { chromium, firefox, webkit } from 'playwright';
+import { BREAKDOWN_VARIANTS, queryForm } from './adapters/oxigraph-breakdown';
 import type { BenchConfig, BenchEvent, ExecResult, LoadInfo, MemoryInfo, Step } from './protocol';
 
 const ROOT = resolve(import.meta.dirname, '..');
@@ -45,6 +46,7 @@ const { values: args } = parseArgs({
     rounds: { type: 'string', default: '5' },
     warmup: { type: 'string', default: '1' },
     repeat: { type: 'string', default: '3' },
+    'breakdown-rounds': { type: 'string', default: '3' },
     // LDBC SNB's complex queries take seconds each: one repetition of it already runs for hours.
     'repeat-overrides': { type: 'string', default: 'ldbc-snb-0.1=1' },
     timeout: { type: 'string', default: '60000' },
@@ -61,6 +63,7 @@ const LOAD_TIMEOUT_MS = Number(args['load-timeout']);
 const ROUNDS = Number(args.rounds);
 const WARMUP = Number(args.warmup);
 const REPEAT = Number(args.repeat);
+const BREAKDOWN_ROUNDS = Number(args['breakdown-rounds']);
 const REPEAT_OVERRIDES = new Map(args['repeat-overrides'].split(',').filter(Boolean).map((entry) => {
   const [ dataset, count ] = entry.split('=');
   return [ dataset, Number(count) ];
@@ -228,9 +231,28 @@ function queryIds(dataset: string): string[] {
     .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
 }
 
-function plan(mode: string, queries: string[]): Step[] {
+function plan(mode: string, queries: string[], dataset: string): Step[] {
   if (mode === 'support') {
     return queries.map(query => ({ phase: 'support', round: 0, query }));
+  }
+  if (mode === 'breakdown') {
+    // Every variant of a query runs right after the others, in an order that rotates per round.
+    const variantsOf = (query: string): string[] =>
+      queryForm(readFileSync(join(DATA, dataset, 'queries', `${query}.sparql`), 'utf8')) === 'SELECT' ?
+        [ ...BREAKDOWN_VARIANTS ] :
+        BREAKDOWN_VARIANTS.filter(variant => variant !== 'count');
+    const rounds: [Step['phase'], number][] = [
+      ...Array.from({ length: WARMUP }, (_, i) => <[Step['phase'], number]>[ 'warmup', i + 1 ]),
+      ...Array.from({ length: BREAKDOWN_ROUNDS }, (_, i) => <[Step['phase'], number]>[ 'timed', i + 1 ]),
+    ];
+    const steps: Step[] = [];
+    rounds.forEach(([ phase, round ], r) => {
+      for (const query of queries) {
+        const variants = variantsOf(query);
+        variants.forEach((_, k) => steps.push({ phase, round, query, variant: variants[(k + r) % variants.length] }));
+      }
+    });
+    return steps;
   }
   const steps: Step[] = queries.map(query => ({ phase: 'cold', round: 0, query }));
   for (let round = 1; round <= WARMUP; round++) {
@@ -242,7 +264,8 @@ function plan(mode: string, queries: string[]): Step[] {
   return steps;
 }
 
-const sameStep = (a: Step, b: Step) => a.phase === b.phase && a.round === b.round && a.query === b.query;
+const sameStep = (a: Step, b: Step) => a.phase === b.phase && a.round === b.round && a.query === b.query &&
+  a.variant === b.variant;
 
 async function runConfiguration(
   serverUrl: string,
@@ -252,8 +275,27 @@ async function runConfiguration(
   dataset: string,
 ): Promise<Record<string, unknown>> {
   const startedAt = new Date().toISOString();
-  const all = plan(mode, queryIds(dataset));
+  const all = plan(mode, queryIds(dataset), dataset);
+  // A timeout excludes a query; an error of one breakdown variant only excludes that variant.
   const excluded = new Map<string, string>();
+  const isExcluded = (step: Step) => excluded.has(step.query) ||
+    (step.variant !== undefined && excluded.has(`${step.query}|${step.variant}`));
+  const exclude = (result: ExecResult) => excluded.set(result.variant && result.outcome !== 'timeout' && result.outcome !== 'oom' ?
+    `${result.query}|${result.variant}` :
+    result.query, result.outcome);
+  // The breakdown does not repeat queries that already timed out for this engine in this browser's timing runs.
+  const preExcluded: string[] = [];
+  if (mode === 'breakdown') {
+    for (const file of readdirSync(join(OUT, 'raw')).filter(f => f.startsWith(`timing-${dataset}-${browserName}-${engine}-r`))) {
+      const raw = JSON.parse(readFileSync(join(OUT, 'raw', file), 'utf8')) as { executions: ExecResult[] };
+      for (const execution of raw.executions) {
+        if ((execution.outcome === 'timeout' || execution.outcome === 'oom') && !preExcluded.includes(execution.query)) {
+          preExcluded.push(execution.query);
+          excluded.set(execution.query, 'timed out in the timing runs');
+        }
+      }
+    }
+  }
   const executions: ExecResult[] = [];
   const attempts: Record<string, unknown>[] = [];
   let remaining = all;
@@ -263,7 +305,7 @@ async function runConfiguration(
 
   while (remaining.length > 0) {
     // After a restart in the warm phases, one unrecorded round re-warms the fresh page first.
-    let steps = remaining.filter(step => !excluded.has(step.query));
+    let steps = remaining.filter(step => !isExcluded(step));
     if (attempts.length > 0 && steps.length > 0 && (steps[0].phase === 'warmup' || steps[0].phase === 'timed')) {
       const rewarm = [ ...new Set(steps.map(step => step.query)) ].map(query => <Step>{ phase: 'rewarm', round: 0, query });
       steps = [ ...rewarm, ...steps ];
@@ -286,7 +328,7 @@ async function runConfiguration(
     for (const result of attempt.executions) {
       executions.push(result);
       if (result.outcome === 'timeout' || result.outcome === 'error' || result.outcome === 'unsupported') {
-        excluded.set(result.query, result.outcome);
+        exclude(result);
       }
       const index = remaining.findIndex(step => sameStep(step, result));
       if (index >= 0) {
@@ -361,7 +403,8 @@ async function runConfiguration(
     machine: args.machine,
     startedAt,
     finishedAt: new Date().toISOString(),
-    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS },
+    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: mode === 'breakdown' ? BREAKDOWN_ROUNDS : ROUNDS },
+    ...mode === 'breakdown' ? { breakdown: { variants: BREAKDOWN_VARIANTS, preExcluded } } : {},
     status,
     load: (attempts[0] as { load?: LoadInfo })?.load ?? null,
     memory: (attempts[0] as { memory?: MemoryInfo })?.memory ?? null,
@@ -437,6 +480,7 @@ async function main(): Promise<void> {
     vite: version('vite'),
   };
   meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS, repetitions: REPEAT,
+    breakdownRounds: BREAKDOWN_ROUNDS,
     repetitionOverrides: Object.fromEntries(REPEAT_OVERRIDES),
     chromiumLaunch: CHROMIUM_LAUNCH, headless: true };
   meta.browsers ??= {};
@@ -449,20 +493,22 @@ async function main(): Promise<void> {
 
   const browsers = args.browsers.split(',').filter(Boolean);
   const engines = args.engines.split(',').filter(Boolean) as EngineName[];
-  const modes = args.mode === 'all' ? [ 'support', 'timing' ] : [ args.mode ];
+  const modes = args.mode === 'all' ? [ 'support', 'timing', 'breakdown' ] : [ args.mode ];
   const server = await startServer();
   try {
     for (const mode of modes) {
       const datasets = args.datasets?.split(',') ?? (mode === 'support' ? SUPPORT_DATASETS : DATASETS);
       // Repetitions are the outer loop, so a transient slowdown of the machine hits one repetition of many
       // configurations instead of every repetition of one. The support pass only classifies, once.
-      const repetitions = mode === 'support' ? 1 : Math.max(...datasets.map(repetitionsFor));
+      const once = mode === 'support' || mode === 'breakdown';
+      const repetitions = once ? 1 : Math.max(...datasets.map(repetitionsFor));
       for (let repetition = 1; repetition <= repetitions; repetition++) {
-        for (const dataset of datasets.filter(d => mode === 'support' || repetition <= repetitionsFor(d))) {
+        for (const dataset of datasets.filter(d => once || repetition <= repetitionsFor(d))) {
           for (const browserName of browsers) {
-            for (const engine of engines) {
+            // The breakdown splits Oxigraph's time between evaluation and moving results into JavaScript.
+            for (const engine of mode === 'breakdown' ? engines.filter(e => e === 'oxigraph') : engines) {
               const key = `${browserName}/${engine}/${dataset}`;
-              const name = `${mode}-${dataset}-${browserName}-${engine}${mode === 'support' ? '' : `-r${repetition}`}.json`;
+              const name = `${mode}-${dataset}-${browserName}-${engine}${once ? '' : `-r${repetition}`}.json`;
               const file = join(OUT, 'raw', name);
               if (SKIPS.has(key) || SKIPS.has(`${key}/${mode}`)) {
                 meta.skipped[`${mode}/${key}`] = SKIPS.get(key) ?? SKIPS.get(`${key}/${mode}`);
@@ -475,7 +521,7 @@ async function main(): Promise<void> {
               }
               console.log(`run ${name}`);
               const result = await runConfiguration(server.url, mode, browserName, engine, dataset);
-              result.repetition = mode === 'support' ? 1 : repetition;
+              result.repetition = once ? 1 : repetition;
               meta.browsers[browserName] = (result.browser as { version: string }).version;
               meta.runs.push({ file: `raw/${name}`, status: result.status, startedAt: result.startedAt, finishedAt: result.finishedAt });
               writeFileSync(file, `${JSON.stringify(result, null, 1)}\n`);

@@ -41,6 +41,11 @@ export interface EngineAdapter {
   query: (sparql: string, timeoutMs: number) => Promise<QueryResult>;
   /** Bytes of WebAssembly memory held by the engine, or null if it uses none. */
   wasmMemoryBytes: () => number | null;
+  /**
+   * Breakdown mode only: runs one variant of a query, which times itself with performance.now()
+   * (so that the term count can be taken outside the timed part).
+   */
+  queryVariant?: (variant: string, sparql: string) => Promise<QueryResult & { ms: number; terms?: number }>;
 }
 
 /** Minimal shape of an RDF/JS term, shared by both engines' term objects. */

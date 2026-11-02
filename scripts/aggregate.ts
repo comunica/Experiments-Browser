@@ -290,10 +290,87 @@ function main(): void {
         'common_ok', 'common_warm_ms', 'common_cold_ms', 'common_geomean_warm_ms' ], totalRows);
   }
 
+  summary.breakdown = breakdown(dir, raws.filter(r => r.mode === 'breakdown'), browsers);
+
   summary.meta = meta;
   writeFileSync(join(dir, 'summary.json'), `${JSON.stringify(summary, null, 1)}\n`);
   writeReadme(dir, summary);
   console.log(`Aggregated ${raws.length} raw files into ${relative(ROOT, dir)}`);
+}
+
+export const VARIANTS = [ 'count', 'objects', 'full', 'json' ];
+
+/**
+ * Oxigraph breakdown: per query instance, the mean time of each variant over the timed rounds. `count` evaluates the
+ * query and returns one number; `objects` also builds the JS result objects; `full` also reads every value (what the
+ * timing runs measure); `json` hands over one serialized string instead, then parses it and reads every value.
+ */
+export function breakdownInstances(raw: Raw, dataset: string): Record<string, any>[] {
+  const preExcluded: string[] = (raw as any).breakdown?.preExcluded ?? [];
+  return queryIds(dataset).map((query) => {
+    const execs = raw.executions.filter(e => e.query === query && e.phase !== 'rewarm');
+    const row: Record<string, any> = { query, template: template(query), preExcluded: preExcluded.includes(query) };
+    for (const variant of VARIANTS) {
+      const runs = execs.filter(e => (e as any).variant === variant);
+      const bad = runs.find(e => e.outcome !== 'ok');
+      const timed = runs.filter(e => e.phase === 'timed' && e.outcome === 'ok').map(e => e.ms!);
+      row[variant] = runs.length === 0 ? null : bad ? bad.outcome : timed.length > 0 ? mean(timed) : null;
+    }
+    const objects = execs.find(e => (e as any).variant === 'objects' && e.outcome === 'ok');
+    row.rows = objects?.count ?? null;
+    row.terms = (objects as any)?.terms ?? null;
+    return row;
+  });
+}
+
+function breakdown(dir: string, raws: Raw[], browsers: string[]): Record<string, any> {
+  const out: Record<string, any> = {};
+  for (const dataset of DATASETS) {
+    for (const browser of browsers) {
+      const raw = raws.find(r => r.dataset === dataset && r.browser.name === browser);
+      if (!raw) {
+        continue;
+      }
+      const rows = breakdownInstances(raw, dataset);
+      writeCsv(join(dir, dataset, `oxigraph_breakdown_${browser}.csv`),
+        [ 'query', 'rows', 'terms', ...VARIANTS.map(v => `${v}_ms`), 'objects_minus_count_ms', 'full_minus_count_ms' ],
+        rows.map(r => [ r.query, String(r.rows ?? ''), String(r.terms ?? ''),
+          ...VARIANTS.map(v => typeof r[v] === 'number' ? round(r[v], 3) : r.preExcluded ? 'skipped' : String(r[v] ?? '')),
+          typeof r.objects === 'number' && typeof r.count === 'number' ? round(r.objects - r.count, 3) : '',
+          typeof r.full === 'number' && typeof r.count === 'number' ? round(r.full - r.count, 3) : '' ]));
+      // Totals over the instances that have all four variants (SELECT queries without failures).
+      const complete = rows.filter(r => VARIANTS.every(v => typeof r[v] === 'number'));
+      const sum = (v: string) => complete.reduce((a, r) => a + r[v], 0);
+      const totals = Object.fromEntries(VARIANTS.map(v => [ v, sum(v) ]));
+      const terms = complete.reduce((a, r) => a + (r.terms ?? 0), 0);
+      const withTerms = complete.filter(r => r.terms > 0);
+      out[`${dataset}/${browser}`] = {
+        dataset,
+        browser,
+        browserVersion: raw.browser.version,
+        instances: rows.length,
+        complete: complete.length,
+        notSelect: rows.filter(r => r.count === null && !r.preExcluded).map(r => r.query),
+        preExcluded: rows.filter(r => r.preExcluded).map(r => r.query),
+        failures: rows.flatMap(r => VARIANTS.filter(v => typeof r[v] === 'string').map(v => `${r.query} ${v}: ${r[v]}`)),
+        totals,
+        rows: complete.reduce((a, r) => a + (r.rows ?? 0), 0),
+        terms,
+        // Share of the full time that is not evaluation (upper bound, see the variant definitions).
+        transferShare: totals.full > 0 ? (totals.full - totals.count) / totals.full : null,
+        objectsShare: totals.full > 0 ? (totals.objects - totals.count) / totals.full : null,
+        readShare: totals.full > 0 ? (totals.full - totals.objects) / totals.full : null,
+        jsonVsFull: totals.full > 0 ? totals.json / totals.full : null,
+        // Transfer cost per term, over the instances with results.
+        usPerTerm: withTerms.length > 0 ?
+          1000 * withTerms.reduce((a, r) => a + r.full - r.count, 0) / withTerms.reduce((a, r) => a + r.terms, 0) :
+          null,
+        largest: [ ...complete ].sort((a, b) => (b.full - b.count) - (a.full - a.count)).slice(0, 3)
+          .map(r => ({ query: r.query, rows: r.rows, terms: r.terms, count: r.count, objects: r.objects, full: r.full, json: r.json })),
+      };
+    }
+  }
+  return out;
 }
 
 const NOTES_START = '<!-- notes:start -->';
@@ -420,6 +497,43 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
     }
     L.push(`Per instance: ${Object.keys(ds.browsers).map(b => `[\`${dataset}/instances_${b}.csv\`](${dataset}/instances_${b}.csv)`).join(', ')}; ` +
       `per template: \`${dataset}/plot_<browser>.csv\`; totals: [\`${dataset}/totals.csv\`](${dataset}/totals.csv); load: [\`${dataset}/plot_load.csv\`](${dataset}/plot_load.csv).`, '');
+  }
+  if (Object.keys(summary.breakdown ?? {}).length > 0) {
+    L.push('## Oxigraph: evaluation against moving results into JavaScript', '');
+    L.push('Breakdown mode (`--mode breakdown`), Oxigraph only: every query instance runs as four variants on the same page, ' +
+      'in an order that rotates per round (1 warmup round, then the mean of the timed rounds). ' +
+      '**count**: `SELECT (COUNT(*) AS ?n) WHERE { { query } }`, so Oxigraph evaluates the query but only one number ' +
+      'crosses into JavaScript (a lower bound on evaluation: the wrapper may let Oxigraph skip work such as an ORDER BY ' +
+      'without LIMIT). **objects**: `store.query(q)`, which also builds the JS result (a `Map` and a wrapper object per term). ' +
+      '**full**: also reads every term\'s value, which copies it out of WASM memory; this is what the timing runs measure. ' +
+      '**json**: the result serialized as SPARQL JSON inside WASM and handed over as one string, then `JSON.parse` and ' +
+      'every value read. Totals are over the SELECT instances that have all four variants; "transfer" = (full − count) ÷ full, ' +
+      'an upper bound on the share of the time spent moving results into JavaScript.', '');
+    L.push('| Dataset | Browser | Instances | Rows | Terms | count | objects | full | json | Transfer share | of which objects | of which reads | Transfer per term | json ÷ full |');
+    L.push('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+    const pct = (x: number | null) => x === null ? '–' : `${(100 * x).toFixed(1)} %`;
+    for (const b of Object.values<any>(summary.breakdown)) {
+      L.push(`| ${b.dataset} | ${b.browser} | ${b.complete}/${b.instances} | ${b.rows.toLocaleString('en')} | ${b.terms.toLocaleString('en')} | ` +
+        `${fmtMs(b.totals.count)} | ${fmtMs(b.totals.objects)} | ${fmtMs(b.totals.full)} | ${fmtMs(b.totals.json)} | ` +
+        `${pct(b.transferShare)} | ${pct(b.objectsShare)} | ${pct(b.readShare)} | ` +
+        `${b.usPerTerm === null ? '–' : `${b.usPerTerm.toFixed(2)} µs`} | ${b.jsonVsFull === null ? '–' : b.jsonVsFull.toFixed(2)} |`);
+    }
+    L.push('', '<details><summary>Largest absolute transfer cost (full − count) per dataset and browser</summary>', '');
+    for (const b of Object.values<any>(summary.breakdown)) {
+      L.push(`- ${b.dataset} / ${b.browser}: ${b.largest.map((r: any) => `${r.query} (${r.rows} rows, ${r.terms} terms): ` +
+        `count ${fmtMs(r.count)}, objects ${fmtMs(r.objects)}, full ${fmtMs(r.full)}, json ${fmtMs(r.json)}`).join('; ')}`);
+    }
+    L.push('', '</details>', '');
+    const excludedNotes = Object.values<any>(summary.breakdown).filter(b => b.preExcluded.length > 0 || b.failures.length > 0 || b.notSelect.length > 0);
+    for (const b of excludedNotes) {
+      L.push(`- ${b.dataset} / ${b.browser}: ` + [
+        b.notSelect.length > 0 ? `no count variant (not SELECT): ${b.notSelect.join(', ')}` : '',
+        b.preExcluded.length > 0 ? `not run (timed out in the timing runs): ${b.preExcluded.join(', ')}` : '',
+        b.failures.length > 0 ? `failed: ${b.failures.join('; ')}` : '',
+      ].filter(Boolean).join('; '));
+    }
+    L.push('', '![Oxigraph breakdown](plot_oxigraph_breakdown.svg)', '');
+    L.push('Per instance: `<dataset>/oxigraph_breakdown_<browser>.csv`.', '');
   }
   if (Object.keys(summary.datasets).length > 0) {
     L.push('## Load and memory overview', '', '![Load time](plot_load.svg)', '', '![Memory after load](plot_memory.svg)', '');

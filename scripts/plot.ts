@@ -2,7 +2,7 @@
 // plus load-time, memory and bundle-size charts. Usage: npm run plot [-- results/<dir>]
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
-import { DATASETS, instanceStats, resultsDir } from './aggregate';
+import { breakdownInstances, DATASETS, instanceStats, resultsDir } from './aggregate';
 
 const ROOT = resolve(import.meta.dirname, '..');
 
@@ -12,15 +12,29 @@ const SERIES = [
   { key: 'oxigraph', label: 'Oxigraph', light: '#eb6834', dark: '#d95926' },
 ];
 
-const STYLE = `
+interface PaletteEntry {
+  label: string;
+  light: string;
+  dark: string;
+}
+
+// Categorical slots 1-4 of the validated reference palette, in fixed order, for the breakdown variants.
+const VARIANT_PALETTE: (PaletteEntry & { key: string })[] = [
+  { key: 'count', label: 'count: evaluation only', light: '#2a78d6', dark: '#3987e5' },
+  { key: 'objects', label: '+ JS result objects', light: '#eb6834', dark: '#d95926' },
+  { key: 'full', label: '+ reading every value (timing runs)', light: '#1baf7a', dark: '#199e70' },
+  { key: 'json', label: 'serialized JSON + parse + read', light: '#eda100', dark: '#c98500' },
+];
+
+const style = (palette: PaletteEntry[]) => `
   .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
   .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
-  ${SERIES.map((s, i) => `.s${i} { fill: ${s.light}; } .so${i} { stroke: ${s.light}; }`).join(' ')}
+  ${palette.map((s, i) => `.s${i} { fill: ${s.light}; } .so${i} { stroke: ${s.light}; }`).join(' ')}
   text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
   @media (prefers-color-scheme: dark) {
     .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
     .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
-    ${SERIES.map((s, i) => `.s${i} { fill: ${s.dark}; } .so${i} { stroke: ${s.dark}; }`).join(' ')}
+    ${palette.map((s, i) => `.s${i} { fill: ${s.dark}; } .so${i} { stroke: ${s.dark}; }`).join(' ')}
   }`;
 
 interface Cell {
@@ -38,6 +52,8 @@ interface ChartSpec {
   subtitle: string;
   groups: { label: string; super?: string }[];
   series: number[];
+  /** Colours and labels of the series; the engines by default. */
+  palette?: PaletteEntry[];
   cells: (group: number, series: number) => Cell;
   log: boolean;
   unit: 'ms' | 'MB' | 'kB';
@@ -83,7 +99,48 @@ function barChart(spec: ChartSpec): string {
   // The subtitle wraps at the chart width; the legend goes below it.
   const subtitle = wrap(spec.subtitle, Math.floor((width - left - right) / 6.4));
   const legendY = 46 + subtitle.length * 16;
-  const top = legendY + 32;
+  const palette = spec.palette ?? SERIES;
+  // Legend items, laid out left to right and wrapped at the chart width.
+  type Item = { width: number; draw: (x: number, y: number) => string[] };
+  const items: Item[] = spec.series.map(s => ({
+    width: 17 + palette[s].label.length * 6.6,
+    draw: (x, y) => [ `<rect class="s${s}" x="${x}" y="${y}" width="12" height="12" rx="3"/>`,
+      `<text class="ink2" x="${x + 17}" y="${y + 10.5}" font-size="12">${esc(palette[s].label)}</text>` ],
+  }));
+  if (spec.legendExtras?.includes('whisker')) {
+    const label = spec.whiskerLabel ?? 'range';
+    items.push({ width: 14 + label.length * 6.4, draw: (x, y) => [
+      `<line class="whisker" x1="${x + 5}" x2="${x + 5}" y1="${y - 1}" y2="${y + 13}" stroke-width="1.5"/>`,
+      `<text class="ink2" x="${x + 14}" y="${y + 10.5}" font-size="12">${esc(label)}</text>` ] });
+  }
+  if (spec.legendExtras?.includes('marker')) {
+    const label = spec.markerLabel ?? 'marker';
+    items.push({ width: 14 + label.length * 6.4, draw: (x, y) => [
+      `<circle class="surface" cx="${x + 5}" cy="${y + 6}" r="3.5" stroke="#898781" stroke-width="1.5"/>`,
+      `<text class="ink2" x="${x + 14}" y="${y + 10.5}" font-size="12">${esc(label)}</text>` ] });
+  }
+  if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).value === null))) {
+    const label = spec.missingLabel ?? 'no ok result';
+    items.push({ width: 14 + label.length * 6.4, draw: (x, y) => [
+      `<path d="M${x + 2} ${y + 3} l6 6 m0 -6 l-6 6" stroke="#898781" stroke-width="1.5" fill="none"/>`,
+      `<text class="ink2" x="${x + 14}" y="${y + 10.5}" font-size="12">${esc(label)}</text>` ] });
+  }
+  if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).note))) {
+    const label = 'k/n: only k of n instances ok';
+    items.push({ width: label.length * 6.4, draw: (x, y) => [ `<text class="ink2" x="${x}" y="${y + 10.5}" font-size="12">${esc(label)}</text>` ] });
+  }
+  const legend: string[] = [];
+  let lx = left;
+  let ly = legendY;
+  for (const item of items) {
+    if (lx > left && lx + item.width > width - right) {
+      lx = left;
+      ly += 20;
+    }
+    legend.push(...item.draw(lx, ly));
+    lx += item.width + 18;
+  }
+  const top = ly + 32;
   const plotH = 260;
   const height = top + plotH + bottom;
 
@@ -116,39 +173,13 @@ function barChart(spec: ChartSpec): string {
   }
   const out: string[] = [];
   out.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(spec.title)}">`);
-  out.push(`<style>${STYLE}</style>`);
+  out.push(`<style>${style(palette)}</style>`);
   out.push(`<rect class="surface" width="${width}" height="${height}" rx="6"/>`);
   out.push(`<text class="ink" x="${left}" y="26" font-size="16" font-weight="600">${esc(spec.title)}</text>`);
   subtitle.forEach((line, i) => {
     out.push(`<text class="ink2" x="${left}" y="${46 + i * 16}" font-size="12">${esc(line)}</text>`);
   });
-  // Legend.
-  const ly0 = legendY;
-  let lx = left;
-  for (const s of spec.series) {
-    out.push(`<rect class="s${s}" x="${lx}" y="${ly0}" width="12" height="12" rx="3"/>`);
-    out.push(`<text class="ink2" x="${lx + 17}" y="${ly0 + 10.5}" font-size="12">${esc(SERIES[s].label)}</text>`);
-    lx += 17 + SERIES[s].label.length * 6.6 + 18;
-  }
-  if (spec.legendExtras?.includes('whisker')) {
-    out.push(`<line class="whisker" x1="${lx + 5}" x2="${lx + 5}" y1="${ly0 - 1}" y2="${ly0 + 13}" stroke-width="1.5"/>`);
-    out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">${esc(spec.whiskerLabel ?? 'range')}</text>`);
-    lx += 14 + (spec.whiskerLabel ?? 'range').length * 6.4 + 18;
-  }
-  if (spec.legendExtras?.includes('marker')) {
-    out.push(`<circle class="surface" cx="${lx + 5}" cy="${ly0 + 6}" r="3.5" stroke="#898781" stroke-width="1.5"/>`);
-    out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">${esc(spec.markerLabel ?? 'marker')}</text>`);
-    lx += 14 + (spec.markerLabel ?? 'marker').length * 6.4 + 18;
-  }
-  if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).value === null))) {
-    out.push(`<path d="M${lx + 2} ${ly0 + 3} l6 6 m0 -6 l-6 6" stroke="#898781" stroke-width="1.5" fill="none"/>`);
-    const missing = spec.missingLabel ?? 'no ok result';
-    out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">${esc(missing)}</text>`);
-    lx += 14 + missing.length * 6.4 + 18;
-  }
-  if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).note))) {
-    out.push(`<text class="ink2" x="${lx}" y="${ly0 + 10.5}" font-size="12">k/n: only k of n instances ok</text>`);
-  }
+  out.push(...legend);
   // Grid and y axis.
   for (const t of ticks) {
     const ty = y(t);
@@ -363,6 +394,67 @@ function main(): void {
     }
   }
 
+  // Oxigraph breakdown: totals per dataset and browser, and per template for each dataset and browser.
+  const breakdowns = Object.values<any>(summary.breakdown ?? {});
+  if (breakdowns.length > 0) {
+    const variants = VARIANT_PALETTE.map((_, i) => i);
+    write(join(dir, 'plot_oxigraph_breakdown.svg'), barChart({
+      title: 'Oxigraph: evaluation against moving results into JavaScript',
+      subtitle: 'Total time per variant over the SELECT instances that have all four variants. "count" is a lower bound ' +
+        `on evaluation; "+ reading every value" is what the timing runs measure. Log scale. ${machine}`,
+      groups: breakdowns.map(b => ({ label: b.browser, super: b.dataset })),
+      series: variants,
+      palette: VARIANT_PALETTE,
+      cells: (g, vi) => {
+        const b = breakdowns[g];
+        const v = b.totals[VARIANT_PALETTE[vi].key];
+        return {
+          value: b.complete > 0 ? v : null,
+          tooltip: `${b.dataset} ${b.browser}, ${VARIANT_PALETTE[vi].label}: ${formatValue(v, 'ms')} over ${b.complete} instances` +
+            ` (${b.terms.toLocaleString('en')} terms)`,
+        };
+      },
+      log: true,
+      unit: 'ms',
+    }));
+    for (const b of breakdowns) {
+      const raw = readRawsMode(dir, 'breakdown', b.dataset, b.browser, 'oxigraph')[0];
+      if (!raw) {
+        continue;
+      }
+      const rows = breakdownInstances(raw, b.dataset);
+      const templates = [ ...new Set(rows.map(r => r.template)) ];
+      write(join(dir, b.dataset, `plot_oxigraph_breakdown_${b.browser}.svg`), barChart({
+        title: `${b.dataset}: Oxigraph time per variant in ${b.browser} ${b.browserVersion}`,
+        subtitle: `Mean over the template's instances that ran the variant (${summary.meta?.settings?.breakdownRounds ?? 3} timed ` +
+          `rounds each). "count" exists for SELECT queries only. Log scale. ${machine}`,
+        groups: templates.map(t => ({ label: t })),
+        series: variants,
+        palette: VARIANT_PALETTE,
+        cells: (g, vi) => {
+          const key = VARIANT_PALETTE[vi].key;
+          const values = rows.filter(r => r.template === templates[g] && typeof r[key] === 'number').map(r => r[key] as number);
+          const all = rows.filter(r => r.template === templates[g]).length;
+          if (values.length === 0) {
+            return { value: null, tooltip: `${templates[g]}, ${VARIANT_PALETTE[vi].label}: not run` };
+          }
+          return {
+            value: mean(values),
+            lo: Math.min(...values),
+            hi: Math.max(...values),
+            note: values.length < all ? `${values.length}/${all}` : undefined,
+            tooltip: `${templates[g]}, ${VARIANT_PALETTE[vi].label}: ${formatValue(mean(values), 'ms')} over ${values.length} instances`,
+          };
+        },
+        log: true,
+        unit: 'ms',
+        legendExtras: [ 'whisker' ],
+        whiskerLabel: 'instance range',
+        missingLabel: 'not run',
+      }));
+    }
+  }
+
   // Bundle sizes.
   if (summary.bundleSizes) {
     const pages: Record<string, any> = Object.fromEntries(summary.bundleSizes.map((s: any) => [ s.page, s ]));
@@ -388,6 +480,13 @@ function main(): void {
     }));
   }
   console.log(`Wrote ${written.length} SVG files:\n  ${written.join('\n  ')}`);
+}
+
+function readRawsMode(dir: string, mode: string, dataset: string, browser: string, engine: string): any[] {
+  const file = join(dir, 'raw', `${mode}-${dataset}-${browser}-${engine}.json`);
+  return readdirSync(join(dir, 'raw')).includes(`${mode}-${dataset}-${browser}-${engine}.json`) ?
+    [ JSON.parse(readFileSync(file, 'utf8')) ] :
+    [];
 }
 
 function readRaws(dir: string, dataset: string, browser: string, engine: string): any[] {

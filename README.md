@@ -41,7 +41,7 @@ npm install            # also runs `prepare`
 npm run prepare        # clone + build Comunica, link it, install Playwright browsers (idempotent)
 npm run build          # Vite build of both pages, prints bundle sizes
 npm run reference      # reference counts in Node, both engines -> data/*/reference.json
-npm run bench          # support pass + full timing run -> results/<date>-<machine>/raw/*.json
+npm run bench          # support pass, timing runs, Oxigraph breakdown -> results/<date>-<machine>/raw/*.json
 npm run aggregate      # raw JSON -> CSVs, totals, support matrix, results README tables
 npm run plot           # CSV -> SVG
 ```
@@ -53,7 +53,7 @@ npm run plot           # CSV -> SVG
 - `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). The default
   output directory is named after the current UTC date, so pass `--out results/<dir>` to resume a run on a later day.
   Options:
-  `--browsers`, `--engines`, `--datasets`, `--mode support|timing|all`, `--out`, `--machine` (or `BENCH_MACHINE`),
+  `--browsers`, `--engines`, `--datasets`, `--mode support|timing|breakdown|all`, `--out`, `--machine` (or `BENCH_MACHINE`),
   `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3),
   `--repeat-overrides` (default `ldbc-snb-0.1=1`: LDBC SNB runs once, as one repetition already takes hours), and
   `--skip 'browser/engine/dataset=reason;…'` for configurations that cannot run on a machine (recorded in `meta.json`).
@@ -136,6 +136,24 @@ reference timeout (300 s, as in Experiments-Centralized's LDBC SNB experiment) c
 in-process. Where the engines disagree, there is no reference count and the script fails instead of picking one;
 where only one engine answers, its count is used and `reference.json` says which engine confirmed it.
 
+**Oxigraph breakdown** (`--mode breakdown`, part of `--mode all`): Oxigraph runs in WebAssembly, so its results have
+to cross into JavaScript, and the timing runs include that. To report how much of its time that is, every query
+instance also runs as four variants on one page per browser and dataset, back to back, in an order that rotates per
+round (1 warmup round, 3 timed rounds, `--breakdown-rounds`):
+
+| Variant | What runs | Measures |
+|---|---|---|
+| `count` | `SELECT (COUNT(*) AS ?n) WHERE { { query } }` | evaluation, with only one number crossing into JavaScript (SELECT queries only). A lower bound: the wrapper may let Oxigraph skip work, such as an ORDER BY without LIMIT |
+| `objects` | `store.query(q)` | evaluation plus building the JS result: a `Map` per solution and a wrapper object per term |
+| `full` | `store.query(q)` and reading every term's value | what the timing runs measure; reading a value copies the string out of WASM memory |
+| `json` | `store.query(q, { results_format: 'application/sparql-results+json' })`, `JSON.parse`, every value read | the alternative of one serialized string crossing the boundary (N-Triples, lines counted, for CONSTRUCT and DESCRIBE) |
+
+(full − count) ÷ full is reported as an upper bound on the share of time spent moving results into JavaScript, split
+into building the objects (objects − count) and reading the values (full − objects), together with the cost per
+term. Each variant's count is checked against the reference. Queries that timed out for Oxigraph in that browser's
+timing runs are not repeated. The variant code is in [`src/adapters/oxigraph-breakdown.ts`](src/adapters/oxigraph-breakdown.ts),
+loaded only in this mode and left out of the bundle sizes.
+
 **Bundle size** per page: all JS chunks and WASM the page loads, raw and gzip (level 9), from the Vite manifest
 ([`scripts/bundle-sizes.ts`](scripts/bundle-sizes.ts)).
 
@@ -166,7 +184,7 @@ cold pass of the first timing repetition, which is the same procedure.
 ```
 src/harness.ts            in-page: fetch+inflate, init, load, memory, support/cold/warmup/timed steps, events
 src/protocol.ts           messages between harness and runner, outcome classes
-src/adapters/             comunica.ts, oxigraph.ts (+ oxigraph-query.ts shared with Node), types.ts
+src/adapters/             comunica.ts, oxigraph.ts (+ oxigraph-query.ts shared with Node, oxigraph-breakdown.ts), types.ts
 src/pages/                comunica.html, oxigraph.html
 src/runner.ts             Playwright runner, static server with COOP+COEP, crash/hang recovery, resumable
 src/reference.ts          Node reference counts (+ reference-oxigraph-worker.ts, node-chunks.ts)

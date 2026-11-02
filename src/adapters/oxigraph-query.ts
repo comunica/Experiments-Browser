@@ -2,7 +2,7 @@
 import type { QueryResult, TermLike } from './types';
 import { touchTerm } from './types';
 
-interface OxigraphQuadLike {
+export interface OxigraphQuadLike {
   subject: TermLike;
   predicate: TermLike;
   object: TermLike;
@@ -37,3 +37,4 @@ export function runOxigraphQuery(store: OxigraphStoreLike, sparql: string): Quer
   }
   return { count: result.length, checksum, resultType: quads ? 'quads' : 'bindings' };
 }
+

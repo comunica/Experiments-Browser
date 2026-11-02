@@ -217,11 +217,11 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
     await emit({ type: 'memory', memory: await measureMemory(adapter) });
   }
 
-  // Queries that failed in a way that will not change are not run again on this page.
+  // Queries that failed in a way that will not change are not run again on this page. In breakdown mode, an error
+  // of one variant (e.g. its rewrite) only excludes that variant; a timeout excludes the query.
   const excluded = new Map<string, Outcome>();
   for (const step of config.steps) {
-    const previous = excluded.get(step.query);
-    if (previous) {
+    if (excluded.has(step.query) || (step.variant && excluded.has(`${step.query}|${step.variant}`))) {
       continue;
     }
     await emit({ type: 'start', step });
@@ -229,10 +229,19 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
     const expectedEntry = reference?.queries[step.query];
     const expected = expectedEntry?.agree ? expectedEntry.count : null;
     const result: ExecResult = { ...step, outcome: 'error', ms: null, count: null, expected, checksum: null };
-    const start = performance.now();
     try {
-      const executed = await adapter.query(text, config.timeoutMs);
-      const ms = performance.now() - start;
+      let ms: number;
+      let executed: Awaited<ReturnType<EngineAdapter['query']>>;
+      if (step.variant) {
+        const variant = await adapter.queryVariant!(step.variant, text);
+        ms = variant.ms;
+        executed = variant;
+        result.terms = variant.terms;
+      } else {
+        const start = performance.now();
+        executed = await adapter.query(text, config.timeoutMs);
+        ms = performance.now() - start;
+      }
       result.resultType = executed.resultType;
       if (ms > config.timeoutMs) {
         result.outcome = 'timeout';
@@ -253,7 +262,7 @@ async function run(loadAdapter: () => Promise<AdapterModule>): Promise<void> {
       result.error = String((error as Error)?.message ?? error).slice(0, 2000);
     }
     if (result.outcome === 'timeout' || result.outcome === 'error' || result.outcome === 'unsupported') {
-      excluded.set(step.query, result.outcome);
+      excluded.set(step.variant && result.outcome !== 'timeout' ? `${step.query}|${step.variant}` : step.query, result.outcome);
     }
     await emit({ type: 'exec', result });
     if (result.outcome === 'timeout') {

@@ -8,6 +8,8 @@ export interface Step {
   phase: Phase;
   round: number;
   query: string;
+  /** Breakdown mode only: which variant of the query to run (see src/adapters/oxigraph-query.ts). */
+  variant?: string;
 }
 
 export interface BenchConfig {
@@ -52,6 +54,9 @@ export interface ExecResult {
   checksum: number | null;
   resultType?: string;
   error?: string;
+  /** Breakdown mode: the variant that ran, and (variant `objects`) the number of terms in the result. */
+  variant?: string;
+  terms?: number;
 }
 
 export type BenchEvent =

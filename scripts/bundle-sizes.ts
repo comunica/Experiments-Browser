@@ -13,8 +13,11 @@ interface ManifestEntry {
 const dist = resolve(import.meta.dirname, '..', 'dist');
 const manifest: Record<string, ManifestEntry> = JSON.parse(readFileSync(resolve(dist, '.vite/manifest.json'), 'utf8'));
 
+// Benchmark instrumentation that only the breakdown mode loads; not part of what an application would ship.
+const INSTRUMENTATION = (key: string) => key.includes('oxigraph-breakdown');
+
 function files(key: string, seen = new Set<string>()): Set<string> {
-  if (seen.has(key)) {
+  if (seen.has(key) || INSTRUMENTATION(key)) {
     return seen;
   }
   seen.add(key);
