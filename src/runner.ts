@@ -34,6 +34,8 @@ export const CHROMIUM_LAUNCH = {
 // scripts/aggregate.ts uses instead.
 export const SUPPORT_DATASETS = [ 'watdiv-1', 'bsbm-100' ];
 export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
+// The breakdown also runs synthetic scans of N results (data/calibration), where the COUNT wrapper cannot change the plan.
+export const BREAKDOWN_DATASETS = [ ...DATASETS, 'calibration' ];
 
 const { values: args } = parseArgs({
   options: {
@@ -47,6 +49,8 @@ const { values: args } = parseArgs({
     warmup: { type: 'string', default: '1' },
     repeat: { type: 'string', default: '3' },
     'breakdown-rounds': { type: 'string', default: '3' },
+    // Run only some queries of a dataset: 'dataset=Q1-1,Q2-1;other=...'. Raw files of such runs get a -subset suffix.
+    queries: { type: 'string', default: '' },
     // LDBC SNB's complex queries take seconds each: one repetition of it already runs for hours.
     'repeat-overrides': { type: 'string', default: 'ldbc-snb-0.1=1' },
     timeout: { type: 'string', default: '60000' },
@@ -64,6 +68,10 @@ const ROUNDS = Number(args.rounds);
 const WARMUP = Number(args.warmup);
 const REPEAT = Number(args.repeat);
 const BREAKDOWN_ROUNDS = Number(args['breakdown-rounds']);
+const QUERY_SUBSETS = new Map(args.queries.split(';').filter(Boolean).map((entry) => {
+  const [ dataset, ids ] = entry.split('=');
+  return [ dataset, ids.split(',').filter(Boolean) ];
+}));
 const REPEAT_OVERRIDES = new Map(args['repeat-overrides'].split(',').filter(Boolean).map((entry) => {
   const [ dataset, count ] = entry.split('=');
   return [ dataset, Number(count) ];
@@ -275,7 +283,11 @@ async function runConfiguration(
   dataset: string,
 ): Promise<Record<string, unknown>> {
   const startedAt = new Date().toISOString();
-  const all = plan(mode, queryIds(dataset), dataset);
+  const subset = QUERY_SUBSETS.get(dataset);
+  if (subset?.some(query => !queryIds(dataset).includes(query))) {
+    throw new Error(`Unknown query in --queries for ${dataset}: ${subset.filter(q => !queryIds(dataset).includes(q)).join(', ')}`);
+  }
+  const all = plan(mode, subset ?? queryIds(dataset), dataset);
   // A timeout excludes a query; an error of one breakdown variant only excludes that variant.
   const excluded = new Map<string, string>();
   const isExcluded = (step: Step) => excluded.has(step.query) ||
@@ -405,6 +417,7 @@ async function runConfiguration(
     finishedAt: new Date().toISOString(),
     settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: mode === 'breakdown' ? BREAKDOWN_ROUNDS : ROUNDS },
     ...mode === 'breakdown' ? { breakdown: { variants: BREAKDOWN_VARIANTS, preExcluded } } : {},
+    ...subset ? { querySubset: subset } : {},
     status,
     load: (attempts[0] as { load?: LoadInfo })?.load ?? null,
     memory: (attempts[0] as { memory?: MemoryInfo })?.memory ?? null,
@@ -497,7 +510,8 @@ async function main(): Promise<void> {
   const server = await startServer();
   try {
     for (const mode of modes) {
-      const datasets = args.datasets?.split(',') ?? (mode === 'support' ? SUPPORT_DATASETS : DATASETS);
+      const datasets = args.datasets?.split(',') ??
+        (mode === 'support' ? SUPPORT_DATASETS : mode === 'breakdown' ? BREAKDOWN_DATASETS : DATASETS);
       // Repetitions are the outer loop, so a transient slowdown of the machine hits one repetition of many
       // configurations instead of every repetition of one. The support pass only classifies, once.
       const once = mode === 'support' || mode === 'breakdown';
@@ -508,7 +522,8 @@ async function main(): Promise<void> {
             // The breakdown splits Oxigraph's time between evaluation and moving results into JavaScript.
             for (const engine of mode === 'breakdown' ? engines.filter(e => e === 'oxigraph') : engines) {
               const key = `${browserName}/${engine}/${dataset}`;
-              const name = `${mode}-${dataset}-${browserName}-${engine}${once ? '' : `-r${repetition}`}.json`;
+              const name = `${mode}-${dataset}-${browserName}-${engine}${once ? '' : `-r${repetition}`}` +
+                `${QUERY_SUBSETS.has(dataset) ? '-subset' : ''}.json`;
               const file = join(OUT, 'raw', name);
               if (SKIPS.has(key) || SKIPS.has(`${key}/${mode}`)) {
                 meta.skipped[`${mode}/${key}`] = SKIPS.get(key) ?? SKIPS.get(`${key}/${mode}`);

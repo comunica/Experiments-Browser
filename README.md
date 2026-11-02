@@ -57,6 +57,8 @@ npm run plot           # CSV -> SVG
   `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3),
   `--repeat-overrides` (default `ldbc-snb-0.1=1`: LDBC SNB runs once, as one repetition already takes hours), and
   `--skip 'browser/engine/dataset=reason;…'` for configurations that cannot run on a machine (recorded in `meta.json`).
+- `--queries 'dataset=Q1,Q2'` runs a subset of a dataset's queries (raw files get a `-subset` suffix, and a complete run
+  of the dataset takes precedence in the aggregation).
 - `npm install <package>` removes the linked Comunica packages from `node_modules`; run `npm run prepare` again (the
   build refuses to run without them).
 - Regenerating the datasets is not part of the pipeline (they are committed); see [`data/README.md`](data/README.md).
@@ -149,8 +151,14 @@ round (1 warmup round, 3 timed rounds, `--breakdown-rounds`):
 | `json` | `store.query(q, { results_format: 'application/sparql-results+json' })`, `JSON.parse`, every value read | the alternative of one serialized string crossing the boundary (N-Triples, lines counted, for CONSTRUCT and DESCRIBE) |
 
 (full − count) ÷ full is reported as an upper bound on the share of time spent moving results into JavaScript, split
-into building the objects (objects − count) and reading the values (full − objects), together with the cost per
-term. Each variant's count is checked against the reference. Queries that timed out for Oxigraph in that browser's
+into building the objects (objects − count) and reading the values (full − objects). The overhead is also normalized by
+the number of results: per instance, and averaged per dataset and over all benchmark datasets, as total overhead ÷
+total results, as the median over instances, and as a least-squares fit of overhead against results (slope: cost per
+result; intercept: fixed cost per query). For complex queries with few results, wrapping them in COUNT can change
+Oxigraph's plan, so their overhead estimates are dominated by plan differences and timer noise. The breakdown therefore
+also runs a calibration set ([`data/calibration`](data/calibration)): scans `SELECT ?s … LIMIT N` and
+`SELECT ?s ?p ?o … LIMIT N` with N up to 100,000, whose plan the wrapper cannot change, which measure the cost per result
+of 1 and 3 variables directly. Each variant's count is checked against the reference. Queries that timed out for Oxigraph in that browser's
 timing runs are not repeated. The variant code is in [`src/adapters/oxigraph-breakdown.ts`](src/adapters/oxigraph-breakdown.ts),
 loaded only in this mode and left out of the bundle sizes.
 

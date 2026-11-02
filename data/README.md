@@ -16,6 +16,11 @@ uncompressed N-Triples) and `generation-log.txt` (generator output).
 All files are below GitHub's 100 MB limit, so no release assets are used. `npm run prepare` still downloads a
 dataset for any directory that has a `release-asset.json` (`{ "file", "url", "sha256" }`), for larger scales later.
 
+`calibration` is not a benchmark dataset: it is used only by the Oxigraph breakdown mode. It reuses the watdiv-10 data
+(`dataset.nt.gz` is a symbolic link) with 12 synthetic queries, `SELECT ?s WHERE { ?s ?p ?o } LIMIT N` and
+`SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT N` for N = 1, 10, …, 100,000, whose evaluation is a plain scan. They measure
+the cost of moving N results of 1 or 3 terms from Oxigraph's WebAssembly memory into JavaScript.
+
 ## How they were generated
 
 With [jbr](https://github.com/rubensworks/jbr.js), in a clone of

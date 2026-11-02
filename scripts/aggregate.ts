@@ -307,7 +307,8 @@ export const VARIANTS = [ 'count', 'objects', 'full', 'json' ];
  */
 export function breakdownInstances(raw: Raw, dataset: string): Record<string, any>[] {
   const preExcluded: string[] = (raw as any).breakdown?.preExcluded ?? [];
-  return queryIds(dataset).map((query) => {
+  const subset: string[] | undefined = (raw as any).querySubset;
+  return queryIds(dataset).filter(query => !subset || subset.includes(query)).map((query) => {
     const execs = raw.executions.filter(e => e.query === query && e.phase !== 'rewarm');
     const row: Record<string, any> = { query, template: template(query), preExcluded: preExcluded.includes(query) };
     for (const variant of VARIANTS) {
@@ -319,25 +320,83 @@ export function breakdownInstances(raw: Raw, dataset: string): Record<string, an
     const objects = execs.find(e => (e as any).variant === 'objects' && e.outcome === 'ok');
     row.rows = objects?.count ?? null;
     row.terms = (objects as any)?.terms ?? null;
+    if (typeof row.full === 'number' && typeof row.count === 'number') {
+      row.transfer = row.full - row.count;
+      row.usPerRow = row.rows > 0 ? 1000 * row.transfer / row.rows : null;
+      row.usPerTerm = row.terms > 0 ? 1000 * row.transfer / row.terms : null;
+    }
     return row;
   });
 }
 
+/** Least-squares line y = intercept + slope · x. */
+export function fit(points: { x: number; y: number }[]): { slope: number; intercept: number; r2: number; n: number } | null {
+  if (points.length < 3) {
+    return null;
+  }
+  const n = points.length;
+  const mx = points.reduce((a, p) => a + p.x, 0) / n;
+  const my = points.reduce((a, p) => a + p.y, 0) / n;
+  const sxx = points.reduce((a, p) => a + (p.x - mx) ** 2, 0);
+  const sxy = points.reduce((a, p) => a + (p.x - mx) * (p.y - my), 0);
+  const syy = points.reduce((a, p) => a + (p.y - my) ** 2, 0);
+  if (sxx === 0) {
+    return null;
+  }
+  const slope = sxy / sxx;
+  return { slope, intercept: my - slope * mx, r2: syy === 0 ? 1 : (sxy * sxy) / (sxx * syy), n };
+}
+
+/**
+ * Overhead per result of moving Oxigraph's results into JavaScript, over the instances that have all four variants:
+ * the total overhead divided by the total number of results, the median over instances with results, and a fit of
+ * overhead (full - count) against the number of results, whose slope is the cost per result and whose intercept is a
+ * fixed cost per query. The same against the number of terms (results × variables).
+ */
+export function perResult(rows: Record<string, any>[]): Record<string, any> {
+  const complete = rows.filter(r => VARIANTS.every(v => typeof r[v] === 'number'));
+  const withRows = complete.filter(r => r.rows > 0);
+  const sumRows = withRows.reduce((a, r) => a + r.rows, 0);
+  const sumTerms = withRows.reduce((a, r) => a + r.terms, 0);
+  const total = (key: string) => withRows.reduce((a, r) => a + r[key], 0);
+  const perRow = fit(complete.map(r => ({ x: r.rows, y: r.transfer })));
+  const perTerm = fit(complete.map(r => ({ x: r.terms, y: r.transfer })));
+  return {
+    instances: complete.length,
+    instancesWithResults: withRows.length,
+    rows: sumRows,
+    terms: sumTerms,
+    // µs per result, weighted by results: total overhead / total results.
+    usPerRow: sumRows > 0 ? 1000 * (total('full') - total('count')) / sumRows : null,
+    objectsUsPerRow: sumRows > 0 ? 1000 * (total('objects') - total('count')) / sumRows : null,
+    readsUsPerRow: sumRows > 0 ? 1000 * (total('full') - total('objects')) / sumRows : null,
+    jsonUsPerRow: sumRows > 0 ? 1000 * (total('json') - total('count')) / sumRows : null,
+    medianUsPerRow: median(withRows.map(r => r.usPerRow)),
+    usPerTerm: sumTerms > 0 ? 1000 * (total('full') - total('count')) / sumTerms : null,
+    fitPerRow: perRow && { usPerRow: 1000 * perRow.slope, fixedMs: perRow.intercept, r2: perRow.r2, n: perRow.n },
+    fitPerTerm: perTerm && { usPerTerm: 1000 * perTerm.slope, fixedMs: perTerm.intercept, r2: perTerm.r2, n: perTerm.n },
+  };
+}
+
 function breakdown(dir: string, raws: Raw[], browsers: string[]): Record<string, any> {
   const out: Record<string, any> = {};
-  for (const dataset of DATASETS) {
+  for (const dataset of [ ...DATASETS, 'calibration' ]) {
     for (const browser of browsers) {
-      const raw = raws.find(r => r.dataset === dataset && r.browser.name === browser);
+      // A complete run of a dataset takes precedence over a run of a subset of its queries.
+      const candidates = raws.filter(r => r.dataset === dataset && r.browser.name === browser);
+      const raw = candidates.find(r => !(r as any).querySubset) ?? candidates[0];
       if (!raw) {
         continue;
       }
       const rows = breakdownInstances(raw, dataset);
       writeCsv(join(dir, dataset, `oxigraph_breakdown_${browser}.csv`),
-        [ 'query', 'rows', 'terms', ...VARIANTS.map(v => `${v}_ms`), 'objects_minus_count_ms', 'full_minus_count_ms' ],
+        [ 'query', 'rows', 'terms', ...VARIANTS.map(v => `${v}_ms`), 'objects_minus_count_ms', 'full_minus_count_ms',
+          'transfer_us_per_row', 'transfer_us_per_term' ],
         rows.map(r => [ r.query, String(r.rows ?? ''), String(r.terms ?? ''),
           ...VARIANTS.map(v => typeof r[v] === 'number' ? round(r[v], 3) : r.preExcluded ? 'skipped' : String(r[v] ?? '')),
           typeof r.objects === 'number' && typeof r.count === 'number' ? round(r.objects - r.count, 3) : '',
-          typeof r.full === 'number' && typeof r.count === 'number' ? round(r.full - r.count, 3) : '' ]));
+          typeof r.transfer === 'number' ? round(r.transfer, 3) : '',
+          round(r.usPerRow, 3), round(r.usPerTerm, 3) ]));
       // Totals over the instances that have all four variants (SELECT queries without failures).
       const complete = rows.filter(r => VARIANTS.every(v => typeof r[v] === 'number'));
       const sum = (v: string) => complete.reduce((a, r) => a + r[v], 0);
@@ -367,8 +426,37 @@ function breakdown(dir: string, raws: Raw[], browsers: string[]): Record<string,
           null,
         largest: [ ...complete ].sort((a, b) => (b.full - b.count) - (a.full - a.count)).slice(0, 3)
           .map(r => ({ query: r.query, rows: r.rows, terms: r.terms, count: r.count, objects: r.objects, full: r.full, json: r.json })),
+        querySubset: (raw as any).querySubset ?? null,
+        perResult: perResult(rows),
+        points: complete.map(r => ({ query: r.query, rows: r.rows, terms: r.terms, transfer: r.transfer })),
       };
     }
+  }
+  // Calibration: overhead per result for 1 and 3 variables, from scans where the COUNT wrapper cannot change the plan.
+  for (const browser of browsers) {
+    const calibration = out[`calibration/${browser}`];
+    if (calibration) {
+      const candidates = raws.filter(r => r.dataset === 'calibration' && r.browser.name === browser);
+      const rows = breakdownInstances(candidates.find(r => !(r as any).querySubset) ?? candidates[0], 'calibration');
+      calibration.widths = Object.fromEntries([ 1, 3 ].map(width => [ width, {
+        perResult: perResult(rows.filter(r => r.query.startsWith(`w${width}-`))),
+        sizes: rows.filter(r => r.query.startsWith(`w${width}-`)).map(r => ({ query: r.query, rows: r.rows,
+          count: r.count, objects: r.objects, full: r.full, json: r.json, usPerRow: r.usPerRow })),
+      } ]));
+    }
+  }
+
+  // Pooled over all benchmark datasets (not the calibration), per browser.
+  for (const browser of browsers) {
+    const entries = Object.values<any>(out).filter(b => b.browser === browser && !b.pooled && b.dataset !== 'calibration');
+    if (entries.length === 0) {
+      continue;
+    }
+    const rows = entries.flatMap(b => {
+      const candidates = raws.filter(r => r.dataset === b.dataset && r.browser.name === browser);
+      return breakdownInstances(candidates.find(r => !(r as any).querySubset) ?? candidates[0], b.dataset);
+    });
+    out[`all/${browser}`] = { pooled: true, dataset: 'all datasets', browser, perResult: perResult(rows) };
   }
   return out;
 }
@@ -498,7 +586,8 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
     L.push(`Per instance: ${Object.keys(ds.browsers).map(b => `[\`${dataset}/instances_${b}.csv\`](${dataset}/instances_${b}.csv)`).join(', ')}; ` +
       `per template: \`${dataset}/plot_<browser>.csv\`; totals: [\`${dataset}/totals.csv\`](${dataset}/totals.csv); load: [\`${dataset}/plot_load.csv\`](${dataset}/plot_load.csv).`, '');
   }
-  if (Object.keys(summary.breakdown ?? {}).length > 0) {
+  const breakdowns = Object.values<any>(summary.breakdown ?? {}).filter(b => !b.pooled);
+  if (breakdowns.length > 0) {
     L.push('## Oxigraph: evaluation against moving results into JavaScript', '');
     L.push('Breakdown mode (`--mode breakdown`), Oxigraph only: every query instance runs as four variants on the same page, ' +
       'in an order that rotates per round (1 warmup round, then the mean of the timed rounds). ' +
@@ -512,19 +601,60 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
     L.push('| Dataset | Browser | Instances | Rows | Terms | count | objects | full | json | Transfer share | of which objects | of which reads | Transfer per term | json ÷ full |');
     L.push('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
     const pct = (x: number | null) => x === null ? '–' : `${(100 * x).toFixed(1)} %`;
-    for (const b of Object.values<any>(summary.breakdown)) {
-      L.push(`| ${b.dataset} | ${b.browser} | ${b.complete}/${b.instances} | ${b.rows.toLocaleString('en')} | ${b.terms.toLocaleString('en')} | ` +
+    for (const b of breakdowns) {
+      L.push(`| ${b.dataset}${b.querySubset ? ` (${b.querySubset.length} queries)` : ''} | ${b.browser} | ${b.complete}/${b.instances} | ${b.rows.toLocaleString('en')} | ${b.terms.toLocaleString('en')} | ` +
         `${fmtMs(b.totals.count)} | ${fmtMs(b.totals.objects)} | ${fmtMs(b.totals.full)} | ${fmtMs(b.totals.json)} | ` +
         `${pct(b.transferShare)} | ${pct(b.objectsShare)} | ${pct(b.readShare)} | ` +
         `${b.usPerTerm === null ? '–' : `${b.usPerTerm.toFixed(2)} µs`} | ${b.jsonVsFull === null ? '–' : b.jsonVsFull.toFixed(2)} |`);
     }
-    L.push('', '<details><summary>Largest absolute transfer cost (full − count) per dataset and browser</summary>', '');
+    L.push('', '### Overhead per result', '');
+    L.push('The overhead of a query is full − count. Per dataset and browser, over the instances with all four variants: ' +
+      '"weighted" = total overhead ÷ total results; "median" = median over the instances with results of their overhead ÷ ' +
+      'results; "fit" = least-squares line of overhead against results, whose slope is the cost per result and whose ' +
+      'intercept is a fixed cost per query (R² says how well results explain the overhead). Split: building the JS ' +
+      'objects (objects − count) and reading the values (full − objects), weighted. Sub-millisecond differences are at ' +
+      'the resolution of `performance.now()` (5 µs, with jitter, in a cross-origin isolated page), so per-instance values ' +
+      'of small queries are noisy; the weighted and fitted values are dominated by the queries with many results.', '');
+    L.push('| Dataset | Browser | Instances (with results) | Results | Weighted µs/result | of which objects | of which reads | Median µs/result | Fit µs/result | Fit fixed ms/query | R² | µs/term (weighted) | json − count µs/result |');
+    L.push('|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|');
+    const n2 = (x: number | null | undefined, d = 2) => x === null || x === undefined ? '–' : x.toFixed(d);
     for (const b of Object.values<any>(summary.breakdown)) {
+      const p = b.perResult;
+      L.push(`| ${b.dataset}${b.querySubset ? ` (${b.querySubset.length} queries)` : ''} | ${b.browser} | ${p.instances} (${p.instancesWithResults}) | ` +
+        `${p.rows.toLocaleString('en')} | ${n2(p.usPerRow)} | ${n2(p.objectsUsPerRow)} | ${n2(p.readsUsPerRow)} | ${n2(p.medianUsPerRow)} | ` +
+        `${n2(p.fitPerRow?.usPerRow)} | ${n2(p.fitPerRow?.fixedMs, 3)} | ${n2(p.fitPerRow?.r2)} | ${n2(p.usPerTerm)} | ${n2(p.jsonUsPerRow)} |`);
+    }
+    L.push('', '![Overhead against results](plot_oxigraph_overhead.svg)', '');
+    const calibrations = breakdowns.filter(b => b.widths);
+    if (calibrations.length > 0) {
+      L.push('### Calibration: overhead per result without query evaluation', '');
+      L.push('`SELECT ?s WHERE { ?s ?p ?o } LIMIT N` (1 variable) and `SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT N` ' +
+        '(3 variables) over the watdiv-10 data ([`data/calibration`](../../data/calibration)). Evaluating them is a scan of ' +
+        'N triples whether or not the COUNT wrapper is around them, so here full − count is the cost of producing N ' +
+        'results as JS objects and reading them, and json − count that of the serialized path.', '');
+      L.push('| Browser | Variables | N | count | objects | full | json | (full − count) ÷ N | (json − count) ÷ N |');
+      L.push('|---|---:|---:|---:|---:|---:|---:|---:|---:|');
+      const us = (x: number | null | undefined) => x === null || x === undefined ? '–' : `${x.toFixed(2)} µs`;
+      for (const b of calibrations) {
+        for (const [ width, w ] of Object.entries<any>(b.widths)) {
+          for (const r of w.sizes) {
+            L.push(`| ${b.browser} | ${width} | ${r.rows?.toLocaleString('en') ?? '–'} | ${fmtMs(r.count)} | ${fmtMs(r.objects)} | ` +
+              `${fmtMs(r.full)} | ${fmtMs(r.json)} | ${us(r.usPerRow)} | ` +
+              `${typeof r.json === 'number' && r.rows > 0 ? us(1000 * (r.json - r.count) / r.rows) : '–'} |`);
+          }
+          const f = w.perResult.fitPerRow;
+          L.push(`| ${b.browser} | ${width} | fit | | | | | ${f ? `${f.usPerRow.toFixed(2)} µs + ${f.fixedMs.toFixed(3)} ms (R² ${f.r2.toFixed(3)})` : '–'} | |`);
+        }
+      }
+      L.push('');
+    }
+    L.push('', '<details><summary>Largest absolute transfer cost (full − count) per dataset and browser</summary>', '');
+    for (const b of breakdowns) {
       L.push(`- ${b.dataset} / ${b.browser}: ${b.largest.map((r: any) => `${r.query} (${r.rows} rows, ${r.terms} terms): ` +
         `count ${fmtMs(r.count)}, objects ${fmtMs(r.objects)}, full ${fmtMs(r.full)}, json ${fmtMs(r.json)}`).join('; ')}`);
     }
     L.push('', '</details>', '');
-    const excludedNotes = Object.values<any>(summary.breakdown).filter(b => b.preExcluded.length > 0 || b.failures.length > 0 || b.notSelect.length > 0);
+    const excludedNotes = breakdowns.filter(b => b.preExcluded.length > 0 || b.failures.length > 0 || b.notSelect.length > 0);
     for (const b of excludedNotes) {
       L.push(`- ${b.dataset} / ${b.browser}: ` + [
         b.notSelect.length > 0 ? `no count variant (not SELECT): ${b.notSelect.join(', ')}` : '',

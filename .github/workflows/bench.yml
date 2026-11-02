@@ -10,7 +10,7 @@ on:
         description: Comma-separated browsers
         default: chromium,firefox,webkit
       ldbc_browsers:
-        description: Browsers for LDBC SNB (one repetition takes about 1.5 hours per browser)
+        description: Browsers for LDBC SNB (timing and breakdown take about 2.5 hours per browser)
         default: chromium
   schedule:
     # Monthly, on the 1st at 03:17 UTC.
@@ -66,6 +66,11 @@ jobs:
           npm run bench -- --out "$out" --mode timing --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k \
             --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
           npm run bench -- --out "$out" --mode timing --datasets ldbc-snb-0.1 \
+            --browsers "${{ inputs.ldbc_browsers || 'chromium' }}"
+          # Oxigraph: evaluation against moving results into JavaScript.
+          npm run bench -- --out "$out" --mode breakdown --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k \
+            --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
+          npm run bench -- --out "$out" --mode breakdown --datasets ldbc-snb-0.1 \
             --browsers "${{ inputs.ldbc_browsers || 'chromium' }}"
       - name: Aggregate and plot
         run: |
