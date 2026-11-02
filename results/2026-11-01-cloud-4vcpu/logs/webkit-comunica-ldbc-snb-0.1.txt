@@ -1,0 +1,68 @@
+Runner log of the WebKit / Comunica / ldbc-snb-0.1 configuration, stopped by hand at 2026-11-02T01:03:19Z.
+No raw file was written for it; see the results README for why.
+
+run timing-ldbc-snb-0.1-webkit-comunica-r1.json
+  attempt 1: watchdog, 2/735 executions, load 23631 ms
+  attempt 2: crashed, 2/726 executions, load 24451 ms
+  attempt 3: watchdog, 14/717 executions, load 24081 ms
+    cold#0 IC9-1: timeout   (Query exceeded 60000 ms)
+  attempt 4: restart, 20/696 executions, load 24020 ms, timeout of IC9-1
+  attempt 5: watchdog, 0/670 executions, load 22303 ms
+  attempt 6: watchdog, 0/663 executions, load 23573 ms
+  attempt 7: watchdog, 0/656 executions, load 23520 ms
+  attempt 8: watchdog, 0/649 executions, load 23467 ms
+  attempt 9: crashed, 0/642 executions, load 22521 ms
+  attempt 10: watchdog, 2/635 executions, load 20897 ms
+  attempt 11: watchdog, 0/626 executions, load 22687 ms
+  attempt 12: watchdog, 14/619 executions, load 22151 ms
+  attempt 13: watchdog, 0/598 executions, load 24075 ms
+    cold#0 IS5-1: ok 6.1 ms 1
+  attempt 14: watchdog, 34/591 executions, load 22546 ms
+  attempt 15: watchdog, 2/550 executions, load 21959 ms
+  attempt 16: crashed, 2/541 executions, load 21988 ms
+  attempt 17: watchdog, 1/622 executions, load 22478 ms
+  attempt 18: crashed, 15/615 executions, load 21044 ms
+  attempt 19: watchdog, 8/608 executions, load 20818 ms
+  attempt 20: watchdog, 1/601 executions, load 20406 ms
+  attempt 21: watchdog, 1/594 executions, load 20589 ms
+    rewarm#0 IC7-5: ok 3485.3 ms 20
+  attempt 22: watchdog, 31/587 executions, load 20926 ms
+  attempt 23: watchdog, 10/580 executions, load 22202 ms
+  attempt 24: crashed, 9/573 executions, load 21223 ms
+  attempt 25: crashed, 8/566 executions, load 20927 ms
+  attempt 26: watchdog, 2/559 executions, load 20052 ms
+  attempt 27: watchdog, 18/552 executions, load 20655 ms
+  attempt 28: watchdog, 0/545 executions, load 19905 ms
+  attempt 29: watchdog, 7/538 executions, load 21722 ms
+    rewarm#0 IC11-1: ok 193.3 ms 0
+    rewarm#0 IS2-3: ok 270.1 ms 10
+    rewarm#0 IS7-2: timeout   (Query exceeded 60000 ms)
+  attempt 30: restart, 73/531 executions, load 22569 ms, timeout of IS7-2
+  attempt 31: watchdog, 7/524 executions, load 22132 ms
+  attempt 32: watchdog, 7/517 executions, load 22322 ms
+  attempt 33: watchdog, 12/510 executions, load 22022 ms
+  attempt 34: watchdog, 12/503 executions, load 22551 ms
+  attempt 35: watchdog, 12/496 executions, load 22190 ms
+    rewarm#0 IC12-1: ok 41.9 ms 1
+    rewarm#0 IS3-3: ok 7.8 ms 11
+    rewarm#0 IS7-5: timeout   (Query exceeded 60000 ms)
+  attempt 36: restart, 69/489 executions, load 20630 ms, timeout of IS7-5
+  attempt 37: crashed, 12/482 executions, load 22462 ms
+  attempt 38: watchdog, 10/475 executions, load 20663 ms
+    rewarm#0 IC12-3: ok 25.2 ms 2
+
+Memory of the WebKit content process (WPEWebProcess) sampled with ps every 10 s during attempts 38 and 39
+(machine: 15.7 GiB RAM, 11 GiB available):
+01:00:46 rss=4991MB cpu=174% etime=01:25
+01:00:56 rss=4991MB cpu=176% etime=01:35
+01:01:06 rss=4991MB cpu=178% etime=01:45
+01:01:16 rss=4991MB cpu=180% etime=01:55
+01:01:26 rss=4991MB cpu=181% etime=02:05   (killed by the runner's watchdog; new page below)
+01:01:36 rss=3260MB cpu=117% etime=00:05   (loading)
+01:01:46 rss=5709MB cpu=127% etime=00:15
+01:01:56 rss=7608MB cpu=125% etime=00:25
+01:02:06 rss=5374MB cpu=141% etime=00:35   (querying)
+01:02:16 rss=5548MB cpu=140% etime=00:45
+01:02:26 rss=5579MB cpu=135% etime=00:55
+01:02:36 rss=6145MB cpu=133% etime=01:05
+During loading (attempt 1, 00:00:04 into the page) the process was already at 3.4 GB.

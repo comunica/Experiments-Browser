@@ -365,7 +365,11 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
       const total = Object.values<number>(cols[keys[0]]).reduce((a, b) => a + b, 0);
       L.push(`| ok | ${keys.map(k => `${cols[k].ok ?? 0}/${total}`).join(' | ')} |`);
       L.push(`| other | ${keys.map(k => outcomeList(cols[k]) || '–').join(' | ')} |`, '');
-      for (const bad of cols.nonOk) {
+      const skippedColumns = keys.filter(k => Object.keys(cols[k]).length === 1 && cols[k].skipped);
+      for (const column of skippedColumns) {
+        L.push(`- ${column}: not run (see Skipped configurations)`);
+      }
+      for (const bad of cols.nonOk.filter((b: any) => !skippedColumns.includes(b.column))) {
         L.push(`- ${bad.column} ${bad.query}: ${bad.outcome}${bad.error ? ` (${String(bad.error).slice(0, 160)})` : ''}`);
       }
       if (cols.nonOk.length > 0) {
@@ -405,7 +409,9 @@ function writeReadme(dir: string, summary: Record<string, any>): void {
     }
     L.push('', '</details>', '');
     const failures = Object.entries<any>(ds.browsers).flatMap(([ browser, b ]) => Object.entries<any>(b.engines)
-      .flatMap(([ engine, e ]) => e.failures.map((f: any) => `- ${browser} / ${engine} ${f.query}: ${f.outcome}${f.error ? ` (${String(f.error).slice(0, 160)})` : ''}`)));
+      .flatMap(([ engine, e ]) => e.status === 'skipped' ?
+        [ `- ${browser} / ${engine}: not run (see Skipped configurations)` ] :
+        e.failures.map((f: any) => `- ${browser} / ${engine} ${f.query}: ${f.outcome}${f.error ? ` (${String(f.error).slice(0, 160)})` : ''}`)));
     if (failures.length > 0) {
       L.push('Not ok:', '', ...failures, '');
     }

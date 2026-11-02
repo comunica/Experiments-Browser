@@ -16,17 +16,22 @@ published next to the timings. Federation, HTTP sources, Solid, updates and Node
 ## Results at a glance
 
 From [`results/2026-11-01-cloud-4vcpu/`](results/2026-11-01-cloud-4vcpu/README.md) (4-vCPU cloud VM; Chromium 153,
-Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetitions). Read the
+Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetitions, LDBC SNB 1). Read the
 [notes](results/2026-11-01-cloud-4vcpu/README.md#notes) before quoting any of this.
 
-- Both engines returned the correct count for all 300 query instances in all three browsers.
-- Per query, Oxigraph is faster on 17 to 20 of the 20 WatDiv templates and 9 to 10 of the 10 BSBM templates; Comunica
-  is 2.1 to 15 times slower in geometric mean (least in Chromium, most in Firefox).
-- WatDiv C3 is the exception: Oxigraph needs 2.0 to 2.6 s at 1.1M triples, Comunica 0.15 to 0.29 s. Because C3 is
-  95 to 99 % of Oxigraph's WatDiv total, Comunica's WatDiv totals are lower; without C3, and on BSBM, Oxigraph's are.
-- Loading takes the same order of time in both (which one is faster depends on browser and dataset); memory after
-  load is lower for Comunica (91 vs 548 MB at 1.1M WatDiv triples); the Oxigraph page transfers 5.4 times more
-  (1,542 vs 285 kB gzipped).
+- **WatDiv and BSBM**: both engines return the correct count for all 300 query instances in all three browsers. Per
+  query, Oxigraph is faster on 17 to 20 of the 20 WatDiv templates and 9 to 10 of the 10 BSBM templates; Comunica is
+  2.2 to 15 times slower in geometric mean (least in Chromium, most in Firefox). WatDiv C3 is the exception (Oxigraph
+  1.9 to 2.4 s at 1.1M triples, Comunica 0.14 to 0.30 s) and, at 95 to 99 % of Oxigraph's WatDiv total, makes
+  Comunica's WatDiv totals lower; without C3, and on BSBM, Oxigraph's are.
+- **LDBC SNB Interactive** (4.0M triples) is much more even: in Chromium, Comunica is faster on 10 of the 21 templates
+  and 2.5 times faster in geometric mean over the instances both answer; in Firefox, Oxigraph leads 12 to 9 and is
+  1.26 times faster. Each engine times out on queries the other answers (Comunica on IC9 and on IS7 for messages
+  without replies, Oxigraph on IC4). In WebKit, Comunica's LDBC run could not be completed: every page grew to 5 to
+  7.6 GB and stopped responding or crashed after a few queries.
+- Loading takes the same order of time in both engines, except Comunica on LDBC SNB in Firefox (200 s against 18 s).
+  Memory after load is lower for Comunica (681 vs 1,557 MB on LDBC SNB in Chromium); the Oxigraph page transfers 5.4
+  times more (1,542 vs 285 kB gzipped).
 
 ## Reproduce
 
@@ -45,7 +50,9 @@ npm run plot           # CSV -> SVG
 - `npm run prepare` builds Comunica at the commit pinned in `package.json` (`config.comunicaCommit`). Set
   `COMUNICA_REF=master` (or any branch, tag or commit) to build another one; the commit that was built is written to
   `.cache/comunica-build.json`, embedded in both pages, and recorded in every raw result and in `meta.json`.
-- `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). Options:
+- `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). The default
+  output directory is named after the current UTC date, so pass `--out results/<dir>` to resume a run on a later day.
+  Options:
   `--browsers`, `--engines`, `--datasets`, `--mode support|timing|all`, `--out`, `--machine` (or `BENCH_MACHINE`),
   `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3),
   `--repeat-overrides` (default `ldbc-snb-0.1=1`: LDBC SNB runs once, as one repetition already takes hours), and
@@ -194,3 +201,6 @@ array results.
   scale 10), for which a matching count proves little; the raw files also carry a checksum.
 - Engine init includes fetching the adapter chunk from a local server, which is near-instant here and would not be on a
   real network.
+- LDBC SNB ran once per configuration (one repetition took about 6 hours over all browsers), so its load and cold
+  times are single samples; its warm times still come from 5 timed rounds. Configurations that cannot be completed on
+  a machine are listed as skipped with the reason, as WebKit + Comunica on LDBC SNB is in the committed run.

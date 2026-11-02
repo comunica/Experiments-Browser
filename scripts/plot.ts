@@ -44,6 +44,8 @@ interface ChartSpec {
   legendExtras?: ('whisker' | 'marker')[];
   markerLabel?: string;
   whiskerLabel?: string;
+  /** Legend text for the cross that marks a missing value. */
+  missingLabel?: string;
 }
 
 const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
@@ -72,7 +74,7 @@ function barChart(spec: ChartSpec): string {
   const groupW = spec.series.length * barW + (spec.series.length - 1) * barGap;
   const left = 72;
   const right = 24;
-  const width = Math.max(720, left + right + spec.groups.length * (groupW + 24));
+  const width = Math.max(720, left + right + spec.groups.length * (groupW + 28));
   // Groups spread over the full plot width.
   const groupGap = (width - left - right) / spec.groups.length - groupW;
   const longest = Math.max(...spec.groups.map(g => g.label.length));
@@ -140,8 +142,9 @@ function barChart(spec: ChartSpec): string {
   }
   if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).value === null))) {
     out.push(`<path d="M${lx + 2} ${ly0 + 3} l6 6 m0 -6 l-6 6" stroke="#898781" stroke-width="1.5" fill="none"/>`);
-    out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">no ok result</text>`);
-    lx += 14 + 'no ok result'.length * 6.4 + 18;
+    const missing = spec.missingLabel ?? 'no ok result';
+    out.push(`<text class="ink2" x="${lx + 14}" y="${ly0 + 10.5}" font-size="12">${esc(missing)}</text>`);
+    lx += 14 + missing.length * 6.4 + 18;
   }
   if (spec.groups.some((_, g) => spec.series.some(si => spec.cells(g, si).note))) {
     out.push(`<text class="ink2" x="${lx}" y="${ly0 + 10.5}" font-size="12">k/n: only k of n instances ok</text>`);
@@ -255,14 +258,18 @@ function main(): void {
     for (const browser of Object.keys(ds.browsers)) {
       const stats = Object.fromEntries(SERIES.map(s => [ s.key, instanceStats(readRaws(dir, dataset, browser, s.key), dataset, 'timing') ]));
       const templates = [ ...new Set(stats[engines[0]].map(s => s.template)) ];
+      // An engine that did not run here (skipped, see meta.json) gets no marks, only a note in the subtitle.
+      const notRun = SERIES.filter(s => engines.includes(s.key) && stats[s.key].every(x => x.outcome === 'skipped'));
+      const chartSeries = series.filter(i => !notRun.includes(SERIES[i]));
       const version = ds.browsers[browser].engines[engines[0]]?.browserVersion ?? '';
       write(join(dir, dataset, `plot_${browser}.svg`), barChart({
         title: `${dataset}: query time in ${browser} ${version}`.trim(),
         subtitle: `Bar: warm mean (${Math.max(...Object.values<any>(ds.browsers[browser].engines).map((e: any) => e.repetitions))} ` +
           `repetition(s) × ${summary.meta?.settings?.rounds ?? 5} timed rounds), averaged over the template's ok instances; ` +
-          `whisker: fastest to slowest instance; circle: cold run (mean over repetitions). Log scale. ${machine}`,
+          `whisker: fastest to slowest instance; circle: cold run (mean over repetitions). Log scale. ${machine}` +
+          notRun.map(s => `. ${s.label}: not completed in this browser, see the results README`).join(''),
         groups: templates.map(t => ({ label: t })),
-        series,
+        series: chartSeries,
         cells: (g, si) => {
           const key = SERIES[si].key;
           const inst = stats[key].filter(s => s.template === templates[g]);
@@ -311,6 +318,7 @@ function main(): void {
       series,
       legendExtras: [ 'whisker' ],
       whiskerLabel: 'range over runs',
+      missingLabel: 'not measured',
       cells: (g, si) => {
         const e = entry(g, si);
         return {
@@ -350,6 +358,7 @@ function main(): void {
         unit: 'MB',
         legendExtras: [ 'whisker' ],
         whiskerLabel: 'range over runs',
+        missingLabel: 'not measured',
       }));
     }
   }
