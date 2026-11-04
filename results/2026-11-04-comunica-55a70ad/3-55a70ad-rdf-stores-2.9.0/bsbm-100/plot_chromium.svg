@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="414" viewBox="0 0 720 414" role="img" aria-label="bsbm-100: query time in chromium 153.0.8010.12">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="414" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">bsbm-100: query time in chromium 153.0.8010.12</text>
+<text class="ink2" x="72" y="46" font-size="12">Bar: warm mean (3 repetition(s) × 5 timed rounds), averaged over the template's ok instances;</text>
+<text class="ink2" x="72" y="62" font-size="12">whisker: fastest to slowest instance; circle: cold run (mean over repetitions). Log scale.</text>
+<text class="ink2" x="72" y="78" font-size="12">cloud-4vcpu</text>
+<rect class="s0" x="72" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="104.5" font-size="12">Comunica</text>
+<rect class="s1" x="159.8" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="176.8" y="104.5" font-size="12">Oxigraph</text>
+<line class="whisker" x1="252.60000000000002" x2="252.60000000000002" y1="93" y2="107" stroke-width="1.5"/>
+<text class="ink2" x="261.6" y="104.5" font-size="12">instance range</text>
+<circle class="surface" cx="374.20000000000005" cy="100" r="3.5" stroke="#898781" stroke-width="1.5"/>
+<text class="ink2" x="383.20000000000005" y="104.5" font-size="12">cold run</text>
+<line class="grid" x1="72" x2="696" y1="386" y2="386" stroke-width="1"/>
+<text class="muted" x="64" y="390" font-size="11" text-anchor="end">0.1 ms</text>
+<line class="grid" x1="72" x2="696" y1="299.33333333333337" y2="299.33333333333337" stroke-width="1"/>
+<text class="muted" x="64" y="303.33333333333337" font-size="11" text-anchor="end">1 ms</text>
+<line class="grid" x1="72" x2="696" y1="212.66666666666669" y2="212.66666666666669" stroke-width="1"/>
+<text class="muted" x="64" y="216.66666666666669" font-size="11" text-anchor="end">10 ms</text>
+<line class="grid" x1="72" x2="696" y1="126" y2="126" stroke-width="1"/>
+<text class="muted" x="64" y="130" font-size="11" text-anchor="end">100 ms</text>
+<line class="axis" x1="72" x2="696" y1="386" y2="386" stroke-width="1"/>
+<g><title>Comunica, Q1: warm 2.15 ms (instances 1.91 ms–2.31 ms), cold 12.1 ms, 5/5 ok</title>
+<rect x="90.2" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M91.2 386 V273.5885834876439 Q91.2 270.5885834876439 94.2 270.5885834876439 H99.2 Q102.2 270.5885834876439 102.2 273.5885834876439 V386 Z"/>
+<line class="whisker" x1="96.7" x2="96.7" y1="274.9968195395094" y2="267.76602130476834" stroke-width="1.5"/>
+<circle class="surface so0" cx="96.7" cy="205.38838882602292" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q1: warm 0.283 ms (instances 0.274 ms–0.293 ms), cold 5.08 ms, 5/5 ok</title>
+<rect x="103.2" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M104.2 386 V349.8540432703711 Q104.2 346.8540432703711 107.2 346.8540432703711 H112.2 Q115.2 346.8540432703711 115.2 349.8540432703711 V386 Z"/>
+<line class="whisker" x1="109.7" x2="109.7" y1="348.0616178943582" y2="345.4953438274695" stroke-width="1.5"/>
+<circle class="surface so1" cx="109.7" cy="238.1535391103037" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="103.2" y="402" font-size="11" text-anchor="middle">Q1</text>
+<g><title>Comunica, Q2: warm 4.38 ms (instances 4.05 ms–5.01 ms), cold 10.7 ms, 5/5 ok</title>
+<rect x="152.6" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M153.6 386 V246.7652725801204 Q153.6 243.7652725801204 156.6 243.7652725801204 H161.6 Q164.6 243.7652725801204 164.6 246.7652725801204 V386 Z"/>
+<line class="whisker" x1="159.1" x2="159.1" y1="246.70582300083333" y2="238.69826424743636" stroke-width="1.5"/>
+<circle class="surface so0" cx="159.1" cy="210.03223392585627" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q2: warm 1.12 ms (instances 0.864 ms–1.3 ms), cold 2.13 ms, 5/5 ok</title>
+<rect x="165.6" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M166.6 386 V298.00732890964673 Q166.6 295.00732890964673 169.6 295.00732890964673 H174.6 Q177.6 295.00732890964673 177.6 298.00732890964673 V386 Z"/>
+<line class="whisker" x1="172.1" x2="172.1" y1="304.83547564923265" y2="289.3811139733759" stroke-width="1.5"/>
+<circle class="surface so1" cx="172.1" cy="270.856101023848" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="165.6" y="402" font-size="11" text-anchor="middle">Q2</text>
+<g><title>Comunica, Q3: warm 3.69 ms (instances 3.39 ms–4.01 ms), cold 10.4 ms, 5/5 ok</title>
+<rect x="215" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M216 386 V253.17133298228796 Q216 250.17133298228796 219 250.17133298228796 H224 Q227 250.17133298228796 227 253.17133298228796 V386 Z"/>
+<line class="whisker" x1="221.5" x2="221.5" y1="253.43824833719933" y2="247.03892616361014" stroke-width="1.5"/>
+<circle class="surface so0" cx="221.5" cy="211.0195275318071" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q3: warm 0.46 ms (instances 0.39 ms–0.57 ms), cold 0.877 ms, 5/5 ok</title>
+<rect x="228" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M229 386 V331.56098792093024 Q229 328.56098792093024 232 328.56098792093024 H237 Q240 328.56098792093024 240 331.56098792093024 V386 Z"/>
+<line class="whisker" x1="234.5" x2="234.5" y1="334.7422445028857" y2="320.4688412501199" stroke-width="1.5"/>
+<circle class="surface so1" cx="234.5" cy="304.25906538031165" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="228" y="402" font-size="11" text-anchor="middle">Q3</text>
+<g><title>Comunica, Q4: warm 2.98 ms (instances 2.52 ms–3.51 ms), cold 4.73 ms, 5/5 ok</title>
+<rect x="277.4" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M278.4 386 V261.22617106272577 Q278.4 258.22617106272577 281.4 258.22617106272577 H286.4 Q289.4 258.22617106272577 289.4 261.22617106272577 V386 Z"/>
+<line class="whisker" x1="283.9" x2="283.9" y1="264.5154262069737" y2="252.0305143792235" stroke-width="1.5"/>
+<circle class="surface so0" cx="283.9" cy="240.8321076812057" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q4: warm 0.44 ms (instances 0.382 ms–0.547 ms), cold 1.03 ms, 5/5 ok</title>
+<rect x="290.4" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M291.4 386 V333.21699668927545 Q291.4 330.21699668927545 294.4 330.21699668927545 H299.4 Q302.4 330.21699668927545 302.4 333.21699668927545 V386 Z"/>
+<line class="whisker" x1="296.9" x2="296.9" y1="335.5873665723643" y2="322.06404190857785" stroke-width="1.5"/>
+<circle class="surface so1" cx="296.9" cy="298.3305615565409" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="290.4" y="402" font-size="11" text-anchor="middle">Q4</text>
+<g><title>Comunica, Q5: warm 7.11 ms (instances 6.52 ms–7.78 ms), cold 12.4 ms, 5/5 ok</title>
+<rect x="339.8" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M340.8 386 V228.52934707291044 Q340.8 225.52934707291044 343.8 225.52934707291044 H348.8 Q351.8 225.52934707291044 351.8 228.52934707291044 V386 Z"/>
+<line class="whisker" x1="346.3" x2="346.3" y1="228.7902322852233" y2="222.13123137997508" stroke-width="1.5"/>
+<circle class="surface so0" cx="346.3" cy="204.5175439044719" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q5: warm 1.02 ms (instances 0.911 ms–1.13 ms), cold 2.13 ms, 5/5 ok</title>
+<rect x="352.8" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M353.8 386 V301.42842018627044 Q353.8 298.42842018627044 356.8 298.42842018627044 H361.8 Q364.8 298.42842018627044 364.8 301.42842018627044 V386 Z"/>
+<line class="whisker" x1="359.3" x2="359.3" y1="302.8417406583897" y2="294.78875708095086" stroke-width="1.5"/>
+<circle class="surface so1" cx="359.3" cy="270.7913940592773" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="352.8" y="402" font-size="11" text-anchor="middle">Q5</text>
+<g><title>Comunica, Q8: warm 4.26 ms (instances 3.93 ms–5.1 ms), cold 7.05 ms, 5/5 ok</title>
+<rect x="402.2" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M403.2 386 V247.77802266635138 Q403.2 244.77802266635138 406.2 244.77802266635138 H411.2 Q414.2 244.77802266635138 414.2 247.77802266635138 V386 Z"/>
+<line class="whisker" x1="408.7" x2="408.7" y1="247.82250487523825" y2="238.02780906952233" stroke-width="1.5"/>
+<circle class="surface so0" cx="408.7" cy="225.8236098605797" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q8: warm 2.75 ms (instances 2.36 ms–3.11 ms), cold 4.66 ms, 5/5 ok</title>
+<rect x="415.2" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M416.2 386 V264.1949262603251 Q416.2 261.1949262603251 419.2 261.1949262603251 H424.2 Q427.2 261.1949262603251 427.2 264.1949262603251 V386 Z"/>
+<line class="whisker" x1="421.7" x2="421.7" y1="266.96647745870604" y2="256.671835059009" stroke-width="1.5"/>
+<circle class="surface so1" cx="421.7" cy="241.37425971568862" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="415.2" y="402" font-size="11" text-anchor="middle">Q8</text>
+<g><title>Comunica, Q9: warm 1.39 ms (instances 1.23 ms–1.55 ms), cold 2.29 ms, 5/5 ok</title>
+<rect x="464.59999999999997" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M465.59999999999997 386 V290.0598618585861 Q465.59999999999997 287.0598618585861 468.59999999999997 287.0598618585861 H473.59999999999997 Q476.59999999999997 287.0598618585861 476.59999999999997 290.0598618585861 V386 Z"/>
+<line class="whisker" x1="471.09999999999997" x2="471.09999999999997" y1="291.56196300274684" y2="282.8136441892766" stroke-width="1.5"/>
+<circle class="surface so0" cx="471.09999999999997" cy="268.07643537998786" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q9: warm 0.264 ms (instances 0.234 ms–0.298 ms), cold 0.489 ms, 5/5 ok</title>
+<rect x="477.59999999999997" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M478.59999999999997 386 V352.52758521084695 Q478.59999999999997 349.52758521084695 481.59999999999997 349.52758521084695 H486.59999999999997 Q489.59999999999997 349.52758521084695 489.59999999999997 352.52758521084695 V386 Z"/>
+<line class="whisker" x1="484.09999999999997" x2="484.09999999999997" y1="354.00129237017137" y2="344.9433823026941" stroke-width="1.5"/>
+<circle class="surface so1" cx="484.09999999999997" cy="326.28556465126985" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="477.59999999999997" y="402" font-size="11" text-anchor="middle">Q9</text>
+<g><title>Comunica, Q10: warm 2.54 ms (instances 2.33 ms–2.77 ms), cold 4.22 ms, 5/5 ok</title>
+<rect x="527" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M528 386 V267.28431448862915 Q528 264.28431448862915 531 264.28431448862915 H536 Q539 264.28431448862915 539 267.28431448862915 V386 Z"/>
+<line class="whisker" x1="533.5" x2="533.5" y1="267.5281420825018" y2="260.98055760991934" stroke-width="1.5"/>
+<circle class="surface so0" cx="533.5" cy="245.10689819680243" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q10: warm 0.4 ms (instances 0.354 ms–0.446 ms), cold 0.621 ms, 5/5 ok</title>
+<rect x="540" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M541 386 V336.8214674194117 Q541 333.8214674194117 544 333.8214674194117 H549 Q552 333.8214674194117 552 336.8214674194117 V386 Z"/>
+<line class="whisker" x1="546.5" x2="546.5" y1="338.38429249067605" y2="329.69619206632115" stroke-width="1.5"/>
+<circle class="surface so1" cx="546.5" cy="317.2856034366486" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="540" y="402" font-size="11" text-anchor="middle">Q10</text>
+<g><title>Comunica, Q11: warm 0.953 ms (instances 0.866 ms–1.14 ms), cold 1.41 ms, 5/5 ok</title>
+<rect x="589.4" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M590.4 386 V304.13211920623627 Q590.4 301.13211920623627 593.4 301.13211920623627 H598.4 Q601.4 301.13211920623627 601.4 304.13211920623627 V386 Z"/>
+<line class="whisker" x1="595.9" x2="595.9" y1="304.7629397748758" y2="294.33560432908354" stroke-width="1.5"/>
+<circle class="surface so0" cx="595.9" cy="286.4722622333885" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q11: warm 0.276 ms (instances 0.248 ms–0.322 ms), cold 0.427 ms, 5/5 ok</title>
+<rect x="602.4" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M603.4 386 V350.81516397123767 Q603.4 347.81516397123767 606.4 347.81516397123767 H611.4 Q614.4 347.81516397123767 614.4 350.81516397123767 V386 Z"/>
+<line class="whisker" x1="608.9" x2="608.9" y1="351.8648115512973" y2="342.02480825838745" stroke-width="1.5"/>
+<circle class="surface so1" cx="608.9" cy="331.39231137343654" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="602.4" y="402" font-size="11" text-anchor="middle">Q11</text>
+<g><title>Comunica, Q12: warm 2.23 ms (instances 2.03 ms–2.44 ms), cold 3.14 ms, 5/5 ok</title>
+<rect x="651.8000000000001" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M652.8000000000001 386 V272.1942011124745 Q652.8000000000001 269.1942011124745 655.8000000000001 269.1942011124745 H660.8000000000001 Q663.8000000000001 269.1942011124745 663.8000000000001 272.1942011124745 V386 Z"/>
+<line class="whisker" x1="658.3000000000001" x2="658.3000000000001" y1="272.6219230414376" y2="265.8316041928576" stroke-width="1.5"/>
+<circle class="surface so0" cx="658.3000000000001" cy="256.2820830887949" r="3.5" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, Q12: warm 0.534 ms (instances 0.485 ms–0.614 ms), cold 0.989 ms, 5/5 ok</title>
+<rect x="664.8000000000001" y="126" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M665.8000000000001 386 V325.941725700838 Q665.8000000000001 322.941725700838 668.8000000000001 322.941725700838 H673.8000000000001 Q676.8000000000001 322.941725700838 676.8000000000001 325.941725700838 V386 Z"/>
+<line class="whisker" x1="671.3000000000001" x2="671.3000000000001" y1="326.5431895763476" y2="317.7125137383848" stroke-width="1.5"/>
+<circle class="surface so1" cx="671.3000000000001" cy="299.73697103799066" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="664.8000000000001" y="402" font-size="11" text-anchor="middle">Q12</text>
+</svg>

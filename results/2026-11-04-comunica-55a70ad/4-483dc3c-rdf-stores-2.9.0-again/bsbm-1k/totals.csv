@@ -1,0 +1,4 @@
+browser;engine;ok;wrong;unsupported;timeout;error;oom;total_warm_ms;total_cold_ms;common_ok;common_warm_ms;common_cold_ms;common_geomean_warm_ms
+chromium;comunica;50;0;0;0;0;0;206.93;424.53;50;206.93;424.53;3.005
+firefox;comunica;50;0;0;0;0;0;931.93;1278.55;50;931.93;1278.55;11.305
+webkit;comunica;50;0;0;0;0;0;269.97;646.17;50;269.97;646.17;3.928
