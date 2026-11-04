@@ -49,6 +49,7 @@ npm run bench          # support pass, timing runs, Oxigraph breakdown -> result
 npm run aggregate      # raw JSON -> CSVs, totals, support matrix, results README tables
 npm run plot           # CSV -> SVG (includes the plot:split charts)
 npm run plot:split     # only Oxigraph's time split into evaluation and WASM -> JS transfer
+npm run compare -- results/<A>[,results/<A2>] results/<B>   # before/after comparison of two runs
 ```
 
 - Linux needs the browsers' system libraries once: `npx playwright install-deps chromium firefox webkit`.
@@ -64,6 +65,13 @@ npm run plot:split     # only Oxigraph's time split into evaluation and WASM -> 
   `--skip 'browser/engine/dataset=reason;…'` for configurations that cannot run on a machine (recorded in `meta.json`).
 - `--queries 'dataset=Q1,Q2'` runs a subset of a dataset's queries (raw files get a `-subset` suffix, and a complete run
   of the dataset takes precedence in the aggregation).
+- To measure a Comunica change, build each commit once (`COMUNICA_REF=<commit> npm run prepare && npm run build`), keep
+  a copy of `dist/` per commit, and run the passes back to back by swapping `dist/` and `.cache/comunica-build.json`,
+  so no build runs during a timed pass; every raw file records the commit embedded in its page. `npm run compare`
+  reports per dataset, browser and engine the median over repetitions of the totals and the geometric mean of the
+  per-instance ratios. Run the baseline twice (passes before and after the change) and keep Oxigraph in the runs: the
+  differences between the two baseline passes, and Oxigraph's, show the noise between passes. Example:
+  [`results/2026-11-04-comunica-483dc3c-vs-e06d02e.md`](results/2026-11-04-comunica-483dc3c-vs-e06d02e.md).
 - `npm install <package>` removes the linked Comunica packages from `node_modules`; run `npm run prepare` again (the
   build refuses to run without them).
 - Regenerating the datasets is not part of the pipeline (they are committed); see [`data/README.md`](data/README.md).
@@ -219,6 +227,7 @@ scripts/prepare.mjs       build and link Comunica, fetch release assets, install
 scripts/bundle-sizes.ts   bundle sizes from the Vite manifest
 scripts/aggregate.ts      raw JSON -> CSVs (Experiments-Centralized column shape), totals, support matrix, README tables
 scripts/plot.ts           SVG charts (+ plot-split.ts: evaluation vs transfer, plot-common.ts)
+scripts/compare.ts        before/after comparison of the timing runs of two results directories
 scripts/generate-data.sh  dataset generation with jbr (+ capture-bsbm-queries.mjs, split-ldbc-queries.mjs)
 scripts/diagnostics/      one-off checks cited in the results notes (not part of the pipeline)
 data/<dataset>/           dataset.nt.gz, queries/*.sparql, reference.json, generation.json
