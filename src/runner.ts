@@ -538,6 +538,15 @@ async function main(): Promise<void> {
               const result = await runConfiguration(server.url, mode, browserName, engine, dataset);
               result.repetition = once ? 1 : repetition;
               meta.browsers[browserName] = (result.browser as { version: string }).version;
+              // What the page was built from (dist/ may be a saved build), rather than what node_modules holds now.
+              const build = result.build as Record<string, any> | undefined;
+              if (build?.comunica) {
+                if (meta.comunica?.commit && meta.comunica.commit !== build.comunica.commit) {
+                  console.warn(`warning: ${name} ran Comunica ${build.comunica.commit}, earlier files in ${OUT} ran ${meta.comunica.commit}`);
+                }
+                meta.comunica = build.comunica;
+                Object.assign(meta.versions, { oxigraph: build.oxigraph, n3: build.n3, rdfStores: build.rdfStores, vite: build.vite });
+              }
               meta.runs.push({ file: `raw/${name}`, status: result.status, startedAt: result.startedAt, finishedAt: result.finishedAt });
               writeFileSync(file, `${JSON.stringify(result, null, 1)}\n`);
               meta.updatedAt = new Date().toISOString();
