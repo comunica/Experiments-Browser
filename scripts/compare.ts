@@ -6,7 +6,8 @@
 // Below 1 (negative %) means B is faster. Templates that changed most and outcome changes are listed below the table.
 // --from-round N uses only timed rounds N and later, to check whether the result depends on JIT warm-up still going on
 // in the first timed rounds.
-// Usage: npm run compare -- results/<A>[,results/<A2>] results/<B> [--engines comunica] [--from-round 1] [--out file.md]
+// Usage: npm run compare -- results/<A>[,results/<A2>] results/<B> [--engines comunica] [--browsers chromium,node26]
+//   [--from-round 1] [--out file.md]
 //   [--csv file.csv]
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -22,6 +23,8 @@ const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     engines: { type: 'string' },
+    // Environments to compare: browsers, or Node runs of npm run bench:node (node22, node24, node26, …).
+    browsers: { type: 'string' },
     out: { type: 'string' },
     csv: { type: 'string' },
     top: { type: 'string', default: '3' },
@@ -33,6 +36,7 @@ if (positionals.length !== 2) {
 }
 const [ dirsA, dirsB ] = positionals.map(p => p.split(',').map(d => resolve(d)));
 const engines = values.engines?.split(',') ?? ENGINES;
+const browsers = values.browsers?.split(',') ?? BROWSERS;
 const top = Number(values.top);
 const fromRound = Number(values['from-round']);
 
@@ -54,7 +58,7 @@ const L: string[] = [
 const csv: (string | number)[][] = [];
 const details: string[] = [];
 for (const dataset of DATASETS) {
-  for (const browser of BROWSERS) {
+  for (const browser of browsers) {
     for (const engine of engines) {
       const a = repetitions(dirsA, dataset, browser, engine);
       const b = repetitions(dirsB, dataset, browser, engine);
