@@ -1,0 +1,86 @@
+watdiv-10, 90 queries (C1 F1 F2 F3 F4 F5 L1 L2 L3 L4 L5 S1 S2 S3 S4 S5 S6 S7), 10 warm-up rounds, 30 profiled rounds, median round 292.4 ms, Node v26.13.0 (V8 14.6.202.34-node.40), Comunica ad0fc15
+Total sampled: 9084 ms
+
+Self time per function:
+  8.9 %  (garbage collector)  (native or V8)
+  5.3 %  MurmurHash3.hash  imurmurhash:37
+  4.1 %  (program)  (native or V8)
+  3.7 %  compare  rdf-stores:68
+  2.2 %  (idle)  (native or V8)
+  2.2 %  label  rdf-stores:109
+  1.9 %  (anonymous)  @comunica/actor-optimize-query-operation-query-source-skolemize:242
+  1.8 %  prepareBindings  rdf-stores:509
+  1.7 %  enqueueMicrotask  (native or V8)
+  1.7 %  hashFunction  @comunica/actor-hash-bindings-murmur:17
+  1.6 %  update  immutable:2580
+  1.5 %  bindings  @comunica/utils-bindings-factory:19
+  1.4 %  __iterate  immutable:562
+  1.2 %  updateMap  immutable:3006
+  1.2 %  bindOperation  @comunica/actor-rdf-join-inner-multi-index-nested-loop:115
+  1.1 %  emit  node internals:489
+  1.0 %  publish  @comunica/core:48
+  1.0 %  mediateWith  @comunica/mediator-join-coefficients-fixed:22
+  1.0 %  set readable  asynciterator:227
+  1.0 %  is  immutable:2086
+  1.0 %  materializeTerm  @comunica/utils-query-operation:21
+  1.0 %  decode  rdf-stores:33
+  0.9 %  get done  asynciterator:267
+  0.9 %  nextMatch  rdf-stores:263
+  0.8 %  updateNode  immutable:3043
+  0.8 %  queryBindingsSynchronous  @comunica/actor-optimize-query-operation-query-source-skolemize:61
+  0.8 %  isCollection  immutable:105
+  0.8 %  __iterate  immutable:1160
+  0.7 %  MurmurHash3  imurmurhash:21
+  0.7 %  queueMicrotask  node internals:167
+  0.6 %  read  rdf-stores:43
+  0.6 %  seekKey  rdf-stores:147
+  0.6 %  queryBindingsSynchronous  @comunica/actor-query-source-identify-rdfjs:261
+  0.6 %  encodeOptional  rdf-stores:29
+  0.6 %  _findSlot  asyncjoin:79
+  0.5 %  someTermsNested  rdf-terms:418
+  0.5 %  _push  asynciterator:973
+  0.5 %  _growSlots  asyncjoin:96
+  0.5 %  (anonymous)  rdf-terms:29
+  0.5 %  get  immutable:2570
+
+Inclusive time per package (samples with the package anywhere on the stack):
+100.0 %  (native or V8)
+ 57.4 %  asynciterator
+ 41.2 %  node internals
+ 27.0 %  @comunica/actor-rdf-join-inner-multi-index-nested-loop
+ 26.4 %  rdf-stores
+ 20.3 %  @comunica/actor-optimize-query-operation-query-source-skolemize
+ 19.4 %  asyncjoin
+ 19.1 %  @comunica/actor-query-source-identify-rdfjs
+ 16.1 %  @comunica/core
+ 15.7 %  @comunica/utils-bindings-factory
+ 13.3 %  immutable
+  8.5 %  @comunica/actor-rdf-join-inner-hash
+  8.3 %  @comunica/actor-hash-bindings-murmur
+  6.1 %  imurmurhash
+  5.6 %  @comunica/bus-rdf-join
+  4.9 %  @comunica/mediator-combine-pipeline
+  4.1 %  @comunica/actor-query-operation-source
+  3.0 %  rdf-terms
+  2.9 %  @traqula/core
+  2.5 %  @comunica/utils-query-operation
+  1.7 %  @comunica/actor-rdf-join-inner-multi-bind
+  1.6 %  @comunica/utils-algebra
+  1.6 %  benchmark adapter
+  1.4 %  @comunica/mediator-join-coefficients-fixed
+  1.3 %  @comunica/actor-query-process-sequential
+  1.2 %  @comunica/actor-query-operation-join
+  1.1 %  @comunica/mediator-combine-union
+  1.1 %  @comunica/actor-optimize-query-operation-join-connected
+  1.0 %  @comunica/actor-query-parse-sparql
+  1.0 %  @comunica/actor-query-operation-project
+  0.9 %  @comunica/actor-optimize-query-operation-group-sources
+  0.8 %  @comunica/actor-rdf-join-selectivity-variable-counting
+  0.7 %  @comunica/actor-optimize-query-operation-assign-sources-exhaustive
+  0.7 %  @comunica/actor-rdf-join-inner-multi-bind-source
+  0.7 %  @comunica/mediator-number
+  0.6 %  scripts/profile-comunica.ts
+  0.6 %  @comunica/actor-init-query
+  0.6 %  @comunica/bus-query-source-identify
+  0.6 %  @comunica/actor-rdf-join-inner-multi-smallest
+  0.6 %  @comunica/actor-optimize-query-operation-query-source-identify
