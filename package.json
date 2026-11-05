@@ -19,6 +19,7 @@
     "plot": "tsx scripts/plot.ts",
     "plot:split": "tsx scripts/plot-split.ts",
     "plot:warmup": "tsx scripts/plot-warmup.ts",
+    "profile:comunica": "tsx scripts/profile-comunica.ts",
     "compare": "tsx scripts/compare.ts",
     "typecheck": "tsc -p tsconfig.check.json"
   },
