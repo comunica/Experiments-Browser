@@ -1,0 +1,1288 @@
+{
+ "schema": 1,
+ "benchmarkRepository": {
+  "commit": "527f40dd997c9c6ecf7379106acd7dffb6d36482",
+  "dirty": false
+ },
+ "mode": "support",
+ "dataset": "watdiv-1",
+ "browser": {
+  "name": "chromium",
+  "version": "153.0.8010.12"
+ },
+ "engine": {
+  "name": "comunica",
+  "page": "comunica.html"
+ },
+ "build": {
+  "builtAt": "2026-11-05T08:11:57.494Z",
+  "comunica": {
+   "repository": "https://github.com/comunica/comunica",
+   "ref": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+   "commit": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+   "commitDate": "2026-11-05T08:43:20+01:00",
+   "commitSubject": "Run union annotation optimizer after path rewriter (#1949)",
+   "packageVersion": "5.4.1",
+   "dirty": false
+  },
+  "oxigraph": "0.5.13",
+  "n3": "2.13.12",
+  "rdfStores": "2.9.0",
+  "vite": "8.3.5"
+ },
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+ "machine": "cloud-4vcpu",
+ "startedAt": "2026-11-05T08:12:11.347Z",
+ "finishedAt": "2026-11-05T08:12:13.746Z",
+ "settings": {
+  "timeoutMs": 60000,
+  "graceMs": 30000,
+  "warmupRounds": 10,
+  "rounds": 5
+ },
+ "status": "complete",
+ "load": {
+  "fetchMs": 6.540000000037253,
+  "inflateMs": 39.80499999970198,
+  "importMs": 88.17999999970198,
+  "initMs": 96.2050000000745,
+  "parseMs": 339.37999999988824,
+  "ingestMs": 0,
+  "loadMs": 339.37999999988824,
+  "quads": 105499,
+  "ntBytes": 15266371,
+  "gzBytes": 645960,
+  "details": {
+   "n3ParseMs": 160.07000000029802,
+   "storeBuildMs": 179.30999999959022,
+   "chunks": 1
+  }
+ },
+ "memory": {
+  "method": "measureUserAgentSpecificMemory",
+  "bytes": 17110527,
+  "wasmBytes": null,
+  "usedJSHeapSize": 16029293,
+  "breakdown": [
+   {
+    "attribution": [],
+    "bytes": 334785,
+    "types": [
+     "Shared"
+    ]
+   },
+   {
+    "attribution": [],
+    "bytes": 0,
+    "types": []
+   },
+   {
+    "attribution": [],
+    "bytes": 26856,
+    "types": [
+     "DOM"
+    ]
+   },
+   {
+    "attribution": [
+     {
+      "scope": "Window",
+      "url": "http://127.0.0.1:35463/comunica.html"
+     }
+    ],
+    "bytes": 16748886,
+    "types": [
+     "JavaScript"
+    ]
+   }
+  ],
+  "cdpHeapUsedBytes": 8854072,
+  "cdpHeapTotalBytes": 58241024
+ },
+ "attempts": [
+  {
+   "status": "done",
+   "build": {
+    "builtAt": "2026-11-05T08:11:57.494Z",
+    "comunica": {
+     "repository": "https://github.com/comunica/comunica",
+     "ref": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+     "commit": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+     "commitDate": "2026-11-05T08:43:20+01:00",
+     "commitSubject": "Run union annotation optimizer after path rewriter (#1949)",
+     "packageVersion": "5.4.1",
+     "dirty": false
+    },
+    "oxigraph": "0.5.13",
+    "n3": "2.13.12",
+    "rdfStores": "2.9.0",
+    "vite": "8.3.5"
+   },
+   "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+   "crossOriginIsolated": true,
+   "load": {
+    "fetchMs": 6.540000000037253,
+    "inflateMs": 39.80499999970198,
+    "importMs": 88.17999999970198,
+    "initMs": 96.2050000000745,
+    "parseMs": 339.37999999988824,
+    "ingestMs": 0,
+    "loadMs": 339.37999999988824,
+    "quads": 105499,
+    "ntBytes": 15266371,
+    "gzBytes": 645960,
+    "details": {
+     "n3ParseMs": 160.07000000029802,
+     "storeBuildMs": 179.30999999959022,
+     "chunks": 1
+    }
+   },
+   "memory": {
+    "method": "measureUserAgentSpecificMemory",
+    "bytes": 17110527,
+    "wasmBytes": null,
+    "usedJSHeapSize": 16029293,
+    "breakdown": [
+     {
+      "attribution": [],
+      "bytes": 334785,
+      "types": [
+       "Shared"
+      ]
+     },
+     {
+      "attribution": [],
+      "bytes": 0,
+      "types": []
+     },
+     {
+      "attribution": [],
+      "bytes": 26856,
+      "types": [
+       "DOM"
+      ]
+     },
+     {
+      "attribution": [
+       {
+        "scope": "Window",
+        "url": "http://127.0.0.1:35463/comunica.html"
+       }
+      ],
+      "bytes": 16748886,
+      "types": [
+       "JavaScript"
+      ]
+     }
+    ],
+    "cdpHeapUsedBytes": 8854072,
+    "cdpHeapTotalBytes": 58241024
+   },
+   "steps": 100,
+   "executions": 100
+  }
+ ],
+ "executions": [
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C1-1",
+   "outcome": "ok",
+   "ms": 50.77500000037253,
+   "count": 2,
+   "expected": 2,
+   "checksum": 360,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C1-2",
+   "outcome": "ok",
+   "ms": 10.400000000372529,
+   "count": 2,
+   "expected": 2,
+   "checksum": 360,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C1-3",
+   "outcome": "ok",
+   "ms": 10.245000000111759,
+   "count": 2,
+   "expected": 2,
+   "checksum": 360,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C1-4",
+   "outcome": "ok",
+   "ms": 6.684999999590218,
+   "count": 2,
+   "expected": 2,
+   "checksum": 360,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C1-5",
+   "outcome": "ok",
+   "ms": 7.464999999850988,
+   "count": 2,
+   "expected": 2,
+   "checksum": 360,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C2-1",
+   "outcome": "ok",
+   "ms": 10.104999999515712,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C2-2",
+   "outcome": "ok",
+   "ms": 5.120000000111759,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C2-3",
+   "outcome": "ok",
+   "ms": 4.490000000223517,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C2-4",
+   "outcome": "ok",
+   "ms": 4.669999999925494,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C2-5",
+   "outcome": "ok",
+   "ms": 4.375,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C3-1",
+   "outcome": "ok",
+   "ms": 69.52000000048429,
+   "count": 4205,
+   "expected": 4205,
+   "checksum": 180435,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C3-2",
+   "outcome": "ok",
+   "ms": 23.014999999664724,
+   "count": 4205,
+   "expected": 4205,
+   "checksum": 180435,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C3-3",
+   "outcome": "ok",
+   "ms": 28.040000000037253,
+   "count": 4205,
+   "expected": 4205,
+   "checksum": 180435,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C3-4",
+   "outcome": "ok",
+   "ms": 20.575000000186265,
+   "count": 4205,
+   "expected": 4205,
+   "checksum": 180435,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "C3-5",
+   "outcome": "ok",
+   "ms": 16.640000000596046,
+   "count": 4205,
+   "expected": 4205,
+   "checksum": 180435,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F1-1",
+   "outcome": "ok",
+   "ms": 3.1450000004842877,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F1-2",
+   "outcome": "ok",
+   "ms": 2.389999999664724,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F1-3",
+   "outcome": "ok",
+   "ms": 1.940000000409782,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F1-4",
+   "outcome": "ok",
+   "ms": 2.040000000037253,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F1-5",
+   "outcome": "ok",
+   "ms": 2.080000000074506,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F2-1",
+   "outcome": "ok",
+   "ms": 2.4950000001117587,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F2-2",
+   "outcome": "ok",
+   "ms": 2.0949999997392297,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F2-3",
+   "outcome": "ok",
+   "ms": 2.2800000002607703,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F2-4",
+   "outcome": "ok",
+   "ms": 2.440000000409782,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F2-5",
+   "outcome": "ok",
+   "ms": 2.784999999217689,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F3-1",
+   "outcome": "ok",
+   "ms": 3.224999999627471,
+   "count": 1,
+   "expected": 1,
+   "checksum": 152,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F3-2",
+   "outcome": "ok",
+   "ms": 1.7200000006705523,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F3-3",
+   "outcome": "ok",
+   "ms": 2.2400000002235174,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F3-4",
+   "outcome": "ok",
+   "ms": 1.684999999590218,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F3-5",
+   "outcome": "ok",
+   "ms": 2.0300000002607703,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F4-1",
+   "outcome": "ok",
+   "ms": 2.4450000002980232,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F4-2",
+   "outcome": "ok",
+   "ms": 2.8599999994039536,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F4-3",
+   "outcome": "ok",
+   "ms": 3.4900000002235174,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F4-4",
+   "outcome": "ok",
+   "ms": 2.3849999997764826,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F4-5",
+   "outcome": "ok",
+   "ms": 2.014999999664724,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F5-1",
+   "outcome": "ok",
+   "ms": 4.209999999962747,
+   "count": 26,
+   "expected": 26,
+   "checksum": 7171,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F5-2",
+   "outcome": "ok",
+   "ms": 4.134999999776483,
+   "count": 24,
+   "expected": 24,
+   "checksum": 6715,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F5-3",
+   "outcome": "ok",
+   "ms": 3.7349999994039536,
+   "count": 26,
+   "expected": 26,
+   "checksum": 7171,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F5-4",
+   "outcome": "ok",
+   "ms": 3.4699999997392297,
+   "count": 17,
+   "expected": 17,
+   "checksum": 4733,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "F5-5",
+   "outcome": "ok",
+   "ms": 4.135000000707805,
+   "count": 24,
+   "expected": 24,
+   "checksum": 6715,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L1-1",
+   "outcome": "ok",
+   "ms": 2.199999999254942,
+   "count": 2,
+   "expected": 2,
+   "checksum": 500,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L1-2",
+   "outcome": "ok",
+   "ms": 2.4050000002607703,
+   "count": 3,
+   "expected": 3,
+   "checksum": 752,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L1-3",
+   "outcome": "ok",
+   "ms": 2.2850000001490116,
+   "count": 2,
+   "expected": 2,
+   "checksum": 333,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L1-4",
+   "outcome": "ok",
+   "ms": 2.0550000006332994,
+   "count": 4,
+   "expected": 4,
+   "checksum": 811,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L1-5",
+   "outcome": "ok",
+   "ms": 2.2199999997392297,
+   "count": 7,
+   "expected": 7,
+   "checksum": 1368,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L2-1",
+   "outcome": "ok",
+   "ms": 2.3049999997019768,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L2-2",
+   "outcome": "ok",
+   "ms": 2.169999999925494,
+   "count": 3,
+   "expected": 3,
+   "checksum": 261,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L2-3",
+   "outcome": "ok",
+   "ms": 1.9050000002607703,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L2-4",
+   "outcome": "ok",
+   "ms": 2.1800000006332994,
+   "count": 1,
+   "expected": 1,
+   "checksum": 87,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L2-5",
+   "outcome": "ok",
+   "ms": 2.019999999552965,
+   "count": 2,
+   "expected": 2,
+   "checksum": 174,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L3-1",
+   "outcome": "ok",
+   "ms": 3.610000000335276,
+   "count": 13,
+   "expected": 13,
+   "checksum": 1140,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L3-2",
+   "outcome": "ok",
+   "ms": 2.3049999997019768,
+   "count": 25,
+   "expected": 25,
+   "checksum": 2194,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L3-3",
+   "outcome": "ok",
+   "ms": 2.1349999997764826,
+   "count": 39,
+   "expected": 39,
+   "checksum": 3433,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L3-4",
+   "outcome": "ok",
+   "ms": 2.334999999962747,
+   "count": 25,
+   "expected": 25,
+   "checksum": 2194,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L3-5",
+   "outcome": "ok",
+   "ms": 1.9550000000745058,
+   "count": 13,
+   "expected": 13,
+   "checksum": 1140,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L4-1",
+   "outcome": "ok",
+   "ms": 1.8399999998509884,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L4-2",
+   "outcome": "ok",
+   "ms": 1.6749999998137355,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L4-3",
+   "outcome": "ok",
+   "ms": 1.5499999998137355,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L4-4",
+   "outcome": "ok",
+   "ms": 1.9300000006332994,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L4-5",
+   "outcome": "ok",
+   "ms": 1.7000000001862645,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L5-1",
+   "outcome": "ok",
+   "ms": 1.7450000001117587,
+   "count": 2,
+   "expected": 2,
+   "checksum": 494,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L5-2",
+   "outcome": "ok",
+   "ms": 2.165000000037253,
+   "count": 2,
+   "expected": 2,
+   "checksum": 373,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L5-3",
+   "outcome": "ok",
+   "ms": 1.6950000002980232,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L5-4",
+   "outcome": "ok",
+   "ms": 1.5099999997764826,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "L5-5",
+   "outcome": "ok",
+   "ms": 1.8649999992921948,
+   "count": 2,
+   "expected": 2,
+   "checksum": 329,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S1-1",
+   "outcome": "ok",
+   "ms": 3.860000000335276,
+   "count": 3,
+   "expected": 3,
+   "checksum": 528,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S1-2",
+   "outcome": "ok",
+   "ms": 2.8849999997764826,
+   "count": 20,
+   "expected": 20,
+   "checksum": 3512,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S1-3",
+   "outcome": "ok",
+   "ms": 2.505000000819564,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S1-4",
+   "outcome": "ok",
+   "ms": 2.0350000001490116,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S1-5",
+   "outcome": "ok",
+   "ms": 2.2450000001117587,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S2-1",
+   "outcome": "ok",
+   "ms": 2.0150000005960464,
+   "count": 1,
+   "expected": 1,
+   "checksum": 128,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S2-2",
+   "outcome": "ok",
+   "ms": 1.934999999590218,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S2-3",
+   "outcome": "ok",
+   "ms": 1.6200000001117587,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S2-4",
+   "outcome": "ok",
+   "ms": 1.209999999962747,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S2-5",
+   "outcome": "ok",
+   "ms": 1.5099999997764826,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S3-1",
+   "outcome": "ok",
+   "ms": 1.7599999997764826,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S3-2",
+   "outcome": "ok",
+   "ms": 2.084999999962747,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S3-3",
+   "outcome": "ok",
+   "ms": 2.0549999997019768,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S3-4",
+   "outcome": "ok",
+   "ms": 1.8650000002235174,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S3-5",
+   "outcome": "ok",
+   "ms": 1.650000000372529,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S4-1",
+   "outcome": "ok",
+   "ms": 3.525000000372529,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S4-2",
+   "outcome": "ok",
+   "ms": 2.5299999993294477,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S4-3",
+   "outcome": "ok",
+   "ms": 2.0949999997392297,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S4-4",
+   "outcome": "ok",
+   "ms": 1.934999999590218,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S4-5",
+   "outcome": "ok",
+   "ms": 2.544999999925494,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S5-1",
+   "outcome": "ok",
+   "ms": 2.0499999998137355,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S5-2",
+   "outcome": "ok",
+   "ms": 2.025000000372529,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S5-3",
+   "outcome": "ok",
+   "ms": 1.7800000002607703,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S5-4",
+   "outcome": "ok",
+   "ms": 1.7699999995529652,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S5-5",
+   "outcome": "ok",
+   "ms": 1.875,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S6-1",
+   "outcome": "ok",
+   "ms": 1.8149999994784594,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S6-2",
+   "outcome": "ok",
+   "ms": 2.190000000409782,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S6-3",
+   "outcome": "ok",
+   "ms": 1.5949999997392297,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S6-4",
+   "outcome": "ok",
+   "ms": 1.290000000037253,
+   "count": 1,
+   "expected": 1,
+   "checksum": 141,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S6-5",
+   "outcome": "ok",
+   "ms": 1.1749999998137355,
+   "count": 1,
+   "expected": 1,
+   "checksum": 141,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S7-1",
+   "outcome": "ok",
+   "ms": 1.599999999627471,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S7-2",
+   "outcome": "ok",
+   "ms": 1.309999999590218,
+   "count": 5,
+   "expected": 5,
+   "checksum": 789,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S7-3",
+   "outcome": "ok",
+   "ms": 1.5350000001490116,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S7-4",
+   "outcome": "ok",
+   "ms": 1.6349999997764826,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "S7-5",
+   "outcome": "ok",
+   "ms": 1.190000000409782,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  }
+ ],
+ "repetition": 1
+}

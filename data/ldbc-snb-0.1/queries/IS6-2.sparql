@@ -1,0 +1,18 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sn: <http://www.ldbc.eu/ldbc_socialnet/1.0/data/>
+PREFIX snvoc: <http://www.ldbc.eu/ldbc_socialnet/1.0/vocabulary/>
+SELECT ?forumId ?forumTitle ?moderatorId ?moderatorFirstName ?moderatorLastName WHERE {
+  sn:post00000001030792365929 snvoc:id ?messageId.
+  OPTIONAL {
+    sn:post00000001030792365929 (snvoc:replyOf*) ?originalPostInner.
+    ?originalPostInner rdf:type snvoc:Post.
+  }
+  BIND(COALESCE(?originalPostInner, sn:post00000001030792365929) AS ?originalPost)
+  ?forum snvoc:containerOf ?originalPost;
+    snvoc:id ?forumId;
+    snvoc:title ?forumTitle;
+    snvoc:hasModerator ?moderator.
+  ?moderator snvoc:id ?moderatorId;
+    snvoc:firstName ?moderatorFirstName;
+    snvoc:lastName ?moderatorLastName.
+}

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="382" viewBox="0 0 720 382" role="img" aria-label="Bundle size per engine page">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="382" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">Bundle size per engine page</text>
+<text class="ink2" x="72" y="46" font-size="12">Everything the page loads: harness, adapter, engine JS and WASM. gzip level 9. 1 kB = 1000 bytes.</text>
+<rect class="s0" x="72" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="72.5" font-size="12">Comunica</text>
+<rect class="s1" x="159.8" y="62" width="12" height="12" rx="3"/>
+<text class="ink2" x="176.8" y="72.5" font-size="12">Oxigraph</text>
+<line class="grid" x1="72" x2="696" y1="354" y2="354" stroke-width="1"/>
+<text class="muted" x="64" y="358" font-size="11" text-anchor="end">0 kB</text>
+<line class="grid" x1="72" x2="696" y1="302" y2="302" stroke-width="1"/>
+<text class="muted" x="64" y="306" font-size="11" text-anchor="end">1,000 kB</text>
+<line class="grid" x1="72" x2="696" y1="250" y2="250" stroke-width="1"/>
+<text class="muted" x="64" y="254" font-size="11" text-anchor="end">2,000 kB</text>
+<line class="grid" x1="72" x2="696" y1="198" y2="198" stroke-width="1"/>
+<text class="muted" x="64" y="202" font-size="11" text-anchor="end">3,000 kB</text>
+<line class="grid" x1="72" x2="696" y1="146" y2="146" stroke-width="1"/>
+<text class="muted" x="64" y="150" font-size="11" text-anchor="end">4,000 kB</text>
+<line class="grid" x1="72" x2="696" y1="94" y2="94" stroke-width="1"/>
+<text class="muted" x="64" y="98" font-size="11" text-anchor="end">5,000 kB</text>
+<line class="axis" x1="72" x2="696" y1="354" y2="354" stroke-width="1"/>
+<g><title>Comunica, JS raw: 1,319 kB</title>
+<rect x="111" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M112 354 V288.395152 Q112 285.395152 115 285.395152 H120 Q123 285.395152 123 288.395152 V354 Z"/>
+</g>
+<g><title>Oxigraph, JS raw: 28.1 kB</title>
+<rect x="124" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M125 354 V353.269504 Q125 352.539008 125.73049599999999 352.539008 H135.269504 Q136 352.539008 136 353.269504 V354 Z"/>
+</g>
+<text class="ink2" x="124" y="370" font-size="11" text-anchor="middle">JS raw</text>
+<g><title>Comunica, JS gzip: 285.5 kB</title>
+<rect x="215" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M216 354 V342.1527 Q216 339.1527 219 339.1527 H224 Q227 339.1527 227 342.1527 V354 Z"/>
+</g>
+<g><title>Oxigraph, JS gzip: 8.678 kB</title>
+<rect x="228" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M229 354 V353.77437199999997 Q229 353.548744 229.225628 353.548744 H239.774372 Q240 353.548744 240 353.77437199999997 V354 Z"/>
+</g>
+<text class="ink2" x="228" y="370" font-size="11" text-anchor="middle">JS gzip</text>
+<g><title>Comunica, WASM raw: 0 kB</title>
+<rect x="319" y="94" width="13" height="260" fill="transparent"/>
+</g>
+<g><title>Oxigraph, WASM raw: 4,325 kB</title>
+<rect x="332" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M333 354 V132.10416 Q333 129.10416 336 129.10416 H341 Q344 129.10416 344 132.10416 V354 Z"/>
+</g>
+<text class="ink2" x="332" y="370" font-size="11" text-anchor="middle">WASM raw</text>
+<g><title>Comunica, WASM gzip: 0 kB</title>
+<rect x="423" y="94" width="13" height="260" fill="transparent"/>
+</g>
+<g><title>Oxigraph, WASM gzip: 1,534 kB</title>
+<rect x="436" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M437 354 V277.245312 Q437 274.245312 440 274.245312 H445 Q448 274.245312 448 277.245312 V354 Z"/>
+</g>
+<text class="ink2" x="436" y="370" font-size="11" text-anchor="middle">WASM gzip</text>
+<g><title>Comunica, total raw: 1,319 kB</title>
+<rect x="527" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M528 354 V288.395152 Q528 285.395152 531 285.395152 H536 Q539 285.395152 539 288.395152 V354 Z"/>
+</g>
+<g><title>Oxigraph, total raw: 4,353 kB</title>
+<rect x="540" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M541 354 V130.64316800000003 Q541 127.64316800000003 544 127.64316800000003 H549 Q552 127.64316800000003 552 130.64316800000003 V354 Z"/>
+</g>
+<text class="ink2" x="540" y="370" font-size="11" text-anchor="middle">total raw</text>
+<g><title>Comunica, total gzip: 285.5 kB</title>
+<rect x="631" y="94" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M632 354 V342.1527 Q632 339.1527 635 339.1527 H640 Q643 339.1527 643 342.1527 V354 Z"/>
+</g>
+<g><title>Oxigraph, total gzip: 1,542 kB</title>
+<rect x="644" y="94" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M645 354 V276.794056 Q645 273.794056 648 273.794056 H653 Q656 273.794056 656 276.794056 V354 Z"/>
+</g>
+<text class="ink2" x="644" y="370" font-size="11" text-anchor="middle">total gzip</text>
+</svg>

@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="630" viewBox="0 0 960 630" role="img" aria-label="watdiv-1: Oxigraph evaluation against WASM → JS transfer, chromium 153.0.8010.12">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; } .s1 { fill: #1baf7a; } .so1 { stroke: #1baf7a; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; } .s1 { fill: #199e70; } .so1 { stroke: #199e70; }
+  }
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }</style>
+<rect class="surface" width="960" height="630" rx="6"/>
+<text class="ink" x="24" y="26" font-size="16" font-weight="600">watdiv-1: Oxigraph evaluation against WASM → JS transfer, chromium 153.0.8010.12</text>
+<text class="ink2" x="24" y="46" font-size="12">Bar: the full time of a query (what the timing runs measure), mean over each template's instances (3 timed rounds each). Transfer: the</text>
+<text class="ink2" x="24" y="62" font-size="12">instance's result terms × 2.72 µs, the cost per term fitted on the calibration scans in chromium; evaluation: the rest. Per query, full − count</text>
+<text class="ink2" x="24" y="78" font-size="12">is too noisy to split single queries. cloud-4vcpu</text>
+<rect class="s0" x="24" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="41" y="104.5" font-size="12">evaluation</text>
+<rect class="s1" x="129" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="146" y="104.5" font-size="12">WASM → JS transfer (estimated)</text>
+<text class="ink" x="82" y="134" font-size="12" font-weight="600">Time per query (linear scale)</text>
+<line class="grid" x1="82.0" x2="82.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="82.0" y="606" font-size="11" text-anchor="middle">0 ms</text>
+<line class="grid" x1="170.8" x2="170.8" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="170.8" y="606" font-size="11" text-anchor="middle">50 ms</text>
+<line class="grid" x1="259.7" x2="259.7" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="259.7" y="606" font-size="11" text-anchor="middle">100 ms</text>
+<line class="grid" x1="348.5" x2="348.5" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="348.5" y="606" font-size="11" text-anchor="middle">150 ms</text>
+<line class="grid" x1="437.4" x2="437.4" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="437.4" y="606" font-size="11" text-anchor="middle">200 ms</text>
+<line class="axis" x1="82" x2="82" y1="142" y2="590" stroke-width="1"/>
+<text class="ink" x="531" y="134" font-size="12" font-weight="600">Share of the time</text>
+<line class="grid" x1="531.0" x2="531.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="531.0" y="606" font-size="11" text-anchor="middle">0%</text>
+<line class="grid" x1="606.0" x2="606.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="606.0" y="606" font-size="11" text-anchor="middle">25%</text>
+<line class="grid" x1="681.0" x2="681.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="681.0" y="606" font-size="11" text-anchor="middle">50%</text>
+<line class="grid" x1="756.0" x2="756.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="756.0" y="606" font-size="11" text-anchor="middle">75%</text>
+<line class="grid" x1="831.0" x2="831.0" y1="142" y2="590" stroke-width="1"/>
+<text class="muted" x="831.0" y="606" font-size="11" text-anchor="middle">100%</text>
+<line class="axis" x1="531" x2="531" y1="142" y2="590" stroke-width="1"/>
+<g><title>watdiv-1 C1, mean over 5 instance(s): full 0.5 ms, evaluation 0.478 ms, transfer 0.0218 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0247 ms below zero; 2 results, 8 terms</title>
+<rect x="24" y="150" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="165" font-size="11" text-anchor="end">C1</text>
+<path class="s0" d="M82.0 155 H82.5 Q83.0 155 83.0 155.5 V166.5 Q83.0 167 82.5 167 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="165" font-size="11">0.5 ms</text>
+<rect class="s0" x="531.0" y="155" width="285.9" height="12"/>
+<path class="s1" d="M818.9 155 H827.0 Q831.0 155 831.0 159 V163 Q831.0 167 827.0 167 H818.9 Z"/>
+<text class="ink2" x="837.0" y="165" font-size="11">4.4%</text>
+</g>
+<g><title>watdiv-1 C2, mean over 5 instance(s): full 1.07 ms, evaluation 1.07 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.107 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="172" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="187" font-size="11" text-anchor="end">C2</text>
+<path class="s0" d="M82.0 177 H82.9 Q83.9 177 83.9 177.94802949997958 V188.05197050002042 Q83.9 189 82.9 189 H82.0 Z"/>
+<text class="ink2 halo" x="89.9" y="187" font-size="11">1.07 ms</text>
+<path class="s0" d="M531.0 177 H827.0 Q831.0 177 831.0 181 V185 Q831.0 189 827.0 189 H531.0 Z"/>
+<text class="ink2" x="837.0" y="187" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 C3, mean over 5 instance(s): full 177 ms, evaluation 165 ms, transfer 11.5 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 9.09 ms; 4205 results, 4205 terms</title>
+<rect x="24" y="194" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="209" font-size="11" text-anchor="end">C3</text>
+<rect class="s0" x="82.0" y="199" width="292.6" height="12"/>
+<path class="s1" d="M376.6 199 H391.9 Q395.9 199 395.9 203 V207 Q395.9 211 391.9 211 H376.6 Z"/>
+<text class="ink2 halo" x="401.9" y="209" font-size="11">177 ms</text>
+<rect class="s0" x="531.0" y="199" width="279.5" height="12"/>
+<path class="s1" d="M812.5 199 H827.0 Q831.0 199 831.0 203 V207 Q831.0 211 827.0 211 H812.5 Z"/>
+<text class="ink2" x="837.0" y="209" font-size="11">6.5%</text>
+</g>
+<g><title>watdiv-1 F1, mean over 5 instance(s): full 0.242 ms, evaluation 0.242 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.061 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="216" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="231" font-size="11" text-anchor="end">F1</text>
+<path class="s0" d="M82.0 221 H82.5 Q83.0 221 83.0 221.5 V232.5 Q83.0 233 82.5 233 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="231" font-size="11">0.242 ms</text>
+<path class="s0" d="M531.0 221 H827.0 Q831.0 221 831.0 225 V229 Q831.0 233 827.0 233 H531.0 Z"/>
+<text class="ink2" x="837.0" y="231" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 F2, mean over 5 instance(s): full 0.244 ms, evaluation 0.244 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0473 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="238" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="253" font-size="11" text-anchor="end">F2</text>
+<path class="s0" d="M82.0 243 H82.5 Q83.0 243 83.0 243.5 V254.5 Q83.0 255 82.5 255 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="253" font-size="11">0.244 ms</text>
+<path class="s0" d="M531.0 243 H827.0 Q831.0 243 831.0 247 V251 Q831.0 255 827.0 255 H531.0 Z"/>
+<text class="ink2" x="837.0" y="253" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 F3, mean over 5 instance(s): full 0.195 ms, evaluation 0.192 ms, transfer 0.00327 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0477 ms below zero; 0.2 results, 1.2 terms</title>
+<rect x="24" y="260" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="275" font-size="11" text-anchor="end">F3</text>
+<path class="s0" d="M82.0 265 H82.5 Q83.0 265 83.0 265.5 V276.5 Q83.0 277 82.5 277 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="275" font-size="11">0.195 ms</text>
+<rect class="s0" x="531.0" y="265" width="294.0" height="12"/>
+<path class="s1" d="M827.0 265 H829.0 Q831.0 265 831.0 267.0104641118816 V274.9895358881184 Q831.0 277 829.0 277 H827.0 Z"/>
+<text class="ink2" x="837.0" y="275" font-size="11">1.7%</text>
+</g>
+<g><title>watdiv-1 F4, mean over 5 instance(s): full 0.248 ms, evaluation 0.248 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.08 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="282" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="297" font-size="11" text-anchor="end">F4</text>
+<path class="s0" d="M82.0 287 H82.5 Q83.0 287 83.0 287.5 V298.5 Q83.0 299 82.5 299 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="297" font-size="11">0.248 ms</text>
+<path class="s0" d="M531.0 287 H827.0 Q831.0 287 831.0 291 V295 Q831.0 299 827.0 299 H531.0 Z"/>
+<text class="ink2" x="837.0" y="297" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 F5, mean over 5 instance(s): full 0.844 ms, evaluation 0.461 ms, transfer 0.382 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.314 ms; 23.4 results, 140.4 terms</title>
+<rect x="24" y="304" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="319" font-size="11" text-anchor="end">F5</text>
+<path class="s0" d="M82.0 309 H82.7 Q83.5 309 83.5 309.7495978333212 V320.2504021666788 Q83.5 321 82.7 321 H82.0 Z"/>
+<text class="ink2 halo" x="89.5" y="319" font-size="11">0.844 ms</text>
+<rect class="s0" x="531.0" y="309" width="163.0" height="12"/>
+<path class="s1" d="M696.0 309 H827.0 Q831.0 309 831.0 313 V317 Q831.0 321 827.0 321 H696.0 Z"/>
+<text class="ink2" x="837.0" y="319" font-size="11">45%</text>
+</g>
+<g><title>watdiv-1 L1, mean over 5 instance(s): full 0.472 ms, evaluation 0.442 ms, transfer 0.0294 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0127 ms below zero; 3.6 results, 10.8 terms</title>
+<rect x="24" y="326" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="341" font-size="11" text-anchor="end">L1</text>
+<path class="s0" d="M82.0 331 H82.5 Q83.0 331 83.0 331.5 V342.5 Q83.0 343 82.5 343 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="341" font-size="11">0.472 ms</text>
+<rect class="s0" x="531.0" y="331" width="280.3" height="12"/>
+<path class="s1" d="M813.3 331 H827.0 Q831.0 331 831.0 335 V339 Q831.0 343 827.0 343 H813.3 Z"/>
+<text class="ink2" x="837.0" y="341" font-size="11">6.2%</text>
+</g>
+<g><title>watdiv-1 L2, mean over 5 instance(s): full 0.307 ms, evaluation 0.301 ms, transfer 0.00654 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.00467 ms below zero; 1.2 results, 2.4 terms</title>
+<rect x="24" y="348" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="363" font-size="11" text-anchor="end">L2</text>
+<path class="s0" d="M82.0 353 H82.5 Q83.0 353 83.0 353.5 V364.5 Q83.0 365 82.5 365 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="363" font-size="11">0.307 ms</text>
+<rect class="s0" x="531.0" y="353" width="292.6" height="12"/>
+<path class="s1" d="M825.6 353 H828.3 Q831.0 353 831.0 355.6911756388913 V362.3088243611087 Q831.0 365 828.3 365 H825.6 Z"/>
+<text class="ink2" x="837.0" y="363" font-size="11">2.1%</text>
+</g>
+<g><title>watdiv-1 L3, mean over 5 instance(s): full 0.422 ms, evaluation 0.297 ms, transfer 0.125 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0527 ms; 23 results, 46 terms</title>
+<rect x="24" y="370" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="385" font-size="11" text-anchor="end">L3</text>
+<path class="s0" d="M82.0 375 H82.5 Q83.0 375 83.0 375.5 V386.5 Q83.0 387 82.5 387 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="385" font-size="11">0.422 ms</text>
+<rect class="s0" x="531.0" y="375" width="209.9" height="12"/>
+<path class="s1" d="M742.9 375 H827.0 Q831.0 375 831.0 379 V383 Q831.0 387 827.0 387 H742.9 Z"/>
+<text class="ink2" x="837.0" y="385" font-size="11">30%</text>
+</g>
+<g><title>watdiv-1 L4, mean over 5 instance(s): full 0.158 ms, evaluation 0.158 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.079 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="392" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="407" font-size="11" text-anchor="end">L4</text>
+<path class="s0" d="M82.0 397 H82.5 Q83.0 397 83.0 397.5 V408.5 Q83.0 409 82.5 409 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="407" font-size="11">0.158 ms</text>
+<path class="s0" d="M531.0 397 H827.0 Q831.0 397 831.0 401 V405 Q831.0 409 827.0 409 H531.0 Z"/>
+<text class="ink2" x="837.0" y="407" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 L5, mean over 5 instance(s): full 0.236 ms, evaluation 0.226 ms, transfer 0.00981 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0123 ms below zero; 1.2 results, 3.6 terms</title>
+<rect x="24" y="414" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="429" font-size="11" text-anchor="end">L5</text>
+<path class="s0" d="M82.0 419 H82.5 Q83.0 419 83.0 419.5 V430.5 Q83.0 431 82.5 431 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="429" font-size="11">0.236 ms</text>
+<rect class="s0" x="531.0" y="419" width="286.5" height="12"/>
+<path class="s1" d="M819.5 419 H827.0 Q831.0 419 831.0 423 V427 Q831.0 431 827.0 431 H819.5 Z"/>
+<text class="ink2" x="837.0" y="429" font-size="11">4.2%</text>
+</g>
+<g><title>watdiv-1 S1, mean over 5 instance(s): full 0.739 ms, evaluation 0.626 ms, transfer 0.113 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0553 ms; 4.6 results, 41.4 terms</title>
+<rect x="24" y="436" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="451" font-size="11" text-anchor="end">S1</text>
+<path class="s0" d="M82.0 441 H82.7 Q83.3 441 83.3 441.656601499984 V452.343398500016 Q83.3 453 82.7 453 H82.0 Z"/>
+<text class="ink2 halo" x="89.3" y="451" font-size="11">0.739 ms</text>
+<rect class="s0" x="531.0" y="441" width="253.2" height="12"/>
+<path class="s1" d="M786.2 441 H827.0 Q831.0 441 831.0 445 V449 Q831.0 453 827.0 453 H786.2 Z"/>
+<text class="ink2" x="837.0" y="451" font-size="11">15%</text>
+</g>
+<g><title>watdiv-1 S2, mean over 5 instance(s): full 0.21 ms, evaluation 0.208 ms, transfer 0.00163 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0563 ms below zero; 0.2 results, 0.6 terms</title>
+<rect x="24" y="458" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="473" font-size="11" text-anchor="end">S2</text>
+<path class="s0" d="M82.0 463 H82.5 Q83.0 463 83.0 463.5 V474.5 Q83.0 475 82.5 475 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="473" font-size="11">0.21 ms</text>
+<rect class="s0" x="531.0" y="463" width="296.7" height="12"/>
+<path class="s1" d="M829.7 463 H830.3 Q831.0 463 831.0 463.6675650548653 V474.3324349451347 Q831.0 475 830.3 475 H829.7 Z"/>
+<text class="ink2" x="837.0" y="473" font-size="11">0.8%</text>
+</g>
+<g><title>watdiv-1 S3, mean over 5 instance(s): full 0.191 ms, evaluation 0.191 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0423 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="480" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="495" font-size="11" text-anchor="end">S3</text>
+<path class="s0" d="M82.0 485 H82.5 Q83.0 485 83.0 485.5 V496.5 Q83.0 497 82.5 497 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="495" font-size="11">0.191 ms</text>
+<path class="s0" d="M531.0 485 H827.0 Q831.0 485 831.0 489 V493 Q831.0 497 827.0 497 H531.0 Z"/>
+<text class="ink2" x="837.0" y="495" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 S4, mean over 5 instance(s): full 0.436 ms, evaluation 0.436 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.15 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="502" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="517" font-size="11" text-anchor="end">S4</text>
+<path class="s0" d="M82.0 507 H82.5 Q83.0 507 83.0 507.5 V518.5 Q83.0 519 82.5 519 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="517" font-size="11">0.436 ms</text>
+<path class="s0" d="M531.0 507 H827.0 Q831.0 507 831.0 511 V515 Q831.0 519 827.0 519 H531.0 Z"/>
+<text class="ink2" x="837.0" y="517" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 S5, mean over 5 instance(s): full 0.269 ms, evaluation 0.269 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0487 ms; 0 results, 0 terms</title>
+<rect x="24" y="524" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="539" font-size="11" text-anchor="end">S5</text>
+<path class="s0" d="M82.0 529 H82.5 Q83.0 529 83.0 529.5 V540.5 Q83.0 541 82.5 541 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="539" font-size="11">0.269 ms</text>
+<path class="s0" d="M531.0 529 H827.0 Q831.0 529 831.0 533 V537 Q831.0 541 827.0 541 H531.0 Z"/>
+<text class="ink2" x="837.0" y="539" font-size="11">0% (no results)</text>
+</g>
+<g><title>watdiv-1 S6, mean over 5 instance(s): full 0.164 ms, evaluation 0.161 ms, transfer 0.00327 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0523 ms below zero; 0.4 results, 1.2 terms</title>
+<rect x="24" y="546" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="561" font-size="11" text-anchor="end">S6</text>
+<path class="s0" d="M82.0 551 H82.5 Q83.0 551 83.0 551.5 V562.5 Q83.0 563 82.5 563 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="561" font-size="11">0.164 ms</text>
+<rect class="s0" x="531.0" y="551" width="293.0" height="12"/>
+<path class="s1" d="M826.0 551 H828.5 Q831.0 551 831.0 553.4901056275185 V560.5098943724815 Q831.0 563 828.5 563 H826.0 Z"/>
+<text class="ink2" x="837.0" y="561" font-size="11">2.0%</text>
+</g>
+<g><title>watdiv-1 S7, mean over 5 instance(s): full 0.17 ms, evaluation 0.162 ms, transfer 0.00817 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0543 ms below zero; 1 results, 3 terms</title>
+<rect x="24" y="568" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="583" font-size="11" text-anchor="end">S7</text>
+<path class="s0" d="M82.0 573 H82.5 Q83.0 573 83.0 573.5 V584.5 Q83.0 585 82.5 585 H82.0 Z"/>
+<text class="ink2 halo" x="89.0" y="583" font-size="11">0.17 ms</text>
+<rect class="s0" x="531.0" y="573" width="284.6" height="12"/>
+<path class="s1" d="M817.6 573 H827.0 Q831.0 573 831.0 577 V581 Q831.0 585 827.0 585 H817.6 Z"/>
+<text class="ink2" x="837.0" y="583" font-size="11">4.8%</text>
+</g>
+</svg>

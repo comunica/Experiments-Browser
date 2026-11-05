@@ -1,0 +1,66 @@
+bsbm-1k, 45 queries (Q1 Q2 Q3 Q4 Q5 Q9 Q10 Q11 Q12), 10 warm-up rounds, 30 profiled rounds, median round 226.4 ms, Node v26.13.0 (V8 14.6.202.34-node.40), Comunica 6b5eb94
+Total sampled: 7114 ms
+
+Self time per function:
+  5.2 %  (garbage collector)  (native or V8)
+  5.0 %  (program)  (native or V8)
+  1.8 %  get datatypeString  n3:153
+  1.8 %  apply  @comunica/bus-function-factory:52
+  1.7 %  is  immutable:2086
+  1.7 %  expand  @traqula/core:137
+  1.7 %  compare  rdf-stores:68
+  1.4 %  asKnownLiteralType  @comunica/utils-expression-evaluator:155
+  1.4 %  NumericLiteral  @comunica/utils-expression-evaluator:161
+  1.3 %  cloneObj  @traqula/core:45
+  1.3 %  transformTerm  @comunica/utils-expression-evaluator:64
+  1.2 %  prepareBindings  rdf-stores:509
+  1.2 %  expand  @traqula/core:441
+  1.2 %  publish  @comunica/core:48
+  1.1 %  label  rdf-stores:109
+  1.1 %  transformLiteral  @comunica/utils-expression-evaluator:86
+  0.9 %  (anonymous)  @comunica/actor-optimize-query-operation-query-source-skolemize:242
+  0.9 %  wrappedExecutionLoop  @traqula/core:177
+  0.9 %  get value  n3:124
+  0.8 %  BooleanLiteral  @comunica/utils-expression-evaluator:301
+  0.8 %  _addOverload  @comunica/utils-expression-evaluator:121
+  0.8 %  ignoreDefaultKeys  @comunica/utils-algebra:430
+  0.7 %  runTransformObject  @traqula/core:86
+  0.7 %  evalFunction  @comunica/actor-expression-evaluator-factory-default:86
+  0.7 %  get  immutable:2435
+  0.7 %  _end  asynciterator:1253
+  0.7 %  bindOperation  @comunica/actor-rdf-join-inner-multi-index-nested-loop:115
+  0.7 %  handleMapper  @traqula/core:118
+  0.7 %  get  immutable:2570
+  0.6 %  evaluatorExpressionEvaluation  @comunica/actor-expression-evaluator-factory-default:64
+
+Inclusive time per package (samples with the package anywhere on the stack):
+100.0 %  (native or V8)
+ 35.0 %  @comunica/core
+ 34.1 %  asynciterator
+ 21.3 %  @traqula/core
+ 19.8 %  @comunica/actor-expression-evaluator-factory-default
+ 19.3 %  @comunica/bus-function-factory
+ 18.2 %  @comunica/actor-function-factory-expression-logical-and
+ 16.3 %  @comunica/actor-rdf-join-inner-multi-index-nested-loop
+ 15.4 %  @comunica/utils-expression-evaluator
+ 13.3 %  @comunica/actor-optimize-query-operation-query-source-skolemize
+ 12.9 %  @comunica/actor-query-source-identify-rdfjs
+ 11.1 %  @comunica/actor-query-parse-sparql
+ 10.2 %  @comunica/actor-query-operation-filter
+ 10.2 %  @comunica/mediator-combine-pipeline
+  9.6 %  rdf-stores
+  7.8 %  @traqula/parser-sparql-1-2
+  7.6 %  @traqula/chevrotain
+  7.3 %  immutable
+  6.9 %  node internals
+  6.8 %  @comunica/utils-bindings-factory
+  6.5 %  @traqula/rules-sparql-1-1
+  6.0 %  @traqula/rules-sparql-1-2
+  4.9 %  @traqula/algebra-transformations-1-1
+  4.0 %  @comunica/actor-query-operation-source
+  3.4 %  @comunica/utils-algebra
+  3.2 %  @traqula/algebra-sparql-1-2
+  3.2 %  @comunica/bus-rdf-join
+  3.0 %  n3
+  2.5 %  @comunica/utils-query-operation
+  1.9 %  rdf-terms

@@ -1,0 +1,41 @@
+{
+  "name": "comunica-experiments-browser",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Browser benchmark of Comunica and Oxigraph over local RDF data",
+  "license": "MIT",
+  "type": "module",
+  "config": {
+    "comunicaRepo": "https://github.com/comunica/comunica",
+    "comunicaCommit": "2cad75988d2fe50e5ea4004c4a1a492a8e9c6aa0"
+  },
+  "scripts": {
+    "prepare": "node scripts/prepare.mjs",
+    "build": "vite build && tsx scripts/bundle-sizes.ts",
+    "reference": "node --max-old-space-size=8192 --import tsx src/reference.ts",
+    "bench": "tsx src/runner.ts",
+    "bench:node": "tsx src/node-runner.ts",
+    "aggregate": "tsx scripts/aggregate.ts",
+    "plot": "tsx scripts/plot.ts",
+    "plot:split": "tsx scripts/plot-split.ts",
+    "plot:warmup": "tsx scripts/plot-warmup.ts",
+    "profile:comunica": "tsx scripts/profile-comunica.ts",
+    "compare": "tsx scripts/compare.ts",
+    "typecheck": "tsc -p tsconfig.check.json"
+  },
+  "dependencies": {
+    "n3": "2.13.12",
+    "oxigraph": "0.5.13",
+    "rdf-data-factory": "2.1.0",
+    "rdf-stores": "2.9.0"
+  },
+  "devDependencies": {
+    "@rdfjs/types": "2.0.1",
+    "@types/n3": "1.26.6",
+    "@types/node": "26.6.6",
+    "playwright": "1.63.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.2",
+    "vite": "8.3.5"
+  }
+}

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="398" viewBox="0 0 720 398" role="img" aria-label="Memory after load in Chromium">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="398" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">Memory after load in Chromium</text>
+<text class="ink2" x="72" y="46" font-size="12">performance.measureUserAgentSpecificMemory() after gc(), before any query; includes Oxigraph's</text>
+<text class="ink2" x="72" y="62" font-size="12">WASM memory. Median over repetitions; whisker: range. Log scale. cloud-4vcpu</text>
+<rect class="s0" x="72" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="88.5" font-size="12">Comunica</text>
+<line class="whisker" x1="164.8" x2="164.8" y1="77" y2="91" stroke-width="1.5"/>
+<text class="ink2" x="173.8" y="88.5" font-size="12">range over runs</text>
+<line class="grid" x1="72" x2="696" y1="370" y2="370" stroke-width="1"/>
+<text class="muted" x="64" y="374" font-size="11" text-anchor="end">10 MB</text>
+<line class="grid" x1="72" x2="696" y1="240" y2="240" stroke-width="1"/>
+<text class="muted" x="64" y="244" font-size="11" text-anchor="end">100 MB</text>
+<line class="grid" x1="72" x2="696" y1="110" y2="110" stroke-width="1"/>
+<text class="muted" x="64" y="114" font-size="11" text-anchor="end">1,000 MB</text>
+<line class="axis" x1="72" x2="696" y1="370" y2="370" stroke-width="1"/>
+<g><title>Comunica, watdiv-1: 17.17 MB (measureUserAgentSpecificMemory)</title>
+<rect x="143.5" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M144.5 370 V342.475350407815 Q144.5 339.475350407815 147.5 339.475350407815 H152.5 Q155.5 339.475350407815 155.5 342.475350407815 V370 Z"/>
+<line class="whisker" x1="150" x2="150" y1="339.47858911253144" y2="339.4647774124743" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="150" y="386" font-size="11" text-anchor="middle">watdiv-1</text>
+<g><title>Comunica, watdiv-10: 91.11 MB (measureUserAgentSpecificMemory)</title>
+<rect x="299.5" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M300.5 370 V248.25423397434497 Q300.5 245.25423397434497 303.5 245.25423397434497 H308.5 Q311.5 245.25423397434497 311.5 248.25423397434497 V370 Z"/>
+<line class="whisker" x1="306" x2="306" y1="245.2579061260851" y2="245.25127957137232" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="306" y="386" font-size="11" text-anchor="middle">watdiv-10</text>
+<g><title>Comunica, bsbm-100: 28.26 MB (measureUserAgentSpecificMemory)</title>
+<rect x="455.5" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M456.5 370 V314.35744763608346 Q456.5 311.35744763608346 459.5 311.35744763608346 H464.5 Q467.5 311.35744763608346 467.5 314.35744763608346 V370 Z"/>
+<line class="whisker" x1="462" x2="462" y1="311.4004425101213" y2="311.3537951106383" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="462" y="386" font-size="11" text-anchor="middle">bsbm-100</text>
+<g><title>Comunica, bsbm-1k: 103.5 MB (measureUserAgentSpecificMemory)</title>
+<rect x="611.5" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M612.5 370 V241.0658076342597 Q612.5 238.0658076342597 615.5 238.0658076342597 H620.5 Q623.5 238.0658076342597 623.5 241.0658076342597 V370 Z"/>
+<line class="whisker" x1="618" x2="618" y1="238.06636684470777" y2="238.0631758733149" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="618" y="386" font-size="11" text-anchor="middle">bsbm-1k</text>
+</svg>

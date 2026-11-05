@@ -1,0 +1,86 @@
+bsbm-1k, 45 queries (Q1 Q2 Q3 Q4 Q5 Q9 Q10 Q11 Q12), 10 warm-up rounds, 30 profiled rounds, median round 192.1 ms, Node v26.13.0 (V8 14.6.202.34-node.40), Comunica ad0fc15
+Total sampled: 5918 ms
+
+Self time per function:
+  6.0 %  (program)  (native or V8)
+  5.2 %  (garbage collector)  (native or V8)
+  2.1 %  apply  @comunica/bus-function-factory:52
+  1.9 %  compare  rdf-stores:68
+  1.9 %  is  immutable:2086
+  1.5 %  label  rdf-stores:109
+  1.4 %  transformLiteral  @comunica/utils-expression-evaluator:86
+  1.4 %  publish  @comunica/core:48
+  1.3 %  NumericLiteral  @comunica/utils-expression-evaluator:161
+  1.2 %  prepareBindings  rdf-stores:509
+  1.1 %  (anonymous)  @comunica/actor-optimize-query-operation-query-source-skolemize:242
+  1.1 %  expand  @traqula/core:137
+  1.0 %  applyOnTerms  @comunica/bus-function-factory:78
+  1.0 %  cloneObj  @traqula/core:45
+  1.0 %  _addOverload  @comunica/utils-expression-evaluator:121
+  0.9 %  evalFunction  @comunica/actor-expression-evaluator-factory-default:86
+  0.9 %  BooleanLiteral  @comunica/utils-expression-evaluator:301
+  0.9 %  _end  asynciterator:1253
+  0.9 %  transformTerm  @comunica/utils-expression-evaluator:64
+  0.9 %  get  immutable:2435
+  0.8 %  bindOperation  @comunica/actor-rdf-join-inner-multi-index-nested-loop:115
+  0.8 %  get  immutable:2570
+  0.8 %  evaluatorExpressionEvaluation  @comunica/actor-expression-evaluator-factory-default:64
+  0.7 %  get  @comunica/utils-algebra:9
+  0.7 %  get  immutable:2639
+  0.7 %  (anonymous)  @comunica/core:105
+  0.7 %  mediateWith  @comunica/mediator-join-coefficients-fixed:22
+  0.7 %  Literal  @comunica/utils-expression-evaluator:139
+  0.6 %  expand  @traqula/core:441
+  0.6 %  search  @comunica/utils-expression-evaluator:59
+  0.6 %  (anonymous)  rdf-terms:29
+  0.6 %  wrappedExecutionLoop  @traqula/core:177
+  0.6 %  encodeOptional  rdf-stores:29
+  0.6 %  materializeTerm  @comunica/utils-query-operation:21
+  0.6 %  runObservable  @comunica/core:68
+  0.6 %  runTransformObject  @traqula/core:86
+  0.6 %  handleMapper  @traqula/core:118
+  0.5 %  transformRDFTermUnsafe  @comunica/utils-expression-evaluator:57
+  0.5 %  mediateWith  @comunica/mediator-number:49
+  0.5 %  _addListener  node internals:545
+
+Inclusive time per package (samples with the package anywhere on the stack):
+100.0 %  (native or V8)
+ 36.4 %  asynciterator
+ 30.0 %  @comunica/core
+ 19.5 %  @comunica/actor-rdf-join-inner-multi-index-nested-loop
+ 17.4 %  @comunica/actor-expression-evaluator-factory-default
+ 16.7 %  @comunica/bus-function-factory
+ 15.7 %  @comunica/actor-optimize-query-operation-query-source-skolemize
+ 15.5 %  @comunica/actor-function-factory-expression-logical-and
+ 15.4 %  @comunica/actor-query-source-identify-rdfjs
+ 11.5 %  @traqula/core
+ 11.4 %  rdf-stores
+ 10.7 %  @comunica/utils-expression-evaluator
+  8.5 %  @comunica/actor-query-operation-filter
+  8.4 %  immutable
+  8.2 %  @comunica/utils-bindings-factory
+  7.5 %  @comunica/mediator-combine-pipeline
+  7.5 %  node internals
+  6.3 %  @comunica/actor-query-parse-sparql
+  4.7 %  @comunica/actor-query-operation-source
+  4.0 %  @comunica/bus-rdf-join
+  3.1 %  @traqula/parser-sparql-1-2
+  3.0 %  @traqula/chevrotain
+  2.9 %  @comunica/utils-query-operation
+  2.6 %  @traqula/rules-sparql-1-1
+  2.5 %  @comunica/utils-algebra
+  2.3 %  rdf-terms
+  2.0 %  @traqula/rules-sparql-1-2
+  1.7 %  @comunica/mediator-combine-union
+  1.7 %  @comunica/actor-function-factory-term-lesser-than
+  1.6 %  @comunica/actor-query-process-sequential
+  1.5 %  @traqula/algebra-transformations-1-1
+  1.4 %  @comunica/actor-optimize-query-operation-group-sources
+  1.4 %  @comunica/actor-query-operation-orderby
+  1.4 %  @comunica/actor-rdf-join-inner-multi-bind
+  1.4 %  @comunica/actor-query-operation-join
+  1.4 %  @traqula/algebra-sparql-1-2
+  1.4 %  @comunica/actor-optimize-query-operation-filter-pushdown
+  1.2 %  @comunica/actor-rdf-join-selectivity-variable-counting
+  1.1 %  benchmark adapter
+  1.1 %  @comunica/actor-function-factory-term-equality

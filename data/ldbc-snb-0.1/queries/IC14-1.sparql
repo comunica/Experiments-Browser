@@ -1,0 +1,92 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sn: <http://www.ldbc.eu/ldbc_socialnet/1.0/data/>
+PREFIX snvoc: <http://www.ldbc.eu/ldbc_socialnet/1.0/vocabulary/>
+SELECT ?personIdsInPath (SUM(?edgeWeight) AS ?pathWeight) WHERE {
+  {
+    SELECT DISTINCT ?personIdsInPath ?edgeIndex ?edgeSource ?edgeTarget WHERE {
+      {
+        sn:pers00000026388279066869 snvoc:id ?person1Id.
+        sn:pers00000002199023256862 snvoc:id ?person2Id.
+        sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000002199023256862.
+        VALUES ?edgeIndex {
+          1 
+        }
+        BIND(sn:pers00000026388279066869 AS ?edgeSource)
+        BIND(sn:pers00000002199023256862 AS ?edgeTarget)
+        BIND(CONCAT(STR(?person1Id), ";", STR(?person2Id)) AS ?personIdsInPath)
+      }
+      UNION
+      {
+        sn:pers00000026388279066869 snvoc:id ?person1Id.
+        sn:pers00000002199023256862 snvoc:id ?person2Id.
+        FILTER(NOT EXISTS { sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000002199023256862. })
+        sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) ?middle1.
+        ?middle1 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000002199023256862;
+          snvoc:id ?middle1Id.
+        VALUES ?edgeIndex {
+          1 
+          2 
+        }
+        BIND(IF(?edgeIndex = 1 , sn:pers00000026388279066869, ?middle1) AS ?edgeSource)
+        BIND(IF(?edgeIndex = 1 , ?middle1, sn:pers00000002199023256862) AS ?edgeTarget)
+        BIND(CONCAT(STR(?person1Id), ";", STR(?middle1Id), ";", STR(?person2Id)) AS ?personIdsInPath)
+      }
+      UNION
+      {
+        sn:pers00000026388279066869 snvoc:id ?person1Id.
+        sn:pers00000002199023256862 snvoc:id ?person2Id.
+        FILTER(NOT EXISTS { sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000002199023256862. })
+        FILTER(NOT EXISTS { sn:pers00000026388279066869 (((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))/((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson))) sn:pers00000002199023256862. })
+        sn:pers00000026388279066869 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) ?middle1.
+        ?middle1 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) ?middle2.
+        ?middle2 ((snvoc:knows/snvoc:hasPerson)|^(snvoc:knows/snvoc:hasPerson)) sn:pers00000002199023256862.
+        ?middle1 snvoc:id ?middle1Id.
+        ?middle2 snvoc:id ?middle2Id.
+        VALUES ?edgeIndex {
+          1 
+          2 
+          3 
+        }
+        BIND(IF(?edgeIndex = 1 , sn:pers00000026388279066869, IF(?edgeIndex = 2 , ?middle1, ?middle2)) AS ?edgeSource)
+        BIND(IF(?edgeIndex = 1 , ?middle1, IF(?edgeIndex = 2 , ?middle2, sn:pers00000002199023256862)) AS ?edgeTarget)
+        BIND(CONCAT(STR(?person1Id), ";", STR(?middle1Id), ";", STR(?middle2Id), ";", STR(?person2Id)) AS ?personIdsInPath)
+      }
+    }
+  }
+  { BIND("0.0"^^xsd:decimal AS ?edgeWeight) }
+  UNION
+  {
+    ?reply snvoc:hasCreator ?edgeSource;
+      snvoc:replyOf ?parent.
+    ?parent rdf:type snvoc:Post;
+      snvoc:hasCreator ?edgeTarget.
+    BIND("1.0"^^xsd:decimal AS ?edgeWeight)
+  }
+  UNION
+  {
+    ?reply snvoc:hasCreator ?edgeSource;
+      snvoc:replyOf ?parent.
+    ?parent rdf:type snvoc:Comment;
+      snvoc:hasCreator ?edgeTarget.
+    BIND("0.5"^^xsd:decimal AS ?edgeWeight)
+  }
+  UNION
+  {
+    ?reply snvoc:hasCreator ?edgeTarget;
+      snvoc:replyOf ?parent.
+    ?parent rdf:type snvoc:Post;
+      snvoc:hasCreator ?edgeSource.
+    BIND("1.0"^^xsd:decimal AS ?edgeWeight)
+  }
+  UNION
+  {
+    ?reply snvoc:hasCreator ?edgeTarget;
+      snvoc:replyOf ?parent.
+    ?parent rdf:type snvoc:Comment;
+      snvoc:hasCreator ?edgeSource.
+    BIND("0.5"^^xsd:decimal AS ?edgeWeight)
+  }
+}
+GROUP BY ?personIdsInPath
+ORDER BY DESC (?pathWeight) (?personIdsInPath)

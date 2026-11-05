@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="510" viewBox="0 0 720 510" role="img" aria-label="Oxigraph: overhead of moving results into JavaScript against the number of results">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="510" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">Oxigraph: overhead of moving results into JavaScript against the number of results</text>
+<text class="ink2" x="72" y="46" font-size="12">Each point is a benchmark query instance; overhead = full − count, measured per query. Dashed:</text>
+<text class="ink2" x="72" y="62" font-size="12">the cost per result measured on the calibration scans. Points far above the lines are differences</text>
+<text class="ink2" x="72" y="78" font-size="12">between the COUNT and plain plans or run-to-run noise, not transfer. Instances without results or</text>
+<text class="ink2" x="72" y="94" font-size="12">with an overhead at or below zero cannot be shown on log axes. cloud-4vcpu</text>
+<text class="ink" x="72" y="132" font-size="12" font-weight="600">chromium: fit over these queries -0.74 µs per result, R² 0.01</text>
+<line class="grid" x1="72" x2="696" y1="444" y2="444" stroke-width="1"/>
+<text class="muted" x="64" y="448" font-size="11" text-anchor="end">0.001 ms</text>
+<line class="grid" x1="72" x2="696" y1="394" y2="394" stroke-width="1"/>
+<text class="muted" x="64" y="398" font-size="11" text-anchor="end">0.01 ms</text>
+<line class="grid" x1="72" x2="696" y1="344" y2="344" stroke-width="1"/>
+<text class="muted" x="64" y="348" font-size="11" text-anchor="end">0.1 ms</text>
+<line class="grid" x1="72" x2="696" y1="294" y2="294" stroke-width="1"/>
+<text class="muted" x="64" y="298" font-size="11" text-anchor="end">1 ms</text>
+<line class="grid" x1="72" x2="696" y1="244" y2="244" stroke-width="1"/>
+<text class="muted" x="64" y="248" font-size="11" text-anchor="end">10 ms</text>
+<line class="grid" x1="72" x2="696" y1="194" y2="194" stroke-width="1"/>
+<text class="muted" x="64" y="198" font-size="11" text-anchor="end">100 ms</text>
+<line class="grid" x1="72" x2="696" y1="144" y2="144" stroke-width="1"/>
+<text class="muted" x="64" y="148" font-size="11" text-anchor="end">1 s</text>
+<line class="grid" x1="72" x2="72" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="72" y="460" font-size="11" text-anchor="middle">1</text>
+<line class="grid" x1="196.8" x2="196.8" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="196.8" y="460" font-size="11" text-anchor="middle">10</text>
+<line class="grid" x1="321.6" x2="321.6" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="321.6" y="460" font-size="11" text-anchor="middle">100</text>
+<line class="grid" x1="446.4" x2="446.4" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="446.4" y="460" font-size="11" text-anchor="middle">1,000</text>
+<line class="grid" x1="571.2" x2="571.2" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="571.2" y="460" font-size="11" text-anchor="middle">10,000</text>
+<line class="grid" x1="696" x2="696" y1="144" y2="444" stroke-width="1"/>
+<text class="muted" x="696" y="460" font-size="11" text-anchor="middle">100,000</text>
+<line class="axis" x1="72" x2="696" y1="444" y2="444" stroke-width="1"/>
+<text class="ink2" x="384" y="480" font-size="12" text-anchor="middle">results</text>
+<g><title>calibration, 1 variable: 2.64 µs/result</title><path d="M72.0 422.9 L82.4 418.7 L92.8 414.5 L103.2 410.4 L113.6 406.2 L124.0 402.0 L134.4 397.9 L144.8 393.7 L155.2 389.5 L165.6 385.4 L176.0 381.2 L186.4 377.0 L196.8 372.9 L207.2 368.7 L217.6 364.5 L228.0 360.4 L238.4 356.2 L248.8 352.0 L259.2 347.9 L269.6 343.7 L280.0 339.5 L290.4 335.4 L300.8 331.2 L311.2 327.0 L321.6 322.9 L332.0 318.7 L342.4 314.5 L352.8 310.4 L363.2 306.2 L373.6 302.0 L384.0 297.9 L394.4 293.7 L404.8 289.5 L415.2 285.4 L425.6 281.2 L436.0 277.0 L446.4 272.9 L456.8 268.7 L467.2 264.5 L477.6 260.4 L488.0 256.2 L498.4 252.0 L508.8 247.9 L519.2 243.7 L529.6 239.5 L540.0 235.4 L550.4 231.2 L560.8 227.0 L571.2 222.9 L581.6 218.7 L592.0 214.5 L602.4 210.4 L612.8 206.2 L623.2 202.0 L633.6 197.9 L644.0 193.7 L654.4 189.5 L664.8 185.4 L675.2 181.2 L685.6 177.0 L696.0 172.9" fill="none" class="whisker" stroke-width="1.5" stroke-dasharray="4 3"/></g>
+<text class="ink2" x="692" y="166.88040903296383" font-size="11" text-anchor="end">calibration, 1 variable: 2.64 µs/result</text>
+<g><title>calibration, 3 variables: 8.19 µs/result</title><path d="M72.0 398.3 L82.4 394.2 L92.8 390.0 L103.2 385.8 L113.6 381.7 L124.0 377.5 L134.4 373.3 L144.8 369.2 L155.2 365.0 L165.6 360.8 L176.0 356.7 L186.4 352.5 L196.8 348.3 L207.2 344.2 L217.6 340.0 L228.0 335.8 L238.4 331.7 L248.8 327.5 L259.2 323.3 L269.6 319.2 L280.0 315.0 L290.4 310.8 L300.8 306.7 L311.2 302.5 L321.6 298.3 L332.0 294.2 L342.4 290.0 L352.8 285.8 L363.2 281.7 L373.6 277.5 L384.0 273.3 L394.4 269.2 L404.8 265.0 L415.2 260.8 L425.6 256.7 L436.0 252.5 L446.4 248.3 L456.8 244.2 L467.2 240.0 L477.6 235.8 L488.0 231.7 L498.4 227.5 L508.8 223.3 L519.2 219.2 L529.6 215.0 L540.0 210.8 L550.4 206.7 L560.8 202.5 L571.2 198.3 L581.6 194.2 L592.0 190.0 L602.4 185.8 L612.8 181.7 L623.2 177.5 L633.6 173.3 L644.0 169.2 L654.4 165.0 L664.8 160.8 L675.2 156.7 L685.6 152.5 L696.0 148.3" fill="none" class="whisker" stroke-width="1.5" stroke-dasharray="4 3"/></g>
+<text class="ink2" x="692" y="142.32918977455847" font-size="11" text-anchor="end">calibration, 3 variables: 8.19 µs/result</text>
+<g><title>watdiv-1 C1-1: 2 results, 8 terms, overhead 0.0567 ms</title><circle class="s0 ring" cx="109.6" cy="356.3" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 C3-1: 4205 results, 4205 terms, overhead 4.23 ms</title><circle class="s0 ring" cx="524.2" cy="262.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 C3-2: 4205 results, 4205 terms, overhead 15.2 ms</title><circle class="s0 ring" cx="524.2" cy="235.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 C3-3: 4205 results, 4205 terms, overhead 38 ms</title><circle class="s0 ring" cx="524.2" cy="215.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 C3-4: 4205 results, 4205 terms, overhead 24.5 ms</title><circle class="s0 ring" cx="524.2" cy="224.5" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F3-1: 1 results, 6 terms, overhead 0.00833 ms</title><circle class="s0 ring" cx="72.0" cy="398.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F5-1: 26 results, 156 terms, overhead 0.395 ms</title><circle class="s0 ring" cx="248.6" cy="314.2" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F5-2: 24 results, 144 terms, overhead 0.337 ms</title><circle class="s0 ring" cx="244.3" cy="317.6" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F5-3: 26 results, 156 terms, overhead 0.408 ms</title><circle class="s0 ring" cx="248.6" cy="313.4" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F5-4: 17 results, 102 terms, overhead 0.238 ms</title><circle class="s0 ring" cx="225.6" cy="325.1" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 F5-5: 24 results, 144 terms, overhead 0.193 ms</title><circle class="s0 ring" cx="244.3" cy="329.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L1-5: 7 results, 21 terms, overhead 0.035 ms</title><circle class="s0 ring" cx="177.5" cy="366.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L2-4: 1 results, 2 terms, overhead 0.138 ms</title><circle class="s0 ring" cx="72.0" cy="337.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L2-5: 2 results, 4 terms, overhead 0.00833 ms</title><circle class="s0 ring" cx="109.6" cy="398.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L3-1: 13 results, 26 terms, overhead 0.015 ms</title><circle class="s0 ring" cx="211.0" cy="385.2" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L3-2: 25 results, 50 terms, overhead 0.103 ms</title><circle class="s0 ring" cx="246.5" cy="343.3" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L3-3: 39 results, 78 terms, overhead 0.13 ms</title><circle class="s0 ring" cx="270.6" cy="338.3" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L3-4: 25 results, 50 terms, overhead 0.0817 ms</title><circle class="s0 ring" cx="246.5" cy="348.4" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 L5-2: 2 results, 6 terms, overhead 0.0617 ms</title><circle class="s0 ring" cx="109.6" cy="354.5" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 S1-2: 20 results, 180 terms, overhead 0.5 ms</title><circle class="s0 ring" cx="234.4" cy="309.1" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-1 S7-2: 5 results, 15 terms, overhead 0.0117 ms</title><circle class="s0 ring" cx="159.2" cy="390.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 C3-3: 43144 results, 43144 terms, overhead 78.4 ms</title><circle class="s0 ring" cx="650.4" cy="199.3" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 C3-4: 43144 results, 43144 terms, overhead 34.9 ms</title><circle class="s0 ring" cx="650.4" cy="216.9" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F3-3: 4 results, 24 terms, overhead 0.00167 ms</title><circle class="s0 ring" cx="147.1" cy="432.9" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F4-4: 20 results, 160 terms, overhead 0.38 ms</title><circle class="s0 ring" cx="234.4" cy="315.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F5-1: 42 results, 252 terms, overhead 0.705 ms</title><circle class="s0 ring" cx="274.6" cy="301.6" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F5-2: 42 results, 252 terms, overhead 0.525 ms</title><circle class="s0 ring" cx="274.6" cy="308.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F5-3: 27 results, 162 terms, overhead 0.257 ms</title><circle class="s0 ring" cx="250.6" cy="323.5" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F5-4: 27 results, 162 terms, overhead 0.382 ms</title><circle class="s0 ring" cx="250.6" cy="314.9" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 F5-5: 42 results, 252 terms, overhead 0.775 ms</title><circle class="s0 ring" cx="274.6" cy="299.5" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L1-3: 3 results, 9 terms, overhead 0.0667 ms</title><circle class="s0 ring" cx="131.5" cy="352.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L1-4: 3 results, 9 terms, overhead 0.00667 ms</title><circle class="s0 ring" cx="131.5" cy="402.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L2-1: 2 results, 4 terms, overhead 0.137 ms</title><circle class="s0 ring" cx="109.6" cy="337.2" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L2-2: 1 results, 2 terms, overhead 0.035 ms</title><circle class="s0 ring" cx="72.0" cy="366.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L2-4: 4 results, 8 terms, overhead 0.0233 ms</title><circle class="s0 ring" cx="147.1" cy="375.6" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L2-5: 12 results, 24 terms, overhead 0.0533 ms</title><circle class="s0 ring" cx="206.7" cy="357.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L3-1: 29 results, 58 terms, overhead 0.115 ms</title><circle class="s0 ring" cx="254.5" cy="341.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L3-2: 25 results, 50 terms, overhead 0.117 ms</title><circle class="s0 ring" cx="246.5" cy="340.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L3-4: 32 results, 64 terms, overhead 0.16 ms</title><circle class="s0 ring" cx="259.8" cy="333.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L3-5: 32 results, 64 terms, overhead 0.0867 ms</title><circle class="s0 ring" cx="259.8" cy="347.1" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L4-1: 5 results, 10 terms, overhead 0.035 ms</title><circle class="s0 ring" cx="159.2" cy="366.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L4-2: 9 results, 18 terms, overhead 0.0517 ms</title><circle class="s0 ring" cx="191.1" cy="358.3" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L4-3: 6 results, 12 terms, overhead 0.0217 ms</title><circle class="s0 ring" cx="169.1" cy="377.2" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L4-4: 9 results, 18 terms, overhead 0.0117 ms</title><circle class="s0 ring" cx="191.1" cy="390.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L4-5: 9 results, 18 terms, overhead 0.0583 ms</title><circle class="s0 ring" cx="191.1" cy="355.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L5-1: 3 results, 9 terms, overhead 0.0183 ms</title><circle class="s0 ring" cx="131.5" cy="380.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L5-4: 9 results, 27 terms, overhead 0.405 ms</title><circle class="s0 ring" cx="191.1" cy="313.6" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 L5-5: 3 results, 9 terms, overhead 0.0133 ms</title><circle class="s0 ring" cx="131.5" cy="387.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S1-1: 5 results, 45 terms, overhead 0.0667 ms</title><circle class="s0 ring" cx="159.2" cy="352.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S1-2: 9 results, 81 terms, overhead 0.0267 ms</title><circle class="s0 ring" cx="191.1" cy="372.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S1-5: 5 results, 45 terms, overhead 0.08 ms</title><circle class="s0 ring" cx="159.2" cy="348.8" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S2-1: 3 results, 9 terms, overhead 0.0583 ms</title><circle class="s0 ring" cx="131.5" cy="355.7" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S2-2: 15 results, 45 terms, overhead 0.233 ms</title><circle class="s0 ring" cx="218.8" cy="325.6" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S2-3: 10 results, 30 terms, overhead 0.252 ms</title><circle class="s0 ring" cx="196.8" cy="324.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S2-4: 1 results, 3 terms, overhead 0.00167 ms</title><circle class="s0 ring" cx="72.0" cy="432.9" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S2-5: 1 results, 3 terms, overhead 0.0467 ms</title><circle class="s0 ring" cx="72.0" cy="360.5" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S3-4: 30 results, 120 terms, overhead 0.318 ms</title><circle class="s0 ring" cx="256.3" cy="318.9" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S6-2: 1 results, 3 terms, overhead 0.0417 ms</title><circle class="s0 ring" cx="72.0" cy="363.0" r="4" stroke-width="1.5"/></g>
+<g><title>watdiv-10 S7-5: 6 results, 18 terms, overhead 0.0283 ms</title><circle class="s0 ring" cx="169.1" cy="371.4" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q2-1: 11 results, 99 terms, overhead 0.352 ms</title><circle class="s0 ring" cx="202.0" cy="316.7" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q2-2: 19 results, 228 terms, overhead 0.363 ms</title><circle class="s0 ring" cx="231.6" cy="316.0" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q2-3: 24 results, 216 terms, overhead 0.443 ms</title><circle class="s0 ring" cx="244.3" cy="311.7" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q2-4: 19 results, 171 terms, overhead 0.37 ms</title><circle class="s0 ring" cx="231.6" cy="315.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q2-5: 19 results, 171 terms, overhead 0.228 ms</title><circle class="s0 ring" cx="231.6" cy="326.1" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q5-2: 1 results, 2 terms, overhead 0.112 ms</title><circle class="s0 ring" cx="72.0" cy="341.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q8-1: 2 results, 17 terms, overhead 0.565 ms</title><circle class="s0 ring" cx="109.6" cy="306.4" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q8-2: 10 results, 77 terms, overhead 0.615 ms</title><circle class="s0 ring" cx="196.8" cy="304.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q8-3: 3 results, 24 terms, overhead 0.173 ms</title><circle class="s0 ring" cx="131.5" cy="332.1" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q8-4: 3 results, 24 terms, overhead 0.292 ms</title><circle class="s0 ring" cx="131.5" cy="320.8" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q11-1: 10 results, 20 terms, overhead 0.035 ms</title><circle class="s0 ring" cx="196.8" cy="366.8" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q11-3: 10 results, 20 terms, overhead 0.0133 ms</title><circle class="s0 ring" cx="196.8" cy="387.8" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-100 Q11-5: 10 results, 20 terms, overhead 0.0267 ms</title><circle class="s0 ring" cx="196.8" cy="372.7" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q2-1: 18 results, 216 terms, overhead 0.675 ms</title><circle class="s0 ring" cx="228.7" cy="302.5" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q2-2: 16 results, 144 terms, overhead 0.26 ms</title><circle class="s0 ring" cx="222.3" cy="323.3" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q2-3: 24 results, 288 terms, overhead 0.642 ms</title><circle class="s0 ring" cx="244.3" cy="303.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q2-4: 21 results, 252 terms, overhead 0.63 ms</title><circle class="s0 ring" cx="237.0" cy="304.0" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q2-5: 17 results, 153 terms, overhead 0.355 ms</title><circle class="s0 ring" cx="225.6" cy="316.5" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q3-5: 2 results, 4 terms, overhead 0.02 ms</title><circle class="s0 ring" cx="109.6" cy="378.9" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q5-4: 4 results, 8 terms, overhead 0.245 ms</title><circle class="s0 ring" cx="147.1" cy="324.5" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q5-5: 5 results, 10 terms, overhead 0.0833 ms</title><circle class="s0 ring" cx="159.2" cy="348.0" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q8-1: 6 results, 48 terms, overhead 0.825 ms</title><circle class="s0 ring" cx="169.1" cy="298.2" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q8-2: 12 results, 93 terms, overhead 0.438 ms</title><circle class="s0 ring" cx="206.7" cy="311.9" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q8-3: 8 results, 62 terms, overhead 0.535 ms</title><circle class="s0 ring" cx="184.7" cy="307.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q8-4: 4 results, 31 terms, overhead 0.0883 ms</title><circle class="s0 ring" cx="147.1" cy="346.7" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q8-5: 11 results, 83 terms, overhead 3.56 ms</title><circle class="s0 ring" cx="202.0" cy="266.4" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q10-3: 3 results, 6 terms, overhead 0.09 ms</title><circle class="s0 ring" cx="131.5" cy="346.3" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q11-1: 10 results, 20 terms, overhead 0.0533 ms</title><circle class="s0 ring" cx="196.8" cy="357.7" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q11-2: 10 results, 20 terms, overhead 0.107 ms</title><circle class="s0 ring" cx="196.8" cy="342.6" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q11-3: 10 results, 20 terms, overhead 0.055 ms</title><circle class="s0 ring" cx="196.8" cy="357.0" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q11-4: 10 results, 20 terms, overhead 0.113 ms</title><circle class="s0 ring" cx="196.8" cy="341.3" r="4" stroke-width="1.5"/></g>
+<g><title>bsbm-1k Q11-5: 10 results, 20 terms, overhead 0.587 ms</title><circle class="s0 ring" cx="196.8" cy="305.6" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IC6-1: 10 results, 20 terms, overhead 13.7 ms</title><circle class="s0 ring" cx="196.8" cy="237.1" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IC10-1: 10 results, 60 terms, overhead 369 ms</title><circle class="s0 ring" cx="196.8" cy="165.6" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IC12-1: 1 results, 5 terms, overhead 0.35 ms</title><circle class="s0 ring" cx="72.0" cy="316.8" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IC13-1: 1 results, 1 terms, overhead 101 ms</title><circle class="s0 ring" cx="72.0" cy="193.7" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IC14-1: 2 results, 4 terms, overhead 70.2 ms</title><circle class="s0 ring" cx="109.6" cy="201.7" r="4" stroke-width="1.5"/></g>
+<g><title>ldbc-snb-0.1 IS6-1: 1 results, 5 terms, overhead 11 ms</title><circle class="s0 ring" cx="72.0" cy="241.9" r="4" stroke-width="1.5"/></g>
+<text class="muted" x="72" y="502" font-size="11">97 instances shown, 204 not shown (no results or overhead ≤ 0)</text>
+</svg>

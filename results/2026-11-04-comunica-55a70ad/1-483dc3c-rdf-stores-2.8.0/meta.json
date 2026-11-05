@@ -1,0 +1,510 @@
+{
+  "machine": {
+    "label": "cloud-4vcpu",
+    "cpuModel": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "logicalCpus": 4,
+    "memoryBytes": 16872804352,
+    "platform": "Linux 6.18.44-fc-v233 x64",
+    "osRelease": "Ubuntu 24.04.5 LTS",
+    "node": "v22.23.4"
+  },
+  "invocations": [
+    {
+      "commit": "bbe9fe740d3361fb55e8913e9919909557dcb3c3",
+      "dirty": false,
+      "startedAt": "2026-11-04T19:26:40.847Z",
+      "args": [
+        "--machine",
+        "cloud-4vcpu",
+        "--out",
+        "results/2026-11-04-comunica-55a70ad/1-483dc3c-rdf-stores-2.8.0",
+        "--mode",
+        "timing",
+        "--datasets",
+        "watdiv-1,watdiv-10,bsbm-100,bsbm-1k"
+      ]
+    }
+  ],
+  "benchmarkRepository": {
+    "commit": "bbe9fe740d3361fb55e8913e9919909557dcb3c3",
+    "dirty": false
+  },
+  "comunica": {
+    "repository": "https://github.com/comunica/comunica",
+    "ref": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+    "commit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+    "commitDate": "2026-11-04T14:29:58+01:00",
+    "commitSubject": "Time out queries in the SPARQL endpoint worker instead of the main process (#1941)",
+    "packageVersion": "5.4.1",
+    "dirty": false
+  },
+  "versions": {
+    "oxigraph": "0.5.13",
+    "n3": "2.13.12",
+    "rdfStores": "2.8.0",
+    "playwright": "1.63.0",
+    "vite": "8.3.5"
+  },
+  "settings": {
+    "timeoutMs": 60000,
+    "graceMs": 30000,
+    "warmupRounds": 1,
+    "rounds": 5,
+    "repetitions": 3,
+    "breakdownRounds": 3,
+    "repetitionOverrides": {
+      "ldbc-snb-0.1": 1
+    },
+    "chromiumLaunch": {
+      "channel": "chromium",
+      "args": [
+        "--js-flags=--expose-gc",
+        "--enable-blink-features=ForceEagerMeasureMemory",
+        "--enable-precise-memory-info"
+      ]
+    },
+    "headless": true
+  },
+  "browsers": {
+    "chromium": "153.0.8010.12",
+    "firefox": "155.0",
+    "webkit": "26.6"
+  },
+  "skipped": {},
+  "runs": [
+    {
+      "file": "raw/timing-watdiv-1-chromium-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:26:40.856Z",
+      "finishedAt": "2026-11-04T19:26:46.950Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-chromium-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:26:46.951Z",
+      "finishedAt": "2026-11-04T19:26:57.025Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:26:57.026Z",
+      "finishedAt": "2026-11-04T19:27:28.486Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:27:28.488Z",
+      "finishedAt": "2026-11-04T19:27:42.433Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:27:42.435Z",
+      "finishedAt": "2026-11-04T19:27:59.312Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:27:59.314Z",
+      "finishedAt": "2026-11-04T19:28:09.702Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:28:09.704Z",
+      "finishedAt": "2026-11-04T19:28:22.832Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:28:22.834Z",
+      "finishedAt": "2026-11-04T19:29:37.585Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:29:37.587Z",
+      "finishedAt": "2026-11-04T19:30:02.411Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:30:02.413Z",
+      "finishedAt": "2026-11-04T19:31:33.816Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:31:33.819Z",
+      "finishedAt": "2026-11-04T19:31:52.231Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:31:52.233Z",
+      "finishedAt": "2026-11-04T19:33:17.727Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:17.731Z",
+      "finishedAt": "2026-11-04T19:33:21.637Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:21.639Z",
+      "finishedAt": "2026-11-04T19:33:24.188Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:24.190Z",
+      "finishedAt": "2026-11-04T19:33:33.489Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:33.490Z",
+      "finishedAt": "2026-11-04T19:33:37.777Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:37.779Z",
+      "finishedAt": "2026-11-04T19:33:41.809Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:41.811Z",
+      "finishedAt": "2026-11-04T19:33:43.974Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:43.976Z",
+      "finishedAt": "2026-11-04T19:33:49.960Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:49.962Z",
+      "finishedAt": "2026-11-04T19:33:55.240Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:33:55.241Z",
+      "finishedAt": "2026-11-04T19:34:09.666Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:09.668Z",
+      "finishedAt": "2026-11-04T19:34:16.810Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-comunica-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:16.811Z",
+      "finishedAt": "2026-11-04T19:34:23.200Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-oxigraph-r1.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:23.201Z",
+      "finishedAt": "2026-11-04T19:34:28.453Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-chromium-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:28.455Z",
+      "finishedAt": "2026-11-04T19:34:33.559Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-chromium-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:33.561Z",
+      "finishedAt": "2026-11-04T19:34:43.314Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:43.317Z",
+      "finishedAt": "2026-11-04T19:34:53.592Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:34:53.594Z",
+      "finishedAt": "2026-11-04T19:35:06.170Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:35:06.172Z",
+      "finishedAt": "2026-11-04T19:35:11.778Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:35:11.780Z",
+      "finishedAt": "2026-11-04T19:35:22.606Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:35:22.608Z",
+      "finishedAt": "2026-11-04T19:35:35.454Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:35:35.456Z",
+      "finishedAt": "2026-11-04T19:36:53.946Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:36:53.948Z",
+      "finishedAt": "2026-11-04T19:37:19.484Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:37:19.486Z",
+      "finishedAt": "2026-11-04T19:38:53.880Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:38:53.883Z",
+      "finishedAt": "2026-11-04T19:39:11.630Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:39:11.632Z",
+      "finishedAt": "2026-11-04T19:40:36.128Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:40:36.131Z",
+      "finishedAt": "2026-11-04T19:40:39.749Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:40:39.751Z",
+      "finishedAt": "2026-11-04T19:40:42.120Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:40:42.121Z",
+      "finishedAt": "2026-11-04T19:40:51.326Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:40:51.328Z",
+      "finishedAt": "2026-11-04T19:40:55.747Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:40:55.748Z",
+      "finishedAt": "2026-11-04T19:41:00.126Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:00.128Z",
+      "finishedAt": "2026-11-04T19:41:02.469Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:02.470Z",
+      "finishedAt": "2026-11-04T19:41:08.191Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:08.192Z",
+      "finishedAt": "2026-11-04T19:41:13.717Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:13.719Z",
+      "finishedAt": "2026-11-04T19:41:28.664Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:28.665Z",
+      "finishedAt": "2026-11-04T19:41:36.549Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-comunica-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:36.551Z",
+      "finishedAt": "2026-11-04T19:41:43.594Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-oxigraph-r2.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:43.595Z",
+      "finishedAt": "2026-11-04T19:41:48.891Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-chromium-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:48.892Z",
+      "finishedAt": "2026-11-04T19:41:54.336Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-chromium-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:41:54.338Z",
+      "finishedAt": "2026-11-04T19:42:04.251Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:04.254Z",
+      "finishedAt": "2026-11-04T19:42:15.130Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-firefox-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:15.132Z",
+      "finishedAt": "2026-11-04T19:42:29.326Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:29.328Z",
+      "finishedAt": "2026-11-04T19:42:35.294Z"
+    },
+    {
+      "file": "raw/timing-watdiv-1-webkit-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:35.296Z",
+      "finishedAt": "2026-11-04T19:42:45.541Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:45.544Z",
+      "finishedAt": "2026-11-04T19:42:58.672Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-chromium-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:42:58.674Z",
+      "finishedAt": "2026-11-04T19:44:19.379Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:44:19.382Z",
+      "finishedAt": "2026-11-04T19:44:43.129Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-firefox-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:44:43.131Z",
+      "finishedAt": "2026-11-04T19:46:13.377Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:46:13.379Z",
+      "finishedAt": "2026-11-04T19:46:29.375Z"
+    },
+    {
+      "file": "raw/timing-watdiv-10-webkit-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:46:29.378Z",
+      "finishedAt": "2026-11-04T19:47:56.874Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:47:56.876Z",
+      "finishedAt": "2026-11-04T19:48:00.966Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-chromium-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:00.968Z",
+      "finishedAt": "2026-11-04T19:48:03.538Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:03.540Z",
+      "finishedAt": "2026-11-04T19:48:13.259Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-firefox-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:13.260Z",
+      "finishedAt": "2026-11-04T19:48:17.727Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:17.729Z",
+      "finishedAt": "2026-11-04T19:48:21.806Z"
+    },
+    {
+      "file": "raw/timing-bsbm-100-webkit-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:21.808Z",
+      "finishedAt": "2026-11-04T19:48:24.090Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:24.092Z",
+      "finishedAt": "2026-11-04T19:48:29.928Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-chromium-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:29.929Z",
+      "finishedAt": "2026-11-04T19:48:35.416Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:35.418Z",
+      "finishedAt": "2026-11-04T19:48:50.831Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-firefox-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:50.833Z",
+      "finishedAt": "2026-11-04T19:48:58.640Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-comunica-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:48:58.642Z",
+      "finishedAt": "2026-11-04T19:49:05.911Z"
+    },
+    {
+      "file": "raw/timing-bsbm-1k-webkit-oxigraph-r3.json",
+      "status": "complete",
+      "startedAt": "2026-11-04T19:49:05.912Z",
+      "finishedAt": "2026-11-04T19:49:11.278Z"
+    }
+  ],
+  "startedAt": "2026-11-04T19:26:40.848Z",
+  "updatedAt": "2026-11-04T19:49:11.280Z"
+}

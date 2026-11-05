@@ -1,0 +1,8 @@
+dataset;template;instances;results;terms;comunica_ms;oxigraph_ms;oxigraph_evaluation_ms;transfer_ms;transfer_share;measured_full_minus_count_ms;selected_by
+watdiv-10;C3;5;43144;43144;152.4669;1997.3007;1879.7627;117.538;0.0588;-36.919;ms
+watdiv-1;C3;5;4205;4205;19.4987;190.9849;179.5291;11.4558;0.06;9.088;ms
+watdiv-10;F5;5;36;216;3.8105;1.4729;0.8844;0.5885;0.3995;0.5287;ms+share
+bsbm-1k;Q2;5;19.2;210.6;5.2035;1.2968;0.7231;0.5737;0.4424;0.5123;ms+share
+bsbm-100;Q2;5;18.4;177;4.7544;1.3393;0.8571;0.4822;0.36;0.3513;ms+share
+watdiv-1;F5;5;23.4;140.4;2.8132;0.9884;0.6059;0.3825;0.387;0.3143;share
+watdiv-10;L3;5;30.4;60.8;1.6419;0.6202;0.4546;0.1656;0.2671;0.062;share

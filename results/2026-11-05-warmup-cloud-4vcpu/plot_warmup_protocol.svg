@@ -1,0 +1,379 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="550" viewBox="0 0 960 550" role="img" aria-label="What w warm-up rounds before 5 timed rounds leave: bias and noise">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="960" height="550" rx="6"/>
+<text class="ink" x="24" y="26" font-size="16" font-weight="600">What w warm-up rounds before 5 timed rounds leave: bias and noise</text>
+<text class="ink2" x="24" y="46" font-size="12">Top: how much the warm mean (mean of the 5 timed rounds) of a typical query exceeds the mean of the same run's last 10 rounds. Bottom: noise of</text>
+<text class="ink2" x="24" y="62" font-size="12">an A/A comparison, two runs of the same build in separate fresh browsers (or Node processes): the typical absolute difference of the geometric</text>
+<text class="ink2" x="24" y="78" font-size="12">mean over queries of the ratio of their warm means, over all pairs of the 3 repetitions and the datasets watdiv-1, watdiv-10, bsbm-100, bsbm-1k.</text>
+<text class="ink2" x="24" y="94" font-size="12">The current setting is 1 warm-up round (after the cold run). Comunica 55a70ad (rdf-stores 2.9.0), Oxigraph 0.5.13. cloud-4vcpu</text>
+<line class="so0" x1="24" x2="42" y1="116" y2="116" stroke-width="2.5"/>
+<text class="ink2" x="48" y="120.5" font-size="12">Comunica</text>
+<line class="so1" x1="122.8" x2="140.8" y1="116" y2="116" stroke-width="2.5"/>
+<text class="ink2" x="146.8" y="120.5" font-size="12">Oxigraph</text>
+<text class="ink" x="64" y="144" font-size="12" font-weight="600">Bias against the plateau, chromium</text>
+<line class="grid" x1="64" x2="261" y1="266.5" y2="266.5" stroke-width="1"/>
+<text class="muted" x="56" y="270.5" font-size="11" text-anchor="end">0 %</text>
+<line class="grid" x1="64" x2="261" y1="229.0" y2="229.0" stroke-width="1"/>
+<text class="muted" x="56" y="233.0" font-size="11" text-anchor="end">10 %</text>
+<line class="grid" x1="64" x2="261" y1="191.5" y2="191.5" stroke-width="1"/>
+<text class="muted" x="56" y="195.5" font-size="11" text-anchor="end">20 %</text>
+<line class="grid" x1="64" x2="261" y1="154.0" y2="154.0" stroke-width="1"/>
+<text class="muted" x="56" y="158.0" font-size="11" text-anchor="end">30 %</text>
+<line class="grid" x1="64" x2="261" y1="304.0" y2="304.0" stroke-width="1"/>
+<text class="muted" x="56" y="308.0" font-size="11" text-anchor="end">-10 %</text>
+<text class="muted" x="64.0" y="319" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="77.1" y="319" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="129.7" y="319" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="195.3" y="319" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="261.0" y="319" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="64" x2="261" y1="304" y2="304" stroke-width="1"/>
+<line class="whisker" x1="64" x2="261" y1="266.5" y2="266.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M64.0 206.3 L77.1 227.8 L90.3 236.1 L103.4 237.8 L116.5 245.4 L129.7 250.3 L142.8 256.0 L155.9 260.0 L169.1 265.7 L182.2 265.7 L195.3 267.2 L208.5 264.5 L221.6 262.7 L234.7 264.5 L247.9 269.1 L261.0 269.3" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="206.3" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 0 warm-up rounds: bias +16.0 %</title></circle>
+<circle cx="77.1" cy="227.8" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 1 warm-up rounds: bias +10.3 %</title></circle>
+<circle cx="90.3" cy="236.1" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 2 warm-up rounds: bias +8.1 %</title></circle>
+<circle cx="103.4" cy="237.8" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 3 warm-up rounds: bias +7.7 %</title></circle>
+<circle cx="116.5" cy="245.4" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 4 warm-up rounds: bias +5.6 %</title></circle>
+<circle cx="129.7" cy="250.3" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 5 warm-up rounds: bias +4.3 %</title></circle>
+<circle cx="142.8" cy="256.0" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 6 warm-up rounds: bias +2.8 %</title></circle>
+<circle cx="155.9" cy="260.0" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 7 warm-up rounds: bias +1.7 %</title></circle>
+<circle cx="169.1" cy="265.7" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 8 warm-up rounds: bias +0.2 %</title></circle>
+<circle cx="182.2" cy="265.7" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 9 warm-up rounds: bias +0.2 %</title></circle>
+<circle cx="195.3" cy="267.2" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 10 warm-up rounds: bias −0.2 %</title></circle>
+<circle cx="208.5" cy="264.5" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 11 warm-up rounds: bias +0.5 %</title></circle>
+<circle cx="221.6" cy="262.7" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 12 warm-up rounds: bias +1.0 %</title></circle>
+<circle cx="234.7" cy="264.5" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 13 warm-up rounds: bias +0.5 %</title></circle>
+<circle cx="247.9" cy="269.1" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 14 warm-up rounds: bias −0.7 %</title></circle>
+<circle cx="261.0" cy="269.3" r="5" fill="transparent"><title>Bias against the plateau, chromium, Comunica: 15 warm-up rounds: bias −0.8 %</title></circle>
+<path class="so1" d="M64.0 239.7 L77.1 239.8 L90.3 242.6 L103.4 246.5 L116.5 248.6 L129.7 250.6 L142.8 253.0 L155.9 252.9 L169.1 256.2 L182.2 260.8 L195.3 263.3 L208.5 262.2 L221.6 264.5 L234.7 264.3 L247.9 264.8 L261.0 265.9" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="239.7" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 0 warm-up rounds: bias +7.2 %</title></circle>
+<circle cx="77.1" cy="239.8" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 1 warm-up rounds: bias +7.1 %</title></circle>
+<circle cx="90.3" cy="242.6" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 2 warm-up rounds: bias +6.4 %</title></circle>
+<circle cx="103.4" cy="246.5" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 3 warm-up rounds: bias +5.3 %</title></circle>
+<circle cx="116.5" cy="248.6" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 4 warm-up rounds: bias +4.8 %</title></circle>
+<circle cx="129.7" cy="250.6" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 5 warm-up rounds: bias +4.2 %</title></circle>
+<circle cx="142.8" cy="253.0" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 6 warm-up rounds: bias +3.6 %</title></circle>
+<circle cx="155.9" cy="252.9" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 7 warm-up rounds: bias +3.6 %</title></circle>
+<circle cx="169.1" cy="256.2" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 8 warm-up rounds: bias +2.8 %</title></circle>
+<circle cx="182.2" cy="260.8" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 9 warm-up rounds: bias +1.5 %</title></circle>
+<circle cx="195.3" cy="263.3" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 10 warm-up rounds: bias +0.8 %</title></circle>
+<circle cx="208.5" cy="262.2" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 11 warm-up rounds: bias +1.1 %</title></circle>
+<circle cx="221.6" cy="264.5" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 12 warm-up rounds: bias +0.5 %</title></circle>
+<circle cx="234.7" cy="264.3" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 13 warm-up rounds: bias +0.6 %</title></circle>
+<circle cx="247.9" cy="264.8" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 14 warm-up rounds: bias +0.5 %</title></circle>
+<circle cx="261.0" cy="265.9" r="5" fill="transparent"><title>Bias against the plateau, chromium, Oxigraph: 15 warm-up rounds: bias +0.1 %</title></circle>
+<text class="ink" x="289" y="144" font-size="12" font-weight="600">Bias against the plateau, firefox</text>
+<line class="grid" x1="289" x2="486" y1="266.5" y2="266.5" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="229.0" y2="229.0" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="191.5" y2="191.5" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="154.0" y2="154.0" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="304.0" y2="304.0" stroke-width="1"/>
+<text class="muted" x="289.0" y="319" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="302.1" y="319" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="354.7" y="319" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="420.3" y="319" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="486.0" y="319" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="289" x2="486" y1="304" y2="304" stroke-width="1"/>
+<line class="whisker" x1="289" x2="486" y1="266.5" y2="266.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M289.0 229.7 L302.1 232.9 L315.3 242.9 L328.4 254.2 L341.5 259.8 L354.7 261.2 L367.8 260.8 L380.9 257.4 L394.1 256.3 L407.2 252.8 L420.3 254.0 L433.5 258.3 L446.6 262.8 L459.7 263.9 L472.9 271.4 L486.0 271.8" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="229.7" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 0 warm-up rounds: bias +9.8 %</title></circle>
+<circle cx="302.1" cy="232.9" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 1 warm-up rounds: bias +9.0 %</title></circle>
+<circle cx="315.3" cy="242.9" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 2 warm-up rounds: bias +6.3 %</title></circle>
+<circle cx="328.4" cy="254.2" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 3 warm-up rounds: bias +3.3 %</title></circle>
+<circle cx="341.5" cy="259.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 4 warm-up rounds: bias +1.8 %</title></circle>
+<circle cx="354.7" cy="261.2" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 5 warm-up rounds: bias +1.4 %</title></circle>
+<circle cx="367.8" cy="260.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 6 warm-up rounds: bias +1.5 %</title></circle>
+<circle cx="380.9" cy="257.4" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 7 warm-up rounds: bias +2.4 %</title></circle>
+<circle cx="394.1" cy="256.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 8 warm-up rounds: bias +2.7 %</title></circle>
+<circle cx="407.2" cy="252.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 9 warm-up rounds: bias +3.6 %</title></circle>
+<circle cx="420.3" cy="254.0" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 10 warm-up rounds: bias +3.3 %</title></circle>
+<circle cx="433.5" cy="258.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 11 warm-up rounds: bias +2.2 %</title></circle>
+<circle cx="446.6" cy="262.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 12 warm-up rounds: bias +1.0 %</title></circle>
+<circle cx="459.7" cy="263.9" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 13 warm-up rounds: bias +0.7 %</title></circle>
+<circle cx="472.9" cy="271.4" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 14 warm-up rounds: bias −1.3 %</title></circle>
+<circle cx="486.0" cy="271.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Comunica: 15 warm-up rounds: bias −1.4 %</title></circle>
+<path class="so1" d="M289.0 257.9 L302.1 262.3 L315.3 269.1 L328.4 273.3 L341.5 275.4 L354.7 276.4 L367.8 276.1 L380.9 277.0 L394.1 278.5 L407.2 276.6 L420.3 273.3 L433.5 270.5 L446.6 266.8 L459.7 260.3 L472.9 258.9 L486.0 261.1" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="257.9" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 0 warm-up rounds: bias +2.3 %</title></circle>
+<circle cx="302.1" cy="262.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 1 warm-up rounds: bias +1.1 %</title></circle>
+<circle cx="315.3" cy="269.1" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 2 warm-up rounds: bias −0.7 %</title></circle>
+<circle cx="328.4" cy="273.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 3 warm-up rounds: bias −1.8 %</title></circle>
+<circle cx="341.5" cy="275.4" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 4 warm-up rounds: bias −2.4 %</title></circle>
+<circle cx="354.7" cy="276.4" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 5 warm-up rounds: bias −2.7 %</title></circle>
+<circle cx="367.8" cy="276.1" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 6 warm-up rounds: bias −2.5 %</title></circle>
+<circle cx="380.9" cy="277.0" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 7 warm-up rounds: bias −2.8 %</title></circle>
+<circle cx="394.1" cy="278.5" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 8 warm-up rounds: bias −3.2 %</title></circle>
+<circle cx="407.2" cy="276.6" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 9 warm-up rounds: bias −2.7 %</title></circle>
+<circle cx="420.3" cy="273.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 10 warm-up rounds: bias −1.8 %</title></circle>
+<circle cx="433.5" cy="270.5" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 11 warm-up rounds: bias −1.1 %</title></circle>
+<circle cx="446.6" cy="266.8" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 12 warm-up rounds: bias −0.1 %</title></circle>
+<circle cx="459.7" cy="260.3" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 13 warm-up rounds: bias +1.6 %</title></circle>
+<circle cx="472.9" cy="258.9" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 14 warm-up rounds: bias +2.0 %</title></circle>
+<circle cx="486.0" cy="261.1" r="5" fill="transparent"><title>Bias against the plateau, firefox, Oxigraph: 15 warm-up rounds: bias +1.4 %</title></circle>
+<text class="ink" x="514" y="144" font-size="12" font-weight="600">Bias against the plateau, webkit</text>
+<line class="grid" x1="514" x2="711" y1="266.5" y2="266.5" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="229.0" y2="229.0" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="191.5" y2="191.5" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="154.0" y2="154.0" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="304.0" y2="304.0" stroke-width="1"/>
+<text class="muted" x="514.0" y="319" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="527.1" y="319" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="579.7" y="319" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="645.3" y="319" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="711.0" y="319" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="514" x2="711" y1="304" y2="304" stroke-width="1"/>
+<line class="whisker" x1="514" x2="711" y1="266.5" y2="266.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M514.0 187.4 L527.1 217.1 L540.3 229.0 L553.4 246.1 L566.5 252.6 L579.7 260.1 L592.8 266.3 L605.9 273.0 L619.1 273.8 L632.2 274.3 L645.3 274.5 L658.5 273.2 L671.6 275.9 L684.7 276.9 L697.9 279.1 L711.0 277.9" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="187.4" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 0 warm-up rounds: bias +21.1 %</title></circle>
+<circle cx="527.1" cy="217.1" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 1 warm-up rounds: bias +13.2 %</title></circle>
+<circle cx="540.3" cy="229.0" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 2 warm-up rounds: bias +10.0 %</title></circle>
+<circle cx="553.4" cy="246.1" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 3 warm-up rounds: bias +5.4 %</title></circle>
+<circle cx="566.5" cy="252.6" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 4 warm-up rounds: bias +3.7 %</title></circle>
+<circle cx="579.7" cy="260.1" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 5 warm-up rounds: bias +1.7 %</title></circle>
+<circle cx="592.8" cy="266.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 6 warm-up rounds: bias +0.1 %</title></circle>
+<circle cx="605.9" cy="273.0" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 7 warm-up rounds: bias −1.7 %</title></circle>
+<circle cx="619.1" cy="273.8" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 8 warm-up rounds: bias −1.9 %</title></circle>
+<circle cx="632.2" cy="274.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 9 warm-up rounds: bias −2.1 %</title></circle>
+<circle cx="645.3" cy="274.5" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 10 warm-up rounds: bias −2.1 %</title></circle>
+<circle cx="658.5" cy="273.2" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 11 warm-up rounds: bias −1.8 %</title></circle>
+<circle cx="671.6" cy="275.9" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 12 warm-up rounds: bias −2.5 %</title></circle>
+<circle cx="684.7" cy="276.9" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 13 warm-up rounds: bias −2.8 %</title></circle>
+<circle cx="697.9" cy="279.1" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 14 warm-up rounds: bias −3.4 %</title></circle>
+<circle cx="711.0" cy="277.9" r="5" fill="transparent"><title>Bias against the plateau, webkit, Comunica: 15 warm-up rounds: bias −3.0 %</title></circle>
+<path class="so1" d="M514.0 232.9 L527.1 232.4 L540.3 234.7 L553.4 241.3 L566.5 241.3 L579.7 237.7 L592.8 245.8 L605.9 247.7 L619.1 250.6 L632.2 256.3 L645.3 264.3 L658.5 265.8 L671.6 268.0 L684.7 266.8 L697.9 269.8 L711.0 270.5" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="232.9" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 0 warm-up rounds: bias +9.0 %</title></circle>
+<circle cx="527.1" cy="232.4" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 1 warm-up rounds: bias +9.1 %</title></circle>
+<circle cx="540.3" cy="234.7" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 2 warm-up rounds: bias +8.5 %</title></circle>
+<circle cx="553.4" cy="241.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 3 warm-up rounds: bias +6.7 %</title></circle>
+<circle cx="566.5" cy="241.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 4 warm-up rounds: bias +6.7 %</title></circle>
+<circle cx="579.7" cy="237.7" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 5 warm-up rounds: bias +7.7 %</title></circle>
+<circle cx="592.8" cy="245.8" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 6 warm-up rounds: bias +5.5 %</title></circle>
+<circle cx="605.9" cy="247.7" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 7 warm-up rounds: bias +5.0 %</title></circle>
+<circle cx="619.1" cy="250.6" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 8 warm-up rounds: bias +4.3 %</title></circle>
+<circle cx="632.2" cy="256.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 9 warm-up rounds: bias +2.7 %</title></circle>
+<circle cx="645.3" cy="264.3" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 10 warm-up rounds: bias +0.6 %</title></circle>
+<circle cx="658.5" cy="265.8" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 11 warm-up rounds: bias +0.2 %</title></circle>
+<circle cx="671.6" cy="268.0" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 12 warm-up rounds: bias −0.4 %</title></circle>
+<circle cx="684.7" cy="266.8" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 13 warm-up rounds: bias −0.1 %</title></circle>
+<circle cx="697.9" cy="269.8" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 14 warm-up rounds: bias −0.9 %</title></circle>
+<circle cx="711.0" cy="270.5" r="5" fill="transparent"><title>Bias against the plateau, webkit, Oxigraph: 15 warm-up rounds: bias −1.1 %</title></circle>
+<text class="ink" x="739" y="144" font-size="12" font-weight="600">Bias against the plateau, node</text>
+<line class="grid" x1="739" x2="936" y1="266.5" y2="266.5" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="229.0" y2="229.0" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="191.5" y2="191.5" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="154.0" y2="154.0" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="304.0" y2="304.0" stroke-width="1"/>
+<text class="muted" x="739.0" y="319" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="752.1" y="319" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="804.7" y="319" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="870.3" y="319" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="936.0" y="319" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="739" x2="936" y1="304" y2="304" stroke-width="1"/>
+<line class="whisker" x1="739" x2="936" y1="266.5" y2="266.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M739.0 201.3 L752.1 218.4 L765.3 223.3 L778.4 223.7 L791.5 231.9 L804.7 238.8 L817.8 244.8 L830.9 249.6 L844.1 254.6 L857.2 259.5 L870.3 260.6 L883.5 261.3 L896.6 264.4 L909.7 266.4 L922.9 262.4 L936.0 261.9" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="739.0" cy="201.3" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 0 warm-up rounds: bias +17.4 %</title></circle>
+<circle cx="752.1" cy="218.4" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 1 warm-up rounds: bias +12.8 %</title></circle>
+<circle cx="765.3" cy="223.3" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 2 warm-up rounds: bias +11.5 %</title></circle>
+<circle cx="778.4" cy="223.7" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 3 warm-up rounds: bias +11.4 %</title></circle>
+<circle cx="791.5" cy="231.9" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 4 warm-up rounds: bias +9.2 %</title></circle>
+<circle cx="804.7" cy="238.8" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 5 warm-up rounds: bias +7.4 %</title></circle>
+<circle cx="817.8" cy="244.8" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 6 warm-up rounds: bias +5.8 %</title></circle>
+<circle cx="830.9" cy="249.6" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 7 warm-up rounds: bias +4.5 %</title></circle>
+<circle cx="844.1" cy="254.6" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 8 warm-up rounds: bias +3.2 %</title></circle>
+<circle cx="857.2" cy="259.5" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 9 warm-up rounds: bias +1.9 %</title></circle>
+<circle cx="870.3" cy="260.6" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 10 warm-up rounds: bias +1.6 %</title></circle>
+<circle cx="883.5" cy="261.3" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 11 warm-up rounds: bias +1.4 %</title></circle>
+<circle cx="896.6" cy="264.4" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 12 warm-up rounds: bias +0.6 %</title></circle>
+<circle cx="909.7" cy="266.4" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 13 warm-up rounds: bias +0.0 %</title></circle>
+<circle cx="922.9" cy="262.4" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 14 warm-up rounds: bias +1.1 %</title></circle>
+<circle cx="936.0" cy="261.9" r="5" fill="transparent"><title>Bias against the plateau, node, Comunica: 15 warm-up rounds: bias +1.2 %</title></circle>
+<text class="ink" x="64" y="340" font-size="12" font-weight="600">A/A noise, chromium</text>
+<line class="grid" x1="64" x2="261" y1="462.5" y2="462.5" stroke-width="1"/>
+<text class="muted" x="56" y="466.5" font-size="11" text-anchor="end">0 %</text>
+<line class="grid" x1="64" x2="261" y1="425.0" y2="425.0" stroke-width="1"/>
+<text class="muted" x="56" y="429.0" font-size="11" text-anchor="end">10 %</text>
+<line class="grid" x1="64" x2="261" y1="387.5" y2="387.5" stroke-width="1"/>
+<text class="muted" x="56" y="391.5" font-size="11" text-anchor="end">20 %</text>
+<line class="grid" x1="64" x2="261" y1="350.0" y2="350.0" stroke-width="1"/>
+<text class="muted" x="56" y="354.0" font-size="11" text-anchor="end">30 %</text>
+<line class="grid" x1="64" x2="261" y1="500.0" y2="500.0" stroke-width="1"/>
+<text class="muted" x="56" y="504.0" font-size="11" text-anchor="end">-10 %</text>
+<text class="muted" x="64.0" y="515" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="77.1" y="515" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="129.7" y="515" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="195.3" y="515" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="261.0" y="515" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="64" x2="261" y1="500" y2="500" stroke-width="1"/>
+<line class="whisker" x1="64" x2="261" y1="462.5" y2="462.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M64.0 397.8 L77.1 400.8 L90.3 400.4 L103.4 397.3 L116.5 409.3 L129.7 406.2 L142.8 403.7 L155.9 402.4 L169.1 403.3 L182.2 396.0 L195.3 403.1 L208.5 406.4 L221.6 408.9 L234.7 411.8 L247.9 413.4 L261.0 408.1" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="397.8" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 0 warm-up rounds: noise +17.2 %</title></circle>
+<circle cx="77.1" cy="400.8" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 1 warm-up rounds: noise +16.4 %</title></circle>
+<circle cx="90.3" cy="400.4" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 2 warm-up rounds: noise +16.6 %</title></circle>
+<circle cx="103.4" cy="397.3" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 3 warm-up rounds: noise +17.4 %</title></circle>
+<circle cx="116.5" cy="409.3" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 4 warm-up rounds: noise +14.2 %</title></circle>
+<circle cx="129.7" cy="406.2" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 5 warm-up rounds: noise +15.0 %</title></circle>
+<circle cx="142.8" cy="403.7" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 6 warm-up rounds: noise +15.7 %</title></circle>
+<circle cx="155.9" cy="402.4" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 7 warm-up rounds: noise +16.0 %</title></circle>
+<circle cx="169.1" cy="403.3" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 8 warm-up rounds: noise +15.8 %</title></circle>
+<circle cx="182.2" cy="396.0" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 9 warm-up rounds: noise +17.7 %</title></circle>
+<circle cx="195.3" cy="403.1" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 10 warm-up rounds: noise +15.9 %</title></circle>
+<circle cx="208.5" cy="406.4" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 11 warm-up rounds: noise +15.0 %</title></circle>
+<circle cx="221.6" cy="408.9" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 12 warm-up rounds: noise +14.3 %</title></circle>
+<circle cx="234.7" cy="411.8" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 13 warm-up rounds: noise +13.5 %</title></circle>
+<circle cx="247.9" cy="413.4" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 14 warm-up rounds: noise +13.1 %</title></circle>
+<circle cx="261.0" cy="408.1" r="5" fill="transparent"><title>A/A noise, chromium, Comunica: 15 warm-up rounds: noise +14.5 %</title></circle>
+<path class="so1" d="M64.0 424.2 L77.1 418.6 L90.3 423.1 L103.4 426.0 L116.5 433.9 L129.7 435.5 L142.8 439.3 L155.9 440.8 L169.1 439.4 L182.2 438.9 L195.3 443.2 L208.5 441.5 L221.6 430.3 L234.7 428.9 L247.9 431.2 L261.0 428.9" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="424.2" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 0 warm-up rounds: noise +10.2 %</title></circle>
+<circle cx="77.1" cy="418.6" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 1 warm-up rounds: noise +11.7 %</title></circle>
+<circle cx="90.3" cy="423.1" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 2 warm-up rounds: noise +10.5 %</title></circle>
+<circle cx="103.4" cy="426.0" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 3 warm-up rounds: noise +9.7 %</title></circle>
+<circle cx="116.5" cy="433.9" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 4 warm-up rounds: noise +7.6 %</title></circle>
+<circle cx="129.7" cy="435.5" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 5 warm-up rounds: noise +7.2 %</title></circle>
+<circle cx="142.8" cy="439.3" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 6 warm-up rounds: noise +6.2 %</title></circle>
+<circle cx="155.9" cy="440.8" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 7 warm-up rounds: noise +5.8 %</title></circle>
+<circle cx="169.1" cy="439.4" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 8 warm-up rounds: noise +6.2 %</title></circle>
+<circle cx="182.2" cy="438.9" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 9 warm-up rounds: noise +6.3 %</title></circle>
+<circle cx="195.3" cy="443.2" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 10 warm-up rounds: noise +5.2 %</title></circle>
+<circle cx="208.5" cy="441.5" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 11 warm-up rounds: noise +5.6 %</title></circle>
+<circle cx="221.6" cy="430.3" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 12 warm-up rounds: noise +8.6 %</title></circle>
+<circle cx="234.7" cy="428.9" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 13 warm-up rounds: noise +9.0 %</title></circle>
+<circle cx="247.9" cy="431.2" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 14 warm-up rounds: noise +8.4 %</title></circle>
+<circle cx="261.0" cy="428.9" r="5" fill="transparent"><title>A/A noise, chromium, Oxigraph: 15 warm-up rounds: noise +9.0 %</title></circle>
+<text class="ink2" x="162.5" y="534" font-size="12" text-anchor="middle">warm-up rounds after the cold run</text>
+<text class="ink" x="289" y="340" font-size="12" font-weight="600">A/A noise, firefox</text>
+<line class="grid" x1="289" x2="486" y1="462.5" y2="462.5" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="425.0" y2="425.0" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="387.5" y2="387.5" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="350.0" y2="350.0" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="500.0" y2="500.0" stroke-width="1"/>
+<text class="muted" x="289.0" y="515" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="302.1" y="515" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="354.7" y="515" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="420.3" y="515" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="486.0" y="515" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="289" x2="486" y1="500" y2="500" stroke-width="1"/>
+<line class="whisker" x1="289" x2="486" y1="462.5" y2="462.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M289.0 411.6 L302.1 401.2 L315.3 401.1 L328.4 394.9 L341.5 395.1 L354.7 394.6 L367.8 397.4 L380.9 400.1 L394.1 407.1 L407.2 412.7 L420.3 418.3 L433.5 417.0 L446.6 424.5 L459.7 421.9 L472.9 425.1 L486.0 427.0" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="411.6" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 0 warm-up rounds: noise +13.6 %</title></circle>
+<circle cx="302.1" cy="401.2" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 1 warm-up rounds: noise +16.3 %</title></circle>
+<circle cx="315.3" cy="401.1" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 2 warm-up rounds: noise +16.4 %</title></circle>
+<circle cx="328.4" cy="394.9" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 3 warm-up rounds: noise +18.0 %</title></circle>
+<circle cx="341.5" cy="395.1" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 4 warm-up rounds: noise +18.0 %</title></circle>
+<circle cx="354.7" cy="394.6" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 5 warm-up rounds: noise +18.1 %</title></circle>
+<circle cx="367.8" cy="397.4" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 6 warm-up rounds: noise +17.4 %</title></circle>
+<circle cx="380.9" cy="400.1" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 7 warm-up rounds: noise +16.7 %</title></circle>
+<circle cx="394.1" cy="407.1" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 8 warm-up rounds: noise +14.8 %</title></circle>
+<circle cx="407.2" cy="412.7" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 9 warm-up rounds: noise +13.3 %</title></circle>
+<circle cx="420.3" cy="418.3" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 10 warm-up rounds: noise +11.8 %</title></circle>
+<circle cx="433.5" cy="417.0" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 11 warm-up rounds: noise +12.1 %</title></circle>
+<circle cx="446.6" cy="424.5" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 12 warm-up rounds: noise +10.1 %</title></circle>
+<circle cx="459.7" cy="421.9" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 13 warm-up rounds: noise +10.8 %</title></circle>
+<circle cx="472.9" cy="425.1" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 14 warm-up rounds: noise +10.0 %</title></circle>
+<circle cx="486.0" cy="427.0" r="5" fill="transparent"><title>A/A noise, firefox, Comunica: 15 warm-up rounds: noise +9.5 %</title></circle>
+<path class="so1" d="M289.0 444.3 L302.1 441.6 L315.3 447.0 L328.4 447.5 L341.5 444.4 L354.7 444.2 L367.8 444.1 L380.9 438.3 L394.1 439.2 L407.2 435.0 L420.3 431.2 L433.5 429.1 L446.6 430.1 L459.7 429.2 L472.9 429.0 L486.0 430.2" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="444.3" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 0 warm-up rounds: noise +4.9 %</title></circle>
+<circle cx="302.1" cy="441.6" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 1 warm-up rounds: noise +5.6 %</title></circle>
+<circle cx="315.3" cy="447.0" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 2 warm-up rounds: noise +4.1 %</title></circle>
+<circle cx="328.4" cy="447.5" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 3 warm-up rounds: noise +4.0 %</title></circle>
+<circle cx="341.5" cy="444.4" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 4 warm-up rounds: noise +4.8 %</title></circle>
+<circle cx="354.7" cy="444.2" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 5 warm-up rounds: noise +4.9 %</title></circle>
+<circle cx="367.8" cy="444.1" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 6 warm-up rounds: noise +4.9 %</title></circle>
+<circle cx="380.9" cy="438.3" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 7 warm-up rounds: noise +6.5 %</title></circle>
+<circle cx="394.1" cy="439.2" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 8 warm-up rounds: noise +6.2 %</title></circle>
+<circle cx="407.2" cy="435.0" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 9 warm-up rounds: noise +7.3 %</title></circle>
+<circle cx="420.3" cy="431.2" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 10 warm-up rounds: noise +8.3 %</title></circle>
+<circle cx="433.5" cy="429.1" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 11 warm-up rounds: noise +8.9 %</title></circle>
+<circle cx="446.6" cy="430.1" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 12 warm-up rounds: noise +8.6 %</title></circle>
+<circle cx="459.7" cy="429.2" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 13 warm-up rounds: noise +8.9 %</title></circle>
+<circle cx="472.9" cy="429.0" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 14 warm-up rounds: noise +8.9 %</title></circle>
+<circle cx="486.0" cy="430.2" r="5" fill="transparent"><title>A/A noise, firefox, Oxigraph: 15 warm-up rounds: noise +8.6 %</title></circle>
+<text class="ink2" x="387.5" y="534" font-size="12" text-anchor="middle">warm-up rounds after the cold run</text>
+<text class="ink" x="514" y="340" font-size="12" font-weight="600">A/A noise, webkit</text>
+<line class="grid" x1="514" x2="711" y1="462.5" y2="462.5" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="425.0" y2="425.0" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="387.5" y2="387.5" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="350.0" y2="350.0" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="500.0" y2="500.0" stroke-width="1"/>
+<text class="muted" x="514.0" y="515" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="527.1" y="515" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="579.7" y="515" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="645.3" y="515" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="711.0" y="515" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="514" x2="711" y1="500" y2="500" stroke-width="1"/>
+<line class="whisker" x1="514" x2="711" y1="462.5" y2="462.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M514.0 429.7 L527.1 436.0 L540.3 433.5 L553.4 434.0 L566.5 429.3 L579.7 426.8 L592.8 429.4 L605.9 425.2 L619.1 423.6 L632.2 430.8 L645.3 430.4 L658.5 430.4 L671.6 436.6 L684.7 438.3 L697.9 441.5 L711.0 439.2" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="429.7" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 0 warm-up rounds: noise +8.7 %</title></circle>
+<circle cx="527.1" cy="436.0" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 1 warm-up rounds: noise +7.1 %</title></circle>
+<circle cx="540.3" cy="433.5" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 2 warm-up rounds: noise +7.7 %</title></circle>
+<circle cx="553.4" cy="434.0" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 3 warm-up rounds: noise +7.6 %</title></circle>
+<circle cx="566.5" cy="429.3" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 4 warm-up rounds: noise +8.8 %</title></circle>
+<circle cx="579.7" cy="426.8" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 5 warm-up rounds: noise +9.5 %</title></circle>
+<circle cx="592.8" cy="429.4" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 6 warm-up rounds: noise +8.8 %</title></circle>
+<circle cx="605.9" cy="425.2" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 7 warm-up rounds: noise +9.9 %</title></circle>
+<circle cx="619.1" cy="423.6" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 8 warm-up rounds: noise +10.4 %</title></circle>
+<circle cx="632.2" cy="430.8" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 9 warm-up rounds: noise +8.5 %</title></circle>
+<circle cx="645.3" cy="430.4" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 10 warm-up rounds: noise +8.5 %</title></circle>
+<circle cx="658.5" cy="430.4" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 11 warm-up rounds: noise +8.6 %</title></circle>
+<circle cx="671.6" cy="436.6" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 12 warm-up rounds: noise +6.9 %</title></circle>
+<circle cx="684.7" cy="438.3" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 13 warm-up rounds: noise +6.5 %</title></circle>
+<circle cx="697.9" cy="441.5" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 14 warm-up rounds: noise +5.6 %</title></circle>
+<circle cx="711.0" cy="439.2" r="5" fill="transparent"><title>A/A noise, webkit, Comunica: 15 warm-up rounds: noise +6.2 %</title></circle>
+<path class="so1" d="M514.0 431.7 L527.1 432.1 L540.3 429.3 L553.4 427.0 L566.5 425.9 L579.7 419.5 L592.8 424.0 L605.9 426.3 L619.1 425.6 L632.2 424.5 L645.3 439.7 L658.5 439.3 L671.6 441.7 L684.7 435.8 L697.9 438.1 L711.0 440.1" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="431.7" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 0 warm-up rounds: noise +8.2 %</title></circle>
+<circle cx="527.1" cy="432.1" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 1 warm-up rounds: noise +8.1 %</title></circle>
+<circle cx="540.3" cy="429.3" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 2 warm-up rounds: noise +8.8 %</title></circle>
+<circle cx="553.4" cy="427.0" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 3 warm-up rounds: noise +9.5 %</title></circle>
+<circle cx="566.5" cy="425.9" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 4 warm-up rounds: noise +9.7 %</title></circle>
+<circle cx="579.7" cy="419.5" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 5 warm-up rounds: noise +11.5 %</title></circle>
+<circle cx="592.8" cy="424.0" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 6 warm-up rounds: noise +10.3 %</title></circle>
+<circle cx="605.9" cy="426.3" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 7 warm-up rounds: noise +9.6 %</title></circle>
+<circle cx="619.1" cy="425.6" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 8 warm-up rounds: noise +9.9 %</title></circle>
+<circle cx="632.2" cy="424.5" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 9 warm-up rounds: noise +10.1 %</title></circle>
+<circle cx="645.3" cy="439.7" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 10 warm-up rounds: noise +6.1 %</title></circle>
+<circle cx="658.5" cy="439.3" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 11 warm-up rounds: noise +6.2 %</title></circle>
+<circle cx="671.6" cy="441.7" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 12 warm-up rounds: noise +5.6 %</title></circle>
+<circle cx="684.7" cy="435.8" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 13 warm-up rounds: noise +7.1 %</title></circle>
+<circle cx="697.9" cy="438.1" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 14 warm-up rounds: noise +6.5 %</title></circle>
+<circle cx="711.0" cy="440.1" r="5" fill="transparent"><title>A/A noise, webkit, Oxigraph: 15 warm-up rounds: noise +6.0 %</title></circle>
+<text class="ink2" x="612.5" y="534" font-size="12" text-anchor="middle">warm-up rounds after the cold run</text>
+<text class="ink" x="739" y="340" font-size="12" font-weight="600">A/A noise, node</text>
+<line class="grid" x1="739" x2="936" y1="462.5" y2="462.5" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="425.0" y2="425.0" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="387.5" y2="387.5" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="350.0" y2="350.0" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="500.0" y2="500.0" stroke-width="1"/>
+<text class="muted" x="739.0" y="515" font-size="11" text-anchor="middle">0</text>
+<text class="muted" x="752.1" y="515" font-size="11" text-anchor="middle">1</text>
+<text class="muted" x="804.7" y="515" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="870.3" y="515" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="936.0" y="515" font-size="11" text-anchor="middle">15</text>
+<line class="axis" x1="739" x2="936" y1="500" y2="500" stroke-width="1"/>
+<line class="whisker" x1="739" x2="936" y1="462.5" y2="462.5" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M739.0 434.8 L752.1 434.7 L765.3 427.6 L778.4 422.1 L791.5 432.0 L804.7 433.6 L817.8 432.0 L830.9 433.6 L844.1 443.1 L857.2 439.9 L870.3 436.4 L883.5 436.9 L896.6 430.6 L909.7 424.8 L922.9 423.3 L936.0 428.3" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="739.0" cy="434.8" r="5" fill="transparent"><title>A/A noise, node, Comunica: 0 warm-up rounds: noise +7.4 %</title></circle>
+<circle cx="752.1" cy="434.7" r="5" fill="transparent"><title>A/A noise, node, Comunica: 1 warm-up rounds: noise +7.4 %</title></circle>
+<circle cx="765.3" cy="427.6" r="5" fill="transparent"><title>A/A noise, node, Comunica: 2 warm-up rounds: noise +9.3 %</title></circle>
+<circle cx="778.4" cy="422.1" r="5" fill="transparent"><title>A/A noise, node, Comunica: 3 warm-up rounds: noise +10.8 %</title></circle>
+<circle cx="791.5" cy="432.0" r="5" fill="transparent"><title>A/A noise, node, Comunica: 4 warm-up rounds: noise +8.1 %</title></circle>
+<circle cx="804.7" cy="433.6" r="5" fill="transparent"><title>A/A noise, node, Comunica: 5 warm-up rounds: noise +7.7 %</title></circle>
+<circle cx="817.8" cy="432.0" r="5" fill="transparent"><title>A/A noise, node, Comunica: 6 warm-up rounds: noise +8.1 %</title></circle>
+<circle cx="830.9" cy="433.6" r="5" fill="transparent"><title>A/A noise, node, Comunica: 7 warm-up rounds: noise +7.7 %</title></circle>
+<circle cx="844.1" cy="443.1" r="5" fill="transparent"><title>A/A noise, node, Comunica: 8 warm-up rounds: noise +5.2 %</title></circle>
+<circle cx="857.2" cy="439.9" r="5" fill="transparent"><title>A/A noise, node, Comunica: 9 warm-up rounds: noise +6.0 %</title></circle>
+<circle cx="870.3" cy="436.4" r="5" fill="transparent"><title>A/A noise, node, Comunica: 10 warm-up rounds: noise +7.0 %</title></circle>
+<circle cx="883.5" cy="436.9" r="5" fill="transparent"><title>A/A noise, node, Comunica: 11 warm-up rounds: noise +6.8 %</title></circle>
+<circle cx="896.6" cy="430.6" r="5" fill="transparent"><title>A/A noise, node, Comunica: 12 warm-up rounds: noise +8.5 %</title></circle>
+<circle cx="909.7" cy="424.8" r="5" fill="transparent"><title>A/A noise, node, Comunica: 13 warm-up rounds: noise +10.1 %</title></circle>
+<circle cx="922.9" cy="423.3" r="5" fill="transparent"><title>A/A noise, node, Comunica: 14 warm-up rounds: noise +10.5 %</title></circle>
+<circle cx="936.0" cy="428.3" r="5" fill="transparent"><title>A/A noise, node, Comunica: 15 warm-up rounds: noise +9.1 %</title></circle>
+<text class="ink2" x="837.5" y="534" font-size="12" text-anchor="middle">warm-up rounds after the cold run</text>
+<text class="ink2" transform="translate(16 327.0) rotate(-90)" font-size="12" text-anchor="middle">%</text>
+</svg>

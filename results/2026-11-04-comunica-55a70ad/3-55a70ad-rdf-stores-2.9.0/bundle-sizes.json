@@ -1,0 +1,54 @@
+[
+  {
+    "page": "comunica",
+    "jsRaw": 1321745,
+    "jsGzip": 286098,
+    "wasmRaw": 0,
+    "wasmGzip": 0,
+    "files": [
+      "assets/comunica-DBrx4kxz.js",
+      "assets/preload-helper-BnvyQGdt.js",
+      "assets/comunica-Bgv0Gx93.js"
+    ],
+    "totalRaw": 1321745,
+    "totalGzip": 286098,
+    "engineOnly": {
+      "jsRaw": 1314235,
+      "jsGzip": 282651,
+      "wasmRaw": 0,
+      "wasmGzip": 0,
+      "files": [
+        "assets/comunica-Bgv0Gx93.js"
+      ],
+      "totalRaw": 1314235,
+      "totalGzip": 282651
+    }
+  },
+  {
+    "page": "oxigraph",
+    "jsRaw": 28129,
+    "jsGzip": 8686,
+    "wasmRaw": 4324920,
+    "wasmGzip": 1533744,
+    "files": [
+      "assets/oxigraph-CXSUH7_N.js",
+      "assets/preload-helper-BnvyQGdt.js",
+      "assets/oxigraph-B6YIdDl9.js",
+      "assets/web_bg-D3AkT1fG.wasm"
+    ],
+    "totalRaw": 4353049,
+    "totalGzip": 1542430,
+    "engineOnly": {
+      "jsRaw": 20619,
+      "jsGzip": 5238,
+      "wasmRaw": 4324920,
+      "wasmGzip": 1533744,
+      "files": [
+        "assets/oxigraph-B6YIdDl9.js",
+        "assets/web_bg-D3AkT1fG.wasm"
+      ],
+      "totalRaw": 4345539,
+      "totalGzip": 1538982
+    }
+  }
+]

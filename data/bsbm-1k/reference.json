@@ -1,0 +1,817 @@
+{
+  "dataset": "bsbm-1k",
+  "generatedAt": "2026-11-01T14:32:06.567Z",
+  "node": "v22.23.4",
+  "engines": {
+    "oxigraph": "0.5.13",
+    "comunica": {
+      "commit": "e06d02e8144786567152068bb3c9e69918784b2a",
+      "version": "5.4.1",
+      "n3": "2.13.12",
+      "rdfStores": "2.8.0"
+    }
+  },
+  "agreeAll": true,
+  "queries": {
+    "Q1-1": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q1-2": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q1-3": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q1-4": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q1-5": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q2-1": {
+      "count": 18,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 18,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 18,
+        "resultType": "bindings"
+      }
+    },
+    "Q2-2": {
+      "count": 16,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 16,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 16,
+        "resultType": "bindings"
+      }
+    },
+    "Q2-3": {
+      "count": 24,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 24,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 24,
+        "resultType": "bindings"
+      }
+    },
+    "Q2-4": {
+      "count": 21,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 21,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 21,
+        "resultType": "bindings"
+      }
+    },
+    "Q2-5": {
+      "count": 17,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 17,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 17,
+        "resultType": "bindings"
+      }
+    },
+    "Q3-1": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q3-2": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q3-3": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q3-4": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q3-5": {
+      "count": 2,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 2,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 2,
+        "resultType": "bindings"
+      }
+    },
+    "Q4-1": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q4-2": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q4-3": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q4-4": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q4-5": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q5-1": {
+      "count": 5,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 5,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 5,
+        "resultType": "bindings"
+      }
+    },
+    "Q5-2": {
+      "count": 3,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 3,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 3,
+        "resultType": "bindings"
+      }
+    },
+    "Q5-3": {
+      "count": 1,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1,
+        "resultType": "bindings"
+      }
+    },
+    "Q5-4": {
+      "count": 4,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 4,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 4,
+        "resultType": "bindings"
+      }
+    },
+    "Q5-5": {
+      "count": 5,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 5,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 5,
+        "resultType": "bindings"
+      }
+    },
+    "Q8-1": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "bindings"
+      }
+    },
+    "Q8-2": {
+      "count": 12,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 12,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 12,
+        "resultType": "bindings"
+      }
+    },
+    "Q8-3": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "bindings"
+      }
+    },
+    "Q8-4": {
+      "count": 4,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 4,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 4,
+        "resultType": "bindings"
+      }
+    },
+    "Q8-5": {
+      "count": 11,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 11,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 11,
+        "resultType": "bindings"
+      }
+    },
+    "Q9-1": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "quads"
+      }
+    },
+    "Q9-2": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "quads"
+      }
+    },
+    "Q9-3": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "quads"
+      }
+    },
+    "Q9-4": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "quads"
+      }
+    },
+    "Q9-5": {
+      "count": 6,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 6,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 6,
+        "resultType": "quads"
+      }
+    },
+    "Q10-1": {
+      "count": 0,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 0,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 0,
+        "resultType": "bindings"
+      }
+    },
+    "Q10-2": {
+      "count": 1,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1,
+        "resultType": "bindings"
+      }
+    },
+    "Q10-3": {
+      "count": 3,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 3,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 3,
+        "resultType": "bindings"
+      }
+    },
+    "Q10-4": {
+      "count": 2,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 2,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 2,
+        "resultType": "bindings"
+      }
+    },
+    "Q10-5": {
+      "count": 2,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 2,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 2,
+        "resultType": "bindings"
+      }
+    },
+    "Q11-1": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "Q11-2": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "Q11-3": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "Q11-4": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "Q11-5": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "Q12-1": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "quads"
+      }
+    },
+    "Q12-2": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "quads"
+      }
+    },
+    "Q12-3": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "quads"
+      }
+    },
+    "Q12-4": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "quads"
+      }
+    },
+    "Q12-5": {
+      "count": 8,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 8,
+        "resultType": "quads"
+      },
+      "comunica": {
+        "count": 8,
+        "resultType": "quads"
+      }
+    }
+  }
+}

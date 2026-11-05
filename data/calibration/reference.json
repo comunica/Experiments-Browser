@@ -1,0 +1,209 @@
+{
+  "dataset": "calibration",
+  "generatedAt": "2026-11-02T05:59:58.519Z",
+  "node": "v22.23.4",
+  "engines": {
+    "oxigraph": "0.5.13",
+    "comunica": {
+      "commit": "e06d02e8144786567152068bb3c9e69918784b2a",
+      "version": "5.4.1",
+      "n3": "2.13.12",
+      "rdfStores": "2.8.0"
+    }
+  },
+  "agreeAll": true,
+  "queries": {
+    "w1-n1": {
+      "count": 1,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1,
+        "resultType": "bindings"
+      }
+    },
+    "w1-n10": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "w1-n100": {
+      "count": 100,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 100,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 100,
+        "resultType": "bindings"
+      }
+    },
+    "w1-n1000": {
+      "count": 1000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1000,
+        "resultType": "bindings"
+      }
+    },
+    "w1-n10000": {
+      "count": 10000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10000,
+        "resultType": "bindings"
+      }
+    },
+    "w1-n100000": {
+      "count": 100000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 100000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 100000,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n1": {
+      "count": 1,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n10": {
+      "count": 10,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n100": {
+      "count": 100,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 100,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 100,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n1000": {
+      "count": 1000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 1000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 1000,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n10000": {
+      "count": 10000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 10000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 10000,
+        "resultType": "bindings"
+      }
+    },
+    "w3-n100000": {
+      "count": 100000,
+      "agree": true,
+      "confirmedBy": [
+        "oxigraph",
+        "comunica"
+      ],
+      "oxigraph": {
+        "count": 100000,
+        "resultType": "bindings"
+      },
+      "comunica": {
+        "count": 100000,
+        "resultType": "bindings"
+      }
+    }
+  }
+}

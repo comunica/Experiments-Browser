@@ -1,0 +1,66 @@
+watdiv-10, 90 queries (C1 F1 F2 F3 F4 F5 L1 L2 L3 L4 L5 S1 S2 S3 S4 S5 S6 S7), 10 warm-up rounds, 30 profiled rounds, median round 223.7 ms, Node v26.13.0 (V8 14.6.202.34-node.40), Comunica 6b5eb94
+Total sampled: 6723 ms
+
+Self time per function:
+  4.5 %  compare  rdf-stores:68
+  3.7 %  (garbage collector)  (native or V8)
+  3.7 %  (program)  (native or V8)
+  3.0 %  label  rdf-stores:109
+  2.6 %  (anonymous)  @comunica/actor-optimize-query-operation-query-source-skolemize:242
+  2.5 %  prepareBindings  rdf-stores:509
+  1.5 %  materializeTerm  @comunica/utils-query-operation:21
+  1.4 %  bindOperation  @comunica/actor-rdf-join-inner-multi-index-nested-loop:115
+  1.4 %  publish  @comunica/core:48
+  1.4 %  cloneObj  @traqula/core:45
+  1.3 %  expand  @traqula/core:137
+  1.3 %  ignoreDefaultKeys  @comunica/utils-algebra:430
+  1.1 %  expand  @traqula/core:441
+  0.9 %  queryBindingsSynchronous  @comunica/actor-optimize-query-operation-query-source-skolemize:61
+  0.9 %  mediateWith  @comunica/mediator-join-coefficients-fixed:22
+  0.9 %  mediate  @comunica/mediator-combine-pipeline:19
+  0.8 %  encodeOptional  rdf-stores:29
+  0.8 %  seekKey  rdf-stores:147
+  0.8 %  queryBindingsSynchronous  @comunica/actor-query-source-identify-rdfjs:261
+  0.8 %  is  immutable:2086
+  0.8 %  subrule  @traqula/core:22
+  0.7 %  decode  rdf-stores:33
+  0.7 %  wrappedExecutionLoop  @traqula/core:177
+  0.7 %  runTransformObject  @traqula/core:86
+  0.7 %  (idle)  (native or V8)
+  0.7 %  (anonymous)  @traqula/core:31
+  0.7 %  wrappedExecutionLoop  @traqula/core:465
+  0.6 %  (anonymous)  @comunica/core:105
+  0.6 %  _end  asynciterator:1253
+  0.6 %  get  @traqula/algebra-transformations-1-2:48
+
+Inclusive time per package (samples with the package anywhere on the stack):
+100.0 %  (native or V8)
+ 41.4 %  @comunica/core
+ 37.2 %  asynciterator
+ 32.7 %  node internals
+ 31.0 %  @comunica/actor-rdf-join-inner-multi-index-nested-loop
+ 26.2 %  @comunica/actor-optimize-query-operation-query-source-skolemize
+ 24.6 %  @comunica/actor-query-source-identify-rdfjs
+ 23.5 %  @traqula/core
+ 20.7 %  rdf-stores
+ 13.7 %  @comunica/actor-query-parse-sparql
+ 13.7 %  @comunica/mediator-combine-pipeline
+  8.7 %  @traqula/parser-sparql-1-2
+  8.4 %  @traqula/chevrotain
+  7.3 %  @traqula/rules-sparql-1-1
+  7.2 %  @traqula/algebra-transformations-1-1
+  7.1 %  @traqula/rules-sparql-1-2
+  6.7 %  @comunica/utils-bindings-factory
+  6.2 %  @comunica/actor-query-operation-source
+  6.1 %  immutable
+  4.8 %  @comunica/utils-algebra
+  4.8 %  @comunica/bus-rdf-join
+  4.8 %  @traqula/algebra-sparql-1-2
+  4.2 %  rdf-terms
+  3.7 %  @comunica/utils-query-operation
+  2.8 %  @comunica/actor-optimize-query-operation-join-connected
+  2.4 %  @comunica/actor-optimize-query-operation-annotate-union-order
+  2.2 %  benchmark adapter
+  2.1 %  @comunica/actor-query-operation-join
+  1.9 %  @comunica/actor-query-process-sequential
+  1.8 %  @traqula/algebra-transformations-1-2

@@ -1,0 +1,1678 @@
+{
+ "dir": "results/2026-11-04-comunica-55a70ad/2-483dc3c-rdf-stores-2.9.0",
+ "browsers": [
+  "chromium",
+  "firefox",
+  "webkit"
+ ],
+ "engines": [
+  "comunica"
+ ],
+ "datasets": {
+  "watdiv-1": {
+   "browsers": {
+    "chromium": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "153.0.8010.12",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 241.252666666483,
+       "totalColdMs": 408.95166666712606,
+       "commonWarmMs": 241.252666666483,
+       "commonColdMs": 408.95166666712606,
+       "commonGeomeanWarmMs": 1.6871386431626367,
+       "slowest": [
+        {
+         "query": "C3-1",
+         "warmMeanMs": 21.354999999996895,
+         "warmMinMs": 15.06499999994412,
+         "warmMaxMs": 30.074999999953434,
+         "coldMs": 48.42333333326193
+        },
+        {
+         "query": "C3-3",
+         "warmMeanMs": 19.185666666630034,
+         "warmMinMs": 14.679999999934807,
+         "warmMaxMs": 26.40999999991618,
+         "coldMs": 22.041666666589055
+        },
+        {
+         "query": "C3-2",
+         "warmMeanMs": 19.080999999974544,
+         "warmMinMs": 12.974999999860302,
+         "warmMaxMs": 28.135000000009313,
+         "coldMs": 20.69833333332402
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 185.535000000149,
+        "min": 180.3499999998603,
+        "max": 199.9550000000745
+       },
+       "fetchInflate": {
+        "median": 55.92999999993481,
+        "min": 55.699999999953434,
+        "max": 56.21499999985099
+       },
+       "parse": {
+        "median": 331.10000000009313,
+        "min": 318.0999999998603,
+        "max": 343.7050000000745
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 331.10000000009313,
+        "min": 318.0999999998603,
+        "max": 343.7050000000745
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 145.04000000003725,
+         "min": 143.6350000000093,
+         "max": 178.35499999998137
+        },
+        "storeBuildMs": {
+         "median": 174.464999999851,
+         "min": 152.74500000011176,
+         "max": 198.66500000003725
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": 17.163428,
+        "min": 17.160743,
+        "max": 17.167951
+       },
+       "memoryMethod": "measureUserAgentSpecificMemory",
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 185.535000000149,
+       "loadMs": 331.10000000009313,
+       "fetchInflateMs": 55.92999999993481,
+       "parseMs": 331.10000000009313,
+       "ingestMs": 0,
+       "memoryMB": 17.163428,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    },
+    "firefox": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "155.0",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 682.3679999999997,
+       "totalColdMs": 873.6533333333336,
+       "commonWarmMs": 682.3679999999997,
+       "commonColdMs": 873.6533333333336,
+       "commonGeomeanWarmMs": 5.704859598844632,
+       "slowest": [
+        {
+         "query": "C3-3",
+         "warmMeanMs": 36.883999999999986,
+         "warmMinMs": 26.920000000000073,
+         "warmMaxMs": 58.01999999999953,
+         "coldMs": 33.15333333333342
+        },
+        {
+         "query": "C3-1",
+         "warmMeanMs": 36.51866666666656,
+         "warmMinMs": 28.520000000000437,
+         "warmMaxMs": 52.039999999999964,
+         "coldMs": 71.06666666666653
+        },
+        {
+         "query": "C3-5",
+         "warmMeanMs": 34.02399999999995,
+         "warmMinMs": 25.579999999999927,
+         "warmMaxMs": 46.69999999999982,
+         "coldMs": 40.433333333333316
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 272.5,
+        "min": 245.38,
+        "max": 299.34000000000003
+       },
+       "fetchInflate": {
+        "median": 103.15999999999997,
+        "min": 99.51999999999998,
+        "max": 123.56
+       },
+       "parse": {
+        "median": 445.6400000000001,
+        "min": 416.12,
+        "max": 449.70000000000005
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 445.6400000000001,
+        "min": 416.12,
+        "max": 449.70000000000005
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 201.48000000000002,
+         "min": 192.0200000000001,
+         "max": 226.92000000000007
+        },
+        "storeBuildMs": {
+         "median": 224.0999999999999,
+         "min": 222.77999999999997,
+         "max": 244.16000000000008
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 272.5,
+       "loadMs": 445.6400000000001,
+       "fetchInflateMs": 103.15999999999997,
+       "parseMs": 445.6400000000001,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    },
+    "webkit": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "26.6",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 278.04933333333463,
+       "totalColdMs": 568.5466666666671,
+       "commonWarmMs": 278.04933333333463,
+       "commonColdMs": 568.5466666666671,
+       "commonGeomeanWarmMs": 2.0194522773557346,
+       "slowest": [
+        {
+         "query": "C3-3",
+         "warmMeanMs": 22.828000000000095,
+         "warmMinMs": 13.640000000000327,
+         "warmMaxMs": 33.18000000000029,
+         "coldMs": 24.11999999999989
+        },
+        {
+         "query": "C3-2",
+         "warmMeanMs": 22.065333333333395,
+         "warmMinMs": 14.139999999999873,
+         "warmMaxMs": 30.899999999999636,
+         "coldMs": 32.24666666666667
+        },
+        {
+         "query": "C3-1",
+         "warmMeanMs": 19.056000000000072,
+         "warmMinMs": 15.220000000000255,
+         "warmMaxMs": 30.720000000000255,
+         "coldMs": 57.21999999999995
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 227.63999999999993,
+        "min": 214.03999999999996,
+        "max": 233.30000000000007
+       },
+       "fetchInflate": {
+        "median": 71.75999999999999,
+        "min": 65.15999999999997,
+        "max": 79.38
+       },
+       "parse": {
+        "median": 394.26,
+        "min": 351.55999999999995,
+        "max": 418.78
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 394.26,
+        "min": 351.55999999999995,
+        "max": 418.78
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 162.41999999999996,
+         "min": 143.51999999999998,
+         "max": 177.84000000000003
+        },
+        "storeBuildMs": {
+         "median": 216.41999999999996,
+         "min": 208.03999999999996,
+         "max": 256.36
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 227.63999999999993,
+       "loadMs": 394.26,
+       "fetchInflateMs": 71.75999999999999,
+       "parseMs": 394.26,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    }
+   }
+  },
+  "watdiv-10": {
+   "browsers": {
+    "chromium": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "153.0.8010.12",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 914.8403333330681,
+       "totalColdMs": 1251.3283333336778,
+       "commonWarmMs": 914.8403333330681,
+       "commonColdMs": 1251.3283333336778,
+       "commonGeomeanWarmMs": 2.372085727735782,
+       "slowest": [
+        {
+         "query": "C3-3",
+         "warmMeanMs": 151.85999999997827,
+         "warmMinMs": 118.97999999998137,
+         "warmMaxMs": 227.72500000009313,
+         "coldMs": 132.20166666666046
+        },
+        {
+         "query": "C3-1",
+         "warmMeanMs": 142.7269999999553,
+         "warmMinMs": 125.57999999984168,
+         "warmMaxMs": 211.46999999997206,
+         "coldMs": 292.1216666667412
+        },
+        {
+         "query": "C3-2",
+         "warmMeanMs": 141.41633333337182,
+         "warmMinMs": 124.93999999994412,
+         "warmMaxMs": 168.85499999998137,
+         "coldMs": 145.20833333333334
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 187.78000000002794,
+        "min": 174.92000000015832,
+        "max": 212.34499999997206
+       },
+       "fetchInflate": {
+        "median": 477.0700000000652,
+        "min": 457.6700000001583,
+        "max": 568.3749999997672
+       },
+       "parse": {
+        "median": 2614.100000000093,
+        "min": 2595.7049999998417,
+        "max": 3402.2299999999814
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 2614.100000000093,
+        "min": 2595.7049999998417,
+        "max": 3402.2299999999814
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 1204.2299999999814,
+         "min": 1184.5400000000373,
+         "max": 1600.880000000121
+        },
+        "storeBuildMs": {
+         "median": 1411.1649999998044,
+         "min": 1409.8700000001118,
+         "max": 1801.3499999998603
+        },
+        "chunks": {
+         "median": 10,
+         "min": 10,
+         "max": 10
+        }
+       },
+       "memory": {
+        "median": 91.109856,
+        "min": 91.104868,
+        "max": 91.120856
+       },
+       "memoryMethod": "measureUserAgentSpecificMemory",
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 187.78000000002794,
+       "loadMs": 2614.100000000093,
+       "fetchInflateMs": 477.0700000000652,
+       "parseMs": 2614.100000000093,
+       "ingestMs": 0,
+       "memoryMB": 91.109856,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    },
+    "firefox": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "155.0",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 1954.9373333333347,
+       "totalColdMs": 2404.313333333333,
+       "commonWarmMs": 1954.9373333333347,
+       "commonColdMs": 2404.313333333333,
+       "commonGeomeanWarmMs": 7.607153747338275,
+       "slowest": [
+        {
+         "query": "C3-1",
+         "warmMeanMs": 274.3960000000003,
+         "warmMinMs": 234.34000000000015,
+         "warmMaxMs": 346.2599999999984,
+         "coldMs": 480.68
+        },
+        {
+         "query": "C3-2",
+         "warmMeanMs": 270.988,
+         "warmMinMs": 223.6800000000003,
+         "warmMaxMs": 352.5600000000013,
+         "coldMs": 272.2466666666663
+        },
+        {
+         "query": "C3-3",
+         "warmMeanMs": 256.081333333333,
+         "warmMinMs": 223.45999999999913,
+         "warmMaxMs": 331.1399999999994,
+         "coldMs": 241.48666666666668
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 230.6199999999999,
+        "min": 228.58000000000015,
+        "max": 246.70000000000005
+       },
+       "fetchInflate": {
+        "median": 921.3799999999999,
+        "min": 896.84,
+        "max": 970.6000000000001
+       },
+       "parse": {
+        "median": 4953.76,
+        "min": 4766.86,
+        "max": 4956.4400000000005
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 4953.76,
+        "min": 4766.86,
+        "max": 4956.4400000000005
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 2219.54,
+         "min": 2151.6000000000004,
+         "max": 2428.58
+        },
+        "storeBuildMs": {
+         "median": 2547.3199999999997,
+         "min": 2527.8600000000006,
+         "max": 2802.16
+        },
+        "chunks": {
+         "median": 10,
+         "min": 10,
+         "max": 10
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 230.6199999999999,
+       "loadMs": 4953.76,
+       "fetchInflateMs": 921.3799999999999,
+       "parseMs": 4953.76,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    },
+    "webkit": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "26.6",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 100
+       },
+       "totalWarmMs": 1166.382666666667,
+       "totalColdMs": 1709.5399999999963,
+       "commonWarmMs": 1166.382666666667,
+       "commonColdMs": 1709.5399999999963,
+       "commonGeomeanWarmMs": 3.41696587287933,
+       "slowest": [
+        {
+         "query": "C3-1",
+         "warmMeanMs": 234.83199999999997,
+         "warmMinMs": 194.23999999999978,
+         "warmMaxMs": 303.65999999999985,
+         "coldMs": 361.29333333333307
+        },
+        {
+         "query": "C3-5",
+         "warmMeanMs": 163.0066666666667,
+         "warmMinMs": 133.33999999999833,
+         "warmMaxMs": 215.53999999999905,
+         "coldMs": 165.7599999999999
+        },
+        {
+         "query": "C3-3",
+         "warmMeanMs": 162.33466666666658,
+         "warmMinMs": 134.63999999999942,
+         "warmMaxMs": 215.76000000000022,
+         "coldMs": 156.59333333333325
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 211.39999999999986,
+        "min": 202.77999999999997,
+        "max": 228.0200000000001
+       },
+       "fetchInflate": {
+        "median": 690.72,
+        "min": 678.26,
+        "max": 735.1800000000001
+       },
+       "parse": {
+        "median": 3007.3,
+        "min": 2978.58,
+        "max": 3251.58
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 3007.3,
+        "min": 2978.58,
+        "max": 3251.58
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 1045.06,
+         "min": 1019.0800000000002,
+         "max": 1076.86
+        },
+        "storeBuildMs": {
+         "median": 1988.2199999999998,
+         "min": 1933.52,
+         "max": 2174.72
+        },
+        "chunks": {
+         "median": 10,
+         "min": 10,
+         "max": 10
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 211.39999999999986,
+       "loadMs": 3007.3,
+       "fetchInflateMs": 690.72,
+       "parseMs": 3007.3,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 100
+    }
+   }
+  },
+  "bsbm-100": {
+   "browsers": {
+    "chromium": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "153.0.8010.12",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 163.29066666679768,
+       "totalColdMs": 350.6500000001395,
+       "commonWarmMs": 163.29066666679768,
+       "commonColdMs": 350.6500000001395,
+       "commonGeomeanWarmMs": 2.790712573171934,
+       "slowest": [
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 8.29433333328925,
+         "warmMinMs": 6.28000000002794,
+         "warmMaxMs": 16.959999999962747,
+         "coldMs": 12.254999999965852
+        },
+        {
+         "query": "Q5-4",
+         "warmMeanMs": 7.570999999996275,
+         "warmMinMs": 5.510000000009313,
+         "warmMaxMs": 12.330000000074506,
+         "coldMs": 11.858333333395422
+        },
+        {
+         "query": "Q5-3",
+         "warmMeanMs": 7.258333333302289,
+         "warmMinMs": 5.359999999869615,
+         "warmMaxMs": 12.68999999994412,
+         "coldMs": 11.585000000117967
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 174.34499999997206,
+        "min": 159.66500000003725,
+        "max": 209.87000000011176
+       },
+       "fetchInflate": {
+        "median": 46.65500000002794,
+        "min": 46.53499999991618,
+        "max": 51.074999999953434
+       },
+       "parse": {
+        "median": 212.75499999988824,
+        "min": 191.71500000008382,
+        "max": 298.1099999998696
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 212.75499999988824,
+        "min": 191.71500000008382,
+        "max": 298.1099999998696
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 71.01499999989755,
+         "min": 67.5250000001397,
+         "max": 116.65500000002794
+        },
+        "storeBuildMs": {
+         "median": 141.7399999999907,
+         "min": 124.18999999994412,
+         "max": 181.45499999984168
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": 28.249889,
+        "min": 28.242332,
+        "max": 28.259172
+       },
+       "memoryMethod": "measureUserAgentSpecificMemory",
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 174.34499999997206,
+       "loadMs": 212.75499999988824,
+       "fetchInflateMs": 46.65500000002794,
+       "parseMs": 212.75499999988824,
+       "ingestMs": 0,
+       "memoryMB": 28.249889,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    },
+    "firefox": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "155.0",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 699.7893333333338,
+       "totalColdMs": 888.9866666666663,
+       "commonWarmMs": 699.7893333333338,
+       "commonColdMs": 888.9866666666663,
+       "commonGeomeanWarmMs": 11.333873929362156,
+       "slowest": [
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 42.84000000000012,
+         "warmMinMs": 32.6200000000008,
+         "warmMaxMs": 78.23999999999978,
+         "coldMs": 38.226666666666766
+        },
+        {
+         "query": "Q5-1",
+         "warmMeanMs": 42.04666666666665,
+         "warmMinMs": 26.399999999999636,
+         "warmMaxMs": 155.5600000000004,
+         "coldMs": 50.3266666666666
+        },
+        {
+         "query": "Q5-2",
+         "warmMeanMs": 37.31066666666644,
+         "warmMinMs": 28.039999999999964,
+         "warmMaxMs": 58.559999999999945,
+         "coldMs": 50.64666666666661
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 248.31999999999994,
+        "min": 244.98000000000002,
+        "max": 276.38
+       },
+       "fetchInflate": {
+        "median": 108.58000000000004,
+        "min": 76.19999999999999,
+        "max": 144.27999999999997
+       },
+       "parse": {
+        "median": 322.72,
+        "min": 312.08000000000004,
+        "max": 368.8799999999999
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 322.72,
+        "min": 312.08000000000004,
+        "max": 368.8799999999999
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 143.53999999999996,
+         "min": 134.64,
+         "max": 174.38
+        },
+        "storeBuildMs": {
+         "median": 188.08000000000004,
+         "min": 168.54000000000008,
+         "max": 194.4999999999999
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 248.31999999999994,
+       "loadMs": 322.72,
+       "fetchInflateMs": 108.58000000000004,
+       "parseMs": 322.72,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    },
+    "webkit": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "26.6",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 206.35600000000005,
+       "totalColdMs": 528.1466666666669,
+       "commonWarmMs": 206.35600000000005,
+       "commonColdMs": 528.1466666666669,
+       "commonGeomeanWarmMs": 3.609772031310566,
+       "slowest": [
+        {
+         "query": "Q5-2",
+         "warmMeanMs": 10.433333333333303,
+         "warmMinMs": 6.360000000000127,
+         "warmMaxMs": 22.059999999999945,
+         "coldMs": 19.533333333333378
+        },
+        {
+         "query": "Q5-1",
+         "warmMeanMs": 8.536000000000028,
+         "warmMinMs": 6.080000000000382,
+         "warmMaxMs": 12.739999999999782,
+         "coldMs": 20.92666666666666
+        },
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 8.146666666666684,
+         "warmMinMs": 6.880000000000109,
+         "warmMaxMs": 10.960000000000036,
+         "coldMs": 11.446666666666715
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 217.79999999999995,
+        "min": 212.77999999999992,
+        "max": 243.58000000000004
+       },
+       "fetchInflate": {
+        "median": 69.20000000000002,
+        "min": 67.94000000000003,
+        "max": 75.91999999999996
+       },
+       "parse": {
+        "median": 243.5,
+        "min": 218.81999999999994,
+        "max": 261.30000000000007
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 243.5,
+        "min": 218.81999999999994,
+        "max": 261.30000000000007
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 85.27999999999997,
+         "min": 75.9799999999999,
+         "max": 99.34000000000003
+        },
+        "storeBuildMs": {
+         "median": 158.22000000000003,
+         "min": 142.84000000000003,
+         "max": 161.96000000000004
+        },
+        "chunks": {
+         "median": 1,
+         "min": 1,
+         "max": 1
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 217.79999999999995,
+       "loadMs": 243.5,
+       "fetchInflateMs": 69.20000000000002,
+       "parseMs": 243.5,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    }
+   }
+  },
+  "bsbm-1k": {
+   "browsers": {
+    "chromium": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "153.0.8010.12",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 224.67433333355004,
+       "totalColdMs": 450.20833333341096,
+       "commonWarmMs": 224.67433333355004,
+       "commonColdMs": 450.20833333341096,
+       "commonGeomeanWarmMs": 3.2165324224775502,
+       "slowest": [
+        {
+         "query": "Q5-2",
+         "warmMeanMs": 24.69399999999441,
+         "warmMinMs": 17.18999999994412,
+         "warmMaxMs": 40.985000000102445,
+         "coldMs": 33.54999999996895
+        },
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 20.446666666663564,
+         "warmMinMs": 17.885000000009313,
+         "warmMaxMs": 26.854999999981374,
+         "coldMs": 24.449999999953434
+        },
+        {
+         "query": "Q5-4",
+         "warmMeanMs": 20.355666666695228,
+         "warmMinMs": 15.665000000037253,
+         "warmMaxMs": 32.42999999993481,
+         "coldMs": 23.593333333420258
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 193.4749999998603,
+        "min": 160.6799999999348,
+        "max": 204.65999999991618
+       },
+       "fetchInflate": {
+        "median": 387.63500000024214,
+        "min": 376.8950000000186,
+        "max": 410.04000000003725
+       },
+       "parse": {
+        "median": 1637.6200000001118,
+        "min": 1596.6700000001583,
+        "max": 1652.404999999795
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 1637.6200000001118,
+        "min": 1596.6700000001583,
+        "max": 1652.404999999795
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 645.6450000000186,
+         "min": 610.7599999997765,
+         "max": 670.2600000000093
+        },
+        "storeBuildMs": {
+         "median": 967.3600000001024,
+         "min": 951.0250000001397,
+         "max": 1041.6450000000186
+        },
+        "chunks": {
+         "median": 6,
+         "min": 6,
+         "max": 6
+        }
+       },
+       "memory": {
+        "median": 103.484042,
+        "min": 103.480534,
+        "max": 103.49519
+       },
+       "memoryMethod": "measureUserAgentSpecificMemory",
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 193.4749999998603,
+       "loadMs": 1637.6200000001118,
+       "fetchInflateMs": 387.63500000024214,
+       "parseMs": 1637.6200000001118,
+       "ingestMs": 0,
+       "memoryMB": 103.484042,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    },
+    "firefox": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "155.0",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 1032.6439999999993,
+       "totalColdMs": 1383.9666666666653,
+       "commonWarmMs": 1032.6439999999993,
+       "commonColdMs": 1383.9666666666653,
+       "commonGeomeanWarmMs": 12.489452478855853,
+       "slowest": [
+        {
+         "query": "Q5-2",
+         "warmMeanMs": 131.72666666666663,
+         "warmMinMs": 108.68000000000029,
+         "warmMaxMs": 161.3799999999992,
+         "coldMs": 146.63999999999973
+        },
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 130.27733333333333,
+         "warmMinMs": 114.1200000000008,
+         "warmMaxMs": 162.01999999999862,
+         "coldMs": 125.39333333333373
+        },
+        {
+         "query": "Q5-4",
+         "warmMeanMs": 121.7226666666668,
+         "warmMinMs": 99.23999999999978,
+         "warmMaxMs": 161.0599999999995,
+         "coldMs": 108.45333333333322
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 223.29999999999995,
+        "min": 222.77999999999997,
+        "max": 229.26
+       },
+       "fetchInflate": {
+        "median": 705.5999999999999,
+        "min": 659.96,
+        "max": 716.96
+       },
+       "parse": {
+        "median": 3145.9800000000005,
+        "min": 3138.5600000000004,
+        "max": 3354.02
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 3145.9800000000005,
+        "min": 3138.5600000000004,
+        "max": 3354.02
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 1089.92,
+         "min": 1086.7600000000002,
+         "max": 1148.1
+        },
+        "storeBuildMs": {
+         "median": 2051.8,
+         "min": 1997.8800000000006,
+         "max": 2264.1
+        },
+        "chunks": {
+         "median": 6,
+         "min": 6,
+         "max": 6
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 223.29999999999995,
+       "loadMs": 3145.9800000000005,
+       "fetchInflateMs": 705.5999999999999,
+       "parseMs": 3145.9800000000005,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    },
+    "webkit": {
+     "engines": {
+      "comunica": {
+       "status": "complete",
+       "repetitions": 3,
+       "browserVersion": "26.6",
+       "comunicaCommit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+       "outcomes": {
+        "ok": 50
+       },
+       "totalWarmMs": 279.5533333333337,
+       "totalColdMs": 738.8266666666659,
+       "commonWarmMs": 279.5533333333337,
+       "commonColdMs": 738.8266666666659,
+       "commonGeomeanWarmMs": 4.179312792716529,
+       "slowest": [
+        {
+         "query": "Q5-2",
+         "warmMeanMs": 26.35599999999995,
+         "warmMinMs": 18.220000000000255,
+         "warmMaxMs": 50.52000000000044,
+         "coldMs": 45.85999999999998
+        },
+        {
+         "query": "Q5-5",
+         "warmMeanMs": 24.55733333333325,
+         "warmMinMs": 17.720000000000255,
+         "warmMaxMs": 41.5,
+         "coldMs": 41.37333333333345
+        },
+        {
+         "query": "Q5-4",
+         "warmMeanMs": 23.30666666666675,
+         "warmMinMs": 16.0600000000004,
+         "warmMaxMs": 38.460000000000036,
+         "coldMs": 43.35999999999998
+        }
+       ],
+       "failures": [],
+       "init": {
+        "median": 246.57999999999993,
+        "min": 208.06000000000006,
+        "max": 257.6
+       },
+       "fetchInflate": {
+        "median": 635.5799999999999,
+        "min": 609.9200000000001,
+        "max": 686.5
+       },
+       "parse": {
+        "median": 1759.46,
+        "min": 1668.0800000000002,
+        "max": 1904.3000000000002
+       },
+       "ingest": {
+        "median": 0,
+        "min": 0,
+        "max": 0
+       },
+       "load": {
+        "median": 1759.46,
+        "min": 1668.0800000000002,
+        "max": 1904.3000000000002
+       },
+       "loadDetails": {
+        "n3ParseMs": {
+         "median": 496.28,
+         "min": 489.72,
+         "max": 674.3399999999999
+        },
+        "storeBuildMs": {
+         "median": 1229.9600000000003,
+         "min": 1171.8000000000002,
+         "max": 1269.74
+        },
+        "chunks": {
+         "median": 6,
+         "min": 6,
+         "max": 6
+        }
+       },
+       "memory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "memoryMethod": null,
+       "wasmMemory": {
+        "median": null,
+        "min": null,
+        "max": null
+       },
+       "attempts": [
+        1,
+        1,
+        1
+       ],
+       "initMs": 246.57999999999993,
+       "loadMs": 1759.46,
+       "fetchInflateMs": 635.5799999999999,
+       "parseMs": 1759.46,
+       "ingestMs": 0,
+       "memoryMB": null,
+       "wasmMemoryMB": null
+      }
+     },
+     "commonOk": 50
+    }
+   }
+  }
+ },
+ "support": {},
+ "bundleSizes": [
+  {
+   "page": "comunica",
+   "jsRaw": 1320934,
+   "jsGzip": 285709,
+   "wasmRaw": 0,
+   "wasmGzip": 0,
+   "files": [
+    "assets/comunica-B3PrZ9Xu.js",
+    "assets/preload-helper-BHhcDtnu.js",
+    "assets/comunica-B28HSXRi.js"
+   ],
+   "totalRaw": 1320934,
+   "totalGzip": 285709,
+   "engineOnly": {
+    "jsRaw": 1313414,
+    "jsGzip": 282259,
+    "wasmRaw": 0,
+    "wasmGzip": 0,
+    "files": [
+     "assets/comunica-B28HSXRi.js"
+    ],
+    "totalRaw": 1313414,
+    "totalGzip": 282259
+   }
+  },
+  {
+   "page": "oxigraph",
+   "jsRaw": 28139,
+   "jsGzip": 8686,
+   "wasmRaw": 4324920,
+   "wasmGzip": 1533744,
+   "files": [
+    "assets/oxigraph-CidNsvaH.js",
+    "assets/preload-helper-BHhcDtnu.js",
+    "assets/oxigraph-Br1ZKDZj.js",
+    "assets/web_bg-D3AkT1fG.wasm"
+   ],
+   "totalRaw": 4353059,
+   "totalGzip": 1542430,
+   "engineOnly": {
+    "jsRaw": 20619,
+    "jsGzip": 5237,
+    "wasmRaw": 4324920,
+    "wasmGzip": 1533744,
+    "files": [
+     "assets/oxigraph-Br1ZKDZj.js",
+     "assets/web_bg-D3AkT1fG.wasm"
+    ],
+    "totalRaw": 4345539,
+    "totalGzip": 1538981
+   }
+  }
+ ],
+ "supportFromCold": [],
+ "breakdown": {},
+ "meta": {
+  "machine": {
+   "label": "cloud-4vcpu",
+   "cpuModel": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "logicalCpus": 4,
+   "memoryBytes": 16872804352,
+   "platform": "Linux 6.18.44-fc-v233 x64",
+   "osRelease": "Ubuntu 24.04.5 LTS",
+   "node": "v22.23.4"
+  },
+  "invocations": [
+   {
+    "commit": "bbe9fe740d3361fb55e8913e9919909557dcb3c3",
+    "dirty": false,
+    "startedAt": "2026-11-04T19:49:12.222Z",
+    "args": [
+     "--machine",
+     "cloud-4vcpu",
+     "--out",
+     "results/2026-11-04-comunica-55a70ad/2-483dc3c-rdf-stores-2.9.0",
+     "--mode",
+     "timing",
+     "--datasets",
+     "watdiv-1,watdiv-10,bsbm-100,bsbm-1k",
+     "--engines",
+     "comunica"
+    ]
+   }
+  ],
+  "benchmarkRepository": {
+   "commit": "bbe9fe740d3361fb55e8913e9919909557dcb3c3",
+   "dirty": false
+  },
+  "comunica": {
+   "repository": "https://github.com/comunica/comunica",
+   "ref": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+   "commit": "483dc3cfad79d24b6f6eb081e0113b0092658bba",
+   "commitDate": "2026-11-04T14:29:58+01:00",
+   "commitSubject": "Time out queries in the SPARQL endpoint worker instead of the main process (#1941)",
+   "packageVersion": "5.4.1",
+   "dirty": false
+  },
+  "versions": {
+   "oxigraph": "0.5.13",
+   "n3": "2.13.12",
+   "rdfStores": "2.9.0",
+   "playwright": "1.63.0",
+   "vite": "8.3.5"
+  },
+  "settings": {
+   "timeoutMs": 60000,
+   "graceMs": 30000,
+   "warmupRounds": 1,
+   "rounds": 5,
+   "repetitions": 3,
+   "breakdownRounds": 3,
+   "repetitionOverrides": {
+    "ldbc-snb-0.1": 1
+   },
+   "chromiumLaunch": {
+    "channel": "chromium",
+    "args": [
+     "--js-flags=--expose-gc",
+     "--enable-blink-features=ForceEagerMeasureMemory",
+     "--enable-precise-memory-info"
+    ]
+   },
+   "headless": true
+  },
+  "browsers": {
+   "chromium": "153.0.8010.12",
+   "firefox": "155.0",
+   "webkit": "26.6"
+  },
+  "skipped": {},
+  "runs": [
+   {
+    "file": "raw/timing-watdiv-1-chromium-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:49:12.230Z",
+    "finishedAt": "2026-11-04T19:49:17.991Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-firefox-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:49:17.992Z",
+    "finishedAt": "2026-11-04T19:49:28.967Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-webkit-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:49:28.968Z",
+    "finishedAt": "2026-11-04T19:49:34.729Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-chromium-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:49:34.731Z",
+    "finishedAt": "2026-11-04T19:49:47.286Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-firefox-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:49:47.288Z",
+    "finishedAt": "2026-11-04T19:50:12.384Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-webkit-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:12.386Z",
+    "finishedAt": "2026-11-04T19:50:28.620Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-chromium-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:28.622Z",
+    "finishedAt": "2026-11-04T19:50:32.616Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-firefox-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:32.617Z",
+    "finishedAt": "2026-11-04T19:50:42.309Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-webkit-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:42.311Z",
+    "finishedAt": "2026-11-04T19:50:46.760Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-chromium-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:46.761Z",
+    "finishedAt": "2026-11-04T19:50:53.087Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-firefox-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:50:53.089Z",
+    "finishedAt": "2026-11-04T19:51:09.186Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-webkit-comunica-r1.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:09.187Z",
+    "finishedAt": "2026-11-04T19:51:16.311Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-chromium-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:16.312Z",
+    "finishedAt": "2026-11-04T19:51:22.165Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-firefox-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:22.168Z",
+    "finishedAt": "2026-11-04T19:51:33.744Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-webkit-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:33.746Z",
+    "finishedAt": "2026-11-04T19:51:40.086Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-chromium-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:40.089Z",
+    "finishedAt": "2026-11-04T19:51:55.118Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-firefox-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:51:55.121Z",
+    "finishedAt": "2026-11-04T19:52:20.710Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-webkit-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:20.712Z",
+    "finishedAt": "2026-11-04T19:52:36.638Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-chromium-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:36.641Z",
+    "finishedAt": "2026-11-04T19:52:40.278Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-firefox-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:40.280Z",
+    "finishedAt": "2026-11-04T19:52:49.776Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-webkit-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:49.777Z",
+    "finishedAt": "2026-11-04T19:52:53.903Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-chromium-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:53.904Z",
+    "finishedAt": "2026-11-04T19:52:59.887Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-firefox-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:52:59.888Z",
+    "finishedAt": "2026-11-04T19:53:15.368Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-webkit-comunica-r2.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:15.369Z",
+    "finishedAt": "2026-11-04T19:53:22.625Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-chromium-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:22.626Z",
+    "finishedAt": "2026-11-04T19:53:28.147Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-firefox-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:28.149Z",
+    "finishedAt": "2026-11-04T19:53:38.977Z"
+   },
+   {
+    "file": "raw/timing-watdiv-1-webkit-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:38.980Z",
+    "finishedAt": "2026-11-04T19:53:44.896Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-chromium-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:44.898Z",
+    "finishedAt": "2026-11-04T19:53:57.885Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-firefox-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:53:57.888Z",
+    "finishedAt": "2026-11-04T19:54:23.587Z"
+   },
+   {
+    "file": "raw/timing-watdiv-10-webkit-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:54:23.589Z",
+    "finishedAt": "2026-11-04T19:54:39.552Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-chromium-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:54:39.554Z",
+    "finishedAt": "2026-11-04T19:54:43.054Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-firefox-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:54:43.055Z",
+    "finishedAt": "2026-11-04T19:54:52.575Z"
+   },
+   {
+    "file": "raw/timing-bsbm-100-webkit-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:54:52.576Z",
+    "finishedAt": "2026-11-04T19:54:56.697Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-chromium-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:54:56.699Z",
+    "finishedAt": "2026-11-04T19:55:02.454Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-firefox-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:55:02.455Z",
+    "finishedAt": "2026-11-04T19:55:17.628Z"
+   },
+   {
+    "file": "raw/timing-bsbm-1k-webkit-comunica-r3.json",
+    "status": "complete",
+    "startedAt": "2026-11-04T19:55:17.630Z",
+    "finishedAt": "2026-11-04T19:55:24.533Z"
+   }
+  ],
+  "startedAt": "2026-11-04T19:49:12.223Z",
+  "updatedAt": "2026-11-04T19:55:24.534Z"
+ }
+}

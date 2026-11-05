@@ -1,0 +1,11 @@
+{
+  "generator": "watdiv",
+  "scale": 10,
+  "instancesPerTemplate": 5,
+  "startedAt": "2026-11-01T14:27:21Z",
+  "seed": "time-based (srand(time(NULL)) in WatDiv; not settable)",
+  "triples": 1097705,
+  "ntBytes": 153094109,
+  "ntSha256": "80b3dc5ab2017a8d054742880078e9455f5812fa70fc3d07ce21c9367c0b36c7",
+  "queries": 100
+}

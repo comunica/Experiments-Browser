@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="414" viewBox="0 0 720 414" role="img" aria-label="bsbm-1k: query time in webkit 26.6">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="414" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">bsbm-1k: query time in webkit 26.6</text>
+<text class="ink2" x="72" y="46" font-size="12">Bar: warm mean (3 repetition(s) × 5 timed rounds), averaged over the template's ok instances;</text>
+<text class="ink2" x="72" y="62" font-size="12">whisker: fastest to slowest instance; circle: cold run (mean over repetitions). Log scale.</text>
+<text class="ink2" x="72" y="78" font-size="12">cloud-4vcpu</text>
+<rect class="s0" x="72" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="104.5" font-size="12">Comunica</text>
+<line class="whisker" x1="164.8" x2="164.8" y1="93" y2="107" stroke-width="1.5"/>
+<text class="ink2" x="173.8" y="104.5" font-size="12">instance range</text>
+<circle class="surface" cx="286.40000000000003" cy="100" r="3.5" stroke="#898781" stroke-width="1.5"/>
+<text class="ink2" x="295.40000000000003" y="104.5" font-size="12">cold run</text>
+<line class="grid" x1="72" x2="696" y1="386" y2="386" stroke-width="1"/>
+<text class="muted" x="64" y="390" font-size="11" text-anchor="end">1 ms</text>
+<line class="grid" x1="72" x2="696" y1="256" y2="256" stroke-width="1"/>
+<text class="muted" x="64" y="260" font-size="11" text-anchor="end">10 ms</text>
+<line class="grid" x1="72" x2="696" y1="126" y2="126" stroke-width="1"/>
+<text class="muted" x="64" y="130" font-size="11" text-anchor="end">100 ms</text>
+<line class="axis" x1="72" x2="696" y1="386" y2="386" stroke-width="1"/>
+<g><title>Comunica, Q1: warm 2.87 ms (instances 2.4 ms–3.31 ms), cold 24.2 ms, 5/5 ok</title>
+<rect x="96.7" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M97.7 386 V329.47797640224127 Q97.7 326.47797640224127 100.7 326.47797640224127 H105.7 Q108.7 326.47797640224127 108.7 329.47797640224127 V386 Z"/>
+<line class="whisker" x1="103.2" x2="103.2" y1="336.5411815743824" y2="318.36553314190144" stroke-width="1.5"/>
+<circle class="surface so0" cx="103.2" cy="206.00454929516903" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="103.2" y="402" font-size="11" text-anchor="middle">Q1</text>
+<g><title>Comunica, Q2: warm 6.5 ms (instances 5.34 ms–8.08 ms), cold 21.2 ms, 5/5 ok</title>
+<rect x="159.1" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M160.1 386 V283.3096836378964 Q160.1 280.3096836378964 163.1 280.3096836378964 H168.1 Q171.1 280.3096836378964 171.1 283.3096836378964 V386 Z"/>
+<line class="whisker" x1="165.6" x2="165.6" y1="291.46194328189665" y2="268.06447966469165" stroke-width="1.5"/>
+<circle class="surface so0" cx="165.6" cy="213.66873536487083" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="165.6" y="402" font-size="11" text-anchor="middle">Q2</text>
+<g><title>Comunica, Q3: warm 5.44 ms (instances 4.72 ms–6.23 ms), cold 11.9 ms, 5/5 ok</title>
+<rect x="221.5" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M222.5 386 V293.33064485093223 Q222.5 290.33064485093223 225.5 290.33064485093223 H230.5 Q233.5 290.33064485093223 233.5 293.33064485093223 V386 Z"/>
+<line class="whisker" x1="228" x2="228" y1="298.40349109804424" y2="282.6742789172481" stroke-width="1.5"/>
+<circle class="surface so0" cx="228" cy="246.30555414701738" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="228" y="402" font-size="11" text-anchor="middle">Q3</text>
+<g><title>Comunica, Q4: warm 4.89 ms (instances 3.7 ms–6.03 ms), cold 8.97 ms, 5/5 ok</title>
+<rect x="283.9" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M284.9 386 V299.4375905599062 Q284.9 296.4375905599062 287.9 296.4375905599062 H292.9 Q295.9 296.4375905599062 295.9 299.4375905599062 V386 Z"/>
+<line class="whisker" x1="290.4" x2="290.4" y1="312.1541248650769" y2="284.5400267279764" stroke-width="1.5"/>
+<circle class="surface so0" cx="290.4" cy="262.13278647823995" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="290.4" y="402" font-size="11" text-anchor="middle">Q4</text>
+<g><title>Comunica, Q5: warm 25.5 ms (instances 14.5 ms–35.7 ms), cold 45 ms, 5/5 ok</title>
+<rect x="346.3" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M347.3 386 V206.1627671330783 Q347.3 203.1627671330783 350.3 203.1627671330783 H355.3 Q358.3 203.1627671330783 358.3 206.1627671330783 V386 Z"/>
+<line class="whisker" x1="352.8" x2="352.8" y1="235.09488846049885" y2="184.13837349920178" stroke-width="1.5"/>
+<circle class="surface so0" cx="352.8" cy="171.0974307590072" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="352.8" y="402" font-size="11" text-anchor="middle">Q5</text>
+<g><title>Comunica, Q8: warm 6.74 ms (instances 5.3 ms–8.48 ms), cold 16.5 ms, 5/5 ok</title>
+<rect x="408.7" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M409.7 386 V281.2965554699516 Q409.7 278.2965554699516 412.7 278.2965554699516 H417.7 Q420.7 278.2965554699516 420.7 281.2965554699516 V386 Z"/>
+<line class="whisker" x1="415.2" x2="415.2" y1="291.88676306388595" y2="265.3085392066273" stroke-width="1.5"/>
+<circle class="surface so0" cx="415.2" cy="227.64047030514539" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="415.2" y="402" font-size="11" text-anchor="middle">Q8</text>
+<g><title>Comunica, Q9: warm 2.24 ms (instances 1.76 ms–2.64 ms), cold 5.1 ms, 5/5 ok</title>
+<rect x="471.09999999999997" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M472.09999999999997 386 V343.52828106274796 Q472.09999999999997 340.52828106274796 475.09999999999997 340.52828106274796 H480.09999999999997 Q483.09999999999997 340.52828106274796 483.09999999999997 343.52828106274796 V386 Z"/>
+<line class="whisker" x1="477.59999999999997" x2="477.59999999999997" y1="353.95518449653997" y2="331.2770972301424" stroke-width="1.5"/>
+<circle class="surface so0" cx="477.59999999999997" cy="294.03063937239324" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="477.59999999999997" y="402" font-size="11" text-anchor="middle">Q9</text>
+<g><title>Comunica, Q10: warm 4.78 ms (instances 3.86 ms–5.73 ms), cold 13.2 ms, 5/5 ok</title>
+<rect x="533.5" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M534.5 386 V300.62714777255417 Q534.5 297.62714777255417 537.5 297.62714777255417 H542.5 Q545.5 297.62714777255417 545.5 300.62714777255417 V386 Z"/>
+<line class="whisker" x1="540" x2="540" y1="309.7631557591276" y2="287.4727523791773" stroke-width="1.5"/>
+<circle class="surface so0" cx="540" cy="240.35391043040693" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="540" y="402" font-size="11" text-anchor="middle">Q10</text>
+<g><title>Comunica, Q11: warm 1.59 ms (instances 1.43 ms–1.82 ms), cold 2.39 ms, 5/5 ok</title>
+<rect x="595.9" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M596.9 386 V362.6434704910292 Q596.9 359.6434704910292 599.9 359.6434704910292 H604.9 Q607.9 359.6434704910292 607.9 362.6434704910292 V386 Z"/>
+<line class="whisker" x1="602.4" x2="602.4" y1="365.6223689679789" y2="352.23209609925794" stroke-width="1.5"/>
+<circle class="surface so0" cx="602.4" cy="336.7295853620555" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="602.4" y="402" font-size="11" text-anchor="middle">Q11</text>
+<g><title>Comunica, Q12: warm 3.43 ms (instances 2.85 ms–4.16 ms), cold 5.35 ms, 5/5 ok</title>
+<rect x="658.3000000000001" y="126" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M659.3000000000001 386 V319.46226473813056 Q659.3000000000001 316.46226473813056 662.3000000000001 316.46226473813056 H667.3000000000001 Q670.3000000000001 316.46226473813056 670.3000000000001 319.46226473813056 V386 Z"/>
+<line class="whisker" x1="664.8000000000001" x2="664.8000000000001" y1="326.8041737055296" y2="305.4816874064912" stroke-width="1.5"/>
+<circle class="surface so0" cx="664.8000000000001" cy="291.2788427910102" r="3.5" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="664.8000000000001" y="402" font-size="11" text-anchor="middle">Q12</text>
+</svg>

@@ -1,0 +1,126 @@
+watdiv-1, 85 queries (F1 F2 F3 F4 F5 L1 L2 L3 L4 L5 S1 S2 S3 S4 S5 S6 S7), 10 warm-up rounds, 40 profiled rounds, median round 142.1 ms, Node v26.13.0 (V8 14.6.202.34-node.40), Comunica 2cad759
+Total sampled: 5746 ms
+
+Self time per function:
+  4.7 %  (program)  (native or V8)
+  3.9 %  (garbage collector)  (native or V8)
+  2.3 %  compare  rdf-stores:68
+  2.0 %  publish  @comunica/core:48
+  1.7 %  expand  @traqula/core:441
+  1.4 %  mediateWith  @comunica/mediator-join-coefficients-fixed:22
+  1.2 %  label  rdf-stores:109
+  1.2 %  mediate  @comunica/mediator-combine-pipeline:19
+  1.2 %  (anonymous)  @comunica/core:105
+  1.1 %  merge  @comunica/utils-bindings-factory:92
+  1.1 %  prepareBindings  rdf-stores:509
+  1.0 %  cloneObj  @traqula/core:45
+  1.0 %  (anonymous)  @comunica/actor-optimize-query-operation-query-source-skolemize:242
+  1.0 %  mediateWith  @comunica/mediator-number:49
+  0.9 %  (anonymous)  rdf-terms:29
+  0.9 %  (anonymous)  @traqula/core:31
+  0.9 %  DynamicIndirect  @traqula/core:7
+  0.9 %  countTermsCached  rdf-stores:822
+  0.9 %  encodeOptional  rdf-stores:29
+  0.8 %  setMetadata  @comunica/actor-query-source-identify-rdfjs:415
+  0.8 %  subrule  @traqula/core:22
+  0.7 %  wrappedExecutionLoop  @traqula/core:465
+  0.7 %  mediate  @comunica/core:94
+  0.7 %  matchLength  @traqula/chevrotain:5811
+  0.7 %  _end  asynciterator:1253
+  0.7 %  test  @comunica/bus-rdf-join:377
+  0.7 %  expand  @traqula/core:137
+  0.7 %  get  @comunica/utils-algebra:9
+  0.7 %  _addListener  node internals:545
+  0.6 %  bindOperation  @comunica/actor-rdf-join-inner-multi-index-nested-loop:211
+  0.6 %  canBindWithOperation  @comunica/actor-rdf-join-inner-multi-bind:121
+  0.6 %  getSharedVariableJoinCardinality  @comunica/bus-rdf-join:253
+  0.6 %  getLookupOrder  @comunica/actor-rdf-join-inner-multi-index-nested-loop:134
+  0.5 %  get  @traqula/algebra-transformations-1-2:48
+  0.5 %  runObservable  @comunica/core:68
+  0.5 %  invokeRuleWithTryCst  @traqula/chevrotain:8522
+  0.5 %  runOperation  @comunica/actor-query-operation-project:20
+  0.5 %  handleVisitor  @traqula/core:429
+  0.5 %  runDelegated  @comunica/actor-query-operation-source:73
+  0.5 %  subruleInternal  @traqula/chevrotain:8762
+  0.5 %  wrappedExecutionLoop  @traqula/core:177
+  0.5 %  materializeTerm  @comunica/utils-query-operation:21
+  0.5 %  getDistinctValues  @comunica/actor-query-source-identify-rdfjs:341
+  0.5 %  doesShapeAcceptOperationRecurseShape  @comunica/utils-query-operation:69
+  0.5 %  cluster  @comunica/actor-optimize-query-operation-join-connected:30
+  0.5 %  tokenizeInternal  @traqula/chevrotain:5507
+  0.4 %  queryBindingsSynchronous  @comunica/actor-optimize-query-operation-query-source-skolemize:61
+  0.4 %  isLocalized  @traqula/core:26
+  0.4 %  getJoinCoefficients  @comunica/actor-rdf-join-inner-multi-bind:214
+  0.4 %  runTransformObject  @traqula/core:86
+  0.4 %  getArbitraryLengthPathLookup  @comunica/actor-rdf-join-inner-multi-index-nested-loop:15
+  0.4 %  overlappingVariables  @comunica/bus-rdf-join:96
+  0.4 %  joinVariables  @comunica/bus-rdf-join:124
+  0.4 %  enqueueMicrotask  (native or V8)
+  0.4 %  seekKey  rdf-stores:147
+  0.4 %  nextMatch  rdf-stores:263
+  0.4 %  keys  @comunica/core:56
+  0.4 %  (idle)  (native or V8)
+  0.4 %  getJoinCoefficients  @comunica/actor-rdf-join-inner-multi-index-nested-loop:160
+  0.4 %  findPatternBoundedVars  @traqula/rules-sparql-1-1:124
+
+Inclusive time per package (samples with the package anywhere on the stack):
+100.0 %  (native or V8)
+ 50.1 %  @comunica/core
+ 24.2 %  @traqula/core
+ 20.2 %  asynciterator
+ 19.7 %  @comunica/actor-query-source-identify-rdfjs
+ 19.4 %  @comunica/actor-query-parse-sparql
+ 17.7 %  @comunica/actor-rdf-join-inner-multi-index-nested-loop
+ 17.0 %  node internals
+ 16.3 %  @comunica/actor-optimize-query-operation-query-source-skolemize
+ 12.4 %  @traqula/parser-sparql-1-2
+ 12.1 %  rdf-stores
+ 11.9 %  @traqula/chevrotain
+ 10.9 %  @comunica/mediator-combine-pipeline
+ 10.5 %  @traqula/rules-sparql-1-1
+ 10.1 %  @traqula/rules-sparql-1-2
+  8.6 %  @comunica/actor-query-operation-source
+  7.5 %  @comunica/bus-rdf-join
+  6.7 %  @traqula/algebra-sparql-1-2
+  5.8 %  @traqula/algebra-transformations-1-1
+  3.8 %  @comunica/utils-bindings-factory
+  3.2 %  @comunica/actor-query-operation-join
+  3.1 %  @comunica/utils-query-operation
+  2.9 %  @comunica/actor-query-process-sequential
+  2.6 %  @comunica/actor-rdf-join-inner-multi-bind
+  2.6 %  rdf-terms
+  2.5 %  @comunica/utils-algebra
+  2.3 %  immutable
+  2.1 %  benchmark adapter
+  2.1 %  @comunica/actor-optimize-query-operation-group-sources
+  2.1 %  @comunica/mediator-combine-union
+  2.0 %  @comunica/actor-optimize-query-operation-join-connected
+  1.9 %  @traqula/algebra-transformations-1-2
+  1.9 %  @comunica/mediator-join-coefficients-fixed
+  1.6 %  @comunica/actor-query-operation-project
+  1.5 %  @comunica/actor-rdf-join-selectivity-variable-counting
+  1.4 %  @comunica/actor-optimize-query-operation-query-source-identify
+  1.3 %  @comunica/actor-optimize-query-operation-assign-sources-exhaustive
+  1.2 %  @comunica/mediator-number
+  1.2 %  @comunica/bus-query-source-identify
+  1.2 %  @comunica/bus-query-operation
+  1.1 %  @comunica/actor-context-preprocess-set-defaults
+  1.0 %  scripts/profile-comunica.ts
+  1.0 %  @comunica/actor-init-query
+  0.9 %  @comunica/actor-rdf-join-inner-multi-bind-source
+  0.9 %  @comunica/utils-metadata
+  0.8 %  @comunica/actor-optimize-query-operation-join-bgp
+  0.8 %  @comunica/actor-rdf-join-inner-multi-smallest-filter-bindings
+  0.7 %  @comunica/actor-optimize-query-operation-prune-empty-source-operations
+  0.6 %  rdf-data-factory
+  0.5 %  @comunica/actor-optimize-query-operation-describe-to-constructs-subject
+  0.4 %  @comunica/mediator-race
+  0.4 %  @comunica/actor-rdf-join-entries-sort-cardinality
+  0.4 %  @comunica/actor-optimize-query-operation-bgp-to-join
+  0.3 %  @comunica/actor-rdf-join-inner-multi-smallest
+  0.3 %  @comunica/actor-context-preprocess-convert-shortcuts
+  0.2 %  @comunica/actor-rdf-join-inner-multi-empty
+  0.2 %  @comunica/context-entries
+  0.2 %  rdf-string
+  0.2 %  @comunica/actor-optimize-query-operation-rewrite-copy
+  0.1 %  @comunica/actor-optimize-query-operation-filter-pushdown

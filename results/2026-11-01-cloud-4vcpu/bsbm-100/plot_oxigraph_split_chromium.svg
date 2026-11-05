@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="366" viewBox="0 0 960 366" role="img" aria-label="bsbm-100: Oxigraph evaluation against WASM → JS transfer, chromium 153.0.8010.12">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; } .s1 { fill: #1baf7a; } .so1 { stroke: #1baf7a; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; } .s1 { fill: #199e70; } .so1 { stroke: #199e70; }
+  }
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }</style>
+<rect class="surface" width="960" height="366" rx="6"/>
+<text class="ink" x="24" y="26" font-size="16" font-weight="600">bsbm-100: Oxigraph evaluation against WASM → JS transfer, chromium 153.0.8010.12</text>
+<text class="ink2" x="24" y="46" font-size="12">Bar: the full time of a query (what the timing runs measure), mean over each template's instances (3 timed rounds each). Transfer: the</text>
+<text class="ink2" x="24" y="62" font-size="12">instance's result terms × 2.72 µs, the cost per term fitted on the calibration scans in chromium; evaluation: the rest. Per query, full − count</text>
+<text class="ink2" x="24" y="78" font-size="12">is too noisy to split single queries. Not shown (no count variant or not run): Q9, Q12. cloud-4vcpu</text>
+<rect class="s0" x="24" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="41" y="104.5" font-size="12">evaluation</text>
+<rect class="s1" x="129" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="146" y="104.5" font-size="12">WASM → JS transfer (estimated)</text>
+<text class="ink" x="82" y="134" font-size="12" font-weight="600">Time per query (linear scale)</text>
+<line class="grid" x1="82.0" x2="82.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="82.0" y="342" font-size="11" text-anchor="middle">0 ms</text>
+<line class="grid" x1="200.5" x2="200.5" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="200.5" y="342" font-size="11" text-anchor="middle">1 ms</text>
+<line class="grid" x1="318.9" x2="318.9" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="318.9" y="342" font-size="11" text-anchor="middle">2 ms</text>
+<line class="grid" x1="437.4" x2="437.4" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="437.4" y="342" font-size="11" text-anchor="middle">3 ms</text>
+<line class="axis" x1="82" x2="82" y1="142" y2="326" stroke-width="1"/>
+<text class="ink" x="531" y="134" font-size="12" font-weight="600">Share of the time</text>
+<line class="grid" x1="531.0" x2="531.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="531.0" y="342" font-size="11" text-anchor="middle">0%</text>
+<line class="grid" x1="606.0" x2="606.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="606.0" y="342" font-size="11" text-anchor="middle">25%</text>
+<line class="grid" x1="681.0" x2="681.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="681.0" y="342" font-size="11" text-anchor="middle">50%</text>
+<line class="grid" x1="756.0" x2="756.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="756.0" y="342" font-size="11" text-anchor="middle">75%</text>
+<line class="grid" x1="831.0" x2="831.0" y1="142" y2="326" stroke-width="1"/>
+<text class="muted" x="831.0" y="342" font-size="11" text-anchor="middle">100%</text>
+<line class="axis" x1="531" x2="531" y1="142" y2="326" stroke-width="1"/>
+<g><title>bsbm-100 Q1, mean over 5 instance(s): full 0.246 ms, evaluation 0.244 ms, transfer 0.00218 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.126 ms below zero; 0.4 results, 0.8 terms</title>
+<rect x="24" y="150" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="165" font-size="11" text-anchor="end">Q1</text>
+<path class="s0" d="M82.0 155 H107.2 Q111.2 155 111.2 159 V163 Q111.2 167 107.2 167 H82.0 Z"/>
+<text class="ink2 halo" x="117.2" y="165" font-size="11">0.246 ms</text>
+<rect class="s0" x="531.0" y="155" width="296.3" height="12"/>
+<path class="s1" d="M829.3 155 H830.2 Q831.0 155 831.0 155.8271375454298 V166.1728624545702 Q831.0 167 830.2 167 H829.3 Z"/>
+<text class="ink2" x="837.0" y="165" font-size="11">0.9%</text>
+</g>
+<g><title>bsbm-100 Q2, mean over 5 instance(s): full 1.07 ms, evaluation 0.588 ms, transfer 0.482 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.351 ms; 18.4 results, 177 terms</title>
+<rect x="24" y="172" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="187" font-size="11" text-anchor="end">Q2</text>
+<rect class="s0" x="82.0" y="177" width="68.7" height="12"/>
+<path class="s1" d="M152.7 177 H204.8 Q208.8 177 208.8 181 V185 Q208.8 189 204.8 189 H152.7 Z"/>
+<text class="ink2 halo" x="214.8" y="187" font-size="11">1.07 ms</text>
+<rect class="s0" x="531.0" y="177" width="163.8" height="12"/>
+<path class="s1" d="M696.8 177 H827.0 Q831.0 177 831.0 181 V185 Q831.0 189 827.0 189 H696.8 Z"/>
+<text class="ink2" x="837.0" y="187" font-size="11">45%</text>
+</g>
+<g><title>bsbm-100 Q3, mean over 5 instance(s): full 0.411 ms, evaluation 0.407 ms, transfer 0.00436 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.065 ms below zero; 0.8 results, 1.6 terms</title>
+<rect x="24" y="194" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="209" font-size="11" text-anchor="end">Q3</text>
+<path class="s0" d="M82.0 199 H126.7 Q130.7 199 130.7 203 V207 Q130.7 211 126.7 211 H82.0 Z"/>
+<text class="ink2 halo" x="136.7" y="209" font-size="11">0.411 ms</text>
+<rect class="s0" x="531.0" y="199" width="295.8" height="12"/>
+<path class="s1" d="M828.8 199 H829.9 Q831.0 199 831.0 200.08955372175717 V209.91044627824283 Q831.0 211 829.9 211 H828.8 Z"/>
+<text class="ink2" x="837.0" y="209" font-size="11">1.1%</text>
+</g>
+<g><title>bsbm-100 Q4, mean over 5 instance(s): full 0.378 ms, evaluation 0.378 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0647 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="216" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="231" font-size="11" text-anchor="end">Q4</text>
+<path class="s0" d="M82.0 221 H122.8 Q126.8 221 126.8 225 V229 Q126.8 233 122.8 233 H82.0 Z"/>
+<text class="ink2 halo" x="132.8" y="231" font-size="11">0.378 ms</text>
+<path class="s0" d="M531.0 221 H827.0 Q831.0 221 831.0 225 V229 Q831.0 233 827.0 233 H531.0 Z"/>
+<text class="ink2" x="837.0" y="231" font-size="11">0% (no results)</text>
+</g>
+<g><title>bsbm-100 Q5, mean over 5 instance(s): full 0.935 ms, evaluation 0.93 ms, transfer 0.00436 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.068 ms below zero; 0.8 results, 1.6 terms</title>
+<rect x="24" y="238" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="253" font-size="11" text-anchor="end">Q5</text>
+<path class="s0" d="M82.0 243 H188.7 Q192.7 243 192.7 247 V251 Q192.7 255 188.7 255 H82.0 Z"/>
+<text class="ink2 halo" x="198.7" y="253" font-size="11">0.935 ms</text>
+<rect class="s0" x="531.0" y="243" width="297.6" height="12"/>
+<path class="s1" d="M830.6 243 H830.8 Q831.0 243 831.0 243.19953969062607 V254.80046030937393 Q831.0 255 830.8 255 H830.6 Z"/>
+<text class="ink2" x="837.0" y="253" font-size="11">0.5%</text>
+</g>
+<g><title>bsbm-100 Q8, mean over 5 instance(s): full 2.55 ms, evaluation 2.47 ms, transfer 0.0823 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.303 ms; 3.8 results, 30.2 terms</title>
+<rect x="24" y="260" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="275" font-size="11" text-anchor="end">Q8</text>
+<rect class="s0" x="82.0" y="265" width="291.3" height="12"/>
+<path class="s1" d="M375.3 265 H380.0 Q384.0 265 384.0 269 V273 Q384.0 277 380.0 277 H375.3 Z"/>
+<text class="ink2 halo" x="390.0" y="275" font-size="11">2.55 ms</text>
+<rect class="s0" x="531.0" y="265" width="289.3" height="12"/>
+<path class="s1" d="M822.3 265 H827.0 Q831.0 265 831.0 269 V273 Q831.0 277 827.0 277 H822.3 Z"/>
+<text class="ink2" x="837.0" y="275" font-size="11">3.2%</text>
+</g>
+<g><title>bsbm-100 Q10, mean over 5 instance(s): full 0.363 ms, evaluation 0.363 ms, transfer 0 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0617 ms below zero; 0 results, 0 terms</title>
+<rect x="24" y="282" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="297" font-size="11" text-anchor="end">Q10</text>
+<path class="s0" d="M82.0 287 H121.0 Q125.0 287 125.0 291 V295 Q125.0 299 121.0 299 H82.0 Z"/>
+<text class="ink2 halo" x="131.0" y="297" font-size="11">0.363 ms</text>
+<path class="s0" d="M531.0 287 H827.0 Q831.0 287 831.0 291 V295 Q831.0 299 827.0 299 H531.0 Z"/>
+<text class="ink2" x="837.0" y="297" font-size="11">0% (no results)</text>
+</g>
+<g><title>bsbm-100 Q11, mean over 5 instance(s): full 0.23 ms, evaluation 0.175 ms, transfer 0.0545 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)); measured full − count 0.0147 ms; 10 results, 20 terms</title>
+<rect x="24" y="304" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="72" y="319" font-size="11" text-anchor="end">Q11</text>
+<rect class="s0" x="82.0" y="309" width="19.8" height="12"/>
+<path class="s1" d="M103.8 309 H106.5 Q109.2 309 109.2 311.72740927116894 V318.27259072883106 Q109.2 321 106.5 321 H103.8 Z"/>
+<text class="ink2 halo" x="115.2" y="319" font-size="11">0.23 ms</text>
+<rect class="s0" x="531.0" y="309" width="227.8" height="12"/>
+<path class="s1" d="M760.8 309 H827.0 Q831.0 309 831.0 313 V317 Q831.0 321 827.0 321 H760.8 Z"/>
+<text class="ink2" x="837.0" y="319" font-size="11">24%</text>
+</g>
+</svg>

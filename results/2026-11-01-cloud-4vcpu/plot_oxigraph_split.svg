@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="348" viewBox="0 0 960 348" role="img" aria-label="Oxigraph: share of the query time spent on WASM → JS transfer, per dataset">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #eb6834; } .so0 { stroke: #eb6834; } .s1 { fill: #1baf7a; } .so1 { stroke: #1baf7a; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #d95926; } .so0 { stroke: #d95926; } .s1 { fill: #199e70; } .so1 { stroke: #199e70; }
+  }
+  .halo { paint-order: stroke; stroke: #fcfcfb; stroke-width: 4px; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) { .halo { stroke: #1a1a19; } }</style>
+<rect class="surface" width="960" height="348" rx="6"/>
+<text class="ink" x="24" y="26" font-size="16" font-weight="600">Oxigraph: share of the query time spent on WASM → JS transfer, per dataset</text>
+<text class="ink2" x="24" y="46" font-size="12">Totals over the SELECT instances that ran all four breakdown variants. Bar: Oxigraph's full time (what the timing runs measure) split into</text>
+<text class="ink2" x="24" y="62" font-size="12">evaluation and transfer; transfer estimated as result terms × the cost per term fitted on the calibration scans (chromium 2.72 µs). Label:</text>
+<text class="ink2" x="24" y="78" font-size="12">transfer of the total. The totals differ by orders of magnitude between datasets, so only the shares share an axis. cloud-4vcpu</text>
+<rect class="s0" x="24" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="41" y="104.5" font-size="12">evaluation</text>
+<rect class="s1" x="129" y="94" width="12" height="12" rx="3"/>
+<text class="ink2" x="146" y="104.5" font-size="12">WASM → JS transfer (estimated)</text>
+<text class="ink" x="194" y="134" font-size="12" font-weight="600">Share of the time</text>
+<line class="grid" x1="194.0" x2="194.0" y1="142" y2="308" stroke-width="1"/>
+<text class="muted" x="194.0" y="324" font-size="11" text-anchor="middle">0%</text>
+<line class="grid" x1="339.3" x2="339.3" y1="142" y2="308" stroke-width="1"/>
+<text class="muted" x="339.3" y="324" font-size="11" text-anchor="middle">25%</text>
+<line class="grid" x1="484.6" x2="484.6" y1="142" y2="308" stroke-width="1"/>
+<text class="muted" x="484.6" y="324" font-size="11" text-anchor="middle">50%</text>
+<line class="grid" x1="629.9" x2="629.9" y1="142" y2="308" stroke-width="1"/>
+<text class="muted" x="629.9" y="324" font-size="11" text-anchor="middle">75%</text>
+<line class="grid" x1="775.2" x2="775.2" y1="142" y2="308" stroke-width="1"/>
+<text class="muted" x="775.2" y="324" font-size="11" text-anchor="middle">100%</text>
+<line class="axis" x1="194" x2="194" y1="142" y2="308" stroke-width="1"/>
+<g><title>watdiv-1, chromium: 100 instances, full 919 ms, transfer 60.8 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)), 22,318 terms</title>
+<rect x="24" y="150" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="165" font-size="11" text-anchor="end">watdiv-1</text>
+<rect class="s0" x="194.0" y="155" width="541.7" height="12"/>
+<path class="s1" d="M737.7 155 H771.2 Q775.2 155 775.2 159 V163 Q775.2 167 771.2 167 H737.7 Z"/>
+<text class="ink2" x="781.2" y="165" font-size="11">60.8 ms of 919 ms (6.6%)</text>
+</g>
+<g><title>watdiv-10, chromium: 100 instances, full 10.1 s, transfer 594 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)), 218,094 terms</title>
+<rect x="24" y="172" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="187" font-size="11" text-anchor="end">watdiv-10</text>
+<rect class="s0" x="194.0" y="177" width="545.9" height="12"/>
+<path class="s1" d="M741.9 177 H771.2 Q775.2 177 775.2 181 V185 Q775.2 189 771.2 189 H741.9 Z"/>
+<text class="ink2" x="781.2" y="187" font-size="11">594 ms of 10.1 s (5.9%)</text>
+</g>
+<g><title>bsbm-100, chromium: 40 instances, full 30.9 ms, transfer 3.15 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)), 1,156 terms</title>
+<rect x="24" y="194" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="209" font-size="11" text-anchor="end">bsbm-100</text>
+<rect class="s0" x="194.0" y="199" width="521.0" height="12"/>
+<path class="s1" d="M717.0 199 H771.2 Q775.2 199 775.2 203 V207 Q775.2 211 771.2 211 H717.0 Z"/>
+<text class="ink2" x="781.2" y="209" font-size="11">3.15 ms of 30.9 ms (10%)</text>
+</g>
+<g><title>bsbm-1k, chromium: 40 instances, full 153 ms, transfer 4.16 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)), 1,526 terms</title>
+<rect x="24" y="216" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="231" font-size="11" text-anchor="end">bsbm-1k</text>
+<rect class="s0" x="194.0" y="221" width="564.4" height="12"/>
+<path class="s1" d="M760.4 221 H771.2 Q775.2 221 775.2 225 V229 Q775.2 233 771.2 233 H760.4 Z"/>
+<text class="ink2" x="781.2" y="231" font-size="11">4.16 ms of 153 ms (2.7%)</text>
+</g>
+<g><title>ldbc-snb-0.1 (21 queries), chromium: 21 instances, full 51 s, transfer 1.93 ms (estimated as result terms × 2.72 µs (calibration fit, chromium)), 710 terms</title>
+<rect x="24" y="238" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="253" font-size="11" text-anchor="end">ldbc-snb-0.1 (21 queries)</text>
+<path class="s0" d="M194.0 243 H771.2 Q775.2 243 775.2 247 V251 Q775.2 255 771.2 255 H194.0 Z"/>
+<text class="ink2" x="781.2" y="253" font-size="11">1.93 ms of 51 s (&lt;0.1%)</text>
+</g>
+<rect class="surface" x="24" y="265" width="912" height="21"/>
+<line class="axis" x1="24" x2="936" y1="266" y2="266" stroke-width="1"/>
+<text class="ink2" x="24" y="280" font-size="11" font-weight="600">Reference: the calibration scans (plain scans, so almost all of their time is transfer by construction)</text>
+<g><title>calibration, chromium: 12 instances, full 1.31 s, transfer 1.21 s (estimated as result terms × 2.72 µs (calibration fit, chromium)), 444,444 terms</title>
+<rect x="24" y="286" width="912" height="22" fill="transparent"/>
+<text class="ink2" x="184" y="301" font-size="11" text-anchor="end">calibration</text>
+<rect class="s0" x="194.0" y="291" width="43.8" height="12"/>
+<path class="s1" d="M239.8 291 H771.2 Q775.2 291 775.2 295 V299 Q775.2 303 771.2 303 H239.8 Z"/>
+<text class="ink2" x="781.2" y="301" font-size="11">1.21 s of 1.31 s (92%)</text>
+</g>
+</svg>

@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" role="img" aria-label="Load time (parse + ingest) per dataset and browser">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="720" height="420" rx="6"/>
+<text class="ink" x="72" y="26" font-size="16" font-weight="600">Load time (parse + ingest) per dataset and browser</text>
+<text class="ink2" x="72" y="46" font-size="12">Median over repetitions; whisker: fastest to slowest run. Comunica: N3.js parse + ordered</text>
+<text class="ink2" x="72" y="62" font-size="12">rdf-stores build. Oxigraph: Store.load(). Excludes fetch + inflate. Log scale. cloud-4vcpu</text>
+<rect class="s0" x="72" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="89" y="88.5" font-size="12">Comunica</text>
+<rect class="s1" x="159.8" y="78" width="12" height="12" rx="3"/>
+<text class="ink2" x="176.8" y="88.5" font-size="12">Oxigraph</text>
+<line class="whisker" x1="252.60000000000002" x2="252.60000000000002" y1="77" y2="91" stroke-width="1.5"/>
+<text class="ink2" x="261.6" y="88.5" font-size="12">range over runs</text>
+<line class="grid" x1="72" x2="696" y1="370" y2="370" stroke-width="1"/>
+<text class="muted" x="64" y="374" font-size="11" text-anchor="end">100 ms</text>
+<line class="grid" x1="72" x2="696" y1="240" y2="240" stroke-width="1"/>
+<text class="muted" x="64" y="244" font-size="11" text-anchor="end">1 s</text>
+<line class="grid" x1="72" x2="696" y1="110" y2="110" stroke-width="1"/>
+<text class="muted" x="64" y="114" font-size="11" text-anchor="end">10 s</text>
+<line class="axis" x1="72" x2="696" y1="370" y2="370" stroke-width="1"/>
+<g><title>Comunica, watdiv-1 chromium: load 298 ms (297 ms–330 ms over 3 runs), engine init 189 ms</title>
+<rect x="85" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M86 370 V311.2638566767973 Q86 308.2638566767973 89 308.2638566767973 H94 Q97 308.2638566767973 97 311.2638566767973 V370 Z"/>
+<line class="whisker" x1="91.5" x2="91.5" y1="308.61204067098845" y2="302.63255124725276" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-1 chromium: load 420 ms (410 ms–435 ms over 3 runs), engine init 43.1 ms</title>
+<rect x="98" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M99 370 V291.91511944071675 Q99 288.91511944071675 102 288.91511944071675 H107 Q110 288.91511944071675 110 291.91511944071675 V370 Z"/>
+<line class="whisker" x1="104.5" x2="104.5" y1="290.3380986264344" y2="286.9840679723374" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="98" y="386" font-size="11" text-anchor="middle">chromium</text>
+<g><title>Comunica, watdiv-1 firefox: load 477 ms (445 ms–526 ms over 3 runs), engine init 272 ms</title>
+<rect x="137" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M138 370 V284.8470831371276 Q138 281.8470831371276 141 281.8470831371276 H146 Q149 281.8470831371276 149 284.8470831371276 V370 Z"/>
+<line class="whisker" x1="143.5" x2="143.5" y1="285.69290261372794" y2="276.2182111822043" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-1 firefox: load 484 ms (416 ms–565 ms over 3 runs), engine init 127 ms</title>
+<rect x="150" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M151 370 V283.9607718098317 Q151 280.9607718098317 154 280.9607718098317 H159 Q162 280.9607718098317 162 283.9607718098317 V370 Z"/>
+<line class="whisker" x1="156.5" x2="156.5" y1="289.54501695059145" y2="272.2656872146224" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="150" y="386" font-size="11" text-anchor="middle">firefox</text>
+<g><title>Comunica, watdiv-1 webkit: load 377 ms (346 ms–459 ms over 3 runs), engine init 218 ms</title>
+<rect x="189" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M190 370 V298.09359814007695 Q190 295.09359814007695 193 295.09359814007695 H198 Q201 295.09359814007695 201 298.09359814007695 V370 Z"/>
+<line class="whisker" x1="195.5" x2="195.5" y1="299.84183780616786" y2="283.98895680020007" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-1 webkit: load 434 ms (382 ms–474 ms over 3 runs), engine init 81.5 ms</title>
+<rect x="202" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M203 370 V290.10552488571545 Q203 287.10552488571545 206 287.10552488571545 H211 Q214 287.10552488571545 214 290.10552488571545 V370 Z"/>
+<line class="whisker" x1="208.5" x2="208.5" y1="294.3406313110603" y2="282.2036329242396" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="202" y="386" font-size="11" text-anchor="middle">webkit</text>
+<g><title>Comunica, watdiv-10 chromium: load 2.84 s (2.69 s–3.13 s over 3 runs), engine init 204 ms</title>
+<rect x="241" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M242 370 V184.07696587566963 Q242 181.07696587566963 245 181.07696587566963 H250 Q253 181.07696587566963 253 184.07696587566963 V370 Z"/>
+<line class="whisker" x1="247.5" x2="247.5" y1="184.11048498114275" y2="175.56670124651768" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-10 chromium: load 4.1 s (3.94 s–5.11 s over 3 runs), engine init 54.1 ms</title>
+<rect x="254" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M255 370 V163.37577299922503 Q255 160.37577299922503 258 160.37577299922503 H263 Q266 160.37577299922503 266 163.37577299922503 V370 Z"/>
+<line class="whisker" x1="260.5" x2="260.5" y1="162.59022010012802" y2="147.88716620585075" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="254" y="386" font-size="11" text-anchor="middle">chromium</text>
+<g><title>Comunica, watdiv-10 firefox: load 5.4 s (5.19 s–5.69 s over 3 runs), engine init 302 ms</title>
+<rect x="293" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M294 370 V147.75473743287722 Q294 144.75473743287722 297 144.75473743287722 H302 Q305 144.75473743287722 305 147.75473743287722 V370 Z"/>
+<line class="whisker" x1="299.5" x2="299.5" y1="147.0127984323256" y2="141.8300475433262" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-10 firefox: load 4.65 s (4.59 s–5.05 s over 3 runs), engine init 107 ms</title>
+<rect x="306" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M307 370 V156.19373247998445 Q307 153.19373247998445 310 153.19373247998445 H315 Q318 153.19373247998445 318 156.19373247998445 V370 Z"/>
+<line class="whisker" x1="312.5" x2="312.5" y1="153.90730641161502" y2="148.53926162623384" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="306" y="386" font-size="11" text-anchor="middle">firefox</text>
+<g><title>Comunica, watdiv-10 webkit: load 3.13 s (3.03 s–3.47 s over 3 runs), engine init 317 ms</title>
+<rect x="345" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M346 370 V178.55146475376077 Q346 175.55146475376077 349 175.55146475376077 H354 Q357 175.55146475376077 357 178.55146475376077 V370 Z"/>
+<line class="whisker" x1="351.5" x2="351.5" y1="177.3312763877042" y2="169.77246452365586" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, watdiv-10 webkit: load 4.33 s (4.32 s–4.44 s over 3 runs), engine init 84.5 ms</title>
+<rect x="358" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M359 370 V160.20887138815834 Q359 157.20887138815834 362 157.20887138815834 H367 Q370 157.20887138815834 370 160.20887138815834 V370 Z"/>
+<line class="whisker" x1="364.5" x2="364.5" y1="157.39652341206593" y2="155.84250278079278" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="358" y="386" font-size="11" text-anchor="middle">webkit</text>
+<g><title>Comunica, bsbm-100 chromium: load 255 ms (227 ms–319 ms over 3 runs), engine init 216 ms</title>
+<rect x="397" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M398 370 V320.2173454946094 Q398 317.2173454946094 401 317.2173454946094 H406 Q409 317.2173454946094 409 320.2173454946094 V370 Z"/>
+<line class="whisker" x1="403.5" x2="403.5" y1="323.7340512929952" y2="304.5231421190392" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-100 chromium: load 287 ms (281 ms–317 ms over 3 runs), engine init 49.7 ms</title>
+<rect x="410" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M411 370 V313.47043567018716 Q411 310.47043567018716 414 310.47043567018716 H419 Q422 310.47043567018716 422 313.47043567018716 V370 Z"/>
+<line class="whisker" x1="416.5" x2="416.5" y1="311.6822445049754" y2="304.79287888750383" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="410" y="386" font-size="11" text-anchor="middle">chromium</text>
+<g><title>Comunica, bsbm-100 firefox: load 353 ms (335 ms–397 ms over 3 runs), engine init 264 ms</title>
+<rect x="449" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M450 370 V301.8597051247579 Q450 298.8597051247579 453 298.8597051247579 H458 Q461 298.8597051247579 461 301.8597051247579 V370 Z"/>
+<line class="whisker" x1="455.5" x2="455.5" y1="301.7003737119382" y2="292.2255373241827" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-100 firefox: load 268 ms (241 ms–326 ms over 3 runs), engine init 138 ms</title>
+<rect x="462" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M463 370 V317.28773036728217 Q463 314.28773036728217 466 314.28773036728217 H471 Q474 314.28773036728217 474 317.28773036728217 V370 Z"/>
+<line class="whisker" x1="468.5" x2="468.5" y1="320.3565289151895" y2="303.22285980415415" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="462" y="386" font-size="11" text-anchor="middle">firefox</text>
+<g><title>Comunica, bsbm-100 webkit: load 272 ms (247 ms–338 ms over 3 runs), engine init 265 ms</title>
+<rect x="501" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M502 370 V316.45624830859214 Q502 313.45624830859214 505 313.45624830859214 H510 Q513 313.45624830859214 513 316.45624830859214 V370 Z"/>
+<line class="whisker" x1="507.5" x2="507.5" y1="319.02258783194526" y2="301.3177180127601" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-100 webkit: load 287 ms (192 ms–304 ms over 3 runs), engine init 80.6 ms</title>
+<rect x="514" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M515 370 V313.4832227231717 Q515 310.4832227231717 518 310.4832227231717 H523 Q526 310.4832227231717 526 313.4832227231717 V370 Z"/>
+<line class="whisker" x1="520.5" x2="520.5" y1="333.1355648642998" y2="307.17816807890284" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="514" y="386" font-size="11" text-anchor="middle">webkit</text>
+<g><title>Comunica, bsbm-1k chromium: load 1.88 s (1.78 s–1.9 s over 3 runs), engine init 226 ms</title>
+<rect x="553" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M554 370 V207.27170717934794 Q554 204.27170717934794 557 204.27170717934794 H562 Q565 204.27170717934794 565 207.27170717934794 V370 Z"/>
+<line class="whisker" x1="559.5" x2="559.5" y1="207.32246726482018" y2="203.74687931802274" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-1k chromium: load 2.09 s (1.95 s–2.3 s over 3 runs), engine init 50.4 ms</title>
+<rect x="566" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M567 370 V201.33926231676975 Q567 198.33926231676975 570 198.33926231676975 H575 Q578 198.33926231676975 578 201.33926231676975 V370 Z"/>
+<line class="whisker" x1="572.5" x2="572.5" y1="202.32373672382423" y2="192.99710966359993" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="566" y="386" font-size="11" text-anchor="middle">chromium</text>
+<g><title>Comunica, bsbm-1k firefox: load 3.35 s (3.26 s–4.02 s over 3 runs), engine init 284 ms</title>
+<rect x="605" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M606 370 V174.78902245438618 Q606 171.78902245438618 609 171.78902245438618 H614 Q617 171.78902245438618 617 174.78902245438618 V370 Z"/>
+<line class="whisker" x1="611.5" x2="611.5" y1="173.24362415990393" y2="161.46494015260265" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-1k firefox: load 2.05 s (2.03 s–2.88 s over 3 runs), engine init 117 ms</title>
+<rect x="618" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M619 370 V202.43730753429293 Q619 199.43730753429293 622 199.43730753429293 H627 Q630 199.43730753429293 630 202.43730753429293 V370 Z"/>
+<line class="whisker" x1="624.5" x2="624.5" y1="200.14356111228759" y2="180.18613205015578" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="618" y="386" font-size="11" text-anchor="middle">firefox</text>
+<g><title>Comunica, bsbm-1k webkit: load 1.77 s (1.75 s–1.86 s over 3 runs), engine init 230 ms</title>
+<rect x="657" y="110" width="13" height="260" fill="transparent"/>
+<path class="s0" d="M658 370 V210.75964782253166 Q658 207.75964782253166 661 207.75964782253166 H666 Q669 207.75964782253166 669 210.75964782253166 V370 Z"/>
+<line class="whisker" x1="663.5" x2="663.5" y1="208.3586156729318" y2="204.9876056076692" stroke-width="1.5"/>
+</g>
+<g><title>Oxigraph, bsbm-1k webkit: load 1.7 s (1.7 s–2.22 s over 3 runs), engine init 77.5 ms</title>
+<rect x="670" y="110" width="13" height="260" fill="transparent"/>
+<path class="s1" d="M671 370 V213.05957687716747 Q671 210.05957687716747 674 210.05957687716747 H679 Q682 210.05957687716747 682 213.05957687716747 V370 Z"/>
+<line class="whisker" x1="676.5" x2="676.5" y1="210.1220675056048" y2="195.03721909019907" stroke-width="1.5"/>
+</g>
+<text class="ink2" x="670" y="386" font-size="11" text-anchor="middle">webkit</text>
+<line class="axis" x1="76" x2="224" y1="394" y2="394" stroke-width="1"/>
+<text class="ink" x="150" y="408" font-size="12" text-anchor="middle" font-weight="600">watdiv-1</text>
+<line class="axis" x1="232" x2="380" y1="394" y2="394" stroke-width="1"/>
+<text class="ink" x="306" y="408" font-size="12" text-anchor="middle" font-weight="600">watdiv-10</text>
+<line class="axis" x1="388" x2="536" y1="394" y2="394" stroke-width="1"/>
+<text class="ink" x="462" y="408" font-size="12" text-anchor="middle" font-weight="600">bsbm-100</text>
+<line class="axis" x1="544" x2="692" y1="394" y2="394" stroke-width="1"/>
+<text class="ink" x="618" y="408" font-size="12" text-anchor="middle" font-weight="600">bsbm-1k</text>
+</svg>

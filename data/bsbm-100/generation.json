@@ -1,0 +1,11 @@
+{
+  "generator": "bsbm",
+  "productCount": 100,
+  "instancesPerTemplate": 5,
+  "startedAt": "2026-11-01T14:16:31Z",
+  "seed": "generator: 53223436 (hard-coded in BSBM Generator.java); test driver: 9834533 (as in @jbr-experiment/bsbm)",
+  "triples": 40377,
+  "ntBytes": 10216303,
+  "ntSha256": "47f3d504d7600d665da07cc475514a5e46240f5f1c1ac97fb22bd1a6c0fdf748",
+  "queries": 50
+}
