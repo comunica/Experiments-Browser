@@ -36,6 +36,8 @@ export const SUPPORT_DATASETS = [ 'watdiv-1', 'bsbm-100' ];
 export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
 // The breakdown also runs synthetic scans of N results (data/calibration), where the COUNT wrapper cannot change the plan.
 export const BREAKDOWN_DATASETS = [ ...DATASETS, 'calibration' ];
+// The warm-up experiment needs many rounds; LDBC SNB's queries take seconds, and show no trend after one warmup round.
+export const WARMUP_DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k' ];
 
 const { values: args } = parseArgs({
   options: {
@@ -49,6 +51,8 @@ const { values: args } = parseArgs({
     warmup: { type: 'string', default: '1' },
     repeat: { type: 'string', default: '3' },
     'breakdown-rounds': { type: 'string', default: '3' },
+    // --mode warmup: a cold pass, then this many recorded rounds without warmup, to see how many rounds JIT warm-up takes.
+    'curve-rounds': { type: 'string', default: '30' },
     // Run only some queries of a dataset: 'dataset=Q1-1,Q2-1;other=...'. Raw files of such runs get a -subset suffix.
     queries: { type: 'string', default: '' },
     // LDBC SNB's complex queries take seconds each: one repetition of it already runs for hours.
@@ -68,6 +72,7 @@ const ROUNDS = Number(args.rounds);
 const WARMUP = Number(args.warmup);
 const REPEAT = Number(args.repeat);
 const BREAKDOWN_ROUNDS = Number(args['breakdown-rounds']);
+const CURVE_ROUNDS = Number(args['curve-rounds']);
 const QUERY_SUBSETS = new Map(args.queries.split(';').filter(Boolean).map((entry) => {
   const [ dataset, ids ] = entry.split('=');
   return [ dataset, ids.split(',').filter(Boolean) ];
@@ -263,6 +268,13 @@ function plan(mode: string, queries: string[], dataset: string): Step[] {
     return steps;
   }
   const steps: Step[] = queries.map(query => ({ phase: 'cold', round: 0, query }));
+  if (mode === 'warmup') {
+    // Every round is recorded: round k is the k-th execution of each query after its cold one.
+    for (let round = 1; round <= CURVE_ROUNDS; round++) {
+      steps.push(...queries.map(query => <Step>{ phase: 'timed', round, query }));
+    }
+    return steps;
+  }
   for (let round = 1; round <= WARMUP; round++) {
     steps.push(...queries.map(query => <Step>{ phase: 'warmup', round, query }));
   }
@@ -415,7 +427,8 @@ async function runConfiguration(
     machine: args.machine,
     startedAt,
     finishedAt: new Date().toISOString(),
-    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: mode === 'breakdown' ? BREAKDOWN_ROUNDS : ROUNDS },
+    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: mode === 'warmup' ? 0 : WARMUP,
+      rounds: mode === 'breakdown' ? BREAKDOWN_ROUNDS : mode === 'warmup' ? CURVE_ROUNDS : ROUNDS },
     ...mode === 'breakdown' ? { breakdown: { variants: BREAKDOWN_VARIANTS, preExcluded } } : {},
     ...subset ? { querySubset: subset } : {},
     status,
@@ -494,6 +507,7 @@ async function main(): Promise<void> {
   };
   meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS, repetitions: REPEAT,
     breakdownRounds: BREAKDOWN_ROUNDS,
+    curveRounds: CURVE_ROUNDS,
     repetitionOverrides: Object.fromEntries(REPEAT_OVERRIDES),
     chromiumLaunch: CHROMIUM_LAUNCH, headless: true };
   meta.browsers ??= {};
@@ -511,7 +525,8 @@ async function main(): Promise<void> {
   try {
     for (const mode of modes) {
       const datasets = args.datasets?.split(',') ??
-        (mode === 'support' ? SUPPORT_DATASETS : mode === 'breakdown' ? BREAKDOWN_DATASETS : DATASETS);
+        (mode === 'support' ? SUPPORT_DATASETS : mode === 'breakdown' ? BREAKDOWN_DATASETS :
+          mode === 'warmup' ? WARMUP_DATASETS : DATASETS);
       // Repetitions are the outer loop, so a transient slowdown of the machine hits one repetition of many
       // configurations instead of every repetition of one. The support pass only classifies, once.
       const once = mode === 'support' || mode === 'breakdown';
