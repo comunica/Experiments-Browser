@@ -479,6 +479,27 @@ const version = (name: string) => JSON.parse(readFileSync(join(ROOT, 'node_modul
 // --- Main ----------------------------------------------------------------------------------------
 
 /** Refuses to run a dist/ that is older than the page sources it was built from. */
+/**
+ * Comunica's master on GitHub when the run starts, and a warning if the built commit is not it. Only a warning: an
+ * older or other commit can be intended (a before/after comparison). Offline, nothing is checked.
+ */
+function latestComunicaMaster(built: string): { commit: string; checkedAt: string; isBuilt: boolean } | undefined {
+  try {
+    const git = (...a: string[]) => execFileSync('git', [ '-C', join(ROOT, '.cache', 'comunica'), ...a ],
+      { encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ], timeout: 30_000 }).trim();
+    git('fetch', '--quiet', 'origin', 'master');
+    const commit = git('rev-parse', 'FETCH_HEAD');
+    if (commit !== built) {
+      console.warn(`warning: Comunica master is ${commit.slice(0, 10)}, but the pages were built from ${built.slice(0, 10)}; ` +
+        `run COMUNICA_REF=master npm run prepare && npm run build to measure the latest master`);
+    }
+    return { commit, checkedAt: new Date().toISOString(), isBuilt: commit === built };
+  } catch {
+    console.warn('warning: could not fetch Comunica master to check that the build is the latest');
+    return undefined;
+  }
+}
+
 function assertFreshBuild(): void {
   const manifest = join(DIST, '.vite', 'manifest.json');
   if (!existsSync(manifest)) {
@@ -506,6 +527,7 @@ async function main(): Promise<void> {
   meta.benchmarkRepository = gitInfo();
   meta.invocations.push({ ...meta.benchmarkRepository, startedAt: new Date().toISOString(), args: process.argv.slice(2) });
   meta.comunica = JSON.parse(readFileSync(join(ROOT, '.cache', 'comunica-build.json'), 'utf8'));
+  meta.comunicaMaster = latestComunicaMaster(meta.comunica.commit);
   meta.versions = {
     oxigraph: version('oxigraph'),
     n3: version('n3'),

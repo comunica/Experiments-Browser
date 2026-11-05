@@ -63,7 +63,8 @@ npm run plot:warmup -- results/<dir>  # warm-up curves, and bias and noise per n
 - Linux needs the browsers' system libraries once: `npx playwright install-deps chromium firefox webkit`.
 - `npm run prepare` builds Comunica at the commit pinned in `package.json` (`config.comunicaCommit`, currently master
   `6b5eb94`; the 2026-11-01 results used `e06d02e`) from the monorepo itself, with its own lockfile, so every actor,
-  mediator and bus comes from that commit; `npm run build` fails if the bundle contains any `@comunica` module from npm. Set
+  mediator and bus comes from that commit; `npm run build` fails if the bundle contains any `@comunica` module from npm,
+  and `npm run bench` warns when the build is not Comunica's latest master (recorded as `comunicaMaster` in `meta.json`). Set
   `COMUNICA_REF=master` (or any branch, tag or commit) to build another one; the commit that was built is written to
   `.cache/comunica-build.json`, embedded in both pages, and recorded in every raw result and in `meta.json`.
 - `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). The default

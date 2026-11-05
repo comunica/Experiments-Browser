@@ -1,0 +1,734 @@
+{
+ "schema": 1,
+ "benchmarkRepository": {
+  "commit": "527f40dd997c9c6ecf7379106acd7dffb6d36482",
+  "dirty": false
+ },
+ "mode": "support",
+ "dataset": "bsbm-100",
+ "browser": {
+  "name": "chromium",
+  "version": "153.0.8010.12"
+ },
+ "engine": {
+  "name": "oxigraph",
+  "page": "oxigraph.html"
+ },
+ "build": {
+  "builtAt": "2026-11-05T08:11:57.494Z",
+  "comunica": {
+   "repository": "https://github.com/comunica/comunica",
+   "ref": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+   "commit": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+   "commitDate": "2026-11-05T08:43:20+01:00",
+   "commitSubject": "Run union annotation optimizer after path rewriter (#1949)",
+   "packageVersion": "5.4.1",
+   "dirty": false
+  },
+  "oxigraph": "0.5.13",
+  "n3": "2.13.12",
+  "rdfStores": "2.9.0",
+  "vite": "8.3.5"
+ },
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+ "machine": "cloud-4vcpu",
+ "startedAt": "2026-11-05T08:12:32.657Z",
+ "finishedAt": "2026-11-05T08:12:34.089Z",
+ "settings": {
+  "timeoutMs": 60000,
+  "graceMs": 30000,
+  "warmupRounds": 10,
+  "rounds": 5
+ },
+ "status": "complete",
+ "load": {
+  "fetchMs": 8.860000000335276,
+  "inflateMs": 45.33999999985099,
+  "importMs": 5.290000000037253,
+  "initMs": 34.21499999985099,
+  "parseMs": null,
+  "ingestMs": 230.98000000044703,
+  "loadMs": 230.98000000044703,
+  "quads": 40377,
+  "ntBytes": 10216303,
+  "gzBytes": 1173294,
+  "details": {
+   "storeLoadMs": 230.98000000044703
+  }
+ },
+ "memory": {
+  "method": "measureUserAgentSpecificMemory",
+  "bytes": 30057925,
+  "wasmBytes": 27852800,
+  "usedJSHeapSize": 2432381,
+  "breakdown": [
+   {
+    "attribution": [],
+    "bytes": 0,
+    "types": []
+   },
+   {
+    "attribution": [
+     {
+      "scope": "Window",
+      "url": "http://127.0.0.1:35463/oxigraph.html"
+     }
+    ],
+    "bytes": 29700152,
+    "types": [
+     "JavaScript"
+    ]
+   },
+   {
+    "attribution": [],
+    "bytes": 26856,
+    "types": [
+     "DOM"
+    ]
+   },
+   {
+    "attribution": [],
+    "bytes": 330917,
+    "types": [
+     "Shared"
+    ]
+   }
+  ],
+  "cdpHeapUsedBytes": 1217624,
+  "cdpHeapTotalBytes": 2621440
+ },
+ "attempts": [
+  {
+   "status": "done",
+   "build": {
+    "builtAt": "2026-11-05T08:11:57.494Z",
+    "comunica": {
+     "repository": "https://github.com/comunica/comunica",
+     "ref": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+     "commit": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+     "commitDate": "2026-11-05T08:43:20+01:00",
+     "commitSubject": "Run union annotation optimizer after path rewriter (#1949)",
+     "packageVersion": "5.4.1",
+     "dirty": false
+    },
+    "oxigraph": "0.5.13",
+    "n3": "2.13.12",
+    "rdfStores": "2.9.0",
+    "vite": "8.3.5"
+   },
+   "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+   "crossOriginIsolated": true,
+   "load": {
+    "fetchMs": 8.860000000335276,
+    "inflateMs": 45.33999999985099,
+    "importMs": 5.290000000037253,
+    "initMs": 34.21499999985099,
+    "parseMs": null,
+    "ingestMs": 230.98000000044703,
+    "loadMs": 230.98000000044703,
+    "quads": 40377,
+    "ntBytes": 10216303,
+    "gzBytes": 1173294,
+    "details": {
+     "storeLoadMs": 230.98000000044703
+    }
+   },
+   "memory": {
+    "method": "measureUserAgentSpecificMemory",
+    "bytes": 30057925,
+    "wasmBytes": 27852800,
+    "usedJSHeapSize": 2432381,
+    "breakdown": [
+     {
+      "attribution": [],
+      "bytes": 0,
+      "types": []
+     },
+     {
+      "attribution": [
+       {
+        "scope": "Window",
+        "url": "http://127.0.0.1:35463/oxigraph.html"
+       }
+      ],
+      "bytes": 29700152,
+      "types": [
+       "JavaScript"
+      ]
+     },
+     {
+      "attribution": [],
+      "bytes": 26856,
+      "types": [
+       "DOM"
+      ]
+     },
+     {
+      "attribution": [],
+      "bytes": 330917,
+      "types": [
+       "Shared"
+      ]
+     }
+    ],
+    "cdpHeapUsedBytes": 1217624,
+    "cdpHeapTotalBytes": 2621440
+   },
+   "steps": 50,
+   "executions": 50
+  }
+ ],
+ "executions": [
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-1",
+   "outcome": "ok",
+   "ms": 16.364999999292195,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-2",
+   "outcome": "ok",
+   "ms": 0.9449999993667006,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-3",
+   "outcome": "ok",
+   "ms": 0.31499999947845936,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-4",
+   "outcome": "ok",
+   "ms": 2.110000000335276,
+   "count": 1,
+   "expected": 1,
+   "checksum": 101,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q1-5",
+   "outcome": "ok",
+   "ms": 0.47499999962747097,
+   "count": 1,
+   "expected": 1,
+   "checksum": 91,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-1",
+   "outcome": "ok",
+   "ms": 1.9199999999254942,
+   "count": 11,
+   "expected": 11,
+   "checksum": 15162,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-2",
+   "outcome": "ok",
+   "ms": 2.2549999998882413,
+   "count": 19,
+   "expected": 19,
+   "checksum": 31871,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-3",
+   "outcome": "ok",
+   "ms": 2.880000000819564,
+   "count": 24,
+   "expected": 24,
+   "checksum": 43718,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-4",
+   "outcome": "ok",
+   "ms": 1.5899999998509884,
+   "count": 19,
+   "expected": 19,
+   "checksum": 34174,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q2-5",
+   "outcome": "ok",
+   "ms": 1.4700000006705523,
+   "count": 19,
+   "expected": 19,
+   "checksum": 20728,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-1",
+   "outcome": "ok",
+   "ms": 0.8700000001117587,
+   "count": 1,
+   "expected": 1,
+   "checksum": 91,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-2",
+   "outcome": "ok",
+   "ms": 0.6449999995529652,
+   "count": 1,
+   "expected": 1,
+   "checksum": 99,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-3",
+   "outcome": "ok",
+   "ms": 0.5,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-4",
+   "outcome": "ok",
+   "ms": 0.4500000001862645,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q3-5",
+   "outcome": "ok",
+   "ms": 0.6899999994784594,
+   "count": 2,
+   "expected": 2,
+   "checksum": 204,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-1",
+   "outcome": "ok",
+   "ms": 0.9649999998509884,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-2",
+   "outcome": "ok",
+   "ms": 0.48499999940395355,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-3",
+   "outcome": "ok",
+   "ms": 0.48000000044703484,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-4",
+   "outcome": "ok",
+   "ms": 0.7050000000745058,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q4-5",
+   "outcome": "ok",
+   "ms": 0.4850000003352761,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-1",
+   "outcome": "ok",
+   "ms": 2.7599999997764826,
+   "count": 1,
+   "expected": 1,
+   "checksum": 100,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-2",
+   "outcome": "ok",
+   "ms": 1.4750000005587935,
+   "count": 1,
+   "expected": 1,
+   "checksum": 104,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-3",
+   "outcome": "ok",
+   "ms": 1.1800000006332994,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-4",
+   "outcome": "ok",
+   "ms": 1.3449999997392297,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q5-5",
+   "outcome": "ok",
+   "ms": 1.5199999995529652,
+   "count": 2,
+   "expected": 2,
+   "checksum": 200,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-1",
+   "outcome": "ok",
+   "ms": 6.694999999366701,
+   "count": 2,
+   "expected": 2,
+   "checksum": 3065,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-2",
+   "outcome": "ok",
+   "ms": 7.929999999701977,
+   "count": 10,
+   "expected": 10,
+   "checksum": 14261,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-3",
+   "outcome": "ok",
+   "ms": 4.229999999515712,
+   "count": 3,
+   "expected": 3,
+   "checksum": 4731,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-4",
+   "outcome": "ok",
+   "ms": 5.315000000409782,
+   "count": 3,
+   "expected": 3,
+   "checksum": 4545,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q8-5",
+   "outcome": "ok",
+   "ms": 4.009999999776483,
+   "count": 1,
+   "expected": 1,
+   "checksum": 2096,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-1",
+   "outcome": "ok",
+   "ms": 1.7200000006705523,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1002,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-2",
+   "outcome": "ok",
+   "ms": 0.5899999998509884,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1009,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-3",
+   "outcome": "ok",
+   "ms": 0.7700000004842877,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1007,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-4",
+   "outcome": "ok",
+   "ms": 0.35999999940395355,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1006,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q9-5",
+   "outcome": "ok",
+   "ms": 0.31000000052154064,
+   "count": 6,
+   "expected": 6,
+   "checksum": 1007,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-1",
+   "outcome": "ok",
+   "ms": 1.415000000037253,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-2",
+   "outcome": "ok",
+   "ms": 0.6399999996647239,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-3",
+   "outcome": "ok",
+   "ms": 0.6149999992921948,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-4",
+   "outcome": "ok",
+   "ms": 0.5849999999627471,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q10-5",
+   "outcome": "ok",
+   "ms": 0.6950000002980232,
+   "count": 0,
+   "expected": 0,
+   "checksum": 0,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-1",
+   "outcome": "ok",
+   "ms": 0.4199999999254942,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-2",
+   "outcome": "ok",
+   "ms": 0.4500000001862645,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1033,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-3",
+   "outcome": "ok",
+   "ms": 0.2949999999254942,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1033,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-4",
+   "outcome": "ok",
+   "ms": 0.9150000000372529,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q11-5",
+   "outcome": "ok",
+   "ms": 0.3449999997392297,
+   "count": 10,
+   "expected": 10,
+   "checksum": 1034,
+   "resultType": "bindings"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-1",
+   "outcome": "ok",
+   "ms": 1.9100000001490116,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1483,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-2",
+   "outcome": "ok",
+   "ms": 0.5650000004097819,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1496,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-3",
+   "outcome": "ok",
+   "ms": 0.5849999999627471,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1493,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-4",
+   "outcome": "ok",
+   "ms": 1.1950000002980232,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1494,
+   "resultType": "quads"
+  },
+  {
+   "phase": "support",
+   "round": 0,
+   "query": "Q12-5",
+   "outcome": "ok",
+   "ms": 0.5899999998509884,
+   "count": 8,
+   "expected": 8,
+   "checksum": 1485,
+   "resultType": "quads"
+  }
+ ],
+ "repetition": 1
+}
