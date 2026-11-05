@@ -156,6 +156,26 @@ changes 2–4:
 Run-to-run noise is large: two runs of the same build differ by up to 19 % in total, so changes of a few percent need
 both builds compiled up front and run interleaved, with a discarded first run.
 
+### Prototypes for choosing actors (items 2 and 4)
+
+On branch [`perf/watdiv-non-c-prototypes`](https://github.com/comunica/comunica/tree/perf/watdiv-non-c-prototypes)
+(two work-in-progress commits on top of `perf/watdiv-non-c`, not ready to merge: twelve logger tests still spy on
+`LoggerVoid`). Join plans are identical to before for all 17 templates on both datasets.
+
+| Prototype | Measured on its own | Kept |
+|---|---|---|
+| Loggers tell whether a level is enabled (`LoggerVoid`: never), so actors and the join mediator skip building debug data | join mediator 21 → 9 µs per query (its debug data 12.5 → 0.8 µs) | yes |
+| Variable counting selectivity takes patterns and paths without visiting them | selectivity 32 → 18 µs per query | yes |
+| Number mediator skips picking a value when only one actor is tested (patterns, selectivity, entries sort) | 1.37 → 0.86 µs per mediation, about 10 per query | yes |
+| rdf-join bus indexed by logical join type (`BusRdfJoin`), so optional and minus actors are not tested for inner joins | about 10 µs expected; A/B against the other prototypes: +0.6 % on watdiv-1, −6.7 % on watdiv-10 (within noise) | yes |
+| Lookup order of the index nested loop join with precomputed fanouts | no gain: about 5 µs per join at 6 entries either way | reverted |
+| Caching the source's shape check for patterns (item 2) | not built: the check itself is 4 µs per query; the rest of the 65–79 µs measured for choosing a pattern's actor is waiting for the other patterns, which are mediated in parallel | no |
+
+All four kept prototypes together, interleaved A/B against `abc083b` with 3 runs each: −11 % on watdiv-1 and −17 % on
+watdiv-10 (median totals 92 → 81 ms and 129 → 105 ms; Comunica ÷ Oxigraph 6.7× and 2.9×). An A/A run of the same
+protocol differs by +0.9 % and −3.4 %. The part timings add up to only about 40 µs per query, so part of the measured
+gain is noise or less garbage collection.
+
 ## Why parity is not reachable by tuning
 
 Parsing and translation alone (about 200 µs in the engine, 100–120 µs at best) already exceed Oxigraph's whole query
