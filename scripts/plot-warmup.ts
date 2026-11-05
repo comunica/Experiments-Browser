@@ -6,8 +6,10 @@
 // - plot_warmup_datasets.svg: the same per dataset and browser.
 // - plot_warmup_protocol.svg: for w warm-up rounds followed by T timed rounds, the bias of the warm mean against
 //   the plateau, and the noise of an A/A comparison between two fresh-browser runs of the same build.
-// The plateau of a query is the median of its last 10 rounds over all repetitions; a typical query is the
-// geometric mean over queries (and repetitions). Queries with a plateau under 0.05 ms are left out (timer resolution).
+// Every run (repetition) is compared with its own plateau, its last 10 rounds: the curves divide each round by their
+// median, the bias divides a warm mean by their mean (like with like: a mean over rounds is above their median even
+// without any warm-up, because of occasional slow rounds). A typical query is the geometric mean over queries and
+// repetitions. Queries with a median under 0.05 ms are left out (timer resolution).
 // Usage: npm run plot:warmup [-- results/<dir>] [--timed 5]
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
@@ -81,10 +83,16 @@ function load(dir: string): { configs: Config[]; rounds: number } {
   return { configs, rounds };
 }
 
-/** Time per round relative to the plateau, as the geometric mean over the queries and repetitions of the configs. */
+/** The last PLATEAU_ROUNDS rounds of a run of a query. */
+const tail = (times: number[]) => times.slice(times.length - PLATEAU_ROUNDS);
+
+/** Time per round relative to the median of the same run's plateau, as the geometric mean over queries and runs. */
 function curve(configs: Config[], rounds: number): number[] {
   return Array.from({ length: rounds + 1 }, (_, k) => geomean(configs.flatMap(c =>
-    c.reps.flatMap(rep => [ ...c.plateau ].map(([ q, p ]) => rep.get(q)![k] / p)))));
+    c.reps.flatMap(rep => [ ...c.plateau.keys() ].map((q) => {
+      const times = rep.get(q)!;
+      return times[k] / median(tail(times))!;
+    })))));
 }
 
 /**
@@ -98,7 +106,7 @@ function protocol(configs: Config[], w: number, timed: number): { bias: number; 
   const logs: number[] = [];
   for (const c of configs) {
     for (const rep of c.reps) {
-      ratios.push(...[ ...c.plateau ].map(([ q, p ]) => warmMean(rep, q) / p));
+      ratios.push(...[ ...c.plateau.keys() ].map(q => warmMean(rep, q) / mean(tail(rep.get(q)!))));
     }
     for (let a = 0; a < c.reps.length; a++) {
       for (let b = a + 1; b < c.reps.length; b++) {
@@ -106,7 +114,8 @@ function protocol(configs: Config[], w: number, timed: number): { bias: number; 
       }
     }
   }
-  return { bias: geomean(ratios) - 1, noise: Math.exp(mean(logs)) - 1 };
+  // Without two repetitions of a configuration there is no A/A comparison.
+  return { bias: geomean(ratios) - 1, noise: logs.length > 0 ? Math.exp(mean(logs)) - 1 : Number.NaN };
 }
 
 interface Line {
@@ -142,7 +151,7 @@ function linePanels(spec: {
   const top = legendY + 44;
   const rowGap = 46;
   const height = top + rows * panelH + (rows - 1) * rowGap + 50;
-  const all = spec.panels.flatMap(p => p.lines.flatMap(l => l.points));
+  const all = spec.panels.flatMap(p => p.lines.flatMap(l => l.points)).filter(p => Number.isFinite(p.y));
   const xs = all.map(p => p.x);
   const [ xMin, xMax ] = [ Math.min(...xs), Math.max(...xs) ];
   const [ yMin, yMax ] = [ Math.min(...spec.yTicks), Math.max(...spec.yTicks) ];
@@ -169,7 +178,7 @@ function linePanels(spec: {
     const px = (v: number) => x0 + ((v - xMin) / (xMax - xMin || 1)) * panelW;
     const py = (v: number) => y0 + panelH - Math.min(Math.max(fy(v), -0.02), 1.02) * panelH;
     out.push(`<text class="ink" x="${x0}" y="${y0 - 10}" font-size="12" font-weight="600">${esc(panel.label)}</text>`);
-    for (const t of spec.yTicks) {
+    for (const t of thin(spec.yTicks, py, spec.yRef)) {
       out.push(`<line class="grid" x1="${x0}" x2="${x0 + panelW}" y1="${py(t).toFixed(1)}" y2="${py(t).toFixed(1)}" stroke-width="1"/>`);
       if (col === 0) {
         out.push(`<text class="muted" x="${x0 - 8}" y="${(py(t) + 4).toFixed(1)}" font-size="11" text-anchor="end">${esc(spec.yFormat(t))}</text>`);
@@ -182,7 +191,10 @@ function linePanels(spec: {
     if (spec.yRef !== undefined) {
       out.push(`<line class="whisker" x1="${x0}" x2="${x0 + panelW}" y1="${py(spec.yRef).toFixed(1)}" y2="${py(spec.yRef).toFixed(1)}" stroke-width="1" stroke-dasharray="3 3"/>`);
     }
-    for (const line of panel.lines) {
+    for (const line of panel.lines.map(l => ({ ...l, points: l.points.filter(p => Number.isFinite(p.y)) }))) {
+      if (line.points.length === 0) {
+        continue;
+      }
       const d = line.points.map((p, j) => `${j === 0 ? 'M' : 'L'}${px(p.x).toFixed(1)} ${py(p.y).toFixed(1)}`).join(' ');
       out.push(`<path class="${cls(line.key)}" d="${d}" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"${line.dashed ? ' stroke-dasharray="5 3"' : ''}/>`);
       for (const p of line.points) {
@@ -198,9 +210,26 @@ function linePanels(spec: {
   return `${out.join('\n')}\n`;
 }
 
+/** Ticks at least 14 px apart, kept outwards from the reference value (or the lowest tick). */
+function thin(ticks: number[], py: (v: number) => number, ref?: number): number[] {
+  const sorted = [ ...ticks ].sort((a, b) => a - b);
+  const start = ref !== undefined && sorted.includes(ref) ? sorted.indexOf(ref) : 0;
+  const kept = [ sorted[start] ];
+  for (const direction of [ 1, -1 ]) {
+    let last = sorted[start];
+    for (let i = start + direction; i >= 0 && i < sorted.length; i += direction) {
+      if (Math.abs(py(sorted[i]) - py(last)) >= 14) {
+        kept.push(sorted[i]);
+        last = sorted[i];
+      }
+    }
+  }
+  return kept;
+}
+
 /** Ticks for a log axis of ratios that covers [lo, hi]. */
 function ratioTicks(lo: number, hi: number): number[] {
-  const candidates = [ 0.8, 0.9, 0.95, 1, 1.05, 1.1, 1.25, 1.5, 2, 2.5, 3, 4, 5 ];
+  const candidates = [ 0.5, 0.67, 0.8, 0.9, 0.95, 1, 1.05, 1.1, 1.25, 1.5, 2, 2.5, 3, 4, 5 ];
   const below = candidates.filter(t => t <= lo).at(-1) ?? candidates[0];
   const above = candidates.find(t => t >= hi) ?? candidates.at(-1)!;
   return candidates.filter(t => t >= below && t <= above);
@@ -248,7 +277,7 @@ function main(): void {
   const excluded = configs.reduce((a, c) => a + c.excluded, 0);
   const common = `${reps} repetitions per configuration, each in a fresh browser: every query once cold, then ${rounds} ` +
     `recorded rounds without warmup. y: time of a typical query (geometric mean over queries and repetitions) relative ` +
-    `to its plateau, the median of its last ${PLATEAU_ROUNDS} rounds; log scale.`;
+    `to the median of the same run's last ${PLATEAU_ROUNDS} rounds; log scale.`;
   write(join(dir, 'plot_warmup.svg'), linePanels({
     title: 'Query time over the rounds after the cold run',
     subtitle: `${common} ${datasets.join(', ')} together (${engines.map(e => `${label(e)} ${queries(e)} queries`).join(', ')}` +
@@ -305,11 +334,14 @@ function main(): void {
       });
     }
   }
-  const yMax = Math.max(...protocolPanels.flatMap(p => p.lines.flatMap(l => l.points.map(q => q.y))));
-  const step = yMax > 20 ? 10 : yMax > 8 ? 5 : 2;
+  const ys = protocolPanels.flatMap(p => p.lines.flatMap(l => l.points.map(q => q.y))).filter(Number.isFinite);
+  const yMax = Math.max(...ys);
+  const step = yMax - Math.min(0, ...ys) > 20 ? 10 : yMax - Math.min(0, ...ys) > 8 ? 5 : 2;
+  const yLow = Math.floor(Math.min(0, ...ys) / step) * step;
   write(join(dir, 'plot_warmup_protocol.svg'), linePanels({
     title: `What w warm-up rounds before ${TIMED} timed rounds leave: bias and noise`,
-    subtitle: `Top: how much the warm mean (mean of the ${TIMED} timed rounds) of a typical query exceeds its plateau. ` +
+    subtitle: `Top: how much the warm mean (mean of the ${TIMED} timed rounds) of a typical query exceeds the mean of ` +
+      `the same run's last ${PLATEAU_ROUNDS} rounds. ` +
       `Bottom: noise of an A/A comparison, two runs of the same build in separate fresh browsers: the typical ` +
       `absolute difference of the geometric mean over queries of the ratio of their warm means, over all pairs of ` +
       `the ${reps} repetitions and the datasets ${datasets.join(', ')}. The current setting is 1 warm-up round ` +
@@ -319,7 +351,7 @@ function main(): void {
     xLabel: 'warm-up rounds after the cold run',
     yLabel: '%',
     yLog: false,
-    yTicks: Array.from({ length: Math.ceil(yMax / step) + 1 }, (_, i) => i * step),
+    yTicks: Array.from({ length: Math.round((Math.ceil(yMax / step) * step - yLow) / step) + 1 }, (_, i) => yLow + i * step),
     yFormat: v => `${v} %`,
     xTicks: ws.filter(w => w % 5 === 0 || w === 1),
     xFormat: v => String(v),
@@ -338,7 +370,7 @@ function main(): void {
       console.log(`${b.padEnd(10)}${e.padEnd(10)}${[ 0, 1, 2, 3, 5, 10, maxW ].filter((w, i, a) => w <= maxW && a.indexOf(w) === i)
         .map((w) => {
           const r = protocol(selected, w, TIMED);
-          return `${pct(r.bias)} / ${(100 * r.noise).toFixed(1)}%`.padStart(17);
+          return `${pct(r.bias)} / ${Number.isFinite(r.noise) ? `${(100 * r.noise).toFixed(1)}%` : 'n/a'}`.padStart(17);
         }).join('')}`);
     }
   }
