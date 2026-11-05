@@ -19,6 +19,8 @@ import { esc, SERIES, style, wrap } from './plot-common';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const DATASET_ORDER = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k' ];
+// The browsers, then Node (npm run bench:node) as a reference on V8 outside a browser.
+const ENVIRONMENTS = [ ...BROWSERS, 'node' ];
 const ENGINE_ORDER = SERIES.map(s => s.key);
 const PLATEAU_ROUNDS = 10;
 const MIN_PLATEAU_MS = 0.05;
@@ -79,7 +81,7 @@ function load(dir: string): { configs: Config[]; rounds: number } {
     }
   }
   const configs = [ ...byKey.values() ].sort((a, b) => DATASET_ORDER.indexOf(a.dataset) - DATASET_ORDER.indexOf(b.dataset) ||
-    BROWSERS.indexOf(a.browser) - BROWSERS.indexOf(b.browser) || ENGINE_ORDER.indexOf(a.engine) - ENGINE_ORDER.indexOf(b.engine));
+    ENVIRONMENTS.indexOf(a.browser) - ENVIRONMENTS.indexOf(b.browser) || ENGINE_ORDER.indexOf(a.engine) - ENGINE_ORDER.indexOf(b.engine));
   return { configs, rounds };
 }
 
@@ -241,7 +243,7 @@ function main(): void {
   const meta = JSON.parse(readFileSync(join(dir, 'meta.json'), 'utf8'));
   const machine = meta.machine?.label ?? '';
   const build = `Comunica ${meta.comunica?.commit?.slice(0, 7) ?? '?'} (rdf-stores ${meta.versions?.rdfStores ?? '?'}), Oxigraph ${meta.versions?.oxigraph ?? '?'}`;
-  const browsers = BROWSERS.filter(b => configs.some(c => c.browser === b));
+  const browsers = ENVIRONMENTS.filter(b => configs.some(c => c.browser === b));
   const engines = ENGINE_ORDER.filter(e => configs.some(c => c.engine === e));
   const datasets = DATASET_ORDER.filter(d => configs.some(c => c.dataset === d));
   const reps = Math.max(...configs.map(c => c.reps.length));

@@ -14,6 +14,7 @@
     "build": "vite build && tsx scripts/bundle-sizes.ts",
     "reference": "node --max-old-space-size=8192 --import tsx src/reference.ts",
     "bench": "tsx src/runner.ts",
+    "bench:node": "tsx src/node-runner.ts",
     "aggregate": "tsx scripts/aggregate.ts",
     "plot": "tsx scripts/plot.ts",
     "plot:split": "tsx scripts/plot-split.ts",
