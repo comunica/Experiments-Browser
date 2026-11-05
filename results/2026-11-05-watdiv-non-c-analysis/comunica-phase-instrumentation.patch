@@ -1,0 +1,105 @@
+diff --git a/packages/actor-query-process-sequential/lib/ActorQueryProcessSequential.ts b/packages/actor-query-process-sequential/lib/ActorQueryProcessSequential.ts
+index 61c3f39ec9..0a645e1b6c 100644
+--- a/packages/actor-query-process-sequential/lib/ActorQueryProcessSequential.ts
++++ b/packages/actor-query-process-sequential/lib/ActorQueryProcessSequential.ts
+@@ -56,16 +56,31 @@ export class ActorQueryProcessSequential extends ActorQueryProcess implements IQ
+ 
+   public async run(action: IActionQueryProcess): Promise<IActorQueryProcessOutput> {
+     // Run all query processing steps in sequence
++    const T: any = (<any>globalThis).__phases;
++    const t0 = performance.now();
+     let { operation, context } = await this.parse(action.query, action.context);
++    const t1 = performance.now();
+     ({ operation, context } = await this.optimize(operation, context));
++    const t2 = performance.now();
+     const output = await this.evaluate(operation, context);
++    const t3 = performance.now();
++    if (T) {
++      T.parseAll = (T.parseAll ?? 0) + t1 - t0;
++      T.optimize = (T.optimize ?? 0) + t2 - t1;
++      T.evaluate = (T.evaluate ?? 0) + t3 - t2;
++    }
+ 
+     return { result: output };
+   }
+ 
+   public async parse(query: QueryFormatType, context: IActionContext): Promise<IQueryProcessSequentialOutput> {
+     // Pre-processing the context
++    const T: any = (<any>globalThis).__phases;
++    const t0 = performance.now();
+     context = (await this.mediatorContextPreprocess.mediate({ context, initialize: true })).context;
++    if (T) {
++      T.contextPreprocess = (T.contextPreprocess ?? 0) + performance.now() - t0;
++    }
+ 
+     // Parse query
+     let operation: Algebra.Operation;
+diff --git a/packages/core/lib/Mediator.ts b/packages/core/lib/Mediator.ts
+index 2277955a08..76fb045a7a 100644
+--- a/packages/core/lib/Mediator.ts
++++ b/packages/core/lib/Mediator.ts
+@@ -74,7 +74,15 @@ TS = undefined,
+    */
+   public async mediateActor(action: I): Promise<TestResult<A, TS>> {
+     // Mediate to one actor and run that actor.
+-    return await this.mediateWith(action, this.publish(action));
++    const T: any = (<any>globalThis).__phases;
++    if (!T) {
++      return await this.mediateWith(action, this.publish(action));
++    }
++    const t0 = performance.now();
++    const r = await this.mediateWith(action, this.publish(action));
++    const k = `select ${this.name.replace(/^urn:comunica:default:/u, '')}`;
++    T[k] = (T[k] ?? 0) + performance.now() - t0;
++    return r;
+   }
+ 
+   /**
+@@ -104,7 +112,16 @@ TS = undefined,
+    * @return {Promise<O extends IActorOutput>} A promise that resolves to the mediation result.
+    */
+   public async mediate(action: I): Promise<O> {
++    const T: any = (<any>globalThis).__phases;
++    if (!T) {
++      const testable = await this.mediateTestable(action);
++      return testable.getOrThrow();
++    }
++    const t0 = performance.now();
+     const testable = await this.mediateTestable(action);
++    const k = `all ${this.name.replace(/^urn:comunica:default:/u, '')}`;
++    T[k] = (T[k] ?? 0) + performance.now() - t0;
++    T[`n ${k}`] = (T[`n ${k}`] ?? 0) + 0.001;
+     return testable.getOrThrow();
+   }
+ 
+diff --git a/packages/mediator-combine-pipeline/lib/MediatorCombinePipeline.ts b/packages/mediator-combine-pipeline/lib/MediatorCombinePipeline.ts
+index 5e99b3bed0..a2f79487c9 100644
+--- a/packages/mediator-combine-pipeline/lib/MediatorCombinePipeline.ts
++++ b/packages/mediator-combine-pipeline/lib/MediatorCombinePipeline.ts
+@@ -25,6 +25,8 @@ TS = undefined,
+   }
+ 
+   public override async mediate(action: H): Promise<H> {
++    const T: any = (<any>globalThis).__phases;
++    const tTest = performance.now();
+     let testResults: IActorReply<A, H, T, H, TS>[] | { actor: A; reply: T }[];
+     try {
+       testResults = this.publish(action);
+@@ -82,8 +84,17 @@ TS = undefined,
+     // and each actor output as input to the following actor.
+     let handle: H = action;
+     let i = 0;
++    if (T) {
++      const k = `test ${this.name.replace(/.*:/u, '')}`;
++      T[k] = (T[k] ?? 0) + performance.now() - tTest;
++    }
+     for (const { actor } of testResults) {
++      const t0 = performance.now();
+       handle = { ...handle, ...await actor.runObservable(handle, sideDatas[i++]!) };
++      if (T) {
++        const k = actor.name.replace(/.*[#:]/u, '');
++        T[k] = (T[k] ?? 0) + performance.now() - t0;
++      }
+     }
+ 
+     // Return the final actor output

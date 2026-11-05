@@ -1,0 +1,348 @@
+watdiv-1: µs per instance (median over 1 rounds, mean per template); query() includes parsing again
+Template    parse  algebra  query()  consume    total
+F1            289      169     2219      115     2334
+F2            333      167     2407      160     2567
+F3            301      145     1989      531     2520
+F4            371      205     2767      182     2949
+F5            306      174     2027     1565     3592
+L1            277      125     1479     1244     2723
+L2            242      109     1469      213     1682
+L3            218      115     1300      342     1641
+L4            191      122     1328      118     1446
+L5            242      125     1340      180     1520
+S1            386      132     2104     1820     3923
+S2            225      107     1322      147     1469
+S3            277      149     1622      180     1802
+S4            292      118     1535      192     1727
+S5            254      135     1519      153     1672
+S6            261      118     1372      114     1486
+S7            225      119     1183      425     1608
+mean          276      137     1705      452     2157
+
+## F1-1 (0 results)
+SELECT ?v0 ?v2 ?v3 ?v4 ?v5 WHERE {
+	?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic99> .
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v2 .
+	?v3 <http://schema.org/trailer> ?v4 .
+	?v3 <http://schema.org/keywords> ?v5 .
+	?v3 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> ?v0 .
+	?v3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2> .
+}
+project (v0,v2,v3,v4,v5) cardEst:~2.472 cardReal:0 timeSelf:0.314ms timeLife:2.511ms
+  join cardEst:~2.472 cardReal:0 timeSelf:0.277ms timeLife:2.661ms
+    join-inner(index-nested-loop) bindIndex:4 cardEst:~2.472 cardReal:0 timeSelf:0.277ms timeLife:3.048ms
+      pattern (?v0 http://ogp.me/ns#tag http://db.uwaterloo.ca/~galuc/wsdbm/Topic99) src:0 cardEst:7 cardReal:0 timeSelf:0ms timeLife:1.691ms destroyed
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type ?v2) src:0 cardEst:1,476 cardReal:0 timeSelf:0ms timeLife:1.177ms destroyed
+      pattern (?v3 http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre ?v0) src:0 cardEst:584 cardReal:0 timeSelf:0ms timeLife:1.084ms destroyed
+      pattern (?v3 http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2) src:0 cardEst:15 cardReal:0 timeSelf:0ms timeLife:1.133ms destroyed
+      pattern (?v3 http://schema.org/trailer ?v4) src:0 cardEst:1 cardReal:1 timeSelf:0.308ms timeLife:4.274ms
+      pattern (?v3 http://schema.org/keywords ?v5) src:0 cardEst:80 cardReal:0 timeSelf:0ms timeLife:1.07ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## F2-1 (0 results)
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 WHERE {
+	?v0 <http://xmlns.com/foaf/homepage> ?v1 .
+	?v0 <http://ogp.me/ns#title> ?v2 .
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v3 .
+	?v0 <http://schema.org/caption> ?v4 .
+	?v0 <http://schema.org/description> ?v5 .
+	?v1 <http://schema.org/url> ?v6 .
+	?v1 <http://db.uwaterloo.ca/~galuc/wsdbm/hits> ?v7 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre58> .
+}
+project (v0,v1,v2,v4,v5,v6,v7) cardEst:~0.913 cardReal:0 timeSelf:0.136ms timeLife:0.311ms
+  join cardEst:~0.913 cardReal:0 timeSelf:0.127ms timeLife:0.454ms
+    join-inner(index-nested-loop) bindIndex:7 cardEst:~0.913 cardReal:0 timeSelf:0.127ms timeLife:0.574ms
+      pattern (?v0 http://xmlns.com/foaf/homepage ?v1) src:0 cardEst:111 cardReal:0 timeSelf:0ms timeLife:0.836ms destroyed
+      pattern (?v0 http://ogp.me/ns#title ?v2) src:0 cardEst:250 cardReal:0 timeSelf:0ms timeLife:0.795ms destroyed
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type ?v3) src:0 cardEst:1,476 cardReal:0 timeSelf:0ms timeLife:0.782ms destroyed
+      pattern (?v0 http://schema.org/caption ?v4) src:0 cardEst:25 cardReal:0 timeSelf:0ms timeLife:0.771ms destroyed
+      pattern (?v0 http://schema.org/description ?v5) src:0 cardEst:157 cardReal:0 timeSelf:0ms timeLife:0.763ms destroyed
+      pattern (?v1 http://schema.org/url ?v6) src:0 cardEst:50 cardReal:0 timeSelf:0ms timeLife:0.755ms destroyed
+      pattern (?v1 http://db.uwaterloo.ca/~galuc/wsdbm/hits ?v7) src:0 cardEst:50 cardReal:0 timeSelf:0ms timeLife:0.746ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre58) src:0 cardEst:12 cardReal:12 timeSelf:0.066ms timeLife:1.405ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## F3-1 (1 results)
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE {
+	?v0 <http://schema.org/contentRating> ?v1 .
+	?v0 <http://schema.org/contentSize> ?v2 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre58> .
+	?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .
+	?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .
+	?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .
+}
+project (v0,v1,v2,v4,v5,v6) cardEst:~84.507 cardReal:1 timeSelf:0.149ms timeLife:0.414ms
+  join cardEst:~84.507 cardReal:1 timeSelf:0.135ms timeLife:0.506ms
+    join-inner(index-nested-loop) bindIndex:2 cardEst:~84.507 cardReal:1 timeSelf:0.135ms timeLife:0.563ms
+      pattern (?v0 http://schema.org/contentRating ?v1) src:0 cardEst:72 cardReal:0 timeSelf:0ms timeLife:0.435ms destroyed
+      pattern (?v0 http://schema.org/contentSize ?v2) src:0 cardEst:29 cardReal:0 timeSelf:0ms timeLife:0.417ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre58) src:0 cardEst:12 cardReal:12 timeSelf:0.328ms timeLife:0.997ms
+      pattern (?v5 http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor ?v0) src:0 cardEst:1,500 cardReal:0 timeSelf:0ms timeLife:0.396ms destroyed
+      pattern (?v4 http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase ?v5) src:0 cardEst:1,500 cardReal:0 timeSelf:0ms timeLife:0.386ms destroyed
+      pattern (?v5 http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate ?v6) src:0 cardEst:449 cardReal:0 timeSelf:0ms timeLife:0.376ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## F4-1 (0 results)
+SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 ?v8 WHERE {
+	?v0 <http://xmlns.com/foaf/homepage> ?v1 .
+	?v2 <http://purl.org/goodrelations/includes> ?v0 .
+	?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic99> .
+	?v0 <http://schema.org/description> ?v4 .
+	?v0 <http://schema.org/contentSize> ?v8 .
+	?v1 <http://schema.org/url> ?v5 .
+	?v1 <http://db.uwaterloo.ca/~galuc/wsdbm/hits> ?v6 .
+	?v1 <http://schema.org/language> <http://db.uwaterloo.ca/~galuc/wsdbm/Language0> .
+	?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v0 .
+}
+project (v0,v1,v2,v4,v5,v6,v7,v8) cardEst:~100.46 cardReal:0 timeSelf:0.067ms timeLife:0.19ms
+  join cardEst:~100.46 cardReal:0 timeSelf:0.062ms timeLife:0.27ms
+    join-inner(index-nested-loop) bindIndex:2 cardEst:~100.46 cardReal:0 timeSelf:0.062ms timeLife:0.415ms
+      pattern (?v0 http://xmlns.com/foaf/homepage ?v1) src:0 cardEst:111 cardReal:0 timeSelf:0ms timeLife:0.612ms destroyed
+      pattern (?v2 http://purl.org/goodrelations/includes ?v0) src:0 cardEst:900 cardReal:0 timeSelf:0ms timeLife:0.597ms destroyed
+      pattern (?v0 http://ogp.me/ns#tag http://db.uwaterloo.ca/~galuc/wsdbm/Topic99) src:0 cardEst:7 cardReal:7 timeSelf:0.076ms timeLife:1.047ms
+      pattern (?v0 http://schema.org/description ?v4) src:0 cardEst:157 cardReal:0 timeSelf:0ms timeLife:0.584ms destroyed
+      pattern (?v0 http://schema.org/contentSize ?v8) src:0 cardEst:29 cardReal:0 timeSelf:0ms timeLife:0.576ms destroyed
+      pattern (?v1 http://schema.org/url ?v5) src:0 cardEst:50 cardReal:0 timeSelf:0ms timeLife:0.568ms destroyed
+      pattern (?v1 http://db.uwaterloo.ca/~galuc/wsdbm/hits ?v6) src:0 cardEst:50 cardReal:0 timeSelf:0ms timeLife:0.562ms destroyed
+      pattern (?v1 http://schema.org/language http://db.uwaterloo.ca/~galuc/wsdbm/Language0) src:0 cardEst:10 cardReal:0 timeSelf:0ms timeLife:0.561ms destroyed
+      pattern (?v7 http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v0) src:0 cardEst:922 cardReal:0 timeSelf:0ms timeLife:0.553ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## F5-1 (26 results)
+SELECT ?v0 ?v1 ?v3 ?v4 ?v5 ?v6 WHERE {
+	?v0 <http://purl.org/goodrelations/includes> ?v1 .
+	<http://db.uwaterloo.ca/~galuc/wsdbm/Retailer5> <http://purl.org/goodrelations/offers> ?v0 .
+	?v0 <http://purl.org/goodrelations/price> ?v3 .
+	?v0 <http://purl.org/goodrelations/validThrough> ?v4 .
+	?v1 <http://ogp.me/ns#title> ?v5 .
+	?v1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v6 .
+}
+project (v0,v1,v3,v4,v5,v6) cardEst:~62.426 cardReal:26 timeSelf:0.983ms timeLife:1.283ms
+  join cardEst:~62.426 cardReal:26 timeSelf:0.917ms timeLife:1.312ms
+    join-inner(index-nested-loop) bindIndex:1 cardEst:~62.426 cardReal:26 timeSelf:0.917ms timeLife:1.365ms
+      pattern (?v0 http://purl.org/goodrelations/includes ?v1) src:0 cardEst:900 cardReal:0 timeSelf:0ms timeLife:0.384ms destroyed
+      pattern (http://db.uwaterloo.ca/~galuc/wsdbm/Retailer5 http://purl.org/goodrelations/offers ?v0) src:0 cardEst:59 cardReal:59 timeSelf:1.115ms timeLife:1.76ms
+      pattern (?v0 http://purl.org/goodrelations/price ?v3) src:0 cardEst:2,400 cardReal:0 timeSelf:0ms timeLife:0.364ms destroyed
+      pattern (?v0 http://purl.org/goodrelations/validThrough ?v4) src:0 cardEst:341 cardReal:0 timeSelf:0ms timeLife:0.341ms destroyed
+      pattern (?v1 http://ogp.me/ns#title ?v5) src:0 cardEst:250 cardReal:0 timeSelf:0ms timeLife:0.332ms destroyed
+      pattern (?v1 http://www.w3.org/1999/02/22-rdf-syntax-ns#type ?v6) src:0 cardEst:1,476 cardReal:0 timeSelf:0ms timeLife:0.322ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## L1-1 (2 results)
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/subscribes> <http://db.uwaterloo.ca/~galuc/wsdbm/Website21> .
+	?v2 <http://schema.org/caption> ?v3 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v2 .
+}
+project (v0,v2,v3) cardEst:~97.669 cardReal:2 timeSelf:0.715ms timeLife:0.846ms
+  join cardEst:~97.669 cardReal:2 timeSelf:0.7ms timeLife:0.879ms
+    join-inner(index-nested-loop) bindIndex:2 cardEst:~97.669 cardReal:2 timeSelf:0.7ms timeLife:0.907ms
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/subscribes http://db.uwaterloo.ca/~galuc/wsdbm/Website21) src:0 cardEst:26 cardReal:0 timeSelf:0ms timeLife:0.296ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2) src:0 cardEst:922 cardReal:0 timeSelf:0ms timeLife:0.269ms destroyed
+      pattern (?v2 http://schema.org/caption ?v3) src:0 cardEst:25 cardReal:25 timeSelf:0.712ms timeLife:1.171ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## L2-1 (0 results)
+SELECT ?v1 ?v2 WHERE {
+	<http://db.uwaterloo.ca/~galuc/wsdbm/City100> <http://www.geonames.org/ontology#parentCountry> ?v1 .
+	?v2 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product0> .
+	?v2 <http://schema.org/nationality> ?v1 .
+}
+project (v1,v2) cardEst:~8.636 cardReal:0 timeSelf:0.075ms timeLife:0.227ms
+  join cardEst:~8.636 cardReal:0 timeSelf:0.07ms timeLife:0.268ms
+    join-inner(index-nested-loop) bindIndex:0 cardEst:~8.636 cardReal:0 timeSelf:0.07ms timeLife:0.292ms
+      pattern (http://db.uwaterloo.ca/~galuc/wsdbm/City100 http://www.geonames.org/ontology#parentCountry ?v1) src:0 cardEst:1 cardReal:1 timeSelf:0.012ms timeLife:0.562ms
+      pattern (?v2 http://schema.org/nationality ?v1) src:0 cardEst:190 cardReal:0 timeSelf:0ms timeLife:0.231ms destroyed
+      pattern (?v2 http://db.uwaterloo.ca/~galuc/wsdbm/likes http://db.uwaterloo.ca/~galuc/wsdbm/Product0) src:0 cardEst:77 cardReal:0 timeSelf:0ms timeLife:0.23ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## L3-1 (13 results)
+SELECT ?v0 ?v1 WHERE {
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v1 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/subscribes> <http://db.uwaterloo.ca/~galuc/wsdbm/Website21> .
+}
+project (v0,v1) cardEst:~106.542 cardReal:13 timeSelf:0.258ms timeLife:0.372ms
+  join cardEst:~106.542 cardReal:13 timeSelf:0.225ms timeLife:0.406ms
+    join-inner(index-nested-loop) bindIndex:1 cardEst:~106.542 cardReal:13 timeSelf:0.225ms timeLife:0.432ms
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v1) src:0 cardEst:922 cardReal:0 timeSelf:0ms timeLife:0.344ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/subscribes http://db.uwaterloo.ca/~galuc/wsdbm/Website21) src:0 cardEst:26 cardReal:26 timeSelf:0.304ms timeLife:0.772ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## L4-1 (0 results)
+SELECT ?v0 ?v2 WHERE {
+	?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic104> .
+	?v0 <http://schema.org/caption> ?v2 .
+}
+project (v0,v2) cardEst:~4 cardReal:0 timeSelf:0.047ms timeLife:0.217ms
+  join cardEst:~4 cardReal:0 timeSelf:0.042ms timeLife:0.263ms
+    join-inner(index-nested-loop) bindIndex:0 cardEst:~4 cardReal:0 timeSelf:0.042ms timeLife:0.294ms
+      pattern (?v0 http://ogp.me/ns#tag http://db.uwaterloo.ca/~galuc/wsdbm/Topic104) src:0 cardEst:4 cardReal:4 timeSelf:0.05ms timeLife:0.547ms
+      pattern (?v0 http://schema.org/caption ?v2) src:0 cardEst:25 cardReal:0 timeSelf:0ms timeLife:0.251ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## L5-1 (2 results)
+SELECT ?v0 ?v1 ?v3 WHERE {
+	?v0 <http://schema.org/jobTitle> ?v1 .
+	<http://db.uwaterloo.ca/~galuc/wsdbm/City100> <http://www.geonames.org/ontology#parentCountry> ?v3 .
+	?v0 <http://schema.org/nationality> ?v3 .
+}
+project (v0,v1,v3) cardEst:~8.636 cardReal:2 timeSelf:0.065ms timeLife:0.167ms
+  join cardEst:~8.636 cardReal:2 timeSelf:0.058ms timeLife:0.2ms
+    join-inner(index-nested-loop) bindIndex:2 cardEst:~8.636 cardReal:2 timeSelf:0.058ms timeLife:0.227ms
+      pattern (?v0 http://schema.org/jobTitle ?v1) src:0 cardEst:54 cardReal:0 timeSelf:0ms timeLife:0.289ms destroyed
+      pattern (?v0 http://schema.org/nationality ?v3) src:0 cardEst:190 cardReal:0 timeSelf:0ms timeLife:0.239ms destroyed
+      pattern (http://db.uwaterloo.ca/~galuc/wsdbm/City100 http://www.geonames.org/ontology#parentCountry ?v3) src:0 cardEst:1 cardReal:1 timeSelf:0.012ms timeLife:0.471ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S1-1 (3 results)
+SELECT ?v0 ?v1 ?v3 ?v4 ?v5 ?v6 ?v7 ?v8 ?v9 WHERE {
+	?v0 <http://purl.org/goodrelations/includes> ?v1 .
+	<http://db.uwaterloo.ca/~galuc/wsdbm/Retailer2> <http://purl.org/goodrelations/offers> ?v0 .
+	?v0 <http://purl.org/goodrelations/price> ?v3 .
+	?v0 <http://purl.org/goodrelations/serialNumber> ?v4 .
+	?v0 <http://purl.org/goodrelations/validFrom> ?v5 .
+	?v0 <http://purl.org/goodrelations/validThrough> ?v6 .
+	?v0 <http://schema.org/eligibleQuantity> ?v7 .
+	?v0 <http://schema.org/eligibleRegion> ?v8 .
+	?v0 <http://schema.org/priceValidUntil> ?v9 .
+}
+project (v0,v1,v3,v4,v5,v6,v7,v8,v9) cardEst:~0.003 cardReal:3 timeSelf:1.053ms timeLife:1.3ms
+  join cardEst:~0.003 cardReal:3 timeSelf:0.989ms timeLife:1.388ms
+    join-inner(index-nested-loop) bindIndex:1 cardEst:~0.003 cardReal:3 timeSelf:0.989ms timeLife:1.507ms
+      pattern (?v0 http://purl.org/goodrelations/includes ?v1) src:0 cardEst:900 cardReal:0 timeSelf:0ms timeLife:0.908ms destroyed
+      pattern (http://db.uwaterloo.ca/~galuc/wsdbm/Retailer2 http://purl.org/goodrelations/offers ?v0) src:0 cardEst:48 cardReal:48 timeSelf:1.132ms timeLife:2.469ms
+      pattern (?v0 http://purl.org/goodrelations/price ?v3) src:0 cardEst:2,400 cardReal:0 timeSelf:0ms timeLife:0.878ms destroyed
+      pattern (?v0 http://purl.org/goodrelations/serialNumber ?v4) src:0 cardEst:900 cardReal:0 timeSelf:0ms timeLife:0.862ms destroyed
+      pattern (?v0 http://purl.org/goodrelations/validFrom ?v5) src:0 cardEst:350 cardReal:0 timeSelf:0ms timeLife:0.825ms destroyed
+      pattern (?v0 http://purl.org/goodrelations/validThrough ?v6) src:0 cardEst:341 cardReal:0 timeSelf:0ms timeLife:0.806ms destroyed
+      pattern (?v0 http://schema.org/eligibleQuantity ?v7) src:0 cardEst:900 cardReal:0 timeSelf:0ms timeLife:0.734ms destroyed
+      pattern (?v0 http://schema.org/eligibleRegion ?v8) src:0 cardEst:1,833 cardReal:0 timeSelf:0ms timeLife:0.717ms destroyed
+      pattern (?v0 http://schema.org/priceValidUntil ?v9) src:0 cardEst:181 cardReal:0 timeSelf:0ms timeLife:0.704ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S2-1 (1 results)
+SELECT ?v0 ?v1 ?v3 WHERE {
+	?v0 <http://purl.org/dc/terms/Location> ?v1 .
+	?v0 <http://schema.org/nationality> <http://db.uwaterloo.ca/~galuc/wsdbm/Country3> .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/gender> ?v3 .
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/Role2> .
+}
+project (v0,v1,v3) cardEst:~3.484 cardReal:1 timeSelf:0.173ms timeLife:0.488ms
+  join cardEst:~3.484 cardReal:1 timeSelf:0.162ms timeLife:0.523ms
+    join-inner(index-nested-loop) bindIndex:1 cardEst:~3.484 cardReal:1 timeSelf:0.162ms timeLife:0.558ms
+      pattern (?v0 http://purl.org/dc/terms/Location ?v1) src:0 cardEst:416 cardReal:0 timeSelf:0ms timeLife:0.334ms destroyed
+      pattern (?v0 http://schema.org/nationality http://db.uwaterloo.ca/~galuc/wsdbm/Country3) src:0 cardEst:13 cardReal:13 timeSelf:0.197ms timeLife:0.894ms
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/gender ?v3) src:0 cardEst:591 cardReal:0 timeSelf:0ms timeLife:0.304ms destroyed
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://db.uwaterloo.ca/~galuc/wsdbm/Role2) src:0 cardEst:225 cardReal:0 timeSelf:0ms timeLife:0.302ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S3-1 (0 results)
+SELECT ?v0 ?v2 ?v3 ?v4 WHERE {
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2> .
+	?v0 <http://schema.org/caption> ?v2 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> ?v3 .
+	?v0 <http://schema.org/publisher> ?v4 .
+}
+project (v0,v2,v3,v4) cardEst:~0.238 cardReal:0 timeSelf:0.128ms timeLife:0.206ms
+  join cardEst:~0.238 cardReal:0 timeSelf:0.123ms timeLife:0.244ms
+    join-inner(index-nested-loop) bindIndex:0 cardEst:~0.238 cardReal:0 timeSelf:0.123ms timeLife:0.279ms
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2) src:0 cardEst:15 cardReal:15 timeSelf:0.154ms timeLife:0.606ms
+      pattern (?v0 http://schema.org/caption ?v2) src:0 cardEst:25 cardReal:0 timeSelf:0ms timeLife:0.283ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre ?v3) src:0 cardEst:584 cardReal:0 timeSelf:0ms timeLife:0.274ms destroyed
+      pattern (?v0 http://schema.org/publisher ?v4) src:0 cardEst:17 cardReal:0 timeSelf:0ms timeLife:0.253ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S4-1 (0 results)
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0 <http://xmlns.com/foaf/age> <http://db.uwaterloo.ca/~galuc/wsdbm/AgeGroup1> .
+	?v0 <http://xmlns.com/foaf/familyName> ?v2 .
+	?v3 <http://purl.org/ontology/mo/artist> ?v0 .
+	?v0 <http://schema.org/nationality> <http://db.uwaterloo.ca/~galuc/wsdbm/Country1> .
+}
+project (v0,v2,v3) cardEst:~0.004 cardReal:0 timeSelf:0.085ms timeLife:0.202ms
+  join cardEst:~0.004 cardReal:0 timeSelf:0.081ms timeLife:0.245ms
+    join-inner(index-nested-loop) bindIndex:0 cardEst:~0.004 cardReal:0 timeSelf:0.081ms timeLife:0.287ms
+      pattern (?v0 http://xmlns.com/foaf/age http://db.uwaterloo.ca/~galuc/wsdbm/AgeGroup1) src:0 cardEst:7 cardReal:7 timeSelf:0.088ms timeLife:0.673ms
+      pattern (?v0 http://xmlns.com/foaf/familyName ?v2) src:0 cardEst:708 cardReal:0 timeSelf:0ms timeLife:0.383ms destroyed
+      pattern (?v3 http://purl.org/ontology/mo/artist ?v0) src:0 cardEst:11 cardReal:0 timeSelf:0ms timeLife:0.371ms destroyed
+      pattern (?v0 http://schema.org/nationality http://db.uwaterloo.ca/~galuc/wsdbm/Country1) src:0 cardEst:28 cardReal:0 timeSelf:0ms timeLife:0.369ms destroyed
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S5-1 (0 results)
+SELECT ?v0 ?v2 ?v3 WHERE {
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2> .
+	?v0 <http://schema.org/description> ?v2 .
+	?v0 <http://schema.org/keywords> ?v3 .
+	?v0 <http://schema.org/language> <http://db.uwaterloo.ca/~galuc/wsdbm/Language0> .
+}
+project (v0,v2,v3) cardEst:~0.487 cardReal:0 timeSelf:0.078ms timeLife:0.147ms
+  join cardEst:~0.487 cardReal:0 timeSelf:0.074ms timeLife:0.212ms
+    join-inner(index-nested-loop) bindIndex:3 cardEst:~0.487 cardReal:0 timeSelf:0.074ms timeLife:0.245ms
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2) src:0 cardEst:15 cardReal:0 timeSelf:0ms timeLife:0.267ms destroyed
+      pattern (?v0 http://schema.org/description ?v2) src:0 cardEst:157 cardReal:0 timeSelf:0ms timeLife:0.245ms destroyed
+      pattern (?v0 http://schema.org/keywords ?v3) src:0 cardEst:80 cardReal:0 timeSelf:0ms timeLife:0.234ms destroyed
+      pattern (?v0 http://schema.org/language http://db.uwaterloo.ca/~galuc/wsdbm/Language0) src:0 cardEst:10 cardReal:10 timeSelf:0.089ms timeLife:0.483ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S6-1 (0 results)
+SELECT ?v0 ?v1 ?v2 WHERE {
+	?v0 <http://purl.org/ontology/mo/conductor> ?v1 .
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v2 .
+	?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre19> .
+}
+project (v0,v1,v2) cardEst:~0.011 cardReal:0 timeSelf:0.078ms timeLife:0.16ms
+  join cardEst:~0.011 cardReal:0 timeSelf:0.075ms timeLife:0.189ms
+    join-inner(index-nested-loop) bindIndex:2 cardEst:~0.011 cardReal:0 timeSelf:0.075ms timeLife:0.215ms
+      pattern (?v0 http://purl.org/ontology/mo/conductor ?v1) src:0 cardEst:7 cardReal:0 timeSelf:0ms timeLife:0.238ms destroyed
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type ?v2) src:0 cardEst:1,476 cardReal:0 timeSelf:0ms timeLife:0.224ms destroyed
+      pattern (?v0 http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre19) src:0 cardEst:2 cardReal:2 timeSelf:0.011ms timeLife:0.443ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
+
+## S7-1 (0 results)
+SELECT ?v0 ?v1 ?v2 WHERE {
+	?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v1 .
+	?v0 <http://schema.org/text> ?v2 .
+	<http://db.uwaterloo.ca/~galuc/wsdbm/User515> <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v0 .
+}
+project (v0,v1,v2) cardEst:0 cardReal:0 timeSelf:0.017ms timeLife:0.056ms
+  join cardEst:0 cardReal:0 timeSelf:0.009ms timeLife:0.153ms
+    join-inner(empty)
+      pattern (?v0 http://www.w3.org/1999/02/22-rdf-syntax-ns#type ?v1) src:0 cardEst:1,476 cardReal:0 timeSelf:0ms timeLife:0.105ms
+      pattern (?v0 http://schema.org/text ?v2) src:0 cardEst:82 cardReal:0 timeSelf:0ms timeLife:0.091ms
+      pattern (http://db.uwaterloo.ca/~galuc/wsdbm/User515 http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v0) src:0 cardEst:0 cardReal:0 timeSelf:0ms timeLife:0.09ms
+
+sources:
+  0: QuerySourceRdfJs(RdfStore)(SkolemID:0)
