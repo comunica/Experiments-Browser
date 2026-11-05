@@ -1,0 +1,321 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="464" viewBox="0 0 960 464" role="img" aria-label="Query time over the rounds after the cold run">
+<style>
+  .surface { fill: #fcfcfb; } .ink { fill: #0b0b0b; } .ink2 { fill: #52514e; } .muted { fill: #898781; }
+  .grid { stroke: #e1e0d9; } .axis { stroke: #c3c2b7; } .whisker { stroke: #52514e; } .ring { stroke: #fcfcfb; }
+  .s0 { fill: #2a78d6; } .so0 { stroke: #2a78d6; } .s1 { fill: #eb6834; } .so1 { stroke: #eb6834; }
+  text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+  @media (prefers-color-scheme: dark) {
+    .surface { fill: #1a1a19; } .ink { fill: #f0efec; } .ink2 { fill: #c3c2b7; }
+    .grid { stroke: #2c2c2a; } .axis { stroke: #383835; } .whisker { stroke: #c3c2b7; } .ring { stroke: #1a1a19; }
+    .s0 { fill: #3987e5; } .so0 { stroke: #3987e5; } .s1 { fill: #d95926; } .so1 { stroke: #d95926; }
+  }</style>
+<rect class="surface" width="960" height="464" rx="6"/>
+<text class="ink" x="24" y="26" font-size="16" font-weight="600">Query time over the rounds after the cold run</text>
+<text class="ink2" x="24" y="46" font-size="12">3 repetitions per configuration, each in a fresh browser (or Node process): every query once cold, then 30 recorded rounds without warmup. y:</text>
+<text class="ink2" x="24" y="62" font-size="12">time of a typical query (geometric mean over queries and repetitions) relative to the median of the same run's last 10 rounds; log scale.</text>
+<text class="ink2" x="24" y="78" font-size="12">watdiv-1, watdiv-10, bsbm-100, bsbm-1k together (Comunica 300 queries, Oxigraph 300 queries). Comunica 55a70ad (rdf-stores 2.9.0), Oxigraph</text>
+<text class="ink2" x="24" y="94" font-size="12">0.5.13. cloud-4vcpu</text>
+<line class="so0" x1="24" x2="42" y1="116" y2="116" stroke-width="2.5"/>
+<text class="ink2" x="48" y="120.5" font-size="12">Comunica</text>
+<line class="so1" x1="122.8" x2="140.8" y1="116" y2="116" stroke-width="2.5"/>
+<text class="ink2" x="146.8" y="120.5" font-size="12">Oxigraph</text>
+<text class="ink" x="64" y="144" font-size="12" font-weight="600">chromium 153.0.8010.12</text>
+<line class="grid" x1="64" x2="261" y1="400.2" y2="400.2" stroke-width="1"/>
+<text class="muted" x="56" y="404.2" font-size="11" text-anchor="end">1×</text>
+<line class="grid" x1="64" x2="261" y1="374.6" y2="374.6" stroke-width="1"/>
+<text class="muted" x="56" y="378.6" font-size="11" text-anchor="end">1.1×</text>
+<line class="grid" x1="64" x2="261" y1="340.3" y2="340.3" stroke-width="1"/>
+<text class="muted" x="56" y="344.3" font-size="11" text-anchor="end">1.25×</text>
+<line class="grid" x1="64" x2="261" y1="291.3" y2="291.3" stroke-width="1"/>
+<text class="muted" x="56" y="295.3" font-size="11" text-anchor="end">1.5×</text>
+<line class="grid" x1="64" x2="261" y1="214.0" y2="214.0" stroke-width="1"/>
+<text class="muted" x="56" y="218.0" font-size="11" text-anchor="end">2×</text>
+<line class="grid" x1="64" x2="261" y1="154.0" y2="154.0" stroke-width="1"/>
+<text class="muted" x="56" y="158.0" font-size="11" text-anchor="end">2.5×</text>
+<text class="muted" x="64.0" y="429" font-size="11" text-anchor="middle">cold</text>
+<text class="muted" x="96.8" y="429" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="129.7" y="429" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="162.5" y="429" font-size="11" text-anchor="middle">15</text>
+<text class="muted" x="195.3" y="429" font-size="11" text-anchor="middle">20</text>
+<text class="muted" x="228.2" y="429" font-size="11" text-anchor="middle">25</text>
+<text class="muted" x="261.0" y="429" font-size="11" text-anchor="middle">30</text>
+<line class="axis" x1="64" x2="261" y1="414" y2="414" stroke-width="1"/>
+<line class="whisker" x1="64" x2="261" y1="400.2" y2="400.2" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M64.0 220.0 L70.6 314.0 L77.1 349.0 L83.7 358.1 L90.3 355.2 L96.8 369.0 L103.4 378.3 L110.0 375.5 L116.5 365.4 L123.1 380.5 L129.7 385.2 L136.2 397.7 L142.8 389.0 L149.4 384.0 L155.9 380.9 L162.5 390.1 L169.1 389.1 L175.6 383.6 L182.2 390.3 L188.8 396.6 L195.3 391.3 L201.9 382.1 L208.5 387.0 L215.0 388.6 L221.6 392.3 L228.2 386.0 L234.7 386.6 L241.3 393.7 L247.9 390.1 L254.4 397.4 L261.0 389.5" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="220.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: cold run: 1.956 × plateau</title></circle>
+<circle cx="70.6" cy="314.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 1: 1.378 × plateau</title></circle>
+<circle cx="77.1" cy="349.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 2: 1.210 × plateau</title></circle>
+<circle cx="83.7" cy="358.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 3: 1.170 × plateau</title></circle>
+<circle cx="90.3" cy="355.2" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 4: 1.183 × plateau</title></circle>
+<circle cx="96.8" cy="369.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 5: 1.123 × plateau</title></circle>
+<circle cx="103.4" cy="378.3" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 6: 1.085 × plateau</title></circle>
+<circle cx="110.0" cy="375.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 7: 1.097 × plateau</title></circle>
+<circle cx="116.5" cy="365.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 8: 1.138 × plateau</title></circle>
+<circle cx="123.1" cy="380.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 9: 1.076 × plateau</title></circle>
+<circle cx="129.7" cy="385.2" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 10: 1.058 × plateau</title></circle>
+<circle cx="136.2" cy="397.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 11: 1.009 × plateau</title></circle>
+<circle cx="142.8" cy="389.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 12: 1.043 × plateau</title></circle>
+<circle cx="149.4" cy="384.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 13: 1.062 × plateau</title></circle>
+<circle cx="155.9" cy="380.9" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 14: 1.075 × plateau</title></circle>
+<circle cx="162.5" cy="390.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 15: 1.038 × plateau</title></circle>
+<circle cx="169.1" cy="389.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 16: 1.042 × plateau</title></circle>
+<circle cx="175.6" cy="383.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 17: 1.064 × plateau</title></circle>
+<circle cx="182.2" cy="390.3" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 18: 1.038 × plateau</title></circle>
+<circle cx="188.8" cy="396.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 19: 1.014 × plateau</title></circle>
+<circle cx="195.3" cy="391.3" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 20: 1.034 × plateau</title></circle>
+<circle cx="201.9" cy="382.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 21: 1.070 × plateau</title></circle>
+<circle cx="208.5" cy="387.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 22: 1.050 × plateau</title></circle>
+<circle cx="215.0" cy="388.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 23: 1.044 × plateau</title></circle>
+<circle cx="221.6" cy="392.3" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 24: 1.030 × plateau</title></circle>
+<circle cx="228.2" cy="386.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 25: 1.054 × plateau</title></circle>
+<circle cx="234.7" cy="386.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 26: 1.052 × plateau</title></circle>
+<circle cx="241.3" cy="393.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 27: 1.025 × plateau</title></circle>
+<circle cx="247.9" cy="390.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 28: 1.038 × plateau</title></circle>
+<circle cx="254.4" cy="397.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 29: 1.011 × plateau</title></circle>
+<circle cx="261.0" cy="389.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Comunica: round 30: 1.041 × plateau</title></circle>
+<path class="so1" d="M64.0 292.4 L70.6 373.1 L77.1 373.5 L83.7 366.7 L90.3 367.1 L96.8 376.8 L103.4 374.7 L110.0 381.6 L116.5 378.7 L123.1 373.4 L129.7 384.6 L136.2 382.6 L142.8 381.0 L149.4 389.5 L155.9 388.8 L162.5 392.9 L169.1 379.6 L175.6 389.1 L182.2 389.4 L188.8 389.5 L195.3 396.5 L201.9 390.2 L208.5 381.8 L215.0 391.7 L221.6 387.8 L228.2 387.5 L234.7 395.0 L241.3 389.2 L247.9 397.4 L254.4 396.0 L261.0 394.5" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="64.0" cy="292.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: cold run: 1.493 × plateau</title></circle>
+<circle cx="70.6" cy="373.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 1: 1.106 × plateau</title></circle>
+<circle cx="77.1" cy="373.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 2: 1.104 × plateau</title></circle>
+<circle cx="83.7" cy="366.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 3: 1.133 × plateau</title></circle>
+<circle cx="90.3" cy="367.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 4: 1.131 × plateau</title></circle>
+<circle cx="96.8" cy="376.8" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 5: 1.091 × plateau</title></circle>
+<circle cx="103.4" cy="374.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 6: 1.099 × plateau</title></circle>
+<circle cx="110.0" cy="381.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 7: 1.072 × plateau</title></circle>
+<circle cx="116.5" cy="378.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 8: 1.083 × plateau</title></circle>
+<circle cx="123.1" cy="373.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 9: 1.105 × plateau</title></circle>
+<circle cx="129.7" cy="384.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 10: 1.060 × plateau</title></circle>
+<circle cx="136.2" cy="382.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 11: 1.068 × plateau</title></circle>
+<circle cx="142.8" cy="381.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 12: 1.074 × plateau</title></circle>
+<circle cx="149.4" cy="389.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 13: 1.041 × plateau</title></circle>
+<circle cx="155.9" cy="388.8" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 14: 1.043 × plateau</title></circle>
+<circle cx="162.5" cy="392.9" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 15: 1.028 × plateau</title></circle>
+<circle cx="169.1" cy="379.6" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 16: 1.080 × plateau</title></circle>
+<circle cx="175.6" cy="389.1" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 17: 1.042 × plateau</title></circle>
+<circle cx="182.2" cy="389.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 18: 1.041 × plateau</title></circle>
+<circle cx="188.8" cy="389.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 19: 1.041 × plateau</title></circle>
+<circle cx="195.3" cy="396.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 20: 1.014 × plateau</title></circle>
+<circle cx="201.9" cy="390.2" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 21: 1.038 × plateau</title></circle>
+<circle cx="208.5" cy="381.8" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 22: 1.071 × plateau</title></circle>
+<circle cx="215.0" cy="391.7" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 23: 1.032 × plateau</title></circle>
+<circle cx="221.6" cy="387.8" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 24: 1.047 × plateau</title></circle>
+<circle cx="228.2" cy="387.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 25: 1.048 × plateau</title></circle>
+<circle cx="234.7" cy="395.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 26: 1.020 × plateau</title></circle>
+<circle cx="241.3" cy="389.2" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 27: 1.042 × plateau</title></circle>
+<circle cx="247.9" cy="397.4" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 28: 1.011 × plateau</title></circle>
+<circle cx="254.4" cy="396.0" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 29: 1.016 × plateau</title></circle>
+<circle cx="261.0" cy="394.5" r="5" fill="transparent"><title>chromium 153.0.8010.12, Oxigraph: round 30: 1.022 × plateau</title></circle>
+<text class="ink2" x="162.5" y="448" font-size="12" text-anchor="middle">round after the cold run</text>
+<text class="ink" x="289" y="144" font-size="12" font-weight="600">firefox 155.0</text>
+<line class="grid" x1="289" x2="486" y1="400.2" y2="400.2" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="374.6" y2="374.6" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="340.3" y2="340.3" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="291.3" y2="291.3" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="214.0" y2="214.0" stroke-width="1"/>
+<line class="grid" x1="289" x2="486" y1="154.0" y2="154.0" stroke-width="1"/>
+<text class="muted" x="289.0" y="429" font-size="11" text-anchor="middle">cold</text>
+<text class="muted" x="321.8" y="429" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="354.7" y="429" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="387.5" y="429" font-size="11" text-anchor="middle">15</text>
+<text class="muted" x="420.3" y="429" font-size="11" text-anchor="middle">20</text>
+<text class="muted" x="453.2" y="429" font-size="11" text-anchor="middle">25</text>
+<text class="muted" x="486.0" y="429" font-size="11" text-anchor="middle">30</text>
+<line class="axis" x1="289" x2="486" y1="414" y2="414" stroke-width="1"/>
+<line class="whisker" x1="289" x2="486" y1="400.2" y2="400.2" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M289.0 304.5 L295.6 364.4 L302.1 351.4 L308.7 353.6 L315.3 362.9 L321.8 371.5 L328.4 374.6 L335.0 379.9 L341.5 384.3 L348.1 379.2 L354.7 375.8 L361.2 378.7 L367.8 374.6 L374.4 382.2 L380.9 368.8 L387.5 376.6 L394.1 390.6 L400.6 389.8 L407.2 385.2 L413.8 391.4 L420.3 382.1 L426.9 388.0 L433.5 388.9 L440.0 382.9 L446.6 381.6 L453.2 392.4 L459.7 386.5 L466.3 379.6 L472.9 389.1 L479.4 390.6 L486.0 385.0" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="304.5" r="5" fill="transparent"><title>firefox 155.0, Comunica: cold run: 1.428 × plateau</title></circle>
+<circle cx="295.6" cy="364.4" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 1: 1.142 × plateau</title></circle>
+<circle cx="302.1" cy="351.4" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 2: 1.199 × plateau</title></circle>
+<circle cx="308.7" cy="353.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 3: 1.190 × plateau</title></circle>
+<circle cx="315.3" cy="362.9" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 4: 1.149 × plateau</title></circle>
+<circle cx="321.8" cy="371.5" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 5: 1.113 × plateau</title></circle>
+<circle cx="328.4" cy="374.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 6: 1.100 × plateau</title></circle>
+<circle cx="335.0" cy="379.9" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 7: 1.079 × plateau</title></circle>
+<circle cx="341.5" cy="384.3" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 8: 1.061 × plateau</title></circle>
+<circle cx="348.1" cy="379.2" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 9: 1.081 × plateau</title></circle>
+<circle cx="354.7" cy="375.8" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 10: 1.095 × plateau</title></circle>
+<circle cx="361.2" cy="378.7" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 11: 1.084 × plateau</title></circle>
+<circle cx="367.8" cy="374.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 12: 1.100 × plateau</title></circle>
+<circle cx="374.4" cy="382.2" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 13: 1.069 × plateau</title></circle>
+<circle cx="380.9" cy="368.8" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 14: 1.124 × plateau</title></circle>
+<circle cx="387.5" cy="376.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 15: 1.092 × plateau</title></circle>
+<circle cx="394.1" cy="390.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 16: 1.036 × plateau</title></circle>
+<circle cx="400.6" cy="389.8" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 17: 1.039 × plateau</title></circle>
+<circle cx="407.2" cy="385.2" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 18: 1.058 × plateau</title></circle>
+<circle cx="413.8" cy="391.4" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 19: 1.033 × plateau</title></circle>
+<circle cx="420.3" cy="382.1" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 20: 1.070 × plateau</title></circle>
+<circle cx="426.9" cy="388.0" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 21: 1.046 × plateau</title></circle>
+<circle cx="433.5" cy="388.9" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 22: 1.043 × plateau</title></circle>
+<circle cx="440.0" cy="382.9" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 23: 1.067 × plateau</title></circle>
+<circle cx="446.6" cy="381.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 24: 1.072 × plateau</title></circle>
+<circle cx="453.2" cy="392.4" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 25: 1.029 × plateau</title></circle>
+<circle cx="459.7" cy="386.5" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 26: 1.052 × plateau</title></circle>
+<circle cx="466.3" cy="379.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 27: 1.080 × plateau</title></circle>
+<circle cx="472.9" cy="389.1" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 28: 1.042 × plateau</title></circle>
+<circle cx="479.4" cy="390.6" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 29: 1.036 × plateau</title></circle>
+<circle cx="486.0" cy="385.0" r="5" fill="transparent"><title>firefox 155.0, Comunica: round 30: 1.058 × plateau</title></circle>
+<path class="so1" d="M289.0 359.0 L295.6 375.8 L302.1 368.2 L308.7 376.0 L315.3 385.6 L321.8 389.4 L328.4 389.9 L335.0 391.4 L341.5 388.1 L348.1 393.2 L354.7 393.0 L361.2 389.0 L367.8 393.6 L374.4 392.7 L380.9 386.2 L387.5 382.7 L394.1 382.2 L400.6 380.0 L407.2 373.4 L413.8 384.8 L420.3 389.6 L426.9 389.4 L433.5 374.4 L440.0 384.6 L446.6 392.6 L453.2 398.8 L459.7 376.1 L466.3 393.3 L472.9 389.8 L479.4 391.1 L486.0 386.1" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="289.0" cy="359.0" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: cold run: 1.166 × plateau</title></circle>
+<circle cx="295.6" cy="375.8" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 1: 1.095 × plateau</title></circle>
+<circle cx="302.1" cy="368.2" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 2: 1.127 × plateau</title></circle>
+<circle cx="308.7" cy="376.0" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 3: 1.094 × plateau</title></circle>
+<circle cx="315.3" cy="385.6" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 4: 1.056 × plateau</title></circle>
+<circle cx="321.8" cy="389.4" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 5: 1.041 × plateau</title></circle>
+<circle cx="328.4" cy="389.9" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 6: 1.039 × plateau</title></circle>
+<circle cx="335.0" cy="391.4" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 7: 1.033 × plateau</title></circle>
+<circle cx="341.5" cy="388.1" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 8: 1.046 × plateau</title></circle>
+<circle cx="348.1" cy="393.2" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 9: 1.026 × plateau</title></circle>
+<circle cx="354.7" cy="393.0" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 10: 1.027 × plateau</title></circle>
+<circle cx="361.2" cy="389.0" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 11: 1.043 × plateau</title></circle>
+<circle cx="367.8" cy="393.6" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 12: 1.025 × plateau</title></circle>
+<circle cx="374.4" cy="392.7" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 13: 1.028 × plateau</title></circle>
+<circle cx="380.9" cy="386.2" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 14: 1.054 × plateau</title></circle>
+<circle cx="387.5" cy="382.7" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 15: 1.067 × plateau</title></circle>
+<circle cx="394.1" cy="382.2" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 16: 1.069 × plateau</title></circle>
+<circle cx="400.6" cy="380.0" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 17: 1.078 × plateau</title></circle>
+<circle cx="407.2" cy="373.4" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 18: 1.105 × plateau</title></circle>
+<circle cx="413.8" cy="384.8" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 19: 1.059 × plateau</title></circle>
+<circle cx="420.3" cy="389.6" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 20: 1.040 × plateau</title></circle>
+<circle cx="426.9" cy="389.4" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 21: 1.041 × plateau</title></circle>
+<circle cx="433.5" cy="374.4" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 22: 1.101 × plateau</title></circle>
+<circle cx="440.0" cy="384.6" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 23: 1.060 × plateau</title></circle>
+<circle cx="446.6" cy="392.6" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 24: 1.029 × plateau</title></circle>
+<circle cx="453.2" cy="398.8" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 25: 1.005 × plateau</title></circle>
+<circle cx="459.7" cy="376.1" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 26: 1.094 × plateau</title></circle>
+<circle cx="466.3" cy="393.3" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 27: 1.026 × plateau</title></circle>
+<circle cx="472.9" cy="389.8" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 28: 1.039 × plateau</title></circle>
+<circle cx="479.4" cy="391.1" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 29: 1.034 × plateau</title></circle>
+<circle cx="486.0" cy="386.1" r="5" fill="transparent"><title>firefox 155.0, Oxigraph: round 30: 1.054 × plateau</title></circle>
+<text class="ink2" x="387.5" y="448" font-size="12" text-anchor="middle">round after the cold run</text>
+<text class="ink" x="514" y="144" font-size="12" font-weight="600">webkit 26.6</text>
+<line class="grid" x1="514" x2="711" y1="400.2" y2="400.2" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="374.6" y2="374.6" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="340.3" y2="340.3" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="291.3" y2="291.3" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="214.0" y2="214.0" stroke-width="1"/>
+<line class="grid" x1="514" x2="711" y1="154.0" y2="154.0" stroke-width="1"/>
+<text class="muted" x="514.0" y="429" font-size="11" text-anchor="middle">cold</text>
+<text class="muted" x="546.8" y="429" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="579.7" y="429" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="612.5" y="429" font-size="11" text-anchor="middle">15</text>
+<text class="muted" x="645.3" y="429" font-size="11" text-anchor="middle">20</text>
+<text class="muted" x="678.2" y="429" font-size="11" text-anchor="middle">25</text>
+<text class="muted" x="711.0" y="429" font-size="11" text-anchor="middle">30</text>
+<line class="axis" x1="514" x2="711" y1="414" y2="414" stroke-width="1"/>
+<line class="whisker" x1="514" x2="711" y1="400.2" y2="400.2" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M514.0 181.8 L520.6 286.1 L527.1 330.2 L533.7 332.3 L540.3 361.3 L546.8 362.5 L553.4 367.1 L560.0 368.4 L566.5 386.4 L573.1 385.6 L579.7 386.2 L586.2 389.2 L592.8 388.1 L599.4 388.9 L605.9 387.4 L612.5 387.4 L619.1 385.4 L625.6 399.2 L632.2 393.0 L638.8 395.2 L645.3 383.6 L651.9 382.4 L658.5 382.2 L665.0 382.7 L671.6 394.2 L678.2 387.0 L684.7 389.3 L691.3 385.5 L697.9 385.2 L704.4 383.7 L711.0 375.6" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="181.8" r="5" fill="transparent"><title>webkit 26.6, Comunica: cold run: 2.254 × plateau</title></circle>
+<circle cx="520.6" cy="286.1" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 1: 1.529 × plateau</title></circle>
+<circle cx="527.1" cy="330.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 2: 1.298 × plateau</title></circle>
+<circle cx="533.7" cy="332.3" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 3: 1.287 × plateau</title></circle>
+<circle cx="540.3" cy="361.3" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 4: 1.156 × plateau</title></circle>
+<circle cx="546.8" cy="362.5" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 5: 1.151 × plateau</title></circle>
+<circle cx="553.4" cy="367.1" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 6: 1.131 × plateau</title></circle>
+<circle cx="560.0" cy="368.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 7: 1.126 × plateau</title></circle>
+<circle cx="566.5" cy="386.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 8: 1.053 × plateau</title></circle>
+<circle cx="573.1" cy="385.6" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 9: 1.056 × plateau</title></circle>
+<circle cx="579.7" cy="386.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 10: 1.054 × plateau</title></circle>
+<circle cx="586.2" cy="389.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 11: 1.042 × plateau</title></circle>
+<circle cx="592.8" cy="388.1" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 12: 1.046 × plateau</title></circle>
+<circle cx="599.4" cy="388.9" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 13: 1.043 × plateau</title></circle>
+<circle cx="605.9" cy="387.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 14: 1.049 × plateau</title></circle>
+<circle cx="612.5" cy="387.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 15: 1.049 × plateau</title></circle>
+<circle cx="619.1" cy="385.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 16: 1.057 × plateau</title></circle>
+<circle cx="625.6" cy="399.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 17: 1.004 × plateau</title></circle>
+<circle cx="632.2" cy="393.0" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 18: 1.027 × plateau</title></circle>
+<circle cx="638.8" cy="395.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 19: 1.019 × plateau</title></circle>
+<circle cx="645.3" cy="383.6" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 20: 1.064 × plateau</title></circle>
+<circle cx="651.9" cy="382.4" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 21: 1.068 × plateau</title></circle>
+<circle cx="658.5" cy="382.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 22: 1.069 × plateau</title></circle>
+<circle cx="665.0" cy="382.7" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 23: 1.067 × plateau</title></circle>
+<circle cx="671.6" cy="394.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 24: 1.023 × plateau</title></circle>
+<circle cx="678.2" cy="387.0" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 25: 1.050 × plateau</title></circle>
+<circle cx="684.7" cy="389.3" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 26: 1.042 × plateau</title></circle>
+<circle cx="691.3" cy="385.5" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 27: 1.056 × plateau</title></circle>
+<circle cx="697.9" cy="385.2" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 28: 1.057 × plateau</title></circle>
+<circle cx="704.4" cy="383.7" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 29: 1.063 × plateau</title></circle>
+<circle cx="711.0" cy="375.6" r="5" fill="transparent"><title>webkit 26.6, Comunica: round 30: 1.096 × plateau</title></circle>
+<path class="so1" d="M514.0 304.7 L520.6 363.7 L527.1 375.5 L533.7 363.2 L540.3 362.4 L546.8 376.4 L553.4 368.2 L560.0 383.6 L566.5 384.6 L573.1 368.7 L579.7 367.8 L586.2 390.6 L592.8 389.7 L599.4 394.0 L605.9 383.8 L612.5 389.7 L619.1 395.0 L625.6 397.7 L632.2 390.1 L638.8 393.6 L645.3 392.2 L651.9 393.5 L658.5 397.8 L665.0 395.3 L671.6 386.8 L678.2 382.2 L684.7 394.4 L691.3 396.9 L697.9 396.8 L704.4 389.3 L711.0 387.3" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="514.0" cy="304.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: cold run: 1.427 × plateau</title></circle>
+<circle cx="520.6" cy="363.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 1: 1.146 × plateau</title></circle>
+<circle cx="527.1" cy="375.5" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 2: 1.096 × plateau</title></circle>
+<circle cx="533.7" cy="363.2" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 3: 1.148 × plateau</title></circle>
+<circle cx="540.3" cy="362.4" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 4: 1.151 × plateau</title></circle>
+<circle cx="546.8" cy="376.4" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 5: 1.093 × plateau</title></circle>
+<circle cx="553.4" cy="368.2" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 6: 1.126 × plateau</title></circle>
+<circle cx="560.0" cy="383.6" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 7: 1.064 × plateau</title></circle>
+<circle cx="566.5" cy="384.6" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 8: 1.060 × plateau</title></circle>
+<circle cx="573.1" cy="368.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 9: 1.124 × plateau</title></circle>
+<circle cx="579.7" cy="367.8" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 10: 1.128 × plateau</title></circle>
+<circle cx="586.2" cy="390.6" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 11: 1.036 × plateau</title></circle>
+<circle cx="592.8" cy="389.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 12: 1.040 × plateau</title></circle>
+<circle cx="599.4" cy="394.0" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 13: 1.024 × plateau</title></circle>
+<circle cx="605.9" cy="383.8" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 14: 1.063 × plateau</title></circle>
+<circle cx="612.5" cy="389.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 15: 1.040 × plateau</title></circle>
+<circle cx="619.1" cy="395.0" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 16: 1.020 × plateau</title></circle>
+<circle cx="625.6" cy="397.7" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 17: 1.009 × plateau</title></circle>
+<circle cx="632.2" cy="390.1" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 18: 1.039 × plateau</title></circle>
+<circle cx="638.8" cy="393.6" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 19: 1.025 × plateau</title></circle>
+<circle cx="645.3" cy="392.2" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 20: 1.030 × plateau</title></circle>
+<circle cx="651.9" cy="393.5" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 21: 1.025 × plateau</title></circle>
+<circle cx="658.5" cy="397.8" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 22: 1.009 × plateau</title></circle>
+<circle cx="665.0" cy="395.3" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 23: 1.018 × plateau</title></circle>
+<circle cx="671.6" cy="386.8" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 24: 1.051 × plateau</title></circle>
+<circle cx="678.2" cy="382.2" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 25: 1.069 × plateau</title></circle>
+<circle cx="684.7" cy="394.4" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 26: 1.022 × plateau</title></circle>
+<circle cx="691.3" cy="396.9" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 27: 1.012 × plateau</title></circle>
+<circle cx="697.9" cy="396.8" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 28: 1.013 × plateau</title></circle>
+<circle cx="704.4" cy="389.3" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 29: 1.042 × plateau</title></circle>
+<circle cx="711.0" cy="387.3" r="5" fill="transparent"><title>webkit 26.6, Oxigraph: round 30: 1.049 × plateau</title></circle>
+<text class="ink2" x="612.5" y="448" font-size="12" text-anchor="middle">round after the cold run</text>
+<text class="ink" x="739" y="144" font-size="12" font-weight="600">node v22.23.4</text>
+<line class="grid" x1="739" x2="936" y1="400.2" y2="400.2" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="374.6" y2="374.6" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="340.3" y2="340.3" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="291.3" y2="291.3" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="214.0" y2="214.0" stroke-width="1"/>
+<line class="grid" x1="739" x2="936" y1="154.0" y2="154.0" stroke-width="1"/>
+<text class="muted" x="739.0" y="429" font-size="11" text-anchor="middle">cold</text>
+<text class="muted" x="771.8" y="429" font-size="11" text-anchor="middle">5</text>
+<text class="muted" x="804.7" y="429" font-size="11" text-anchor="middle">10</text>
+<text class="muted" x="837.5" y="429" font-size="11" text-anchor="middle">15</text>
+<text class="muted" x="870.3" y="429" font-size="11" text-anchor="middle">20</text>
+<text class="muted" x="903.2" y="429" font-size="11" text-anchor="middle">25</text>
+<text class="muted" x="936.0" y="429" font-size="11" text-anchor="middle">30</text>
+<line class="axis" x1="739" x2="936" y1="414" y2="414" stroke-width="1"/>
+<line class="whisker" x1="739" x2="936" y1="400.2" y2="400.2" stroke-width="1" stroke-dasharray="3 3"/>
+<path class="so0" d="M739.0 221.1 L745.6 311.6 L752.1 348.1 L758.7 355.8 L765.3 345.9 L771.8 357.8 L778.4 361.5 L785.0 362.9 L791.5 359.4 L798.1 372.7 L804.7 380.7 L811.2 380.1 L817.8 380.0 L824.4 375.4 L830.9 389.7 L837.5 385.9 L844.1 383.6 L850.6 390.7 L857.2 382.5 L863.8 375.7 L870.3 384.7 L876.9 375.8 L883.5 387.4 L890.0 385.8 L896.6 385.9 L903.2 382.8 L909.7 374.4 L916.3 388.6 L922.9 396.8 L929.4 400.3 L936.0 398.1" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="739.0" cy="221.1" r="5" fill="transparent"><title>node v22.23.4, Comunica: cold run: 1.948 × plateau</title></circle>
+<circle cx="745.6" cy="311.6" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 1: 1.391 × plateau</title></circle>
+<circle cx="752.1" cy="348.1" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 2: 1.214 × plateau</title></circle>
+<circle cx="758.7" cy="355.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 3: 1.180 × plateau</title></circle>
+<circle cx="765.3" cy="345.9" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 4: 1.224 × plateau</title></circle>
+<circle cx="771.8" cy="357.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 5: 1.171 × plateau</title></circle>
+<circle cx="778.4" cy="361.5" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 6: 1.155 × plateau</title></circle>
+<circle cx="785.0" cy="362.9" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 7: 1.149 × plateau</title></circle>
+<circle cx="791.5" cy="359.4" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 8: 1.164 × plateau</title></circle>
+<circle cx="798.1" cy="372.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 9: 1.108 × plateau</title></circle>
+<circle cx="804.7" cy="380.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 10: 1.075 × plateau</title></circle>
+<circle cx="811.2" cy="380.1" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 11: 1.078 × plateau</title></circle>
+<circle cx="817.8" cy="380.0" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 12: 1.078 × plateau</title></circle>
+<circle cx="824.4" cy="375.4" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 13: 1.097 × plateau</title></circle>
+<circle cx="830.9" cy="389.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 14: 1.040 × plateau</title></circle>
+<circle cx="837.5" cy="385.9" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 15: 1.055 × plateau</title></circle>
+<circle cx="844.1" cy="383.6" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 16: 1.064 × plateau</title></circle>
+<circle cx="850.6" cy="390.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 17: 1.036 × plateau</title></circle>
+<circle cx="857.2" cy="382.5" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 18: 1.068 × plateau</title></circle>
+<circle cx="863.8" cy="375.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 19: 1.096 × plateau</title></circle>
+<circle cx="870.3" cy="384.7" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 20: 1.059 × plateau</title></circle>
+<circle cx="876.9" cy="375.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 21: 1.095 × plateau</title></circle>
+<circle cx="883.5" cy="387.4" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 22: 1.049 × plateau</title></circle>
+<circle cx="890.0" cy="385.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 23: 1.055 × plateau</title></circle>
+<circle cx="896.6" cy="385.9" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 24: 1.055 × plateau</title></circle>
+<circle cx="903.2" cy="382.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 25: 1.067 × plateau</title></circle>
+<circle cx="909.7" cy="374.4" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 26: 1.101 × plateau</title></circle>
+<circle cx="916.3" cy="388.6" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 27: 1.044 × plateau</title></circle>
+<circle cx="922.9" cy="396.8" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 28: 1.013 × plateau</title></circle>
+<circle cx="929.4" cy="400.3" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 29: 1.000 × plateau</title></circle>
+<circle cx="936.0" cy="398.1" r="5" fill="transparent"><title>node v22.23.4, Comunica: round 30: 1.008 × plateau</title></circle>
+<text class="ink2" x="837.5" y="448" font-size="12" text-anchor="middle">round after the cold run</text>
+<text class="ink2" transform="translate(16 284.0) rotate(-90)" font-size="12" text-anchor="middle">time ÷ plateau</text>
+</svg>

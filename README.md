@@ -33,6 +33,11 @@ Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetiti
   result of 1 variable, 8.2 µs of 3), measured on calibration scans. That is 3 to 10 % of Oxigraph's time on WatDiv and
   BSBM and negligible on LDBC SNB, so it does not explain the comparison; it dominates only for many results from cheap
   queries (Chromium only so far).
+- These results used one warm-up round. The warm-up experiment
+  ([`results/2026-11-05-warmup-cloud-4vcpu/`](results/2026-11-05-warmup-cloud-4vcpu/README.md), Comunica master
+  `55a70ad`) shows that this left Comunica's warm times 9 to 13 % above their plateau (Oxigraph's 1 to 9 %); after 10
+  rounds both are within about ±3 %, which is the default now. Warmed up, Comunica is 19 to 30 % faster in Chromium
+  than in Node 22 per typical query, as fast in WebKit, and 2.3 to 3.5 times slower in Firefox.
 - Loading takes the same order of time in both engines, except Comunica on LDBC SNB in Firefox (200 s against 18 s).
   Memory after load is lower for Comunica (681 vs 1,557 MB on LDBC SNB in Chromium); the Oxigraph page transfers 5.4
   times more (1,542 vs 285 kB gzipped).
@@ -43,24 +48,30 @@ Firefox 155, WebKit 26.6; Comunica master `e06d02e`, Oxigraph 0.5.13; 3 repetiti
 git clone https://github.com/comunica/Experiments-Browser && cd Experiments-Browser
 npm install            # also runs `prepare`
 npm run prepare        # clone + build Comunica, link it, install Playwright browsers (idempotent)
-npm run build          # Vite build of both pages, prints bundle sizes
+npm run build          # Vite build of both pages, prints bundle sizes, checks Comunica comes from the checkout
 npm run reference      # reference counts in Node, both engines -> data/*/reference.json
 npm run bench          # support pass, timing runs, Oxigraph breakdown -> results/<date>-<machine>/raw/*.json
 npm run aggregate      # raw JSON -> CSVs, totals, support matrix, results README tables
 npm run plot           # CSV -> SVG (includes the plot:split charts)
 npm run plot:split     # only Oxigraph's time split into evaluation and WASM -> JS transfer
 npm run compare -- results/<A>[,results/<A2>] results/<B>   # before/after comparison of two runs
+npm run bench -- --mode warmup        # warm-up experiment: cold run + 30 recorded rounds per configuration
+npm run bench:node -- --mode warmup   # the same for Comunica in Node, as a reference on V8 outside a browser
+npm run plot:warmup -- results/<dir>  # warm-up curves, and bias and noise per number of warm-up rounds
 ```
 
 - Linux needs the browsers' system libraries once: `npx playwright install-deps chromium firefox webkit`.
-- `npm run prepare` builds Comunica at the commit pinned in `package.json` (`config.comunicaCommit`). Set
+- `npm run prepare` builds Comunica at the commit pinned in `package.json` (`config.comunicaCommit`, currently master
+  `55a70ad`; the 2026-11-01 results used `e06d02e`) from the monorepo itself, with its own lockfile, so every actor,
+  mediator and bus comes from that commit; `npm run build` fails if the bundle contains any `@comunica` module from npm. Set
   `COMUNICA_REF=master` (or any branch, tag or commit) to build another one; the commit that was built is written to
   `.cache/comunica-build.json`, embedded in both pages, and recorded in every raw result and in `meta.json`.
 - `npm run bench` is resumable: it skips configurations whose raw file exists (`--force` reruns them). The default
   output directory is named after the current UTC date, so pass `--out results/<dir>` to resume a run on a later day.
   Options:
-  `--browsers`, `--engines`, `--datasets`, `--mode support|timing|breakdown|all`, `--out`, `--machine` (or `BENCH_MACHINE`),
-  `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (1), `--repeat` (3),
+  `--browsers`, `--engines`, `--datasets`, `--mode support|timing|breakdown|warmup|all`, `--out`, `--machine` (or
+  `BENCH_MACHINE`), `--timeout` (ms, default 60000), `--rounds` (5), `--warmup` (10), `--warmup-overrides` (default
+  `ldbc-snb-0.1=1`), `--curve-rounds` (30, for `--mode warmup`), `--repeat` (3),
   `--repeat-overrides` (default `ldbc-snb-0.1=1`: LDBC SNB runs once, as one repetition already takes hours), and
   `--skip 'browser/engine/dataset=reason;…'` for configurations that cannot run on a machine (recorded in `meta.json`).
 - `--queries 'dataset=Q1,Q2'` runs a subset of a dataset's queries (raw files get a `-subset` suffix, and a complete run
@@ -118,7 +129,8 @@ many configurations rather than all repetitions of one:
    plus the size of the engine's `WebAssembly.Memory`, and the raw file says so. This is the footprint after loading,
    not the peak during loading, except that WASM memory never shrinks, so for Oxigraph it includes its peak.
 5. **Cold pass**: every query once, in a fixed order, on this freshly loaded page.
-6. **Warmup**: one round over all queries, not used.
+6. **Warmup**: ten rounds over all queries, not used (one for LDBC SNB, whose queries take seconds and show no trend
+   after one round). The warm-up experiment below chose the number.
 7. **Timed rounds**: five rounds over all queries (round-robin).
 
 Over the repetitions: warm time = mean, min and max of all timed executions of an instance (3 × 5 = 15, or 5 for
@@ -154,7 +166,7 @@ where only one engine answers, its count is used and `reference.json` says which
 **Oxigraph breakdown** (`--mode breakdown`, part of `--mode all`): Oxigraph runs in WebAssembly, so its results have
 to cross into JavaScript, and the timing runs include that. To report how much of its time that is, every query
 instance also runs as four variants on one page per browser and dataset, back to back, in an order that rotates per
-round (1 warmup round, 3 timed rounds, `--breakdown-rounds`):
+round (the warm-up rounds of the timing runs, then 3 timed rounds, `--breakdown-rounds`):
 
 | Variant | What runs | Measures |
 |---|---|---|
@@ -188,6 +200,14 @@ With `calibrated`, it also writes `plot_oxigraph_split_top_<browser>.svg` and it
 largest estimated transfer in ms and the `--top` with the largest share of Oxigraph's time, each with Comunica's time
 and Oxigraph's split into evaluation and transfer, from the timing runs' warm means over the instances both engines
 answered.
+
+**Warm-up experiment** (`--mode warmup`): every configuration runs each query once cold and then `--curve-rounds`
+(30) recorded rounds without warmup, in a fresh browser per repetition; `npm run bench:node -- --mode warmup` does the
+same for Comunica in Node, with the same build, store, loader and query function. `npm run plot:warmup` draws how a
+typical query's time converges over the rounds, and, for w warm-up rounds followed by 5 timed rounds, the bias of the
+warm mean against the run's plateau (its last 10 rounds) and the noise of an A/A comparison between two runs of the
+same build. That noise comes from runs that are slow as a whole or for a stretch of rounds, which more warm-up cannot
+remove; comparisons of builds need several repetitions per side.
 
 **Bundle size** per page: all JS chunks and WASM the page loads, raw and gzip (level 9), from the Vite manifest
 ([`scripts/bundle-sizes.ts`](scripts/bundle-sizes.ts)).
@@ -223,10 +243,11 @@ src/adapters/             comunica.ts, oxigraph.ts (+ oxigraph-query.ts shared w
 src/pages/                comunica.html, oxigraph.html
 src/runner.ts             Playwright runner, static server with COOP+COEP, crash/hang recovery, resumable
 src/reference.ts          Node reference counts (+ reference-oxigraph-worker.ts, node-chunks.ts)
+src/node-runner.ts        the benchmark's steps for Comunica in Node, in the runner's raw format
 scripts/prepare.mjs       build and link Comunica, fetch release assets, install browsers
-scripts/bundle-sizes.ts   bundle sizes from the Vite manifest
+scripts/bundle-sizes.ts   bundle sizes from the Vite manifest; fails if a Comunica module is not from the checkout
 scripts/aggregate.ts      raw JSON -> CSVs (Experiments-Centralized column shape), totals, support matrix, README tables
-scripts/plot.ts           SVG charts (+ plot-split.ts: evaluation vs transfer, plot-common.ts)
+scripts/plot.ts           SVG charts (+ plot-split.ts: evaluation vs transfer, plot-warmup.ts, plot-common.ts)
 scripts/compare.ts        before/after comparison of the timing runs of two results directories
 scripts/generate-data.sh  dataset generation with jbr (+ capture-bsbm-queries.mjs, split-ldbc-queries.mjs)
 scripts/diagnostics/      one-off checks cited in the results notes (not part of the pipeline)

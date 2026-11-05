@@ -23,7 +23,7 @@ const { values: args } = parseArgs({
     datasets: { type: 'string', default: 'watdiv-1,watdiv-10,bsbm-100,bsbm-1k' },
     repeat: { type: 'string', default: '3' },
     'curve-rounds': { type: 'string', default: '30' },
-    warmup: { type: 'string', default: '1' },
+    warmup: { type: 'string', default: '10' },
     rounds: { type: 'string', default: '5' },
     timeout: { type: 'string', default: '60000' },
     out: { type: 'string' },

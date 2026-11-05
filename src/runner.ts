@@ -48,7 +48,10 @@ const { values: args } = parseArgs({
     out: { type: 'string' },
     machine: { type: 'string', default: process.env.BENCH_MACHINE ?? os.hostname() },
     rounds: { type: 'string', default: '5' },
-    warmup: { type: 'string', default: '1' },
+    // 10 rounds bring the warm times within about 3 % of their plateau (results/2026-11-05-warmup-cloud-4vcpu).
+    warmup: { type: 'string', default: '10' },
+    // LDBC SNB's queries take seconds and show no trend after one round; ten would multiply a run of hours.
+    'warmup-overrides': { type: 'string', default: 'ldbc-snb-0.1=1' },
     repeat: { type: 'string', default: '3' },
     'breakdown-rounds': { type: 'string', default: '3' },
     // --mode warmup: a cold pass, then this many recorded rounds without warmup, to see how many rounds JIT warm-up takes.
@@ -82,6 +85,11 @@ const REPEAT_OVERRIDES = new Map(args['repeat-overrides'].split(',').filter(Bool
   return [ dataset, Number(count) ];
 }));
 const repetitionsFor = (dataset: string) => REPEAT_OVERRIDES.get(dataset) ?? REPEAT;
+const WARMUP_OVERRIDES = new Map(args['warmup-overrides'].split(',').filter(Boolean).map((entry) => {
+  const [ dataset, count ] = entry.split('=');
+  return [ dataset, Number(count) ];
+}));
+const warmupFor = (dataset: string) => WARMUP_OVERRIDES.get(dataset) ?? WARMUP;
 const OUT = resolve(ROOT, args.out ?? join('results', `${new Date().toISOString().slice(0, 10)}-${args.machine}`));
 // Configurations that are deliberately not run, as browser/engine/dataset=reason;...
 const SKIPS = new Map(args.skip.split(';').filter(Boolean).map((entry) => {
@@ -255,7 +263,7 @@ function plan(mode: string, queries: string[], dataset: string): Step[] {
         [ ...BREAKDOWN_VARIANTS ] :
         BREAKDOWN_VARIANTS.filter(variant => variant !== 'count');
     const rounds: [Step['phase'], number][] = [
-      ...Array.from({ length: WARMUP }, (_, i) => <[Step['phase'], number]>[ 'warmup', i + 1 ]),
+      ...Array.from({ length: warmupFor(dataset) }, (_, i) => <[Step['phase'], number]>[ 'warmup', i + 1 ]),
       ...Array.from({ length: BREAKDOWN_ROUNDS }, (_, i) => <[Step['phase'], number]>[ 'timed', i + 1 ]),
     ];
     const steps: Step[] = [];
@@ -275,7 +283,7 @@ function plan(mode: string, queries: string[], dataset: string): Step[] {
     }
     return steps;
   }
-  for (let round = 1; round <= WARMUP; round++) {
+  for (let round = 1; round <= warmupFor(dataset); round++) {
     steps.push(...queries.map(query => <Step>{ phase: 'warmup', round, query }));
   }
   for (let round = 1; round <= ROUNDS; round++) {
@@ -427,7 +435,7 @@ async function runConfiguration(
     machine: args.machine,
     startedAt,
     finishedAt: new Date().toISOString(),
-    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: mode === 'warmup' ? 0 : WARMUP,
+    settings: { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: mode === 'warmup' ? 0 : warmupFor(dataset),
       rounds: mode === 'breakdown' ? BREAKDOWN_ROUNDS : mode === 'warmup' ? CURVE_ROUNDS : ROUNDS },
     ...mode === 'breakdown' ? { breakdown: { variants: BREAKDOWN_VARIANTS, preExcluded } } : {},
     ...subset ? { querySubset: subset } : {},
@@ -505,7 +513,8 @@ async function main(): Promise<void> {
     playwright: version('playwright'),
     vite: version('vite'),
   };
-  meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP, rounds: ROUNDS, repetitions: REPEAT,
+  meta.settings = { timeoutMs: TIMEOUT_MS, graceMs: GRACE_MS, warmupRounds: WARMUP,
+    warmupOverrides: Object.fromEntries(WARMUP_OVERRIDES), rounds: ROUNDS, repetitions: REPEAT,
     breakdownRounds: BREAKDOWN_ROUNDS,
     curveRounds: CURVE_ROUNDS,
     repetitionOverrides: Object.fromEntries(REPEAT_OVERRIDES),

@@ -274,10 +274,11 @@ function main(): void {
     filter: (c: Config) => c.browser === b, csv: `all/${b}` })));
   const byDataset = curvePanels(datasets.flatMap(d => browsers.map(b => ({ label: `${d}, ${b}`,
     filter: (c: Config) => c.dataset === d && c.browser === b, csv: `${d}/${b}` }))));
-  const span = (panels: Panel[]) => panels.flatMap(p => p.lines.flatMap(l => l.points.map(q => q.y)));
+  const span = (panels: Panel[]) => panels.flatMap(p => p.lines.flatMap(l => l.points.map(q => q.y))).filter(Number.isFinite);
   const queries = (e: string) => configs.filter(c => c.engine === e && c.browser === browsers[0]).reduce((a, c) => a + c.plateau.size, 0);
   const excluded = configs.reduce((a, c) => a + c.excluded, 0);
-  const common = `${reps} repetitions per configuration, each in a fresh browser: every query once cold, then ${rounds} ` +
+  const common = `${reps} repetitions per configuration, each in a fresh browser (or Node process): every query once ` +
+    `cold, then ${rounds} ` +
     `recorded rounds without warmup. y: time of a typical query (geometric mean over queries and repetitions) relative ` +
     `to the median of the same run's last ${PLATEAU_ROUNDS} rounds; log scale.`;
   write(join(dir, 'plot_warmup.svg'), linePanels({
@@ -344,7 +345,7 @@ function main(): void {
     title: `What w warm-up rounds before ${TIMED} timed rounds leave: bias and noise`,
     subtitle: `Top: how much the warm mean (mean of the ${TIMED} timed rounds) of a typical query exceeds the mean of ` +
       `the same run's last ${PLATEAU_ROUNDS} rounds. ` +
-      `Bottom: noise of an A/A comparison, two runs of the same build in separate fresh browsers: the typical ` +
+      `Bottom: noise of an A/A comparison, two runs of the same build in separate fresh browsers (or Node processes): the typical ` +
       `absolute difference of the geometric mean over queries of the ratio of their warm means, over all pairs of ` +
       `the ${reps} repetitions and the datasets ${datasets.join(', ')}. The current setting is 1 warm-up round ` +
       `(after the cold run). ${build}. ${machine}`,
@@ -369,6 +370,9 @@ function main(): void {
   for (const b of browsers) {
     for (const e of engines) {
       const selected = configs.filter(c => c.browser === b && c.engine === e);
+      if (selected.length === 0) {
+        continue;
+      }
       console.log(`${b.padEnd(10)}${e.padEnd(10)}${[ 0, 1, 2, 3, 5, 10, maxW ].filter((w, i, a) => w <= maxW && a.indexOf(w) === i)
         .map((w) => {
           const r = protocol(selected, w, TIMED);

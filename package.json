@@ -7,7 +7,7 @@
   "type": "module",
   "config": {
     "comunicaRepo": "https://github.com/comunica/comunica",
-    "comunicaCommit": "e06d02e8144786567152068bb3c9e69918784b2a"
+    "comunicaCommit": "55a70ad782bd107d6e1fecfef620cd5cd265ec54"
   },
   "scripts": {
     "prepare": "node scripts/prepare.mjs",
