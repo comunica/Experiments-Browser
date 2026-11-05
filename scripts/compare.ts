@@ -4,7 +4,10 @@
 // the per-repetition totals of warm means, and the geometric mean of the per-instance ratios B ÷ A, where an
 // instance's time is the median over repetitions of its warm mean (so one slow page does not shift the result).
 // Below 1 (negative %) means B is faster. Templates that changed most and outcome changes are listed below the table.
-// Usage: npm run compare -- results/<A>[,results/<A2>] results/<B> [--engines comunica] [--out file.md] [--csv file.csv]
+// --from-round N uses only timed rounds N and later, to check whether the result depends on JIT warm-up still going on
+// in the first timed rounds.
+// Usage: npm run compare -- results/<A>[,results/<A2>] results/<B> [--engines comunica] [--from-round 1] [--out file.md]
+//   [--csv file.csv]
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -17,7 +20,13 @@ const pct = (ratio: number) => `${ratio < 1 ? '−' : '+'}${Math.abs(100 * (rati
 
 const { values, positionals } = parseArgs({
   allowPositionals: true,
-  options: { engines: { type: 'string' }, out: { type: 'string' }, csv: { type: 'string' }, top: { type: 'string', default: '3' } },
+  options: {
+    engines: { type: 'string' },
+    out: { type: 'string' },
+    csv: { type: 'string' },
+    top: { type: 'string', default: '3' },
+    'from-round': { type: 'string', default: '1' },
+  },
 });
 if (positionals.length !== 2) {
   throw new Error('Usage: npm run compare -- results/<A>[,results/<A2>] results/<B> [--engines comunica] [--out file.md] [--csv file.csv]');
@@ -25,17 +34,19 @@ if (positionals.length !== 2) {
 const [ dirsA, dirsB ] = positionals.map(p => p.split(',').map(d => resolve(d)));
 const engines = values.engines?.split(',') ?? ENGINES;
 const top = Number(values.top);
+const fromRound = Number(values['from-round']);
 
 /** Per repetition (raw file): the warm mean and outcome of every instance. */
 function repetitions(dirs: string[], dataset: string, browser: string, engine: string) {
   return dirs.flatMap(dir => readTimingRaws(dir, dataset, browser, engine))
+    .map(raw => ({ ...raw, executions: raw.executions.filter((e: any) => e.phase !== 'timed' || e.round >= fromRound) }))
     .map(raw => new Map(instanceStats([ raw ], dataset, 'timing').map(s => [ s.query, s ])));
 }
 
 const L: string[] = [
   `A: ${positionals[0].split(',').map(d => `\`${d}\``).join(' + ')}; B: ${positionals[1].split(',').map(d => `\`${d}\``).join(' + ')}.`,
   'Totals: median (min–max) over repetitions of the sum of warm means over the common instances. Ratio = B ÷ A; ' +
-    'negative % means B is faster.',
+    `negative % means B is faster.${fromRound > 1 ? ` Warm means over timed rounds ${fromRound} and later only.` : ''}`,
   '',
   '| Dataset | Browser | Engine | Instances | Reps A | Reps B | Total A | Total B | Median total B ÷ A | Geomean of ratios | Faster by >10 % | Slower by >10 % |',
   '|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|',
