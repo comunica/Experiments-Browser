@@ -17,6 +17,7 @@
     "aggregate": "tsx scripts/aggregate.ts",
     "plot": "tsx scripts/plot.ts",
     "plot:split": "tsx scripts/plot-split.ts",
+    "plot:warmup": "tsx scripts/plot-warmup.ts",
     "compare": "tsx scripts/compare.ts",
     "typecheck": "tsc -p tsconfig.check.json"
   },
