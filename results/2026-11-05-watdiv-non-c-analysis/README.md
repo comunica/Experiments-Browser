@@ -123,6 +123,35 @@ PRs:
    query (wrapping the store, creating a bindings factory); they are now cached by identity next to the cache by url.
    Interleaved A/B, 3 runs each: −8 to −26 % per template on watdiv-1 (geomean −20 %), −5 % on watdiv-10. The full
    Comunica test suite passes.
+2. `7c26d1f` Reject source bind joins and filter-bindings joins before sorting entries (they sorted the entries before
+   finding out that the source cannot take join or filter bindings at all, 17–18 µs each per query).
+3. `1185cbf` Only determine bind join selectivities where they are used (only for entries that share no variable with
+   the first; the bind join test took 46 µs per query).
+4. `dd88f53` Do not visit patterns for CONSTRUCT operations when delegating to a source.
+
+   Changes 2–4 together, interleaved A/B with 3 runs each: −3 % on watdiv-1, −8 % on watdiv-10 (Comunica ÷ Oxigraph
+   6.5× and 3.0×). The full test suite passes with full coverage of the changed files.
+
+### The evaluation setup in detail
+
+Measured by testing the join actors one at a time and timing the synchronous parts
+(`comunica-phase-instrumentation.patch` plus the join timings described above), watdiv-1, µs per query before
+changes 2–4:
+
+| Part | µs |
+|---|---:|
+| Choosing the join actor (23 actors tested) | 199 |
+| of which the bind join test | 46 |
+| of which the index nested loop join test | 32 |
+| of which smallest-filter-bindings and bind-source, both failing | 35 |
+| of which multi-smallest, multi-merge and multi-empty | 18 |
+| of which the actors of other logical types (optional, minus) and two-entry actors, about 1 µs each | about 15 |
+| of which mediateWith (costs and the best actor) | 20 |
+| Opening the pattern streams (synchronous part, about 4.6 patterns per query) | 92 |
+| of which countQuads | 13 |
+| Distinct-value counts of the pattern variables | 31 |
+| Choosing the actor for each pattern (mediator and the source actor's shape test) | about 60 |
+| The index nested loop join's getOutput | 24 |
 
 Run-to-run noise is large: two runs of the same build differ by up to 19 % in total, so changes of a few percent need
 both builds compiled up front and run interleaved, with a discarded first run.
