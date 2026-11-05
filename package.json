@@ -26,6 +26,7 @@
   "dependencies": {
     "n3": "2.13.12",
     "oxigraph": "0.5.13",
+    "rdf-data-factory": "2.1.0",
     "rdf-stores": "2.9.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ import { QueryEngine } from '@comunica/query-sparql-rdfjs-lite';
 import { compareTerms } from '@comunica/utils-iterator';
 import type * as RDF from '@rdfjs/types';
 import { Parser } from 'n3';
+import { DataFactory } from 'rdf-data-factory';
 import { RdfStore } from 'rdf-stores';
 import type { EngineAdapter, LoadResult, QueryResult } from './types';
 import { QueryTimeoutError, touchTerm } from './types';
@@ -12,13 +13,17 @@ export function createOrderedStore(): RdfStore {
   return RdfStore.createOrdered({ termComparator: compareTerms, nodes: true });
 }
 
+// Comunica's own file loading gives the parser Comunica's data factory (rdf-data-factory), so the store holds its
+// terms; N3's default factory makes terms that parse their id again on every read of value or datatype.
+const DATA_FACTORY = new DataFactory();
+
 export function loadOrderedStore(chunks: Iterable<string>): { store: RdfStore; result: LoadResult } {
   const t0 = performance.now();
   const quads: RDF.Quad[] = [];
   let count = 0;
   for (const chunk of chunks) {
     // Each chunk gets its own parser; an empty prefix keeps blank node labels, so they still join across chunks.
-    for (const quad of new Parser({ format: 'N-Triples', blankNodePrefix: '' }).parse(chunk) as unknown as RDF.Quad[]) {
+    for (const quad of new Parser({ format: 'N-Triples', blankNodePrefix: '', factory: DATA_FACTORY }).parse(chunk) as unknown as RDF.Quad[]) {
       quads.push(quad);
     }
     count++;

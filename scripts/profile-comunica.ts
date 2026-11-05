@@ -5,6 +5,7 @@
 // on the stack), which shows how much goes into parsing, optimizing, joining and streaming.
 // Usage: npm run profile:comunica -- --dataset watdiv-10 [--templates F,L,S] [--exclude C3] [--warmup 10]
 //   [--rounds 30] [--interval 50] [--out profiles/<name>]
+//   npm run profile:comunica -- --from <file>.cpuprofile   (summarize a saved profile again)
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { Session } from 'node:inspector/promises';
 import { join, resolve } from 'node:path';
@@ -24,6 +25,7 @@ const { values: args } = parseArgs({
     interval: { type: 'string', default: '50' },
     out: { type: 'string' },
     top: { type: 'string', default: '40' },
+    from: { type: 'string' },
   },
 });
 
@@ -64,6 +66,15 @@ function summarize(profile: { nodes: ProfileNode[]; samples: number[]; timeDelta
   // Time per sample from the deltas.
   const timeOf = new Map<number, number>();
   profile.samples.forEach((id, i) => timeOf.set(id, (timeOf.get(id) ?? 0) + (profile.timeDeltas[i] ?? 0)));
+  // Leave out the profiler itself: stopping it and serializing the profile run under node:inspector.
+  for (const id of [ ...timeOf.keys() ]) {
+    for (let cur: number | undefined = id; cur !== undefined; cur = parent.get(cur)) {
+      if (byId.get(cur)!.callFrame.url === 'node:inspector') {
+        timeOf.delete(id);
+        break;
+      }
+    }
+  }
   const total = [ ...timeOf.values() ].reduce((a, x) => a + x, 0);
   const self = new Map<string, number>();
   const inclusive = new Map<string, number>();
@@ -143,4 +154,11 @@ async function main(): Promise<void> {
   console.log(summary);
 }
 
-await main();
+if (args.from) {
+  const file = resolve(ROOT, args.from);
+  const summary = summarize(JSON.parse(readFileSync(file, 'utf8')), Number(args.top));
+  writeFileSync(file.replace(/\.cpuprofile$/u, '.txt'), `${readFileSync(file.replace(/\.cpuprofile$/u, '.txt'), 'utf8').split('\n')[0]}\n${summary}\n`);
+  console.log(summary);
+} else {
+  await main();
+}
