@@ -87,7 +87,8 @@
     "firefox": "155.0",
     "webkit": "26.6",
     "node22": "v22.23.4",
-    "node24": "v24.22.1"
+    "node24": "v24.22.1",
+    "node26": "v26.13.0"
   },
   "skipped": {},
   "runs": [
@@ -630,6 +631,22 @@
       ],
       "comunica": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
       "updatedAt": "2026-11-05T09:17:32.109Z"
+    },
+    "node26": {
+      "node": "v26.13.0",
+      "v8": "14.6.202.34-node.40",
+      "args": [
+        "--machine",
+        "cloud-4vcpu",
+        "--out",
+        "results/2026-11-05-cloud-4vcpu",
+        "--mode",
+        "timing",
+        "--datasets",
+        "watdiv-1,watdiv-10,bsbm-100,bsbm-1k"
+      ],
+      "comunica": "6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e",
+      "updatedAt": "2026-11-05T09:30:05.970Z"
     }
   }
 }

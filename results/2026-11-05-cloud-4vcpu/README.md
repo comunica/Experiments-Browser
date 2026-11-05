@@ -36,20 +36,20 @@ C2 on watdiv-10 in Chromium and WebKit, and BSBM Q8 on bsbm-1k.
 ### Comunica in the browsers against Node
 
 The same protocol in Node (`npm run bench:node -- --mode timing`, a fresh process per run, same Comunica build, store,
-loader and query function): Node 22.23.4 (V8 12.4) and Node 24.22.1 (V8 13.6; Chromium 153 has a newer V8 than both).
-"÷ Node 24" is the geometric mean over instances of the ratio.
+loader and query function): Node 22.23.4 (V8 12.4), Node 24.22.1 (V8 13.6) and Node 26.13.0 (V8 14.6, the newest, so
+the reference here). "÷ Node 26" is the geometric mean over instances of the ratio.
 
-| Dataset | chromium total | firefox total | webkit total | node22 total | node24 total | Chromium ÷ Node 24 | Firefox ÷ Node 24 | WebKit ÷ Node 24 | Node 22 ÷ Node 24 |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| watdiv-1 | 213 ms | 680 ms | 265 ms | 765 ms | 653 ms | 0.95× | 3.59× | 1.17× | 1.31× |
-| watdiv-10 | 874 ms | 2.14 s | 1.10 s | 5.87 s | 8.39 s | 0.64× | 2.29× | 0.82× | 0.84× |
-| bsbm-100 | 172 ms | 751 ms | 190 ms | 182 ms | 178 ms | 0.96× | 3.99× | 1.08× | 1.02× |
-| bsbm-1k | 233 ms | 1.12 s | 269 ms | 254 ms | 225 ms | 0.97× | 3.99× | 1.18× | 1.11× |
+| Dataset | chromium total | firefox total | webkit total | node22 total | node24 total | node26 total | Chromium ÷ Node 26 | Firefox ÷ Node 26 | WebKit ÷ Node 26 | Node 22 ÷ Node 26 | Node 24 ÷ Node 26 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| watdiv-1 | 213 ms | 680 ms | 265 ms | 765 ms | 653 ms | 700 ms | 0.86× | 3.26× | 1.06× | 1.19× | 0.91× |
+| watdiv-10 | 874 ms | 2.14 s | 1.10 s | 5.87 s | 8.39 s | 5.90 s | 0.84× | 3.02× | 1.08× | 1.11× | 1.32× |
+| bsbm-100 | 172 ms | 751 ms | 190 ms | 182 ms | 178 ms | 173 ms | 1.01× | 4.20× | 1.14× | 1.07× | 1.05× |
+| bsbm-1k | 233 ms | 1.12 s | 269 ms | 254 ms | 225 ms | 225 ms | 0.99× | 4.07× | 1.21× | 1.14× | 1.02× |
 
-A typical query is about as fast in Chromium as in Node 24 (0.95 to 0.97 times its time; 0.64 times on watdiv-10),
-so Chromium does not hold Comunica back against Node on the same engine. WebKit is within 0.82 to 1.18 times, and
-Firefox is 2.3 to 4 times slower. Node is much slower on WatDiv C3: 105 to 119 ms per instance on watdiv-1 against
-16 ms in Chromium, and 1.1 to 1.6 s on watdiv-10 against 0.14 s, which makes Node's WatDiv totals the highest.
+A typical query takes 0.84 to 1.01 times its Node 26 time in Chromium, so Chromium does not hold Comunica back
+against Node on a recent V8. WebKit takes 1.06 to 1.21 times, Firefox 3.0 to 4.2 times. All three Node versions
+are much slower on WatDiv C3 than the browsers: 105 to 119 ms per instance on watdiv-1 against 16 ms in Chromium,
+and 1.1 to 1.6 s on watdiv-10 against 0.14 s, which makes Node's WatDiv totals the highest.
 
 <!-- notes:end -->
 
@@ -58,7 +58,7 @@ Firefox is 2.3 to 4 times slower. Node is much slower on WatDiv C3: 105 to 119 m
 | | |
 |---|---|
 | Machine | `cloud-4vcpu`: Intel(R) Xeon(R) Processor @ 2.10GHz, 4 logical CPUs, 15.7 GiB RAM, Ubuntu 24.04.5 LTS (Linux 6.18.44-fc-v236 x64) |
-| Browsers (Playwright 1.63.0, headless) | chromium 153.0.8010.12, firefox 155.0, webkit 26.6, node22 v22.23.4, node24 v24.22.1 |
+| Browsers (Playwright 1.63.0, headless) | chromium 153.0.8010.12, firefox 155.0, webkit 26.6, node22 v22.23.4, node24 v24.22.1, node26 v26.13.0 |
 | Comunica | `@comunica/query-sparql-rdfjs-lite` 5.4.1 built from https://github.com/comunica/comunica at [`6b5eb94bb3`](https://github.com/comunica/comunica/commit/6b5eb94bb3b3736b6ce246d101e1ac61daaaa57e) (2026-11-05T08:43:20+01:00), N3.js 2.13.12, rdf-stores 2.9.0 (ordered store) |
 | Oxigraph | `oxigraph` 0.5.13 (`web.js` WASM build) |
 | Benchmark code | `527f40d` (invocation started 2026-11-05T08:12:11.338Z), `527f40d` (invocation started 2026-11-05T08:12:45.305Z); each raw file written by a resumed invocation names its commit; Vite 8.3.5 |
