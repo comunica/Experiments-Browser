@@ -53,7 +53,7 @@ function load(dir: string): { configs: Config[]; rounds: number } {
   const byKey = new Map<string, Config>();
   for (const raw of raws) {
     const key = `${raw.dataset}/${raw.browser.name}/${raw.engine.name}`;
-    const config = byKey.get(key) ?? { dataset: raw.dataset, browser: raw.browser.name, engine: raw.engine.name,
+    const config: Config = byKey.get(key) ?? { dataset: raw.dataset, browser: raw.browser.name, engine: raw.engine.name,
       browserVersion: raw.browser.version, reps: [], plateau: new Map(), excluded: 0 };
     byKey.set(key, config);
     const times = new Map<string, number[]>();
