@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Regenerates data/ with jbr in a clone of comunica/Experiments-Centralized. Needs Docker.
 # Not part of the normal pipeline: the generated files are committed (see data/README.md).
-# Usage: scripts/generate-data.sh [watdiv-1|watdiv-10|bsbm-100|bsbm-1k ...]
+# Usage: scripts/generate-data.sh [watdiv-1|watdiv-10|bsbm-100|bsbm-1k|bsbm-10k|ldbc-snb-0.1 ...]
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -141,6 +141,7 @@ for t in "${targets[@]}"; do
     watdiv-10) gen_watdiv 10 "$t" ;;
     bsbm-100) gen_bsbm 100 "$t" ;;
     bsbm-1k) gen_bsbm 1000 "$t" ;;
+    bsbm-10k) gen_bsbm 10000 "$t" ;;
     ldbc-snb-0.1) gen_ldbc 0.1 "$t" ;;
     *) echo "Unknown dataset $t" >&2; exit 1 ;;
   esac

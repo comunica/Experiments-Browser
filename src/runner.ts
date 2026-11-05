@@ -33,7 +33,7 @@ export const CHROMIUM_LAUNCH = {
 // LDBC SNB has one scale: its support pass would repeat the cold pass of the first timing repetition, which
 // scripts/aggregate.ts uses instead.
 export const SUPPORT_DATASETS = [ 'watdiv-1', 'bsbm-100' ];
-export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
+export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'bsbm-10k', 'ldbc-snb-0.1' ];
 // The breakdown also runs synthetic scans of N results (data/calibration), where the COUNT wrapper cannot change the plan.
 export const BREAKDOWN_DATASETS = [ ...DATASETS, 'calibration' ];
 // The warm-up experiment needs many rounds; LDBC SNB's queries take seconds, and show no trend after one warmup round.

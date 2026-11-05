@@ -1,0 +1,20 @@
+Reading in titlewords.txt: 89523 words read in.
+Reading in titlewords.txt: 89523 words read in.
+Reading in givennames.txt: 88799 words read in.
+
+Generating Product Type Hierarchy...
+Product Type Hierarchy of depth 3 with 329 Product Types generated.
+
+Generating Product Features...
+10519 Product Features generated.
+
+Generating Producers and Products...
+206 Producers and 10000 Products have been generated.
+
+Generating Vendors and their Offers...
+99 Vendors and 200000 Offers have been generated.
+
+Generating RatingSite Data: Reviewers and Reviews... 
+11 Rating Sites with 5102 Persons and 100000 Reviews have been generated.
+
+3564773 triples generated.

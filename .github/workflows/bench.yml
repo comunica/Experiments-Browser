@@ -63,12 +63,12 @@ jobs:
           out="results/$(date -u +%Y-%m-%d)-github-runner"
           echo "out=$out" >> "$GITHUB_OUTPUT"
           npm run bench -- --out "$out" --mode support --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
-          npm run bench -- --out "$out" --mode timing --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k \
+          npm run bench -- --out "$out" --mode timing --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k,bsbm-10k \
             --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
           npm run bench -- --out "$out" --mode timing --datasets ldbc-snb-0.1 \
             --browsers "${{ inputs.ldbc_browsers || 'chromium' }}"
           # Oxigraph: evaluation against moving results into JavaScript.
-          npm run bench -- --out "$out" --mode breakdown --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k \
+          npm run bench -- --out "$out" --mode breakdown --datasets watdiv-1,watdiv-10,bsbm-100,bsbm-1k,bsbm-10k \
             --browsers "${{ inputs.browsers || 'chromium,firefox,webkit' }}"
           npm run bench -- --out "$out" --mode breakdown --datasets ldbc-snb-0.1 \
             --browsers "${{ inputs.ldbc_browsers || 'chromium' }}"

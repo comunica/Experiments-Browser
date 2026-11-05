@@ -21,7 +21,7 @@ const DATA = join(ROOT, 'data');
 const { values: args } = parseArgs({
   options: {
     mode: { type: 'string', default: 'warmup' },
-    datasets: { type: 'string', default: 'watdiv-1,watdiv-10,bsbm-100,bsbm-1k' },
+    datasets: { type: 'string', default: 'watdiv-1,watdiv-10,bsbm-100,bsbm-1k,bsbm-10k' },
     repeat: { type: 'string', default: '3' },
     'curve-rounds': { type: 'string', default: '30' },
     warmup: { type: 'string', default: '10' },

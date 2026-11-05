@@ -227,6 +227,7 @@ Safari, and Playwright's Firefox is a patched build.
 | `watdiv-10` (WatDiv scale factor 10) | 1,097,705 | same templates, 5 instances each |
 | `bsbm-100` (BSBM, 100 products) | 40,377 | explore Q1–Q5, Q8–Q12 × 5 instances |
 | `bsbm-1k` (BSBM, 1000 products) | 374,911 | same |
+| `bsbm-10k` (BSBM, 10,000 products, as Comunica's BSBM-File-10k CI benchmark) | 3,564,773 | same |
 | `ldbc-snb-0.1` (LDBC SNB Interactive, scale factor 0.1) | 4,028,513 | short IS1–IS7 and complex IC1–IC14 × 5 instances |
 
 Generated with jbr in [comunica/Experiments-Centralized](https://github.com/comunica/Experiments-Centralized) (LDBC SNB

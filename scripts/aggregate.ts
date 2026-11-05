@@ -7,7 +7,7 @@ import { join, relative, resolve } from 'node:path';
 const ROOT = resolve(import.meta.dirname, '..');
 export const ENGINES = [ 'comunica', 'oxigraph' ];
 export const BROWSERS = [ 'chromium', 'firefox', 'webkit' ];
-export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'ldbc-snb-0.1' ];
+export const DATASETS = [ 'watdiv-1', 'watdiv-10', 'bsbm-100', 'bsbm-1k', 'bsbm-10k', 'ldbc-snb-0.1' ];
 /** Families with a single scale, whose support pass is the first timing repetition's cold pass. */
 const SINGLE_SCALE = [ 'ldbc-snb-0.1' ];
 const OK_LIKE = new Set([ 'ok' ]);
