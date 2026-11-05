@@ -1,7 +1,8 @@
 // Runs the browser benchmark's steps for Comunica in Node, to compare with the browsers on the same V8 family: same
 // Comunica build (the monorepo checkout), same store, loader and query function as the page, same steps and outcome
-// classes. Every dataset and repetition runs in a fresh Node process; raw files use the runner's format, with
-// browser name "node", so the aggregation and plot scripts read them alongside the browsers'.
+// classes. Every dataset and repetition runs in a fresh Node process; raw files use the runner's format, with the
+// Node major version as browser name ("node22", "node24"), so several Node versions can share a results directory.
+// Run it with another Node version by putting it first on the PATH.
 // Usage: npm run bench:node -- [--mode warmup|timing] [--datasets watdiv-1,...] [--repeat 3] [--curve-rounds 30]
 //   [--warmup 1] [--rounds 5] [--timeout 60000] [--out results/<dir>] [--machine label]
 import { spawnSync } from 'node:child_process';
@@ -38,7 +39,8 @@ if (args.mode !== 'warmup' && args.mode !== 'timing') {
 }
 const OUT = resolve(ROOT, args.out ?? join('results', `${new Date().toISOString().slice(0, 10)}-${args.machine}`));
 const version = (name: string) => JSON.parse(readFileSync(join(ROOT, 'node_modules', name, 'package.json'), 'utf8')).version;
-const rawName = (dataset: string, repetition: number) => `${args.mode}-${dataset}-node-comunica-r${repetition}.json`;
+const ENV = `node${process.versions.node.split('.')[0]}`;
+const rawName = (dataset: string, repetition: number) => `${args.mode}-${dataset}-${ENV}-comunica-r${repetition}.json`;
 
 interface Step {
   phase: 'cold' | 'warmup' | 'timed';
@@ -92,7 +94,7 @@ async function child(dataset: string, repetition: number): Promise<void> {
     schema: 1,
     mode: args.mode,
     dataset,
-    browser: { name: 'node', version: process.version },
+    browser: { name: ENV, version: process.version },
     engine: { name: 'comunica' },
     build: { comunica, rdfStores: version('rdf-stores'), n3: version('n3'), runtime: 'node' },
     userAgent: `Node.js ${process.version} (V8 ${process.versions.v8})`,
@@ -132,10 +134,10 @@ function main(): void {
   }
   const metaFile = join(OUT, 'meta.json');
   const meta = existsSync(metaFile) ? JSON.parse(readFileSync(metaFile, 'utf8')) : { machine: { label: args.machine } };
-  meta.browsers = { ...meta.browsers, node: process.version };
-  meta.nodeRunner = { node: process.version, v8: process.versions.v8, args: process.argv.slice(2),
+  meta.browsers = { ...meta.browsers, [ENV]: process.version };
+  meta.nodeRunner = { ...meta.nodeRunner, [ENV]: { node: process.version, v8: process.versions.v8, args: process.argv.slice(2),
     comunica: JSON.parse(readFileSync(join(ROOT, '.cache', 'comunica-build.json'), 'utf8')).commit,
-    updatedAt: new Date().toISOString() };
+    updatedAt: new Date().toISOString() } };
   writeFileSync(metaFile, `${JSON.stringify(meta, null, 2)}\n`);
   console.log(`Results in ${OUT}`);
 }
